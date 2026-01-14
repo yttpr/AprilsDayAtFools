@@ -1,0 +1,1341 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>12.0</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Assets\codachan" />
+	  <None Remove="Assets\lunic" />
+	  <None Remove="Assets\painstar" />
+	  <None Remove="March\Achievement\inevitable_alpha.png" />
+	  <None Remove="March\Achievement\inevitable_blank.png" />
+	  <None Remove="March\Achievement\inevitable_bodybag.png" />
+	  <None Remove="March\Achievement\inevitable_clerk.png" />
+	  <None Remove="March\Achievement\inevitable_cora.png" />
+	  <None Remove="March\Achievement\inevitable_didion.png" />
+	  <None Remove="March\Achievement\inevitable_esther.png" />
+	  <None Remove="March\Achievement\inevitable_hangman.png" />
+	  <None Remove="March\Achievement\inevitable_hare.png" />
+	  <None Remove="March\Achievement\inevitable_joy.png" />
+	  <None Remove="March\Achievement\inevitable_kafka.png" />
+	  <None Remove="March\Achievement\inevitable_merced.png" />
+	  <None Remove="March\Achievement\inevitable_moon.png" />
+	  <None Remove="March\Achievement\inevitable_patch.png" />
+	  <None Remove="March\Achievement\inevitable_prayer.png" />
+	  <None Remove="March\Achievement\inevitable_rhys.png" />
+	  <None Remove="March\Achievement\inevitable_rose.png" />
+	  <None Remove="March\Achievement\inevitable_saea.png" />
+	  <None Remove="March\Achievement\inevitable_saline.png" />
+	  <None Remove="March\Achievement\inevitable_saturn.png" />
+	  <None Remove="March\Achievement\inevitable_six.png" />
+	  <None Remove="March\Achievement\inevitable_wtmiyr.png" />
+	  <None Remove="March\Achievement\inevitable_xet.png" />
+	  <None Remove="March\Item\item_6amalarm.png" />
+	  <None Remove="March\Item\item_aluminumcube.png" />
+	  <None Remove="March\Item\item_boneneedle.png" />
+	  <None Remove="March\Item\item_boundarylines.png" />
+	  <None Remove="March\Item\item_clay.png" />
+	  <None Remove="March\Item\item_collateraldamage1999.png" />
+	  <None Remove="March\Item\item_damocles.png" />
+	  <None Remove="March\Item\item_doublebladedknife.png" />
+	  <None Remove="March\Item\item_euthanasia.png" />
+	  <None Remove="March\Item\item_friedhumanhand.png" />
+	  <None Remove="March\Item\item_headstone.png" />
+	  <None Remove="March\Item\item_loverspact.png" />
+	  <None Remove="March\Item\item_machineegg.png" />
+	  <None Remove="March\Item\item_overdose.png" />
+	  <None Remove="March\Item\item_palesun.png" />
+	  <None Remove="March\Item\item_plasticfish.png" />
+	  <None Remove="March\Item\item_shrunkendoor.png" />
+	  <None Remove="March\Item\item_sundaygallows.png" />
+	  <None Remove="March\Item\item_thehumanalgorithm.png" />
+	  <None Remove="March\Item\item_thepeopleofpaper.png" />
+	  <None Remove="March\Item\item_witchsheart.png" />
+	  <None Remove="March\Item\item_youvoodoodoll.png" />
+	  <None Remove="March\Locked\locked_6amalarm.png" />
+	  <None Remove="March\Locked\locked_aluminumcube.png" />
+	  <None Remove="March\Locked\locked_boneneedle.png" />
+	  <None Remove="March\Locked\locked_boundarylines.png" />
+	  <None Remove="March\Locked\locked_clay.png" />
+	  <None Remove="March\Locked\locked_collateraldamage1999.png" />
+	  <None Remove="March\Locked\locked_damocles.png" />
+	  <None Remove="March\Locked\locked_doublebladedknife.png" />
+	  <None Remove="March\Locked\locked_euthanasia.png" />
+	  <None Remove="March\Locked\locked_friedhumanhand.png" />
+	  <None Remove="March\Locked\locked_headstone.png" />
+	  <None Remove="March\Locked\locked_loverspact.png" />
+	  <None Remove="March\Locked\locked_machineegg.png" />
+	  <None Remove="March\Locked\locked_overdose.png" />
+	  <None Remove="March\Locked\locked_palesun.png" />
+	  <None Remove="March\Locked\locked_plasticfish.png" />
+	  <None Remove="March\Locked\locked_shrunkendoor.png" />
+	  <None Remove="March\Locked\locked_sundagallows.png" />
+	  <None Remove="March\Locked\locked_thehumanalgorithm.png" />
+	  <None Remove="March\Locked\locked_thepeopleofpaper.png" />
+	  <None Remove="March\Locked\locked_witchsheart.png" />
+	  <None Remove="March\Locked\locked_youvoodoodoll.png" />
+	  <None Remove="Passives\Sprites\AmbushPassive.png" />
+	  <None Remove="Passives\Sprites\BacklashPassive.png" />
+	  <None Remove="Passives\Sprites\ChunkPassive.png" />
+	  <None Remove="Passives\Sprites\EternityPassive.png" />
+	  <None Remove="Passives\Sprites\MimicryPassive.png" />
+	  <None Remove="Passives\Sprites\OrdinaryPassive.png" />
+	  <None Remove="Passives\Sprites\ScaryPassive.png" />
+	  <None Remove="Passives\Sprites\SolitudePassive.png" />
+	  <None Remove="Passives\Sprites\UnpredictablePassive.png" />
+	  <None Remove="Sprites\Abilities\Items\purity_a.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_agriculture.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_clash.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_core.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_creak.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_draw.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_enzyme.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_leather.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_marrow.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_organ.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_relay.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_steak.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_steak.png.png" />
+	  <None Remove="Sprites\Abilities\Set1\ability_warmup.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_agony.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_escape.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_gazer.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_isolation.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_lighter.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_nailing.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_nightmare.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_number.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_reap.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_wallowing.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_weakness.png" />
+	  <None Remove="Sprites\Abilities\Set2\ability_where.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_bodies.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_cleave.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_contract.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_dance.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_desperation.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_envy.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_hope.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_mutilate.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_scam.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_scramble.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_script.png" />
+	  <None Remove="Sprites\Abilities\Set3\ability_soliloquy.png" />
+	  <None Remove="Sprites\Abilities\Set4\ability_artillery.png" />
+	  <None Remove="Sprites\Abilities\Set4\ability_complex.png" />
+	  <None Remove="Sprites\Abilities\Set4\ability_hypothetical.png" />
+	  <None Remove="Sprites\Abilities\Set4\ability_pores.png" />
+	  <None Remove="Sprites\Abilities\Set4\ability_soul.png" />
+	  <None Remove="Sprites\Abilities\Set4\ability_spray.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_auto.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_bullet.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_cataclysm.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_coma.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_ellegy.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_finale.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_onset.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_origin.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_plastic.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_stand.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_sticks.png" />
+	  <None Remove="Sprites\Abilities\Set5\ability_year.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_a.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_b.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_c.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_checkmate.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_days.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_fingers.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_gambit.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_hearts.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_ink.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_papercuts.png" />
+	  <None Remove="Sprites\Abilities\Set6\ability_toy.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_buried.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_face.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_goat.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_graph.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_haze.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_interest.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_karma.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_line.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_mask.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_shear.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_suffer.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_void.png" />
+	  <None Remove="Sprites\Achievements\divine_alpha.png" />
+	  <None Remove="Sprites\Achievements\divine_blank.png" />
+	  <None Remove="Sprites\Achievements\divine_bodybag.png" />
+	  <None Remove="Sprites\Achievements\divine_clerk.png" />
+	  <None Remove="Sprites\Achievements\divine_cora.png" />
+	  <None Remove="Sprites\Achievements\divine_didion.png" />
+	  <None Remove="Sprites\Achievements\divine_esther.png" />
+	  <None Remove="Sprites\Achievements\divine_hangman.png" />
+	  <None Remove="Sprites\Achievements\divine_hare.png" />
+	  <None Remove="Sprites\Achievements\divine_joy.png" />
+	  <None Remove="Sprites\Achievements\divine_kafka.png" />
+	  <None Remove="Sprites\Achievements\divine_merced.png" />
+	  <None Remove="Sprites\Achievements\divine_moon.png" />
+	  <None Remove="Sprites\Achievements\divine_patch.png" />
+	  <None Remove="Sprites\Achievements\divine_prayer.png" />
+	  <None Remove="Sprites\Achievements\divine_rhys.png" />
+	  <None Remove="Sprites\Achievements\divine_rose.png" />
+	  <None Remove="Sprites\Achievements\divine_saea.png" />
+	  <None Remove="Sprites\Achievements\divine_saline.png" />
+	  <None Remove="Sprites\Achievements\divine_saturn.png" />
+	  <None Remove="Sprites\Achievements\divine_six.png" />
+	  <None Remove="Sprites\Achievements\divine_wtmiyr.png" />
+	  <None Remove="Sprites\Achievements\divine_xet.png" />
+	  <None Remove="Sprites\Achievements\witness_alpha.png" />
+	  <None Remove="Sprites\Achievements\witness_blank.png" />
+	  <None Remove="Sprites\Achievements\witness_bodybag.png" />
+	  <None Remove="Sprites\Achievements\witness_clerk.png" />
+	  <None Remove="Sprites\Achievements\witness_cora.png" />
+	  <None Remove="Sprites\Achievements\witness_didion.png" />
+	  <None Remove="Sprites\Achievements\witness_esther.png" />
+	  <None Remove="Sprites\Achievements\witness_hangman.png" />
+	  <None Remove="Sprites\Achievements\witness_hare.png" />
+	  <None Remove="Sprites\Achievements\witness_joy.png" />
+	  <None Remove="Sprites\Achievements\witness_kafka.png" />
+	  <None Remove="Sprites\Achievements\witness_merced.png" />
+	  <None Remove="Sprites\Achievements\witness_moon.png" />
+	  <None Remove="Sprites\Achievements\witness_patch.png" />
+	  <None Remove="Sprites\Achievements\witness_prayer.png" />
+	  <None Remove="Sprites\Achievements\witness_rhys.png" />
+	  <None Remove="Sprites\Achievements\witness_rose.png" />
+	  <None Remove="Sprites\Achievements\witness_saea.png" />
+	  <None Remove="Sprites\Achievements\witness_saline.png" />
+	  <None Remove="Sprites\Achievements\witness_saturn.png" />
+	  <None Remove="Sprites\Achievements\witness_six.png" />
+	  <None Remove="Sprites\Achievements\witness_wtmiyr.png" />
+	  <None Remove="Sprites\Achievements\witness_xet.png" />
+	  <None Remove="Sprites\Characters\Alpha\AlphaBack.png" />
+	  <None Remove="Sprites\Characters\Alpha\AlphaFront.png" />
+	  <None Remove="Sprites\Characters\Alpha\AlphaLock.png" />
+	  <None Remove="Sprites\Characters\Alpha\AlphaMenu.png" />
+	  <None Remove="Sprites\Characters\Alpha\AlphaWorld.png" />
+	  <None Remove="Sprites\Characters\Anatomical\AnatomicalBack.png" />
+	  <None Remove="Sprites\Characters\Anatomical\AnatomicalFront.png" />
+	  <None Remove="Sprites\Characters\Anatomical\AnatomicalWorld.png" />
+	  <None Remove="Sprites\Characters\Bodybag\BodybagBack.png" />
+	  <None Remove="Sprites\Characters\Bodybag\BodybagFront0.png" />
+	  <None Remove="Sprites\Characters\Bodybag\BodybagFront1.png" />
+	  <None Remove="Sprites\Characters\Bodybag\BodybagFront2.png" />
+	  <None Remove="Sprites\Characters\Bodybag\BodybagLock.png" />
+	  <None Remove="Sprites\Characters\Bodybag\BodybagMenu.png" />
+	  <None Remove="Sprites\Characters\Bodybag\BodybagWorld.png" />
+	  <None Remove="Sprites\Characters\Catten\CattenBack.png" />
+	  <None Remove="Sprites\Characters\Catten\CattenFront.png" />
+	  <None Remove="Sprites\Characters\Catten\CattenLock.png" />
+	  <None Remove="Sprites\Characters\Catten\CattenMenu.png" />
+	  <None Remove="Sprites\Characters\Catten\CattenWorld.png" />
+	  <None Remove="Sprites\Characters\Catten\LiminalPassive.png" />
+	  <None Remove="Sprites\Characters\Clerk\ClerkBack.png" />
+	  <None Remove="Sprites\Characters\Clerk\ClerkFront.png" />
+	  <None Remove="Sprites\Characters\Clerk\ClerkLock.png" />
+	  <None Remove="Sprites\Characters\Clerk\ClerkMenu.png" />
+	  <None Remove="Sprites\Characters\Clerk\ClerkWorld.png" />
+	  <None Remove="Sprites\Characters\Cora\CoraBack.png" />
+	  <None Remove="Sprites\Characters\Cora\CoraFront.png" />
+	  <None Remove="Sprites\Characters\Cora\CoraLock.png" />
+	  <None Remove="Sprites\Characters\Cora\CoraMenu.png" />
+	  <None Remove="Sprites\Characters\Cora\CoraWorld.png" />
+	  <None Remove="Sprites\Characters\Defacer\DefacerBack.png" />
+	  <None Remove="Sprites\Characters\Defacer\DefacerFront.png" />
+	  <None Remove="Sprites\Characters\Defacer\DefacerLock.png" />
+	  <None Remove="Sprites\Characters\Defacer\DefacerMad.png" />
+	  <None Remove="Sprites\Characters\Defacer\DefacerMenu.png" />
+	  <None Remove="Sprites\Characters\Defacer\DefacerWorld.png" />
+	  <None Remove="Sprites\Characters\Defacer\RipperPassive.png" />
+	  <None Remove="Sprites\Characters\Didion\DidionBack.png" />
+	  <None Remove="Sprites\Characters\Didion\DidionFront.png" />
+	  <None Remove="Sprites\Characters\Didion\DidionLock.png" />
+	  <None Remove="Sprites\Characters\Didion\DidionMenu.png" />
+	  <None Remove="Sprites\Characters\Didion\DidionWorld.png" />
+	  <None Remove="Sprites\Characters\Dog\DogBack.png" />
+	  <None Remove="Sprites\Characters\Dog\DogFront.png" />
+	  <None Remove="Sprites\Characters\Dog\DogWorld.png" />
+	  <None Remove="Sprites\Characters\Dog\Rabid.png" />
+	  <None Remove="Sprites\Characters\Esther\EstherBack.png" />
+	  <None Remove="Sprites\Characters\Esther\EstherFront.png" />
+	  <None Remove="Sprites\Characters\Esther\EstherLock.png" />
+	  <None Remove="Sprites\Characters\Esther\EstherMenu.png" />
+	  <None Remove="Sprites\Characters\Esther\EstherWorld.png" />
+	  <None Remove="Sprites\Characters\Hangman\HangmanBack.png" />
+	  <None Remove="Sprites\Characters\Hangman\HangmanFront0.png" />
+	  <None Remove="Sprites\Characters\Hangman\HangmanFront1.png" />
+	  <None Remove="Sprites\Characters\Hangman\HangmanFront2.png" />
+	  <None Remove="Sprites\Characters\Hangman\HangmanLock.png" />
+	  <None Remove="Sprites\Characters\Hangman\HangmanMenu.png" />
+	  <None Remove="Sprites\Characters\Hangman\HangmanWorld.png" />
+	  <None Remove="Sprites\Characters\Hare\HareBack.png" />
+	  <None Remove="Sprites\Characters\Hare\HareFront.png" />
+	  <None Remove="Sprites\Characters\Hare\HareLock.png" />
+	  <None Remove="Sprites\Characters\Hare\HareMenu.png" />
+	  <None Remove="Sprites\Characters\Hare\HareWorld.png" />
+	  <None Remove="Sprites\Characters\Joy\JoyBack.png" />
+	  <None Remove="Sprites\Characters\Joy\JoyFront_Blue.png" />
+	  <None Remove="Sprites\Characters\Joy\JoyFront_Purple.png" />
+	  <None Remove="Sprites\Characters\Joy\JoyFront_Red.png" />
+	  <None Remove="Sprites\Characters\Joy\JoyFront_Yellow.png" />
+	  <None Remove="Sprites\Characters\Joy\JoyLock.png" />
+	  <None Remove="Sprites\Characters\Joy\JoyMenu.png" />
+	  <None Remove="Sprites\Characters\Joy\JoyWorld.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaBack.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaBack4.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaBack5.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaDet2.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaDet3.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaDet4.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaDet5.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaDetermined.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaFront.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaLocked.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaMenu.png" />
+	  <None Remove="Sprites\Characters\Kafka\KafkaWorld.png" />
+	  <None Remove="Sprites\Characters\Merced\MercedBack.png" />
+	  <None Remove="Sprites\Characters\Merced\MercedFront.png" />
+	  <None Remove="Sprites\Characters\Merced\MercedLock.png" />
+	  <None Remove="Sprites\Characters\Merced\MercedMenu.png" />
+	  <None Remove="Sprites\Characters\Merced\MercedWorld.png" />
+	  <None Remove="Sprites\Characters\Moon\MoonAlt.png" />
+	  <None Remove="Sprites\Characters\Moon\MoonBack.png" />
+	  <None Remove="Sprites\Characters\Moon\MoonFront.png" />
+	  <None Remove="Sprites\Characters\Moon\MoonLock.png" />
+	  <None Remove="Sprites\Characters\Moon\MoonMenu.png" />
+	  <None Remove="Sprites\Characters\Moon\MoonPortal.png" />
+	  <None Remove="Sprites\Characters\Moon\MoonWorld.png" />
+	  <None Remove="Sprites\Characters\Patch\PatchBack.png" />
+	  <None Remove="Sprites\Characters\Patch\PatchFront.png" />
+	  <None Remove="Sprites\Characters\Patch\PatchLock.png" />
+	  <None Remove="Sprites\Characters\Patch\PatchMenu.png" />
+	  <None Remove="Sprites\Characters\Patch\PatchWorld.png" />
+	  <None Remove="Sprites\Characters\Prayer\PrayerBack.png" />
+	  <None Remove="Sprites\Characters\Prayer\PrayerFront.png" />
+	  <None Remove="Sprites\Characters\Prayer\PrayerLock.png" />
+	  <None Remove="Sprites\Characters\Prayer\PrayerMenu.png" />
+	  <None Remove="Sprites\Characters\Prayer\PrayerWorld.png" />
+	  <None Remove="Sprites\Characters\Rhys\RhysBack.png" />
+	  <None Remove="Sprites\Characters\Rhys\RhysFront0.png" />
+	  <None Remove="Sprites\Characters\Rhys\RhysFront1.png" />
+	  <None Remove="Sprites\Characters\Rhys\RhysFront2.png" />
+	  <None Remove="Sprites\Characters\Rhys\RhysLock.png" />
+	  <None Remove="Sprites\Characters\Rhys\RhysMenu.png" />
+	  <None Remove="Sprites\Characters\Rhys\RhysWorld.png" />
+	  <None Remove="Sprites\Characters\Rose\RoseBack.png" />
+	  <None Remove="Sprites\Characters\Rose\RoseFront.png" />
+	  <None Remove="Sprites\Characters\Rose\RoseLock.png" />
+	  <None Remove="Sprites\Characters\Rose\RoseMenu.png" />
+	  <None Remove="Sprites\Characters\Rose\RoseWorld.png" />
+	  <None Remove="Sprites\Characters\Rotcore\RotcoreBack0.png" />
+	  <None Remove="Sprites\Characters\Rotcore\RotcoreBack1.png" />
+	  <None Remove="Sprites\Characters\Rotcore\RotcoreFront0.png" />
+	  <None Remove="Sprites\Characters\Rotcore\RotcoreFront1.png" />
+	  <None Remove="Sprites\Characters\Rotcore\RotcoreFront2.png" />
+	  <None Remove="Sprites\Characters\Rotcore\RotcoreFront3.png" />
+	  <None Remove="Sprites\Characters\Rotcore\RotcoreLock.png" />
+	  <None Remove="Sprites\Characters\Rotcore\RotcoreMenu.png" />
+	  <None Remove="Sprites\Characters\Rotcore\RotcoreWorld.png" />
+	  <None Remove="Sprites\Characters\Saea\SaeaBack.png" />
+	  <None Remove="Sprites\Characters\Saea\SaeaFront.png" />
+	  <None Remove="Sprites\Characters\Saea\SaeaLock.png" />
+	  <None Remove="Sprites\Characters\Saea\SaeaMenu.png" />
+	  <None Remove="Sprites\Characters\Saea\SaeaWorld.png" />
+	  <None Remove="Sprites\Characters\Saline\SalineBack.png" />
+	  <None Remove="Sprites\Characters\Saline\SalineFront.png" />
+	  <None Remove="Sprites\Characters\Saline\SalineLock.png" />
+	  <None Remove="Sprites\Characters\Saline\SalineMenu.png" />
+	  <None Remove="Sprites\Characters\Saline\SalineWorld.png" />
+	  <None Remove="Sprites\Characters\Saturn\SaturnAlt.png" />
+	  <None Remove="Sprites\Characters\Saturn\SaturnBack.png" />
+	  <None Remove="Sprites\Characters\Saturn\SaturnFront.png" />
+	  <None Remove="Sprites\Characters\Saturn\SaturnLock.png" />
+	  <None Remove="Sprites\Characters\Saturn\SaturnMenu.png" />
+	  <None Remove="Sprites\Characters\Saturn\SaturnWorld.png" />
+	  <None Remove="Sprites\Characters\Six\SixBack.png" />
+	  <None Remove="Sprites\Characters\Six\SixFocused.png" />
+	  <None Remove="Sprites\Characters\Six\SixFront.png" />
+	  <None Remove="Sprites\Characters\Six\SixLock.png" />
+	  <None Remove="Sprites\Characters\Six\SixMenu.png" />
+	  <None Remove="Sprites\Characters\Six\SixWorld.png" />
+	  <None Remove="Sprites\Characters\Sunflower\SunflowerBack.png" />
+	  <None Remove="Sprites\Characters\Sunflower\SunflowerFront.png" />
+	  <None Remove="Sprites\Characters\Sunflower\SunflowerLock.png" />
+	  <None Remove="Sprites\Characters\Sunflower\SunflowerMenu.png" />
+	  <None Remove="Sprites\Characters\Sunflower\SunflowerWorld.png" />
+	  <None Remove="Sprites\Characters\Sunflower\TrenchPassive.png" />
+	  <None Remove="Sprites\Characters\Wtmiyr\WtmiyrBack.png" />
+	  <None Remove="Sprites\Characters\Wtmiyr\WtmiyrFront.png" />
+	  <None Remove="Sprites\Characters\Wtmiyr\WtmiyrLock.png" />
+	  <None Remove="Sprites\Characters\Wtmiyr\WtmiyrMenu.png" />
+	  <None Remove="Sprites\Characters\Wtmiyr\WtmiyrWorld.png" />
+	  <None Remove="Sprites\Characters\Xet\XetBack.png" />
+	  <None Remove="Sprites\Characters\Xet\XetFront.png" />
+	  <None Remove="Sprites\Characters\Xet\XetLock.png" />
+	  <None Remove="Sprites\Characters\Xet\XetMenu.png" />
+	  <None Remove="Sprites\Characters\Xet\XetSmall.png" />
+	  <None Remove="Sprites\Characters\Xet\XetWorld.png" />
+	  <None Remove="Sprites\Enemies\ActivatorIcon.png" />
+	  <None Remove="Sprites\Enemies\BombIcon.png" />
+	  <None Remove="Sprites\Enemies\BombWorld.png" />
+	  <None Remove="Sprites\Icons\Acid.png" />
+	  <None Remove="Sprites\Icons\Anesthetics.png" />
+	  <None Remove="Sprites\Icons\DeepFieldIcon.png" />
+	  <None Remove="Sprites\Icons\Determined.png" />
+	  <None Remove="Sprites\Icons\Dodge.png" />
+	  <None Remove="Sprites\Icons\Drowning.png" />
+	  <None Remove="Sprites\Icons\EntropyIcon.png" />
+	  <None Remove="Sprites\Icons\FlowersPassive.png" />
+	  <None Remove="Sprites\Icons\Haste.png" />
+	  <None Remove="Sprites\Icons\Pale.png" />
+	  <None Remove="Sprites\Icons\PimplesIcon.png" />
+	  <None Remove="Sprites\Icons\Power.png" />
+	  <None Remove="Sprites\Icons\terror.png" />
+	  <None Remove="Sprites\Items\item_anatomymodel.png" />
+	  <None Remove="Sprites\Items\item_artificialadrenalinerush.png" />
+	  <None Remove="Sprites\Items\item_backupbodies.png" />
+	  <None Remove="Sprites\Items\item_beheading.png" />
+	  <None Remove="Sprites\Items\item_betablockers.png" />
+	  <None Remove="Sprites\Items\item_bloodclotter.png" />
+	  <None Remove="Sprites\Items\item_bloodcutter.png" />
+	  <None Remove="Sprites\Items\item_braineatingamoeba.png" />
+	  <None Remove="Sprites\Items\item_braintumor.png" />
+	  <None Remove="Sprites\Items\item_cheapkitchenknife.png" />
+	  <None Remove="Sprites\Items\item_comfortlighter.png" />
+	  <None Remove="Sprites\Items\item_constellationgrin.png" />
+	  <None Remove="Sprites\Items\item_defacer.png" />
+	  <None Remove="Sprites\Items\item_devilspurse.png" />
+	  <None Remove="Sprites\Items\item_dial.png" />
+	  <None Remove="Sprites\Items\item_digestiblefireworks.png" />
+	  <None Remove="Sprites\Items\item_doohikey.png" />
+	  <None Remove="Sprites\Items\item_eraser.png" />
+	  <None Remove="Sprites\Items\item_formsplitter.png" />
+	  <None Remove="Sprites\Items\item_glasscompass.png" />
+	  <None Remove="Sprites\Items\item_goldfish.png" />
+	  <None Remove="Sprites\Items\item_grimoire.png" />
+	  <None Remove="Sprites\Items\item_handhelddiorama.png" />
+	  <None Remove="Sprites\Items\item_identitytheft.png" />
+	  <None Remove="Sprites\Items\item_leadchunk.png" />
+	  <None Remove="Sprites\Items\item_martyr.png" />
+	  <None Remove="Sprites\Items\item_page11.png" />
+	  <None Remove="Sprites\Items\item_polygonpipebomb.png" />
+	  <None Remove="Sprites\Items\item_puppeteer.png" />
+	  <None Remove="Sprites\Items\item_purityofmind.png" />
+	  <None Remove="Sprites\Items\item_rabiddog.png" />
+	  <None Remove="Sprites\Items\item_radiationgas.png" />
+	  <None Remove="Sprites\Items\item_restrainingorder.png" />
+	  <None Remove="Sprites\Items\item_rootsofgod.png" />
+	  <None Remove="Sprites\Items\item_rustedsurgeonstools.png" />
+	  <None Remove="Sprites\Items\item_schoolshooter.png" />
+	  <None Remove="Sprites\Items\item_starsteardrop.png" />
+	  <None Remove="Sprites\Items\item_teddy.png" />
+	  <None Remove="Sprites\Items\item_telescope.png" />
+	  <None Remove="Sprites\Items\item_toolsofwar.png" />
+	  <None Remove="Sprites\Items\item_toothgun.png" />
+	  <None Remove="Sprites\Items\item_vowkeeper.png" />
+	  <None Remove="Sprites\Items\item_weightedscales.png" />
+	  <None Remove="Sprites\Items\item_wristcutter.png" />
+	  <None Remove="Sprites\Locked\locked_anatomymodel.png" />
+	  <None Remove="Sprites\Locked\locked_artificialadrenalinerush.png" />
+	  <None Remove="Sprites\Locked\locked_backupbodies.png" />
+	  <None Remove="Sprites\Locked\locked_beheading.png" />
+	  <None Remove="Sprites\Locked\locked_betablockers.png" />
+	  <None Remove="Sprites\Locked\locked_bloodclotter.png" />
+	  <None Remove="Sprites\Locked\locked_bloodcutter.png" />
+	  <None Remove="Sprites\Locked\locked_braineatingamoeba.png" />
+	  <None Remove="Sprites\Locked\locked_braintumor.png" />
+	  <None Remove="Sprites\Locked\locked_cheapkitchenknife.png" />
+	  <None Remove="Sprites\Locked\locked_comfortlighter.png" />
+	  <None Remove="Sprites\Locked\locked_constellationgrin.png" />
+	  <None Remove="Sprites\Locked\locked_defacer.png" />
+	  <None Remove="Sprites\Locked\locked_devilspurse.png" />
+	  <None Remove="Sprites\Locked\locked_dial.png" />
+	  <None Remove="Sprites\Locked\locked_digestiblefireworks.png" />
+	  <None Remove="Sprites\Locked\locked_doohikey.png" />
+	  <None Remove="Sprites\Locked\locked_eraser.png" />
+	  <None Remove="Sprites\Locked\locked_formsplitter.png" />
+	  <None Remove="Sprites\Locked\locked_glasscompass.png" />
+	  <None Remove="Sprites\Locked\locked_goldfish.png" />
+	  <None Remove="Sprites\Locked\locked_grimoire.png" />
+	  <None Remove="Sprites\Locked\locked_handhelddiorama.png" />
+	  <None Remove="Sprites\Locked\locked_identitytheft.png" />
+	  <None Remove="Sprites\Locked\locked_leadchunk.png" />
+	  <None Remove="Sprites\Locked\locked_martyr.png" />
+	  <None Remove="Sprites\Locked\locked_page11.png" />
+	  <None Remove="Sprites\Locked\locked_polygonpipebomb.png" />
+	  <None Remove="Sprites\Locked\locked_puppeteer.png" />
+	  <None Remove="Sprites\Locked\locked_purityofmind.png" />
+	  <None Remove="Sprites\Locked\locked_rabiddog.png" />
+	  <None Remove="Sprites\Locked\locked_radiationgas.png" />
+	  <None Remove="Sprites\Locked\locked_restrainingorder.png" />
+	  <None Remove="Sprites\Locked\locked_rootsofgod.png" />
+	  <None Remove="Sprites\Locked\locked_rustedsurgeonstools.png" />
+	  <None Remove="Sprites\Locked\locked_schoolshooter.png" />
+	  <None Remove="Sprites\Locked\locked_starsteardrop.png" />
+	  <None Remove="Sprites\Locked\locked_teddy.png" />
+	  <None Remove="Sprites\Locked\locked_telescope.png" />
+	  <None Remove="Sprites\Locked\locked_toolsofwar.png" />
+	  <None Remove="Sprites\Locked\locked_toothgun.png" />
+	  <None Remove="Sprites\Locked\locked_vowkeeper.png" />
+	  <None Remove="Sprites\Locked\locked_weightedscales.png" />
+	  <None Remove="Sprites\Locked\locked_wristcutter.png" />
+	  <None Remove="Sprites\New\ability_growthsolution.png" />
+	  <None Remove="Sprites\New\divine_catten.png" />
+	  <None Remove="Sprites\New\divine_defacer.png" />
+	  <None Remove="Sprites\New\divine_rotcore.png" />
+	  <None Remove="Sprites\New\divine_sunflower.png" />
+	  <None Remove="Sprites\New\inevitable_catten.png" />
+	  <None Remove="Sprites\New\inevitable_rotcore.png" />
+	  <None Remove="Sprites\New\inevitable_sunflower.png" />
+	  <None Remove="Sprites\New\item_blooddiamond.png" />
+	  <None Remove="Sprites\New\item_boneworms.png" />
+	  <None Remove="Sprites\New\item_broom.png" />
+	  <None Remove="Sprites\New\item_depictionofsadness.png" />
+	  <None Remove="Sprites\New\item_etherealdagger.png" />
+	  <None Remove="Sprites\New\item_frequencyisolator.png" />
+	  <None Remove="Sprites\New\item_infiniterope.png" />
+	  <None Remove="Sprites\New\item_molars.png" />
+	  <None Remove="Sprites\New\item_nullreferenceexception.png" />
+	  <None Remove="Sprites\New\item_safetyhazard.png" />
+	  <None Remove="Sprites\New\item_springlocks.png" />
+	  <None Remove="Sprites\New\item_testtube.png" />
+	  <None Remove="Sprites\New\locked_blooddiamond.png" />
+	  <None Remove="Sprites\New\locked_boneworms.png" />
+	  <None Remove="Sprites\New\locked_broom.png" />
+	  <None Remove="Sprites\New\locked_depictionofsadness.png" />
+	  <None Remove="Sprites\New\locked_etherealdagger.png" />
+	  <None Remove="Sprites\New\locked_frequencyisolator.png" />
+	  <None Remove="Sprites\New\locked_infiniterope.png" />
+	  <None Remove="Sprites\New\locked_molars.png" />
+	  <None Remove="Sprites\New\locked_nullreferenceexception.png" />
+	  <None Remove="Sprites\New\locked_safetyhazard.png" />
+	  <None Remove="Sprites\New\locked_springlocks.png" />
+	  <None Remove="Sprites\New\locked_testtube.png" />
+	  <None Remove="Sprites\New\witness_catten.png" />
+	  <None Remove="Sprites\New\witness_defacer.png" />
+	  <None Remove="Sprites\New\witness_rotcore.png" />
+	  <None Remove="Sprites\New\witness_sunflower.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Assets\lunic" />
+	  <EmbeddedResource Include="Assets\painstar" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_alpha.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_blank.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_bodybag.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_clerk.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_cora.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_didion.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_esther.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_hangman.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_hare.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_joy.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_kafka.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_merced.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_moon.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_patch.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_prayer.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_rhys.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_rose.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_saea.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_saline.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_saturn.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_six.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_wtmiyr.png" />
+	  <EmbeddedResource Include="March\Achievement\inevitable_xet.png" />
+	  <EmbeddedResource Include="March\Item\item_6amalarm.png" />
+	  <EmbeddedResource Include="March\Item\item_aluminumcube.png" />
+	  <EmbeddedResource Include="March\Item\item_boneneedle.png" />
+	  <EmbeddedResource Include="March\Item\item_boundarylines.png" />
+	  <EmbeddedResource Include="March\Item\item_clay.png" />
+	  <EmbeddedResource Include="March\Item\item_collateraldamage1999.png" />
+	  <EmbeddedResource Include="March\Item\item_damocles.png" />
+	  <EmbeddedResource Include="March\Item\item_doublebladedknife.png" />
+	  <EmbeddedResource Include="March\Item\item_euthanasia.png" />
+	  <EmbeddedResource Include="March\Item\item_friedhumanhand.png" />
+	  <EmbeddedResource Include="March\Item\item_headstone.png" />
+	  <EmbeddedResource Include="March\Item\item_loverspact.png" />
+	  <EmbeddedResource Include="March\Item\item_machineegg.png" />
+	  <EmbeddedResource Include="March\Item\item_overdose.png" />
+	  <EmbeddedResource Include="March\Item\item_palesun.png" />
+	  <EmbeddedResource Include="March\Item\item_plasticfish.png" />
+	  <EmbeddedResource Include="March\Item\item_shrunkendoor.png" />
+	  <EmbeddedResource Include="March\Item\item_sundaygallows.png" />
+	  <EmbeddedResource Include="March\Item\item_thehumanalgorithm.png" />
+	  <EmbeddedResource Include="March\Item\item_thepeopleofpaper.png" />
+	  <EmbeddedResource Include="March\Item\item_witchsheart.png" />
+	  <EmbeddedResource Include="March\Item\item_youvoodoodoll.png" />
+	  <EmbeddedResource Include="March\Locked\locked_6amalarm.png" />
+	  <EmbeddedResource Include="March\Locked\locked_aluminumcube.png" />
+	  <EmbeddedResource Include="March\Locked\locked_boneneedle.png" />
+	  <EmbeddedResource Include="March\Locked\locked_boundarylines.png" />
+	  <EmbeddedResource Include="March\Locked\locked_clay.png" />
+	  <EmbeddedResource Include="March\Locked\locked_collateraldamage1999.png" />
+	  <EmbeddedResource Include="March\Locked\locked_damocles.png" />
+	  <EmbeddedResource Include="March\Locked\locked_doublebladedknife.png" />
+	  <EmbeddedResource Include="March\Locked\locked_euthanasia.png" />
+	  <EmbeddedResource Include="March\Locked\locked_friedhumanhand.png" />
+	  <EmbeddedResource Include="March\Locked\locked_headstone.png" />
+	  <EmbeddedResource Include="March\Locked\locked_loverspact.png" />
+	  <EmbeddedResource Include="March\Locked\locked_machineegg.png" />
+	  <EmbeddedResource Include="March\Locked\locked_overdose.png" />
+	  <EmbeddedResource Include="March\Locked\locked_palesun.png" />
+	  <EmbeddedResource Include="March\Locked\locked_plasticfish.png" />
+	  <EmbeddedResource Include="March\Locked\locked_shrunkendoor.png" />
+	  <EmbeddedResource Include="March\Locked\locked_sundagallows.png" />
+	  <EmbeddedResource Include="March\Locked\locked_thehumanalgorithm.png" />
+	  <EmbeddedResource Include="March\Locked\locked_thepeopleofpaper.png" />
+	  <EmbeddedResource Include="March\Locked\locked_witchsheart.png" />
+	  <EmbeddedResource Include="March\Locked\locked_youvoodoodoll.png" />
+	  <EmbeddedResource Include="Passives\Sprites\AmbushPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\BacklashPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\ChunkPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\EternityPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\MimicryPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\OrdinaryPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\ScaryPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\SolitudePassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\UnpredictablePassive.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Items\purity_a.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_agriculture.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_clash.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_core.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_creak.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_draw.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_enzyme.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_leather.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_marrow.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_demonstration.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_organ.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_relay.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_steak.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_warmup.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Assets\codachan" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_agony.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_escape.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_gazer.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_isolation.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_lighter.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_nailing.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_nightmare.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_number.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_reap.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_wallowing.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_weakness.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set2\ability_where.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_bodies.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_cleave.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_contract.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_dance.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_desperation.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_envy.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_hope.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_mutilate.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_scam.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_scramble.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_script.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set3\ability_soliloquy.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set4\ability_artillery.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set4\ability_complex.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set4\ability_hypothetical.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set4\ability_pores.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set4\ability_soul.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set4\ability_spray.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_auto.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_bullet.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_cataclysm.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_coma.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_ellegy.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_finale.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_onset.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_origin.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_plastic.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_stand.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_sticks.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set5\ability_year.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_a.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_b.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_c.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_checkmate.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_days.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_fingers.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_gambit.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_hearts.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_ink.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_needles.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_papercuts.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set6\ability_toy.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_buried.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_face.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_goat.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_graph.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_haze.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_interest.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_karma.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_line.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_mask.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_shear.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_suffer.png" />
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_void.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_alpha.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_blank.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_bodybag.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_clerk.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_cora.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_didion.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_esther.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_hangman.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_hare.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_joy.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_kafka.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_merced.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_moon.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_patch.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_prayer.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_rhys.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_rose.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_saea.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_saline.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_saturn.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_six.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_wtmiyr.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\divine_xet.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_alpha.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_blank.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_bodybag.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_clerk.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_cora.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_didion.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_esther.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_hangman.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_hare.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_joy.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_kafka.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_merced.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_moon.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_patch.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_prayer.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_rhys.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_rose.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_saea.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_saline.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_saturn.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_six.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_wtmiyr.png" />
+	  <EmbeddedResource Include="Sprites\Achievements\witness_xet.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Alpha\AlphaBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Alpha\AlphaFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Alpha\AlphaLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Alpha\AlphaMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Alpha\AlphaWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Anatomical\AnatomicalBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Anatomical\AnatomicalFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Anatomical\AnatomicalWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Bodybag\BodybagBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Bodybag\BodybagFront0.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Bodybag\BodybagFront1.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Bodybag\BodybagFront2.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Bodybag\BodybagLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Bodybag\BodybagMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Bodybag\BodybagWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Catten\CattenBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Catten\CattenFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Catten\CattenLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Catten\CattenMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Catten\CattenWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Catten\LiminalPassive.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Clerk\ClerkBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Clerk\ClerkFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Clerk\ClerkLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Clerk\ClerkMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Clerk\ClerkWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Cora\CoraBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Cora\CoraFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Cora\CoraLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Cora\CoraMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Cora\CoraWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Defacer\DefacerBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Defacer\DefacerFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Defacer\DefacerLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Defacer\DefacerMad.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Defacer\DefacerMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Defacer\DefacerWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Defacer\RipperPassive.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Didion\DidionBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Didion\DidionFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Didion\DidionLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Didion\DidionMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Didion\DidionWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Dog\ability_bite.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Dog\DogBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Dog\DogFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Dog\DogWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Dog\Rabid.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Esther\EstherBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Esther\EstherFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Esther\EstherLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Esther\EstherMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Esther\EstherWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hangman\HangmanBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hangman\HangmanFront0.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hangman\HangmanFront1.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hangman\HangmanFront2.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hangman\HangmanLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hangman\HangmanMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hangman\HangmanWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hare\HareBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hare\HareFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hare\HareLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hare\HareMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Hare\HareWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Joy\JoyBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Joy\JoyFront_Blue.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Joy\JoyFront_Purple.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Joy\JoyFront_Red.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Joy\JoyFront_Yellow.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Joy\JoyLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Joy\JoyMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Joy\JoyWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaBack4.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaBack5.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaDet2.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaDet3.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaDet4.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaDet5.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaDetermined.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaLocked.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Merced\MercedBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Merced\MercedFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Merced\MercedLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Merced\MercedMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Merced\MercedWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Moon\MoonAlt.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Moon\MoonBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Moon\MoonFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Moon\MoonLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Moon\MoonMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Moon\MoonPortal.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Moon\MoonWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Patch\PatchBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Patch\PatchFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Patch\PatchLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Patch\PatchMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Patch\PatchWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Prayer\PrayerBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Prayer\PrayerFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Prayer\PrayerLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Prayer\PrayerMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Prayer\PrayerWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysFront0.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysFront1.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysFront2.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rose\RoseBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rose\RoseFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rose\RoseLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rose\RoseMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rose\RoseWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rotcore\RotcoreBack0.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rotcore\RotcoreBack1.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rotcore\RotcoreFront0.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rotcore\RotcoreFront1.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rotcore\RotcoreFront2.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rotcore\RotcoreFront3.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rotcore\RotcoreLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rotcore\RotcoreMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Rotcore\RotcoreWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saea\SaeaBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saea\SaeaFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saea\SaeaLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saea\SaeaMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saea\SaeaWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saline\SalineBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saline\SalineFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saline\SalineLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saline\SalineMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saline\SalineWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saturn\SaturnAlt.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saturn\SaturnBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saturn\SaturnFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saturn\SaturnLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saturn\SaturnMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Saturn\SaturnWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Six\SixBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Six\SixFocused.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Six\SixFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Six\SixLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Six\SixMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Six\SixWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Sunflower\SunflowerBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Sunflower\SunflowerFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Sunflower\SunflowerLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Sunflower\SunflowerMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Sunflower\SunflowerWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Sunflower\TrenchPassive.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Wtmiyr\WtmiyrBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Wtmiyr\WtmiyrFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Wtmiyr\WtmiyrLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Wtmiyr\WtmiyrMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Wtmiyr\WtmiyrWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Xet\XetBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Xet\XetFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Xet\XetLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Xet\XetMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Xet\XetSmall.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Xet\XetWorld.png" />
+	  <EmbeddedResource Include="Sprites\Enemies\ActivatorIcon.png" />
+	  <EmbeddedResource Include="Sprites\Enemies\BombIcon.png" />
+	  <EmbeddedResource Include="Sprites\Enemies\BombWorld.png" />
+	  <EmbeddedResource Include="Sprites\Icons\Acid.png" />
+	  <EmbeddedResource Include="Sprites\Icons\Anesthetics.png" />
+	  <EmbeddedResource Include="Sprites\Icons\DeepFieldIcon.png" />
+	  <EmbeddedResource Include="Sprites\Icons\Determined.png" />
+	  <EmbeddedResource Include="Passives\Sprites\FlowersPassive.png" />
+	  <EmbeddedResource Include="Sprites\Icons\Dodge.png" />
+	  <EmbeddedResource Include="Sprites\Icons\Drowning.png" />
+	  <EmbeddedResource Include="Sprites\Icons\EntropyIcon.png" />
+	  <EmbeddedResource Include="Sprites\Icons\Haste.png" />
+	  <EmbeddedResource Include="Sprites\Icons\Pale.png" />
+	  <EmbeddedResource Include="Sprites\Icons\PimplesIcon.png" />
+	  <EmbeddedResource Include="Sprites\Icons\Power.png" />
+	  <EmbeddedResource Include="Sprites\Icons\terror.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_anatomymodel.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_artificialadrenalinerush.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_backupbodies.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_beheading.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_betablockers.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_bloodclotter.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_bloodcutter.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_braineatingamoeba.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_braintumor.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_cheapkitchenknife.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_comfortlighter.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_constellationgrin.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_defacer.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_devilspurse.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_dial.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_digestiblefireworks.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_doohikey.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_eraser.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_formsplitter.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_glasscompass.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_goldfish.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_grimoire.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_handhelddiorama.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_identitytheft.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_leadchunk.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_martyr.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_page11.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_polygonpipebomb.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_puppeteer.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_purityofmind.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_rabiddog.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_radiationgas.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_restrainingorder.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_rootsofgod.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_rustedsurgeonstools.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_schoolshooter.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_starsteardrop.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_teddy.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_telescope.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_toolsofwar.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_toothgun.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_vowkeeper.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_weightedscales.png" />
+	  <EmbeddedResource Include="Sprites\Items\item_wristcutter.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_anatomymodel.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_artificialadrenalinerush.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_backupbodies.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_beheading.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_betablockers.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_bloodclotter.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_bloodcutter.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_braineatingamoeba.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_braintumor.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_cheapkitchenknife.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_comfortlighter.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_constellationgrin.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_defacer.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_devilspurse.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_dial.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_digestiblefireworks.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_doohikey.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_eraser.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_formsplitter.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_glasscompass.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_goldfish.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_grimoire.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_handhelddiorama.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_identitytheft.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_leadchunk.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_martyr.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_page11.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_polygonpipebomb.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_puppeteer.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_purityofmind.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_rabiddog.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_radiationgas.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_restrainingorder.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_rootsofgod.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_rustedsurgeonstools.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_schoolshooter.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_starsteardrop.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_teddy.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_telescope.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_toolsofwar.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_toothgun.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_vowkeeper.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_weightedscales.png" />
+	  <EmbeddedResource Include="Sprites\Locked\locked_wristcutter.png" />
+	  <EmbeddedResource Include="Sprites\New\ability_growthsolution.png" />
+	  <EmbeddedResource Include="Sprites\New\divine_catten.png" />
+	  <EmbeddedResource Include="Sprites\New\divine_defacer.png" />
+	  <EmbeddedResource Include="Sprites\New\divine_rotcore.png" />
+	  <EmbeddedResource Include="Sprites\New\divine_sunflower.png" />
+	  <EmbeddedResource Include="Sprites\New\inevitable_catten.png" />
+	  <EmbeddedResource Include="Sprites\New\inevitable_secret.png" />
+	  <EmbeddedResource Include="Sprites\New\inevitable_rotcore.png" />
+	  <EmbeddedResource Include="Sprites\New\inevitable_sunflower.png" />
+	  <EmbeddedResource Include="Sprites\New\item_blooddiamond.png" />
+	  <EmbeddedResource Include="Sprites\New\item_boneworms.png" />
+	  <EmbeddedResource Include="Sprites\New\item_broom.png" />
+	  <EmbeddedResource Include="Sprites\New\item_depictionofsadness.png" />
+	  <EmbeddedResource Include="Sprites\New\item_etherealdagger.png" />
+	  <EmbeddedResource Include="Sprites\New\item_frequencyisolator.png" />
+	  <EmbeddedResource Include="Sprites\New\item_infiniterope.png" />
+	  <EmbeddedResource Include="Sprites\New\item_molars.png" />
+	  <EmbeddedResource Include="Sprites\New\item_nullreferenceexception.png" />
+	  <EmbeddedResource Include="Sprites\New\item_safetyhazard.png" />
+	  <EmbeddedResource Include="Sprites\New\item_springlocks.png" />
+	  <EmbeddedResource Include="Sprites\New\item_testtube.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_blooddiamond.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_boneworms.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_broom.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_depictionofsadness.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_etherealdagger.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_frequencyisolator.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_infiniterope.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_molars.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_nullreferenceexception.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_safetyhazard.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_springlocks.png" />
+	  <EmbeddedResource Include="Sprites\New\locked_testtube.png" />
+	  <EmbeddedResource Include="Sprites\New\witness_catten.png" />
+	  <EmbeddedResource Include="Sprites\New\witness_defacer.png" />
+	  <EmbeddedResource Include="Sprites\New\witness_rotcore.png" />
+	  <EmbeddedResource Include="Sprites\New\witness_sunflower.png" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\REFERENCES\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony20">
+      <HintPath>..\..\REFERENCES\0Harmony20.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\..\REFERENCES\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>..\..\REFERENCES\BepInEx.Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>..\..\REFERENCES\BepInEx.Preloader.dll</HintPath>
+    </Reference>
+    <Reference Include="BrutalAPI">
+      <HintPath>..\..\REFERENCES\BrutalAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>..\..\REFERENCES\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="FMODUnity">
+      <HintPath>..\..\REFERENCES\FMODUnity.dll</HintPath>
+    </Reference>
+    <Reference Include="HarmonyXInterop">
+      <HintPath>..\..\REFERENCES\HarmonyXInterop.dll</HintPath>
+    </Reference>
+    <Reference Include="Marosi.SerializableCollections">
+      <HintPath>..\..\REFERENCES\Marosi.SerializableCollections.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\..\REFERENCES\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>..\..\REFERENCES\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>..\..\REFERENCES\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks">
+      <HintPath>..\..\REFERENCES\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\..\REFERENCES\MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\..\REFERENCES\MonoMod.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\REFERENCES\PUBLIC-Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Runtime">
+      <HintPath>..\..\REFERENCES\Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Triangle.Runtime">
+      <HintPath>..\..\REFERENCES\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Runtime">
+      <HintPath>..\..\REFERENCES\Unity.2D.Common.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Runtime">
+      <HintPath>..\..\REFERENCES\Unity.2D.IK.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>..\..\REFERENCES\Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Runtime">
+      <HintPath>..\..\REFERENCES\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+      <HintPath>..\..\REFERENCES\Unity.2D.Tilemap.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>..\..\REFERENCES\Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.001">
+      <HintPath>..\..\REFERENCES\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\REFERENCES\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>..\..\REFERENCES\Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\REFERENCES\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>..\..\REFERENCES\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\REFERENCES\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GIModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.GIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.TextCoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\REFERENCES\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsNativeModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UIElementsNativeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UNETModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityCurlModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UnityCurlModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VirtualTexturingModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.VirtualTexturingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\REFERENCES\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="YarnSpinner">
+      <HintPath>..\..\REFERENCES\YarnSpinner.dll</HintPath>
+    </Reference>
+    <Reference Include="YarnSpinner.Compiler">
+      <HintPath>..\..\REFERENCES\YarnSpinner.Compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="YarnSpinner.Unity">
+      <HintPath>..\..\REFERENCES\YarnSpinner.Unity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

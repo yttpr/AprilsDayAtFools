@@ -1,0 +1,510 @@
+title: Aprils.Wtmiyr.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Wtmiyr>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Tesh syte! Gaplt ro vw opf heka!
+    <<LeftFocus>>
+    Happy to have you.
+    <<HideRoomNPCs>>
+    <<HireCharacter Wtmiyr_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    Spreey, vyt uio hwve s lpt id lzryu nrbmwrd aktrwdu.
+    <<LeftFocus>>
+    Oh ok.
+<<endif>>
+===
+
+title: Aprils.Bodybag.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Bodybag>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Glffghgg. Yeah sure let's go.
+    <<HideRoomNPCs>>
+    <<HireCharacter Bodybag_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    Blhrrghghh. Sorry not feeling it right now.
+<<endif>>
+===
+
+title: Aprils.Hare.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Hare>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Hehe, yeah sure!
+    <<HideRoomNPCs>>
+    <<HireCharacter Hare_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    ...
+    *It seems like she is uncomfortable with large groups.*
+<<endif>>
+===
+
+title: Aprils.Prayer.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Prayer>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Sigh, I guess so.
+    <<HideRoomNPCs>>
+    <<HireCharacter Prayer_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    Nah, I'm not too fond of crowds.
+<<endif>>
+===
+
+title: Aprils.Six.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Six>>
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Nowak! I'm a fugitive! We need to escape!
+    <<HideRoomNPCs>>
+    <<HireCharacter Six_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    Nowak. I remember your gardens.
+<<endif>>
+===
+
+title: Aprils.Didion.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Didion>>
+<<LeftFocus>>
+<<LeftSound>>
+<<if HasPartySpace() is true>>
+    Hey, are you still willing to tag along with us?
+    <<RightFocus>>
+    ...
+    <<RightSound>>
+    Oh, me? Um, I'd be glad to.
+    <<HideRoomNPCs>>
+    <<HireCharacter Didion_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    <<non_stop_lines>>
+    Hey--
+    <<RightSet Bosch>>
+    <<RightFocus>>
+    <<RightSound>>
+    <<stop_lines>>
+    I don't like this pathetic whelp and we already have enough people. Let's go.
+<<endif>>
+===
+
+title: Aprils.Rose.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Rose>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Sure, let's get killing!
+    <<HideRoomNPCs>>
+    <<HireCharacter Rose_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    I'm gonna bludgeon you into dust if you don't shut up right about now.
+<<endif>>
+===
+
+title: Aprils.Rhys.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Rhys>>
+<<LeftFocus>>
+<<LeftSound>>
+<<non_stop_lines>>
+Hey--
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    <<stop_lines>>
+    Let us go, yellow friend! We have business to attend to.
+    <<HideRoomNPCs>>
+    <<HireCharacter Rhys_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    <<stop_lines>>
+    Heh, I've got other business to attend to.
+<<endif>>
+===
+
+title: Aprils.Patch.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Patch>>
+<<LeftFocus>>
+*You notice her hiding behind the mound of corpses.*
+<<if HasPartySpace() is true>>
+    *As you walk past her, she begins following a short distance behind you.*
+    <<HideRoomNPCs>>
+    <<HireCharacter Patch_CH>>
+    <<SaveProgress>>
+<<else>>
+    *As you walk past her, she pretends to not have noticed your party.*
+<<endif>>
+===
+
+title: Aprils.Joy.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Joy>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Why of coooourrsee my good friend!
+    <<HideRoomNPCs>>
+    <<HireCharacter Joy_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    HAHAHAHAHAHA! no.
+    <<RightSound>>
+    I know your tricks. You're trying to trap me with your superior numbers. But I'm not falling for it.
+<<endif>>
+===
+
+title: Aprils.Moon.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Moon>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    ...
+    ...
+    <<RightSound>>
+    Alright.
+    <<HideRoomNPCs>>
+    <<HireCharacter Moon_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    Mm...
+    <<RightSound>>
+    No, sorry, your group kind of bothers me.
+<<endif>>
+===
+
+title: Aprils.Esther.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Esther>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Hah! Yeah. Sure.
+    <<HideRoomNPCs>>
+    <<HireCharacter Esther_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    I'm going to kill myself right in front of you if your little posse doesn't leave immediately.
+<<endif>>
+===
+
+title: Aprils.Clerk.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Clerk>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Ok.
+    <<HideRoomNPCs>>
+    <<HireCharacter Clerk_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    NO.
+<<endif>>
+===
+
+title: Aprils.Hangman.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Hangman>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Gee, I'd love to!
+    <<HideRoomNPCs>>
+    <<HireCharacter Hangman_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    <<non_stop_lines>>
+    Oh gosh, I'd love to but the last time I was with this large of a group we ran oer a family of four--
+    <<LeftSet Bosch>>
+    <<LeftFocus>>
+    <<LeftSound>>
+    <<stop_lines>>
+    We're done here.
+<<endif>>
+===
+
+title: Aprils.Saturn.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Saturn>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Sure, the clouds seem to be intent on interfering with me today anyway.
+    <<HideRoomNPCs>>
+    <<HireCharacter Saturn_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    Shut up! Be quiet! You're ruining everything!
+<<endif>>
+===
+
+title: Aprils.Saline.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Saline>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Blows smoke in your face. Sure man, whatever you say man.
+    <<HideRoomNPCs>>
+    <<HireCharacter Saline_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    You would not believe how many painkillers I'm on right now.
+    <<RightSound>>
+    And how much they're not working.
+    <<RightSound>>
+    And how much your noisy group isn't helping. Please leave.
+<<endif>>
+===
+
+title: Aprils.Cora.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Cora>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    I can't think of anything to complain about so alright.
+    <<HideRoomNPCs>>
+    <<HireCharacter Cora_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    I hate everything you stand for. You damn normie. You freaking socializers could never understand my plight. Go off with your majority-rules you friend-haver.
+<<endif>>
+===
+
+title: Aprils.Merced.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Merced>>
+<<LeftFocus>>
+<<LeftSound>>
+Hey, are you still willing to tag along with us?
+<<if HasPartySpace() is true>>
+    <<RightFocus>>
+    <<RightSound>>
+    Sure!
+    <<HideRoomNPCs>>
+    <<HireCharacter Merced_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<RightFocus>>
+    <<RightSound>>
+    Errm, nah, I have no idea how you tolerate such a large crowd.
+<<endif>>
+===
+
+title: Aprils.Xet.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Xet>>
+<<RightFocus>>
+<<RightSound>>
+Would you like to partake in fun and games?
+<<if HasPartySpace() is true>>
+    <<LeftFocus>>
+    <<LeftSound>>
+    Sure, I guess.
+    <<HideRoomNPCs>>
+    <<HireCharacter Xet_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<LeftFocus>>
+    <<LeftSound>>
+    Sorry, we don't really have time for that right now.
+    <<RightFocus>>
+    <<RightSound>>
+    Oh...
+<<endif>>
+===
+
+title: Aprils.Kafka.TryHire
+tags:
+colorID: 0
+position:
+---
+<<LeftSet Nowak>>
+<<RightSet Kafka>>
+<<RightFocus>>
+<<RightSound>>
+Would you be kind enough to stay with me for a while?
+<<if HasPartySpace() is true>>
+    <<LeftFocus>>
+    <<LeftSound>>
+    We have somewhere to go, but you'd be welcome to come with us if you'd like.
+    <<RightFocus>>
+    <<RightSound>>
+    In that case, I shall be imposing on your hospitality.
+    <<HideRoomNPCs>>
+    <<HireCharacter Kafka_CH>>
+    <<SaveProgress>>
+<<else>>
+    <<LeftFocus>>
+    <<LeftSound>>
+    We're a little busy. Maybe some other time.
+    <<RightFocus>>
+    <<RightSound>>
+    I'm sorry. Please don't leave me here.
+<<endif>>
+===

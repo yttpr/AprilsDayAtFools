@@ -1,0 +1,87 @@
+merced
+- Osman: blood cutter (shop 3): on any damage, 2 ruptured front
+- heaven: blood clotter (shop 4): permenantly ruptured. on taking any damage, +2 power
+
+cora
+- Osman: roots of god (treasure): wrong pigment and overflow damage taken by this party member is also dealt to all enemies
+- heaven: grimoire (shop 4): permenantly ruptured. damage dealt spreads indirectly left and right
+
+xet
+- Osman: glass compass (shop 3): on dealing damage to an enemy, move them left or right
+- heaven: doohikey (shop 4): on using ability, 1 random positive or negative status all enemies. on damaged, 9 all enemies, destroy.
+
+saline
+- Osman: school shooter (shop 6): on kill, deal 7 direct damage to a random enemy.
+- heaven: polygon pipe bomb (treasure): on taking direct damage, inflict 2 random negative status effect to all enemies.
+
+Didion
+- Osman: martyr (shop 3): on death, 2 determined all allies
+- heaven: beta blockers (shop 4): gain 4 anesthetics on combat start
+
+rose
+- Osman: tooth gun (treasure): increase damage by missing health. on dealing damage, lose 10% current health.
+- heaven: wrist cutter (shop 6): on turn start, gain 1 scar. 25% more damage
+
+prayer
+- Osman: vowkeeper (shop 0): on turn end, convert 0-10 random pigments into purple
+- heaven: anatomy model (shop 7): add mimicry as passive. spawn anatomy model.
+
+kafka
+- Osman: handheld diorama (treasure): on using an ability, change the ability's costs to the pigments used.
+- heaven: page 11 (treasure): on combat start, heal all party members 5 health then curse all party and enemies
+
+bodybag
+- Osman: restraining order (shop 10): 25% more damage for each side of an enemy not touching another enemy
+- heaven: rabid dog (shop 7): on combat start, spawn the rabid dog
+
+hangman
+- Osman: form-splitter (treasure): when an enemy moves in front self, 7 damage to them, instantly flee. +flowers passive
+- heaven: brain tumor (treasure): on dealing damage, generate 2 extra pigment of target's health color
+
+Saturn
+- Osman: dial (shop 8): 40 Pale random enemy combat start. damage against enemies with Pale cascades Left and Right indirectly
+- heaven: telescope (shop 6): on the third turn, apply 40-60 Pale to all enemies.
+
+hare
+- Osman: radiation gas (shop 3): on using an ability, inflict 1 pimples on all enemies
+- heaven: lead chunk (shop 6): on dealing damage, turn front enemy purple. 50% more damage to purple enemies
+
+moon
+- Osman: comfort lighter (shop 4): on enemy moving in front of self, 1 fire front
+- heaven: weighted scales (treasure): on enemy moving in front of self, 15 pale to them
+
+clerk
+- Osman: eraser (treasure): on damaging target, 33% chance remove action, 33% chance reroll action, 33% chance add action
+- heaven: puppeteer (shop 10): on any damage, force this party member to perform one of their abilities
+
+esther
+- Osman: artificial adrenaline rush (shop 8): 50% more damage. die on turn 6
+- heaven: beheading (treasure): this party member is 1 level lower. on direct damage above 1, heal 1 health. destroyed on death.
+
+rhys
+- Osman: cheap kitchen knife (shop 2): on using ability, 10 damage random enemy, destroy item
+- heaven: brain eating amoeba (treasure): on turn start, spawn the neuron activator
+
+wtmiyr
+- Osman: tools of war (shop 10): on dealing damage, attempt to deal the damage to self, then use the modifier against the target.
+- heaven: purity of mind (treasure): adds extra ability purity of mind, which resets all stored values on all allies.
+
+joy
+- Osman: rusted surgeon's tools (shop 6): 2x healing, 1 scar heal target
+- heaven: digestible fireworks (shop 3): on death, inflict 3-5 fire to all enemy positions. destroyed on use
+
+patch
+- Osman: teddy (shop 7): on taking any damage, destroy this item and gain 20 determined
+- heaven: backup bodies (shop 6): whenever a party member dies, 50% chance to spawn a nonpermenant clone of them
+
+six
+- Osman: goldfish (fish 2): on any ability used, heal 2. 18% destroy activation.
+- heaven: devil's purse (fish 3): on combat start, heal 15 health and destroy self
+
+saea
+- Osman: constellation grin (treasure): on death, 70-90 Pale all enemies.
+- heaven: star's teardrop (treasure): on taking any damage, 5 damage all enemies.
+
+a
+- Osman: defacer (treasure): +unstable, transfusion, infestation (1), unpredictable, constricting, ordinary, slippery, skittish, focus, leaky (1), eternal, backlash, flowers, delicate, solitude, withering, construct, scary, ambush (2), inferno (1), untethered essence
+- heaven: identity theft (treasure): on taking any damage, transform into a random same level party member
