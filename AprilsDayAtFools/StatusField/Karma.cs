@@ -69,6 +69,7 @@ namespace AprilsDayAtFools
         public override void OnEventCall_01(StatusEffect_Holder holder, object sender, object args)
         {
             if (sender is IUnit unit) unit.Damage(holder.m_ContentMain + holder.Restrictor, null, "Karma", -1, true, true, false, Karma.DamageType);
+            if (sender is IStatusEffector effector) effector.RemoveStatusEffect(holder.StatusID);
         }
     }
     public class ApplyKarmaEffect : StatusEffect_Apply_Effect
