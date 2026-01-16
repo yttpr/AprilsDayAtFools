@@ -130,6 +130,25 @@ namespace AprilsDayAtFools
             return target.DirectDeath(killer, obliteration, out int num);
         }
 
+        public static EnemyDamagedUIAction GenerateEnemyDamagedUIAction(int id, int currentHealth, int maxHealth, int totalAmount, string dmgTypeID, bool triggerPopUp = true, bool triggerAnim = true)
+        {
+            ConstructorInfo[] constructors = typeof(EnemyDamagedUIAction).GetConstructors();
+
+            foreach (ConstructorInfo constructor in constructors)
+            {
+                if (constructor.GetParameters().Length == 7)
+                {
+                    return constructor.Invoke([id, currentHealth, maxHealth, totalAmount, dmgTypeID, triggerPopUp, triggerAnim]) as EnemyDamagedUIAction;
+                }
+                if (constructor.GetParameters().Length == 5)
+                {
+                    return constructor.Invoke([id, currentHealth, maxHealth, totalAmount, dmgTypeID]) as EnemyDamagedUIAction;
+                }
+            }
+            Debug.LogError("versioncompatability:EnemyDamagedUIAction. tldr, WHAT THE FUCK");
+            return null;
+        }
+
         public class CompatibleEndAbilityAction : CombatAction
         {
             public int _unitID;

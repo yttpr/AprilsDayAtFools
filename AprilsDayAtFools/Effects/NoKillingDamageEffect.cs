@@ -207,7 +207,7 @@ namespace AprilsDayAtFools
                     specialDamage = Tools.Utils.GetBasicDamageIDFromAmount(modifiedValue);
                 }
 
-                CombatManager.Instance.AddUIAction(new EnemyDamagedUIAction(self.ID, self.CurrentHealth, self.MaximumHealth, modifiedValue, specialDamage));
+                CombatManager.Instance.AddUIAction(Help.GenerateEnemyDamagedUIAction(self.ID, self.CurrentHealth, self.MaximumHealth, modifiedValue, specialDamage));
                 if (addHealthMana)
                 {
                     CombatManager.Instance.ProcessImmediateAction(new AddManaToManaBarAction(self.HealthColor, LoadedDBsHandler.CombatData.EnemyPigmentAmount, self.IsUnitCharacter, self.ID));
