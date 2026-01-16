@@ -42,6 +42,7 @@ namespace AprilsDayAtFools
                         }
                     }
 
+                    if (has) continue;
                     target.Unit.AddExtraAbility(_extraAbility);
                     exitAmount++;
                 }
