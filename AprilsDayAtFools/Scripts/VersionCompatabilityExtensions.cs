@@ -5,7 +5,6 @@ using System.Collections;
 
 namespace AprilsDayAtFools
 {
-
     public static class Help
     {
         public static DamageInfo GenerateDamageInfo(int exit, int entry, bool killed)
@@ -17,8 +16,6 @@ namespace AprilsDayAtFools
             if (typeof(DamageInfo).GetField("attemptedDamageAmount") != null)
             {
                 typeof(DamageInfo).GetField("attemptedDamageAmount").SetValue(ret, entry);
-
-                //Debug.Log("exists attempteddamageamount in damageinfo");
             }
 
             return ret;
@@ -29,8 +26,6 @@ namespace AprilsDayAtFools
             if (typeof(IntegerReference).Assembly.GetType("IntegerReference_Damage", false) != null)
             {
                 object ret = typeof(IntegerReference).Assembly.GetType("IntegerReference_Damage").GetConstructor([typeof(int), typeof(string), typeof(bool), typeof(bool), typeof(int), typeof(int), typeof(IUnit), typeof(IUnit)]).Invoke([amount, damageTypeID, directDamage, ignoreShield, affectedStartSlot, affectedEndSlot, possibleSourceUnit, damagedUnit]);
-
-                //Debug.Log("exists integerreference_damage");
 
                 return ret as IntegerReference;
             }
@@ -68,7 +63,7 @@ namespace AprilsDayAtFools
                 {
                     try
                     {
-                        _subHelper_AnyAbilityHasFinished(unit, caster, isChara, ability);
+                        Helper._subHelper_AnyAbilityHasFinished(unit, caster, isChara, ability);
                     }
                     catch
                     {
@@ -85,25 +80,13 @@ namespace AprilsDayAtFools
                 {
                     try
                     {
-                        _subHelper_AnyAbilityHasFinished(unit, caster, isChara, ability);
+                        Helper._subHelper_AnyAbilityHasFinished(unit, caster, isChara, ability);
                     }
                     catch
                     {
                         Debug.LogWarning("idk");
                     }
                 }
-            }
-        }
-
-        public static void _subHelper_AnyAbilityHasFinished(IUnit unit, int caster, bool isChara, AbilitySO ability)
-        {
-            if (unit is CharacterCombat chara)
-            {
-                chara.AnyAbilityHasFinished(new AbilityUsageReference(caster, isChara, ability));
-            }
-            if (unit is EnemyCombat enemy)
-            {
-                enemy.AnyAbilityHasFinished(new AbilityUsageReference(caster, isChara, ability));
             }
         }
 
@@ -116,7 +99,7 @@ namespace AprilsDayAtFools
             {
                 try
                 {
-                    return _subHelper_DirectDeath(self, killer, obliteration);
+                    return Helper._subHelper_DirectDeath(self, killer, obliteration);
                 }
                 catch
                 {
@@ -124,10 +107,6 @@ namespace AprilsDayAtFools
                 }
             }
             return false;
-        }
-        public static bool _subHelper_DirectDeath(IUnit target, IUnit killer, bool obliteration)
-        {
-            return target.DirectDeath(killer, obliteration, out int num);
         }
 
         public static EnemyDamagedUIAction GenerateEnemyDamagedUIAction(int id, int currentHealth, int maxHealth, int totalAmount, string dmgTypeID, bool triggerPopUp = true, bool triggerAnim = true)
@@ -148,6 +127,7 @@ namespace AprilsDayAtFools
             Debug.LogError("versioncompatability:EnemyDamagedUIAction. tldr, WHAT THE FUCK");
             return null;
         }
+
 
         public class CompatibleEndAbilityAction : CombatAction
         {
@@ -203,6 +183,24 @@ namespace AprilsDayAtFools
                 }
 
                 yield return null;
+            }
+        }
+    }
+    public static class Helper
+    {
+        public static bool _subHelper_DirectDeath(IUnit target, IUnit killer, bool obliteration)
+        {
+            return target.DirectDeath(killer, obliteration, out int num);
+        }
+        public static void _subHelper_AnyAbilityHasFinished(IUnit unit, int caster, bool isChara, AbilitySO ability)
+        {
+            if (unit is CharacterCombat chara)
+            {
+                chara.AnyAbilityHasFinished(new AbilityUsageReference(caster, isChara, ability));
+            }
+            if (unit is EnemyCombat enemy)
+            {
+                enemy.AnyAbilityHasFinished(new AbilityUsageReference(caster, isChara, ability));
             }
         }
     }

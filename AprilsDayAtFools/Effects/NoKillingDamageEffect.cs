@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonoMod.RuntimeDetour;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -19,41 +20,8 @@ namespace AprilsDayAtFools
 
         public bool _returnKillAsSuccess;
 
-        public EffectSO Alternate;
-
         public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
         {
-            bool found = false;
-            MethodInfo method = null;
-
-            if (Alternate == null)
-            {
-                if (LoadedAssetsHandler.LoadedEnemyAbilities.TryGetValue("Salt_SourFlavour_A", out AbilitySO proper))
-                {
-                    Alternate = ScriptableObject.Instantiate(proper.effects[1].effect);
-
-                    Alternate.GetType().GetField("_DeathTypeID").SetValue(Alternate, _DeathTypeID);
-                    Alternate.GetType().GetField("_usePreviousExitValue").SetValue(Alternate, _usePreviousExitValue);
-                    Alternate.GetType().GetField("_ignoreShield").SetValue(Alternate, _ignoreShield);
-                    Alternate.GetType().GetField("_indirect").SetValue(Alternate, _indirect);
-                    Alternate.GetType().GetField("_returnKillAsSuccess").SetValue(Alternate, _returnKillAsSuccess);
-
-                    /*Assembly assembly = proper.effects[1].effect.GetType().Assembly;
-
-                    Type type = assembly.GetType("WontKillDamageExtension", false);
-                    if (type != null && !type.Equals(null))
-                    {
-                        Debug.Log("got type");
-                        method = type.GetMethod("NoKillDamage");
-                        if (method != null && !method.Equals(null)) found = true;
-                        Debug.Log("found");
-                    }*/
-                }
-            }
-
-            if (Alternate != null) return Alternate.PerformEffect(stats, caster, targets, areTargetSlots, entryVariable, out exitAmount);
-
-
             if (_usePreviousExitValue)
             {
                 entryVariable *= base.PreviousExitValue;
@@ -65,44 +33,23 @@ namespace AprilsDayAtFools
             {
                 if (targetSlotInfo.HasUnit)
                 {
+                    targetSlotInfo.Unit.SimpleSetStoredValue(WontKillDamageHook.Value, 1);
                     int targetSlotOffset = (areTargetSlots ? (targetSlotInfo.SlotID - targetSlotInfo.Unit.SlotID) : (-1));
                     int amount = entryVariable;
-                    DamageInfo damageInfo = new DamageInfo();
-                    bool done = false;
+                    DamageInfo damageInfo;
                     if (_indirect)
                     {
-                        if (found)
-                        {
-                            object obj = method.Invoke(null, [targetSlotInfo.Unit, null, _DeathTypeID, targetSlotOffset, false, false, true]);
-                            if (obj is DamageInfo ret)
-                            {
-                                damageInfo = ret;
-                                done = true;
-                                Debug.Log("performed");
-                            }
-                        }
-                        if (!done)
-                            damageInfo = targetSlotInfo.Unit.NoKillDamage(amount, null, _DeathTypeID, targetSlotOffset, addHealthMana: false, directDamage: false, ignoresShield: true);
+                        damageInfo = targetSlotInfo.Unit.Damage(amount, null, _DeathTypeID, targetSlotOffset, addHealthMana: false, directDamage: false, ignoresShield: true);
                     }
                     else
                     {
                         amount = caster.WillApplyDamage(amount, targetSlotInfo.Unit);
-                        if (found)
-                        {
-                            object obj = method.Invoke(null, [targetSlotInfo.Unit, caster, _DeathTypeID, targetSlotOffset, true, true, _ignoreShield]);
-                            if (obj is DamageInfo ret)
-                            {
-                                damageInfo = ret;
-                                done = true;
-                                Debug.Log("performed");
-                            }
-                        }
-                        if (!done)
-                            damageInfo = targetSlotInfo.Unit.NoKillDamage(amount, caster, _DeathTypeID, targetSlotOffset, addHealthMana: true, directDamage: true, _ignoreShield);
+                        damageInfo = targetSlotInfo.Unit.Damage(amount, caster, _DeathTypeID, targetSlotOffset, addHealthMana: true, directDamage: true, _ignoreShield);
                     }
 
                     flag |= damageInfo.beenKilled;
                     exitAmount += damageInfo.damageAmount;
+                    targetSlotInfo.Unit.SimpleSetStoredValue(WontKillDamageHook.Value, 0);
                 }
             }
 
@@ -117,6 +64,20 @@ namespace AprilsDayAtFools
             }
 
             return flag;
+        }
+    }
+    public static class WontKillDamageHook
+    {
+        public static string Value => "Dmg_Spare";
+        public static int DamageReceivedValueChangeException_GetModifiedValue(Func<DamageReceivedValueChangeException, int> orig, DamageReceivedValueChangeException self)
+        {
+            int ret = orig(self);
+            if (self.damagedUnit.SimpleGetStoredValue(Value) > 0 && ret > self.damagedUnit.CurrentHealth) return self.damagedUnit.CurrentHealth - 1;
+            return ret;
+        }
+        public static void Setup()
+        {
+            IDetour hook = new Hook(typeof(DamageReceivedValueChangeException).GetMethod(nameof(DamageReceivedValueChangeException.GetModifiedValue), ~System.Reflection.BindingFlags.Default), typeof(WontKillDamageHook).GetMethod(nameof(DamageReceivedValueChangeException_GetModifiedValue), ~System.Reflection.BindingFlags.Default));
         }
     }
     public static class WontKillDamageExtension
