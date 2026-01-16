@@ -29,8 +29,8 @@ namespace AprilsDayAtFools
             if (!LoadedDBsHandler.CombatDB.m_SoundPool.ContainsKey(DamageType)) LoadedDBsHandler.CombatDB.AddNewSound(DamageType, "event:/Lunacy/Misc3/KarmaDamage");
 
             StatusEffectInfoSO karma_info = ScriptableObject.CreateInstance<StatusEffectInfoSO>();
-            karma_info.icon = ResourceLoader.LoadSprite("Acid.png");
-            karma_info._statusName = "Acid";
+            karma_info.icon = ResourceLoader.LoadSprite("KarmaIcon.png");
+            karma_info._statusName = "Karma";
             karma_info._description = "At the end of combat, take direct damage equal to the amount of Karma.";
             karma_info._applied_SE_Event = "event:/Lunacy/Misc3/KarmaApply";
             karma_info._removed_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Ruptured_ID.ToString()]._EffectInfo.RemovedSoundEvent;

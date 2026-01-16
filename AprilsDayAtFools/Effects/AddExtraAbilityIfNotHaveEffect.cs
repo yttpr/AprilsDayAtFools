@@ -19,14 +19,14 @@ namespace AprilsDayAtFools
                 {
                     if (target.Unit is CharacterCombat chara)
                     {
-                        foreach (ExtraAbilityInfo info in chara.ExtraAbilities)
+                        foreach (ExtraAbilityInfo info in chara.CombatAbilities)
                         {
                             if (info.ability.name == _extraAbility.ability.name) continue;
                         }
                     }
                     if (target.Unit is EnemyCombat enemy)
                     {
-                        foreach (ExtraAbilityInfo info in enemy.ExtraAbilities)
+                        foreach (ExtraAbilityInfo info in enemy.Abilities)
                         {
                             if (info.ability.name == _extraAbility.ability.name) continue;
                         }
