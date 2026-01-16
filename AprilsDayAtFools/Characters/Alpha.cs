@@ -31,9 +31,9 @@ namespace AprilsDayAtFools
             Character alpha = new Character("A", "Alpha_CH");
             alpha.HealthColor = Pigments.Purple;
             alpha.AddUnitType("FemaleID");
-            alpha.UsesBasicAbility = false;
+            alpha.UsesBasicAbility = true;
             //slap
-            alpha.UsesAllAbilities = true;
+            alpha.UsesAllAbilities = false;
             alpha.MovesOnOverworld = true;
             //animator
             alpha.FrontSprite = ResourceLoader.LoadSprite("AlphaFront.png");
