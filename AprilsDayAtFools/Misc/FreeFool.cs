@@ -33,6 +33,8 @@ namespace AprilsDayAtFools//change this to your namespace
             Add("Catten_CH", "Catten", 2, new Color32(255, 255, 255, 255), true, true, false);
             Add("Sunflower_CH", "Sunflower", 1, new Color32(242, 215, 62, 255), true, false, false);
             if (April.Me) Add("Secret_CH", "Secret", 2, new Color32(241, 235, 232, 255), true, false, false);
+            Add("Alpha_CH", "Alpha", 1, new Color32(238, 195, 154, 255), false, false, false);
+            Add("Saea_CH", "Saea", 3, Color.white, true, false, false);
 
             //ok so basically what this is is,
             //Add("character id. the _CH", "any sort of name identifier, doesnt really matter", [area: 1 shore, 2 orph, 3 garden], color32(for the text color. its just thr rgb plus a 255 at the end for the alpha), bool do they face left, bool do they face center, bool should the show up in easy mode aswell)
@@ -91,6 +93,54 @@ namespace AprilsDayAtFools//change this to your namespace
                     break;
             }
             
+            if (easy)
+            {
+                switch (zone)
+                {
+                    case 1:
+                        ZoneBGDataBaseSO zone1 = LoadedAssetsHandler.GetZoneDB("ZoneDB_01") as ZoneBGDataBaseSO;
+                        zone1._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                        break;
+                    case 2:
+                        ZoneBGDataBaseSO zone2 = LoadedAssetsHandler.GetZoneDB("ZoneDB_02") as ZoneBGDataBaseSO;
+                        zone2._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                        break;
+                }
+            }
+        }
+        public static void AddSaea(string id, string name, int zone, Color text, bool left, bool center, bool easy = false)
+        {
+            CharacterSO chara = LoadedAssetsHandler.GetCharacter(id);
+
+            //replace Joyce.Yarn with whatever your YarnProgram is
+            //you may need to adjust your yarn IDs so that they match up with the naming convention here.
+            Dialogues.CreateAndAddCustom_DialogueSO("Aprils." + name + ".TryHire", Joyce.Yarn, "Aprils.Untitled", "Aprils." + name + ".TryHire");
+
+            FreeFoolEncounterSO room = ScriptableObject.CreateInstance<FreeFoolEncounterSO>();
+            room.encounterEntityIDs = new string[1] { chara.name };
+            room._freeFool = chara.name;
+            room.signID = id + "_Sign";
+            room._dialogue = "Aprils." + name + ".TryHire";
+            room.encounterRoom = "Aprils." + name + ".Unlock";
+
+            ModdedNPCs.AddCustom_FreeFoolEncounter("Aprils." + name + ".FreeFool", room);
+
+            switch (zone)
+            {
+                case 1:
+                    ZoneBGDataBaseSO zone1 = LoadedAssetsHandler.GetZoneDB("ZoneDB_Hard_01") as ZoneBGDataBaseSO;
+                    zone1._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                    break;
+                case 2:
+                    ZoneBGDataBaseSO zone2 = LoadedAssetsHandler.GetZoneDB("ZoneDB_Hard_02") as ZoneBGDataBaseSO;
+                    zone2._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                    break;
+                case 3:
+                    ZoneBGDataBaseSO zone3 = LoadedAssetsHandler.GetZoneDB("ZoneDB_Hard_03") as ZoneBGDataBaseSO;
+                    zone3._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                    break;
+            }
+
             if (easy)
             {
                 switch (zone)

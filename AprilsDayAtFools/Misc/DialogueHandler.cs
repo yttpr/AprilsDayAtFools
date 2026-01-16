@@ -14,10 +14,27 @@ namespace AprilsDayAtFools
     {
         public static void Setup()
         {
-            IDetour hook = new Hook(typeof(OverworldManagerBG).GetMethod(nameof(OverworldManagerBG.InitializeDialogueFunctions), ~BindingFlags.Default), typeof(CustomDialogueHandler).GetMethod(nameof(OverworldManagerBG_InitializeDialogueFunctions), ~BindingFlags.Default));
+            MethodInfo method = typeof(OverworldManagerBG).GetMethod(nameof(OverworldManagerBG.InitializeDialogueFunctions), ~BindingFlags.Default);
+            if (method.GetParameters()[0].ParameterType == typeof(DialogueRunner))
+            {
+                IDetour diologo = new Hook(method, typeof(CustomDialogueHandler).GetMethod(nameof(OverworldManagerBG_InitializeDialogueFunctions), ~BindingFlags.Default));
+            }
+            else
+            {
+                IDetour diologo = new Hook(method, typeof(CustomDialogueHandler).GetMethod(nameof(OverworldManagerBG_InitializeDialogueFunctionsNEW), ~BindingFlags.Default));
+            }
         }
 
         public static void OverworldManagerBG_InitializeDialogueFunctions(Action<OverworldManagerBG, DialogueRunner> orig, OverworldManagerBG self, DialogueRunner dialogueRunner)
+        {
+            orig(self, dialogueRunner);
+            dialogueRunner.AddFunction("Aprils_WonRuns", 0, delegate (Value[] parameters)
+            {
+                if (WonARunWithEachChar()) return true;
+                return HasAnAchievementWithEachChar();
+            });
+        }
+        public static void OverworldManagerBG_InitializeDialogueFunctionsNEW(Action<OverworldManagerBG, DialogueRunner_BO> orig, OverworldManagerBG self, DialogueRunner_BO dialogueRunner)
         {
             orig(self, dialogueRunner);
             dialogueRunner.AddFunction("Aprils_WonRuns", 0, delegate (Value[] parameters)

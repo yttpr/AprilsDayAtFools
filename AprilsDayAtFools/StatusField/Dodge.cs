@@ -21,7 +21,7 @@ namespace AprilsDayAtFools
             DodgeInfo.icon = ResourceLoader.LoadSprite("Dodge.png");
             DodgeInfo._statusName = "Dodge";
             DodgeInfo._description = "On being targetted by an effect, move to the Left or Right. Dodge decreases by 1 on turn start and on activation.";
-            DodgeInfo._applied_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Ruptured_ID.ToString()]._EffectInfo.AppliedSoundEvent;
+            DodgeInfo._applied_SE_Event = "event:/Lunacy/Misc2/ApplyDodge";
             DodgeInfo._removed_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Ruptured_ID.ToString()]._EffectInfo.RemovedSoundEvent;
             DodgeInfo._updated_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Ruptured_ID.ToString()]._EffectInfo.UpdatedSoundEvent;
 

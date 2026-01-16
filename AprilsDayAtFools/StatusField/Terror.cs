@@ -18,7 +18,7 @@ namespace AprilsDayAtFools
             TerrorInfo.icon = ResourceLoader.LoadSprite("terror.png");
             TerrorInfo._statusName = "Terror";
             TerrorInfo._description = "At the end of each turn, if this unit is facing another unit, decrease their maximum health by 1. \nOnly one unit may have Terror at a time.";
-            TerrorInfo._applied_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Cursed_ID.ToString()]._EffectInfo.AppliedSoundEvent;
+            TerrorInfo._applied_SE_Event = "event:/Lunacy/Misc2/ApplyTerror";
             TerrorInfo._removed_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Cursed_ID.ToString()]._EffectInfo.RemovedSoundEvent;
             TerrorInfo._updated_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Cursed_ID.ToString()]._EffectInfo.UpdatedSoundEvent;
 

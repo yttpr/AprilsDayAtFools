@@ -25,9 +25,9 @@ namespace AprilsDayAtFools
             alpha.BackSprite = ResourceLoader.LoadSprite("AlphaBack.png");
             alpha.OverworldSprite = ResourceLoader.LoadSprite("AlphaWorld.png", new Vector2(0.5f, 0f));
             //extra sprites
-            alpha.DamageSound = LoadedAssetsHandler.GetEnemy("Heaven_BOSS").damageSound;
-            alpha.DeathSound = LoadedAssetsHandler.GetEnemy("Heaven_BOSS").deathSound;
-            alpha.DialogueSound = LoadedAssetsHandler.GetEnemy("Heaven_BOSS").damageSound;
+            alpha.DamageSound = "event:/Lunacy/SOUNDS3/DarkHit";
+            alpha.DeathSound = "event:/Lunacy/SOUNDS3/DarkDie";
+            alpha.DialogueSound = "event:/Lunacy/SOUNDS3/DarkHit";
             alpha.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             alpha.AddFinalBossAchievementData("Heaven", HeavenACH);
             alpha.GenerateMenuCharacter(ResourceLoader.LoadSprite("AlphaMenu.png"), ResourceLoader.LoadSprite("AlphaLock.png"));

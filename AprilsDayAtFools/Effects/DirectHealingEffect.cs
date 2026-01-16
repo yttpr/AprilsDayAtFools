@@ -38,7 +38,7 @@ namespace AprilsDayAtFools
                     {
                         num = targetSlotInfo.Unit.CalculatePercentualAmount(num);
                     }
-                    DamageReceivedValueChangeException ex = new DamageReceivedValueChangeException(num, "Heal", _directHeal, _ignoreShield, targetSlotInfo.Unit.SlotID, targetSlotInfo.Unit.SlotID + targetSlotInfo.Unit.Size - 1, caster, targetSlotInfo.Unit);
+                    DamageReceivedValueChangeException ex = Help.GenerateDamageTakenException(num, "Heal", "Basic", _directHeal, _ignoreShield, targetSlotInfo.Unit.SlotID, targetSlotInfo.Unit.SlotID + targetSlotInfo.Unit.Size - 1, caster, targetSlotInfo.Unit);
                     CombatManager.Instance.PostNotification(TriggerCalls.OnBeingDamaged.ToString(), targetSlotInfo.Unit, ex);
                     int modifiedValue = ex.GetModifiedValue();
                     int amount = 0;

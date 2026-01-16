@@ -389,6 +389,8 @@
 	  <None Remove="Sprites\Icons\EntropyIcon.png" />
 	  <None Remove="Sprites\Icons\FlowersPassive.png" />
 	  <None Remove="Sprites\Icons\Haste.png" />
+	  <None Remove="Sprites\Icons\Inverted.png" />
+	  <None Remove="Sprites\Icons\KarmaIcon.png" />
 	  <None Remove="Sprites\Icons\Pale.png" />
 	  <None Remove="Sprites\Icons\PimplesIcon.png" />
 	  <None Remove="Sprites\Icons\Power.png" />
@@ -907,6 +909,8 @@
 	  <EmbeddedResource Include="Sprites\Icons\Drowning.png" />
 	  <EmbeddedResource Include="Sprites\Icons\EntropyIcon.png" />
 	  <EmbeddedResource Include="Sprites\Icons\Haste.png" />
+	  <EmbeddedResource Include="Sprites\Icons\Inverted.png" />
+	  <EmbeddedResource Include="Sprites\Icons\KarmaIcon.png" />
 	  <EmbeddedResource Include="Sprites\Icons\Pale.png" />
 	  <EmbeddedResource Include="Sprites\Icons\PimplesIcon.png" />
 	  <EmbeddedResource Include="Sprites\Icons\Power.png" />
