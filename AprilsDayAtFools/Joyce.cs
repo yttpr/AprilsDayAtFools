@@ -67,6 +67,7 @@ namespace AprilsDayAtFools
             Class1.PCall(Drowning.Add);
             Class1.PCall(Terror.Add);
             Class1.PCall(Karma.Add);
+            Class1.PCall(Inverted.Add);
 
             Class1.PCall(PatchSetup.Setup);
             Class1.PCall(ScrapBomb.Add);
