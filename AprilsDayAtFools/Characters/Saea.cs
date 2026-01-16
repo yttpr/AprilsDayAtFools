@@ -162,7 +162,7 @@ namespace AprilsDayAtFools
             visions1.Cost = [Pigments.Red, Pigments.Blue];
             visions1.Effects = new EffectInfo[2];
             visions1.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
-                animself,
+                animleft,
                 Effects.GenerateEffect(act1, 1, Targeting.Slot_AllyLeft),
                 Effects.GenerateEffect(karma, 6, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 1),
@@ -182,7 +182,7 @@ namespace AprilsDayAtFools
             visions2.Name = "Vile Visions";
             visions2.Description = "Give the Left ally \"Action of Reclamation\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Reclamation,\" reduce their Karma by 2 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions2.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
-                animself,
+                animleft,
                 Effects.GenerateEffect(act2, 1, Targeting.Slot_AllyLeft),
                 Effects.GenerateEffect(karma, 7, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 2),
@@ -200,7 +200,7 @@ namespace AprilsDayAtFools
             visions3.Name = "Torturous Visions";
             visions3.Description = "Give the Left ally \"Action of Repossession\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Repossession,\" reduce their Karma by 2-3 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions3.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
-                animself,
+                animleft,
                 Effects.GenerateEffect(act3, 1, Targeting.Slot_AllyLeft),
                 Effects.GenerateEffect(karma, 7, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 2),
@@ -218,7 +218,7 @@ namespace AprilsDayAtFools
             visions4.Name = "Apocalyptic Visions";
             visions4.Description = "Give the Left ally \"Action of Reappropriation\" as an extra ability and inflict 8 Karma on them.\nIf they already have \"Action of Reappropriation,\" reduce their Karma by 3-4 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions4.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
-                animself,
+                animleft,
                 Effects.GenerateEffect(act4, 1, Targeting.Slot_AllyLeft),
                 Effects.GenerateEffect(karma, 8, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 3),
