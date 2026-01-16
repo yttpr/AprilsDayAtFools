@@ -34,10 +34,13 @@ namespace AprilsDayAtFools//change this to your namespace
             Add("Sunflower_CH", "Sunflower", 1, new Color32(242, 215, 62, 255), true, false, false);
             if (April.Me) Add("Secret_CH", "Secret", 2, new Color32(241, 235, 232, 255), true, false, false);
             Add("Alpha_CH", "Alpha", 1, new Color32(238, 195, 154, 255), false, false, false);
-            Add("Saea_CH", "Saea", 3, Color.white, true, false, false);
 
             //ok so basically what this is is,
             //Add("character id. the _CH", "any sort of name identifier, doesnt really matter", [area: 1 shore, 2 orph, 3 garden], color32(for the text color. its just thr rgb plus a 255 at the end for the alpha), bool do they face left, bool do they face center, bool should the show up in easy mode aswell)
+        }
+        public static void AddSaea()
+        {
+            Add("Saea_CH", "Saea", 3, Color.white, true, false, false);
         }
 
         //this is for setting up the YarnProgram. if you do this somewhere else you dont have to do it again, but do note that in the .Add method it references the yarn program ID so you do need to make sure that's consistent

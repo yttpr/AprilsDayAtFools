@@ -70,7 +70,7 @@ namespace AprilsDayAtFools
             int restoreVal = Amount;
             (sender as IUnit).Heal(restoreVal, null, true, Determined.HealType);//THIS STUFF IS SPECIFIC TO MY STATUS EFFECT
             (sender as IStatusEffector).RemoveStatusEffect(holder.StatusID);//THIS IS THE DELETE DURATION LINE
-            if ((sender as IUnit).CurrentHealth <= 0) (sender as IUnit).DirectDeath(null);
+            if ((sender as IUnit).CurrentHealth <= 0) (sender as IUnit).GenericDirectDeath(null);
         }
         public override void OnEventCall_02(StatusEffect_Holder holder, object sender, object args)
         {

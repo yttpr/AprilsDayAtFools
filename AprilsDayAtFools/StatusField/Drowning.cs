@@ -79,7 +79,7 @@ namespace AprilsDayAtFools
                 c /= 2;
                 int r = (int)Math.Floor(c);
                 if (r > 0) unit.SetHealthTo(r);
-                else unit.DirectDeath(null);
+                else unit.GenericDirectDeath(null);
             }
         }
     }
