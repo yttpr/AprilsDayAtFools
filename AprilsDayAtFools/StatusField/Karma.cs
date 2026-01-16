@@ -98,6 +98,7 @@ namespace AprilsDayAtFools
                             if (status.StatusID == Karma.StatusID)
                             {
                                 int num = -1 * Math.Abs(_randomBetweenPrevious ? UnityEngine.Random.Range(PreviousExitValue, entryVariable + 1) : entryVariable);
+                                if (num == 0) continue;
 
                                 if (status.StatusContent > Math.Abs(num))
                                 {
@@ -116,6 +117,29 @@ namespace AprilsDayAtFools
                     }
                 }
             }
+            return exitAmount > 0;
+        }
+    }
+    public class ApplyKarmaCappedToExitEffect : EffectSO
+    {
+        public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
+        {
+            exitAmount = 0;
+
+            foreach (TargetSlotInfo target in targets)
+            {
+                if (target.HasUnit)
+                {
+                    int current = target.Unit.GetStatusAmount(Karma.StatusID);
+                    int diff = PreviousExitValue - current;
+                    if (diff <= 0) continue;
+
+                    int num = Math.Min(diff, entryVariable);
+                    if (target.Unit.ApplyStatusEffect(Karma.Object, num))
+                        exitAmount += num;
+                }
+            }
+
             return exitAmount > 0;
         }
     }
