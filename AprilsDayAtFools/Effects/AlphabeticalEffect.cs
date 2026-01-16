@@ -39,7 +39,7 @@ namespace AprilsDayAtFools
                 if (target.HasUnit)
                 {
                     UnitStoreDataHolder holder;
-                    target.Unit.TryGetStoredData("Alphabetical_A", out holder);
+                    target.Unit.TryGetStoredData("Alphabetical_A_" + caster.ID.ToString(), out holder);
 
                     if (holder.m_ObjectData is ExtraAbilityInfo info) target.Unit.TryRemoveExtraAbility(info);
 

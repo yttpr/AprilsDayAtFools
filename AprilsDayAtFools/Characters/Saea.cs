@@ -31,99 +31,212 @@ namespace AprilsDayAtFools
             saea.AddFinalBossAchievementData("Heaven", HeavenACH);
             saea.GenerateMenuCharacter(ResourceLoader.LoadSprite("SaeaMenu.png"), ResourceLoader.LoadSprite("SaeaLock.png"));
             saea.MenuCharacterIsSecret = true;
-            saea.MenuCharacterIgnoreRandom = true;
+            saea.SetMenuCharacterAsFullSupport();
 
             DamageEffect damage = ScriptableObject.CreateInstance<DamageEffect>();
-            Ability cat1 = new Ability("Great Cataclysm", "Saea_Cat_1_A");
-            cat1.Description = "Deal 12 damage to all enemies.";
-            cat1.AbilitySprite = ResourceLoader.LoadSprite("ability_cataclysm.png");
-            cat1.Cost = [Pigments.Purple, Pigments.Purple, Pigments.Purple];
-            cat1.Effects = new EffectInfo[1];
-            cat1.Effects[0] = Effects.GenerateEffect(damage, 12, Targeting.Unit_AllOpponents);
-            cat1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Damage_11_15"]);
-            cat1.Visuals = CustomVisuals.GetVisuals("Salt/StarBomb");
-            cat1.AnimationTarget = Targetting.Everything(false);
+            HealEffect lifesteal = ScriptableObject.CreateInstance<HealEffect>();
+            lifesteal.usePreviousExitValue = true;
+            ApplyKarmaEffect karma = ScriptableObject.CreateInstance<ApplyKarmaEffect>();
 
-            Ability cat2 = new Ability(cat1.ability, "Saea_Cat_2_A", cat1.Cost);
-            cat2.Name = "Cruel Cataclysm";
-            cat2.Description = "Deal 16 damage to all enemies.";
-            cat2.Effects[0].entryVariable = 16;
-            cat2.EffectIntents[0].intents[0] = "Damage_16_20";
+            Ability claim1 = new Ability("Action of Recovery", "Saea_Claim_1_A");
+            claim1.Description = "Deal 4 damage to the Opposing enemy and heal this party member for the amount of damage dealt.";
+            claim1.AbilitySprite = ResourceLoader.LoadSprite("ability_claim.png");
+            claim1.Cost = [Pigments.Grey, Pigments.Grey, Pigments.Red];
+            claim1.Effects = new EffectInfo[2];
+            claim1.Effects[0] = Effects.GenerateEffect(damage, 4, Slots.Front);
+            claim1.Effects[1] = Effects.GenerateEffect(lifesteal, 1, Slots.Self, BasicEffects.DidThat(true));
+            claim1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
+            claim1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
+            claim1.Visuals = Visuals.Absolve;
+            claim1.AnimationTarget = Slots.Front;
 
-            Ability cat3 = new Ability(cat2.ability, "Saea_Cat_3_A", cat1.Cost);
-            cat3.Name = "Morbid Cataclysm";
-            cat3.Description = "Deal 24 damage to all enemies.";
-            cat3.Effects[0].entryVariable = 24;
-            cat3.EffectIntents[0].intents[0] = "Damage_21";
+            Ability claim2 = new Ability(claim1.ability, "Saea_Claim_2_A", claim1.Cost);
+            claim2.Name = "Action of Reclamation";
+            claim2.Description = "Deal 6 damage to the Opposing enemy and heal this party member for the amount of damage dealt.";
+            claim2.Effects[0].entryVariable = 6;
+            claim2.EffectIntents[1].intents[0] = "Heal_5_10";
 
-            Ability cat4 = new Ability(cat3.ability, "Saea_Cat_4_A", cat1.Cost);
-            cat4.Name = "Destined Cataclysm";
-            cat4.Description = "Deal 30 damage to all enemies.";
-            cat4.Effects[0].entryVariable = 30;
+            Ability claim3 = new Ability(claim2.ability, "Saea_Claim_3_A", claim1.Cost);
+            claim3.Name = "Action of Repossession";
+            claim3.Description = "Deal 7 damage to the Opposing enemy and heal this party member for the amount of damage dealt.";
+            claim3.Effects[0].entryVariable = 7;
+            claim3.EffectIntents[0].intents[0] = "Damage_7_10";
 
-            Ability ori1 = new Ability("Placated Origin", "Saea_Ori_1_A");
-            ori1.Description = "Resurrect as many party members as possible.\nRandomize the health of all party members between 1-8.";
-            ori1.AbilitySprite = ResourceLoader.LoadSprite("ability_origin.png");
-            ori1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Blue];
-            ori1.Effects = new EffectInfo[2];
-            ori1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectEffect>(), 1, Targetting.Everything(true));
-            ori1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RandomizeHealthUpToEntryEffect>(), 8, Targetting.Everything(true));
-            ori1.AddIntentsToTarget(Targetting.Everything(true), ["Other_Resurrect", "Other_MaxHealth_Alt"]);
-            ori1.Visuals = CustomVisuals.GetVisuals("Salt/Insta/Shatter");
-            ori1.AnimationTarget = Slots.Self;
+            Ability claim4 = new Ability(claim3.ability, "Saea_Claim_4_A", claim1.Cost);
+            claim4.Name = "Action of Reappropriation";
+            claim4.Description = "Deal 8 damage to the Opposing enemy and heal this party member for the amount of damage dealt.";
+            claim4.Effects[0].entryVariable = 8;
 
-            Ability ori2 = new Ability(ori1.ability, "Saea_Ori_2_A", ori1.Cost);
-            ori2.Name = "Cordial Origin";
-            ori2.Description = "Resurrect as many party members as possible.\nRandomize the health of all party members between 1-14.";
-            ori2.Effects[1].entryVariable = 14;
-
-            Ability ori3 = new Ability(ori2.ability, "Saea_Ori_3_A", ori1.Cost);
-            ori3.Name = "Amiable Origin";
-            ori3.Description = "Resurrect as many party members as possible.\nRandomize the health of all party members between 1-20.";
-            ori3.Effects[1].entryVariable = 20;
-
-            Ability ori4 = new Ability(ori3.ability, "Saea_Ori_4_A", ori1.Cost);
-            ori4.Name = "Hospitable Origin";
-            ori4.Description = "Resurrect as many party members as possible.\nRandomize the health of all party members between 1-28.";
-            ori4.Effects[1].entryVariable = 28;
+            AddExtraAbilityIfNotHaveEffect act1 = AddExtraAbilityIfNotHaveEffect.Create(claim1.GenerateCharacterAbility(true));
+            AddExtraAbilityIfNotHaveEffect act2 = AddExtraAbilityIfNotHaveEffect.Create(claim2.GenerateCharacterAbility(true));
+            AddExtraAbilityIfNotHaveEffect act3 = AddExtraAbilityIfNotHaveEffect.Create(claim3.GenerateCharacterAbility(true));
+            AddExtraAbilityIfNotHaveEffect act4 = AddExtraAbilityIfNotHaveEffect.Create(claim4.GenerateCharacterAbility(true));
 
             Ability onset1 = new Ability("Onset of Shadows", "Saea_Onset_1_A");
-            onset1.Description = "Deal 5 indirect damage to all enemies.\nShuffle all enemy positions.\nReroll the entire timeline.";
+            onset1.Description = "Heal this and the Right allies 6 health then inflict 4 Karma on them.\nKarma inflicted will not exceed 8.";
             onset1.AbilitySprite = ResourceLoader.LoadSprite("ability_onset.png");
-            onset1.Cost = [Pigments.Red, Pigments.Red, Pigments.Red];
+            onset1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
             onset1.Effects = new EffectInfo[3];
-            onset1.Effects[0] = Effects.GenerateEffect(BasicEffects.Indirect, 5, Targeting.Unit_AllOpponents);
-            onset1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<MassSwapZoneEffect>(), 1, Targetting.Everything(false));
-            onset1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RerollTimelineEffect>());
-            onset1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Damage_3_6", "Misc"]);
-            onset1.AddIntentsToTarget(Targetting.Everything(false), ["Swap_Mass"]);
-            onset1.Visuals = CustomVisuals.GetVisuals("Salt/Claws");
-            onset1.AnimationTarget = Targetting.Everything(false);
+            onset1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 6, Targeting.Slot_SelfAndRight);
+            onset1.Effects[1] = Effects.GenerateEffect(BasicEffects.Empty, 8);
+            onset1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaCappedToExitEffect>(), 4, Targeting.Slot_SelfAndRight);
+            onset1.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Heal_5_10", Karma.Intent]);
+            onset1.Visuals = Visuals.UglyOnTheInside;
+            onset1.AnimationTarget = Targeting.Slot_SelfAndRight;
 
             Ability onset2 = new Ability(onset1.ability, "Saea_Onset_2_A", onset1.Cost);
             onset2.Name = "Onset of Darkness";
-            onset2.Description = "Deal 7 indirect damage to all enemies.\nShuffle all enemy positions.\nReroll the entire timeline.";
+            onset2.Description = "Heal this, the Right, and Far Right allies 7 health then inflict 5 Karma on them.\nKarma inflicted will not exceed 10.";
             onset2.Effects[0].entryVariable = 7;
-            onset2.EffectIntents[0].intents[0] = "Damage_7_10";
+            onset2.Effects[1].entryVariable = 10;
+            onset2.Effects[2].entryVariable = 5;
+            onset2.AnimationTarget = Slots.SlotTarget([0, 1, 2], true);
+            onset2.Effects[0].targets = onset2.ability.animationTarget;
+            onset2.Effects[2].targets = onset2.ability.animationTarget;
+            onset2.EffectIntents[0].targets = onset2.ability.animationTarget;
 
             Ability onset3 = new Ability(onset2.ability, "Saea_Onset_3_A", onset1.Cost);
             onset3.Name = "Onset of Death";
-            onset3.Description = "Deal 9 indirect damage to all enemies.\nShuffle all enemy positions.\nReroll the entire timeline.";
-            onset3.Effects[0].entryVariable = 9;
+            onset3.Description = "Heal this, the Right, the Far Right, and the Far Far Right allies 8 health then inflict 6 Karma on them.\nKarma inflicted will not exceed 12.";
+            onset3.Effects[0].entryVariable = 8;
+            onset3.Effects[1].entryVariable = 12;
+            onset3.Effects[2].entryVariable = 6;
+            onset3.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3], true);
+            onset3.Effects[0].targets = onset3.ability.animationTarget;
+            onset3.Effects[2].targets = onset3.ability.animationTarget;
+            onset3.EffectIntents[0].targets = onset3.ability.animationTarget;
 
             Ability onset4 = new Ability(onset3.ability, "Saea_Onset_4_A", onset1.Cost);
             onset4.Name = "Onset of Hell";
-            onset4.Description = "Deal 11 indirect damage to all enemies.\nShuffle all enemy positions.\nReroll the entire timeline.";
-            onset4.Effects[0].entryVariable = 11;
-            onset4.EffectIntents[0].intents[0] = "Damage_11_15";
+            onset4.Description = "Heal this and All allies to the Rights 8 health then inflict 6 Karma on them.\nKarma inflicted will not exceed 12.";
+            onset4.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3, 4], true);
+            onset4.Effects[0].targets = onset4.ability.animationTarget;
+            onset4.Effects[2].targets = onset4.ability.animationTarget;
+            onset4.EffectIntents[0].targets = onset4.ability.animationTarget;
 
-            saea.AddLevelData(1, [onset1, ori1, cat1]);
-            saea.AddLevelData(1, [onset2, ori2, cat2]);
-            saea.AddLevelData(1, [onset3, ori3, cat3]);
-            saea.AddLevelData(1, [onset4, ori4, cat4]);
-            saea.IgnoredAbilitiesForSupportBuilds = [2];
-            saea.IgnoredAbilitiesForDPSBuilds = [0, 1];
-            saea.AddCharacter(false, true);
+            ReduceKarmaEffect reduce = ScriptableObject.CreateInstance<ReduceKarmaEffect>();
+            reduce._randomBetweenPrevious = true;
+
+            Ability ori1 = new Ability("Placated Origin", "Saea_Ori_1_A");
+            ori1.Description = "Attempt to resurrect an ally in the Left position at 3 health, inflicting 3 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 0-1.";
+            ori1.AbilitySprite = ResourceLoader.LoadSprite("ability_origin.png");
+            ori1.Cost = [Pigments.Purple];
+            ori1.Effects = new EffectInfo[4];
+            ori1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectEffect>(), 3, Targeting.Slot_AllyLeft);
+            ori1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true));
+            ori1.Effects[2] = Effects.GenerateEffect(BasicEffects.Empty, 0);
+            ori1.Effects[3] = Effects.GenerateEffect(reduce, 1, Targeting.Unit_AllAllies, BasicEffects.DidThat(false, 3));
+            ori1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Other_Resurrect", Karma.Intent]);
+            ori1.Visuals = CustomVisuals.GetVisuals("Salt/Insta/Shatter");
+            ori1.AnimationTarget = Targeting.Slot_AllyLeft;
+
+            Ability ori2 = new Ability(ori1.ability, "Saea_Ori_2_A", ori1.Cost);
+            ori2.Name = "Cordial Origin";
+            ori2.Description = "Attempt to resurrect an ally in the Left position at 5 health, inflicting 5 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 1.";
+            ori2.Effects[0].entryVariable = 5;
+            ori2.Effects[1].entryVariable = 5;
+            ori2.Effects[2].entryVariable = 1;
+
+            Ability ori3 = new Ability(ori2.ability, "Saea_Ori_3_A", ori1.Cost);
+            ori3.Name = "Amiable Origin";
+            ori3.Description = "Attempt to resurrect an ally in the Left position at 8 health, inflicting 7 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 1.";
+            ori3.Effects[0].entryVariable = 8;
+            ori3.Effects[1].entryVariable = 7;
+
+            Ability ori4 = new Ability(ori3.ability, "Saea_Ori_4_A", ori1.Cost);
+            ori4.Name = "Hospitable Origin";
+            ori4.Description = "Attempt to resurrect an ally in the Left position at 10 health, inflicting 9 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 1-2.";
+            ori4.Effects[0].entryVariable = 10;
+            ori4.Effects[1].entryVariable = 9;
+            ori4.Effects[3].entryVariable = 2;
+
+            EffectInfo animself = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Slots.Self));
+            EffectInfo animleft = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Targeting.Slot_AllyLeft));
+            ExistsLeftAllyCondition left = ScriptableObject.CreateInstance<ExistsLeftAllyCondition>();
+            PreviousEffectCondition didnt = BasicEffects.DidThat(false);
+            Intents.CreateAndAddCustom_Basic_IntentToPool("Claim_A", claim1.ability.abilitySprite, Color.white);
+
+            Ability visions1 = new Ability("Dangerous Visions", "Saea_Visions_1_A");
+            visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability and inflict 6 Karma on them.\nIf they already have \"Action of Recovery,\" reduce their Karma by 1 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions1.AbilitySprite = ResourceLoader.LoadSprite("ability_visions.png");
+            visions1.Cost = [Pigments.Red, Pigments.Blue];
+            visions1.Effects = new EffectInfo[2];
+            visions1.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
+                animself,
+                Effects.GenerateEffect(act1, 1, Targeting.Slot_AllyLeft),
+                Effects.GenerateEffect(karma, 6, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(BasicEffects.Empty, 1),
+                Effects.GenerateEffect(reduce, 1, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                ]), 1, Slots.Self, left);
+            visions1.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
+                animself,
+                Effects.GenerateEffect(act1, 1, Slots.Self),
+                Effects.GenerateEffect(karma, 6, Slots.Self, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(BasicEffects.Empty, 1),
+                Effects.GenerateEffect(reduce, 1, Slots.Self, BasicEffects.DidThat(false, 3))
+                ]), 1, Slots.Self, didnt);
+            visions1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Claim_A", Karma.Intent]);
+            visions1.AddIntentsToTarget(Slots.Self, ["Misc_Hidden"]);
+
+            Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
+            visions2.Name = "Vile Visions";
+            visions2.Description = "Give the Left ally \"Action of Reclamation\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Reclamation,\" reduce their Karma by 2 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions2.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
+                animself,
+                Effects.GenerateEffect(act2, 1, Targeting.Slot_AllyLeft),
+                Effects.GenerateEffect(karma, 7, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(BasicEffects.Empty, 2),
+                Effects.GenerateEffect(reduce, 2, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                ]), 1, Slots.Self, left);
+            visions2.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
+                animself,
+                Effects.GenerateEffect(act2, 1, Slots.Self),
+                Effects.GenerateEffect(karma, 7, Slots.Self, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(BasicEffects.Empty, 2),
+                Effects.GenerateEffect(reduce, 2, Slots.Self, BasicEffects.DidThat(false, 3))
+                ]), 1, Slots.Self, didnt);
+
+            Ability visions3 = new Ability(visions2.ability, "Saea_Visions_3_A", visions1.Cost);
+            visions3.Name = "Torturous Visions";
+            visions3.Description = "Give the Left ally \"Action of Repossession\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Repossession,\" reduce their Karma by 2-3 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions3.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
+                animself,
+                Effects.GenerateEffect(act3, 1, Targeting.Slot_AllyLeft),
+                Effects.GenerateEffect(karma, 7, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(BasicEffects.Empty, 2),
+                Effects.GenerateEffect(reduce, 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                ]), 1, Slots.Self, left);
+            visions3.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
+                animself,
+                Effects.GenerateEffect(act3, 1, Slots.Self),
+                Effects.GenerateEffect(karma, 7, Slots.Self, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(BasicEffects.Empty, 2),
+                Effects.GenerateEffect(reduce, 3, Slots.Self, BasicEffects.DidThat(false, 3))
+                ]), 1, Slots.Self, didnt);
+
+            Ability visions4 = new Ability(visions3.ability, "Saea_Visions_4_A", visions1.Cost);
+            visions4.Name = "Apocalyptic Visions";
+            visions4.Description = "Give the Left ally \"Action of Reappropriation\" as an extra ability and inflict 8 Karma on them.\nIf they already have \"Action of Reappropriation,\" reduce their Karma by 3-4 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions4.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
+                animself,
+                Effects.GenerateEffect(act4, 1, Targeting.Slot_AllyLeft),
+                Effects.GenerateEffect(karma, 8, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(BasicEffects.Empty, 3),
+                Effects.GenerateEffect(reduce, 4, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                ]), 1, Slots.Self, left);
+            visions4.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
+                animself,
+                Effects.GenerateEffect(act4, 1, Slots.Self),
+                Effects.GenerateEffect(karma, 8, Slots.Self, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(BasicEffects.Empty, 3),
+                Effects.GenerateEffect(reduce, 4, Slots.Self, BasicEffects.DidThat(false, 3))
+                ]), 1, Slots.Self, didnt);
+
+            saea.AddLevelData(10, [visions1, ori1, onset1]);
+            saea.AddLevelData(12, [visions2, ori2, onset2]);
+            saea.AddLevelData(13, [visions3, ori3, onset3]);
+            saea.AddLevelData(14, [visions4, ori4, onset4]);
+            saea.AddCharacter(false);
         }
         public static void Items()
         {

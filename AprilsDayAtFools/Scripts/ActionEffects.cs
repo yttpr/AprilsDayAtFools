@@ -177,4 +177,30 @@ namespace AprilsDayAtFools
             return instance;
         }
     }
+    public class ImmediateActionEffect : EffectSO
+    {
+        public EffectInfo[] effects;
+
+        public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
+        {
+            EffectInfo[] effectInfoArray = effects;
+            exitAmount = 0;
+            foreach (TargetSlotInfo target in targets)
+            {
+                if (target.HasUnit)
+                {
+                    CombatManager.Instance.ProcessImmediateAction(new ImmediateEffectAction(effectInfoArray, target.Unit, 0));
+                    ++exitAmount;
+                }
+            }
+            return exitAmount > 0;
+        }
+
+        public static ImmediateActionEffect Create(EffectInfo[] e)
+        {
+            ImmediateActionEffect instance = CreateInstance<ImmediateActionEffect>();
+            instance.effects = e;
+            return instance;
+        }
+    }
 }

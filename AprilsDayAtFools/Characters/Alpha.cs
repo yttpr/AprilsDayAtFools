@@ -13,6 +13,21 @@ namespace AprilsDayAtFools
     {
         public static void Add()
         {
+            ApplyInvertedEffect inverted = ScriptableObject.CreateInstance<ApplyInvertedEffect>();
+
+            PerformEffectPassiveAbility special = ScriptableObject.CreateInstance<PerformEffectPassiveAbility>();
+            special._passiveName = "Special (3)";
+            special.name = "Special_3_PA";
+            special.passiveIcon = ResourceLoader.LoadSprite("SpecialPassive.png");
+            special.m_PassiveID = "Special_PA";
+            special._enemyDescription = "might not work";
+            special._characterDescription = "At the start of combat, gain 3 Inverted.";
+            special.doesPassiveTriggerInformationPanel = true;
+            special.effects = Effects.GenerateEffect(inverted, 3, Slots.Self).SelfArray();
+            special._triggerOn = new TriggerCalls[1] { TriggerCalls.OnFirstTurnStart };
+            special.AddPassiveToGlossary("Special", "At the start of combat, gain a certain amount of Inverted.");
+            special.AddToPassiveDatabase();
+
             Character alpha = new Character("A", "Alpha_CH");
             alpha.HealthColor = Pigments.Purple;
             alpha.AddUnitType("FemaleID");
@@ -33,99 +48,86 @@ namespace AprilsDayAtFools
             alpha.GenerateMenuCharacter(ResourceLoader.LoadSprite("AlphaMenu.png"), ResourceLoader.LoadSprite("AlphaLock.png"));
             alpha.MenuCharacterIsSecret = true;
             alpha.MenuCharacterIgnoreRandom = true;
-            alpha.SetMenuCharacterAsFullDPS();
-            alpha.AddPassive(Passives.Delicate);
+            alpha.SetMenuCharacterAsFullSupport();
+            alpha.AddPassive(special);
 
-            Ability a1 = new Ability("Ability A 1", "A_A_1_A");
-            a1.Description = "Perform one of the Opposing enemy's actions.";
-            a1.AbilitySprite = ResourceLoader.LoadSprite("ability_a.png");
-            a1.Cost = [Pigments.Yellow];
-            a1.Effects = new EffectInfo[2];
-            a1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CasterPerformRandomTargetAbilityEffect>(), 1, Slots.Front);
-            a1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RefreshAbilityUseEffect>(), 1, Slots.Self, Effects.ChanceCondition(0));
-            a1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden"]);
+            Ability newline1 = new Ability("Newline Addition", "A_Newline_1_A");
+            newline1.Description = "Perform one of the Opposing enemy's actions.\n 20% chance to refresh this party member's ability usage.";
+            newline1.AbilitySprite = ResourceLoader.LoadSprite("ability_newline.png");
+            newline1.Cost = [Pigments.Yellow];
+            newline1.Effects = new EffectInfo[2];
+            newline1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CasterPerformRandomTargetAbilityEffect>(), 1, Slots.Front);
+            newline1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RefreshAbilityUseEffect>(), 1, Slots.Self, Effects.ChanceCondition(20));
+            newline1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden"]);
 
-            Ability a2 = new Ability(a1.ability, "A_A_2_A", a1.Cost);
-            a2.Name = "Ability A 2";
-            a2.Description = "Perform one of the Opposing enemy's actions.\n10% chance to refresh this party member's ability usage.";
-            a2.Effects[1].condition = Effects.ChanceCondition(10);
-            a2.AddIntentsToTarget(Slots.Self, ["Misc"]);
+            Ability newline2 = new Ability(newline1.ability, "A_Newline_2_A", newline1.Cost);
+            newline2.Name = "Newline Multiplication";
+            newline2.Description = "Perform one of the Opposing enemy's actions.\n30% chance to refresh this party member's ability usage.";
+            newline2.Effects[1].condition = Effects.ChanceCondition(30);
+            newline2.AddIntentsToTarget(Slots.Self, ["Misc"]);
 
-            Ability a3 = new Ability(a2.ability, "A_A_3_A", a1.Cost);
-            a3.Name = "Ability A 3";
-            a3.Description = "Perform one of the Opposing enemy's actions.\n25% chance to refresh this party member's ability usage.";
-            a3.Effects[1].condition = Effects.ChanceCondition(25);
+            Ability newline3 = new Ability(newline2.ability, "A_Newline_3_A", newline1.Cost);
+            newline3.Name = "Newline Factorial";
+            newline3.Description = "Perform one of the Opposing enemy's actions.\n35% chance to refresh this party member's ability usage.";
+            newline3.Effects[1].condition = Effects.ChanceCondition(35);
 
-            Ability a4 = new Ability(a3.ability, "A_A_4_A", a1.Cost);
-            a4.Name = "Ability A 4";
-            a4.Description = "Perform one of the Opposing enemy's actions.\n35% chance to refresh this party member's ability usage.";
-            a4.Effects[1].condition = Effects.ChanceCondition(35);
+            Ability newline4 = new Ability(newline3.ability, "A_Newline_4_A", newline1.Cost);
+            newline4.Name = "Newline Exponential";
+            newline4.Description = "Perform one of the Opposing enemy's actions.\n40% chance to refresh this party member's ability usage.";
+            newline4.Effects[1].condition = Effects.ChanceCondition(40);
 
-            Ability b1 = new Ability("Ability B 1", "A_B_1_A");
-            b1.Description = "Deal 6 damage to the Opposing enemy and reroll one of their actions.";
-            b1.AbilitySprite = ResourceLoader.LoadSprite("ability_b.png");
-            b1.Cost = [Pigments.Yellow, Pigments.Yellow];
-            b1.Effects = new EffectInfo[2];
-            b1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 6, Slots.Front);
-            b1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ReRollTargetTimelineAbilityEffect>(), 1, Slots.Front);
-            b1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Misc"]);
-            b1.Visuals = LoadedAssetsHandler.GetCharacterAbility("Parry_1_A").visuals;
-            b1.AnimationTarget = Slots.Front;
+            Ability alphabet1 = new Ability("Array Alphabetical", "A_Alphabet_1_A");
+            alphabet1.Description = "Give the Left ally a random one of the Opposing enemy's abilities with a randomized cost; if they already have an ability given by this party member, replace it.\nHeal them 3 health.";
+            alphabet1.AbilitySprite = ResourceLoader.LoadSprite("ability_alphabet.png");
+            alphabet1.Cost = [Pigments.Yellow, Pigments.Blue];
+            alphabet1.Effects = new EffectInfo[2];
+            alphabet1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<AlphabeticalEffect>(), 1, Targeting.Slot_AllyLeft);
+            alphabet1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 3, Targeting.Slot_AllyLeft);
+            alphabet1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden"]);
+            alphabet1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Misc", "Heal_1_4"]);
+            alphabet1.Visuals = CustomVisuals.GetVisuals("Salt/Ads");
+            alphabet1.AnimationTarget = Targeting.Slot_AllyLeft;
 
-            Ability b2 = new Ability(b1.ability, "A_B_2_A", b1.Cost);
-            b2.Name = "Ability B 2";
-            b2.Description = "Deal 8 damage to the Opposing enemy and reroll one of their actions.";
-            b2.Effects[0].entryVariable = 8;
-            b2.EffectIntents[0].intents[0] = "Damage_7_10";
+            Ability alphabet2 = new Ability(alphabet1.ability, "A_Alphabet_2_A", alphabet1.Cost);
+            alphabet2.Name = "Assembly Alphabetical";
+            alphabet2.Description = "Give the Left ally a random one of the Opposing enemy's abilities with a randomized cost; if they already have an ability given by this party member, replace it.\nHeal them 4 health.";
+            alphabet2.Effects[1].entryVariable = 4;
 
-            Ability b3 = new Ability(b2.ability, "A_B_3_A", b1.Cost);
-            b3.Name = "Ability B 3";
-            b3.Description = "Deal 10 damage to the Opposing enemy and reroll one of their actions.";
-            b3.Effects[0].entryVariable = 10;
+            Ability alphabet3 = new Ability(alphabet2.ability, "A_Alphabet_3_A", alphabet1.Cost);
+            alphabet3.Name = "Acquisition Alphabetical";
+            alphabet3.Description = "Give the Left ally a random one of the Opposing enemy's abilities with a randomized cost; if they already have an ability given by this party member, replace it.\nHeal them 5 health.";
+            alphabet3.Effects[1].entryVariable = 5;
+            alphabet3.EffectIntents[1].intents[1] = "Heal_5_10";
 
-            Ability b4 = new Ability(b3.ability, "A_B_4_A", b1.Cost);
-            b4.Name = "Ability B 4";
-            b4.Description = "Deal 12 damage to the Opposing enemy and reroll one of their actions.";
-            b4.Effects[0].entryVariable = 12;
-            b4.EffectIntents[0].intents[0] = "Damage_11_15";
+            Ability alphabet4 = new Ability(alphabet3.ability, "A_Alphabet_4_A", [Pigments.Grey, Pigments.Blue]);
+            alphabet4.Name = "Anatomy Alphabetical";
 
-            EffectInfo gainHaste = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyHasteEffect>(), 1, Slots.Self);
-            Ability c1 = new Ability("Ability C 1", "A_C_1_A");
-            c1.Description = "Heal this party member 4 health.\nGain 1 Haste, 20% chance to gain another.";
-            c1.AbilitySprite = ResourceLoader.LoadSprite("ability_c.png");
-            c1.Cost = [Pigments.Purple, Pigments.Purple];
-            c1.Effects = new EffectInfo[3];
-            c1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 4, Slots.Self);
-            c1.Effects[1] = Effects.GenerateEffect(CasterRootActionEffect.Create(gainHaste.SelfArray()));
-            c1.Effects[2] = Effects.GenerateEffect(c1.Effects[1].effect, 0, null, Effects.ChanceCondition(20));
-            c1.AddIntentsToTarget(Slots.Self, ["Heal_1_4", Haste.Intent]);
-            c1.Visuals = CustomVisuals.GetVisuals("Salt/Think");
-            c1.AnimationTarget = Slots.Self;
+            Ability reverse1 = new Ability("Reverse Disposition", "A_Reverse_1_A");
+            reverse1.Description = "Apply 1 Inverted on the Right ally.\nForce the First enemy on the timeline to prematurely perform their next action.";
+            reverse1.AbilitySprite = ResourceLoader.LoadSprite("ability_reverse.png");
+            reverse1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
+            reverse1.Effects = new EffectInfo[2];
+            reverse1.Effects[0] = Effects.GenerateEffect(inverted, 1, Targeting.Slot_AllyRight);
+            reverse1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ForceFirstTimelineActionEffect>(), 1);
+            reverse1.AddIntentsToTarget(Targeting.Slot_AllyRight, [Inverted.Intent]);
+            reverse1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc_Hidden"]);
+            reverse1.AnimationTarget = Targeting.Slot_AllyRight;
+            reverse1.Visuals = CustomVisuals.GetVisuals("Salt/Notif");
 
-            Ability c2 = new Ability(c1.ability, "A_C_2_A", c1.Cost);
-            c2.Name = "Ability C 2";
-            c2.Description = "Heal this party member 6 health.\nGain 1 Haste, 40% chance to gain another.";
-            c2.Effects[0].entryVariable = 6;
-            c2.Effects[2].condition = Effects.ChanceCondition(40);
-            c2.EffectIntents[0].intents[0] = "Heal_5_10";
+            Ability reverse2 = new Ability(reverse1.ability, "A_Reverse_2_A", [Pigments.YellowBlue, Pigments.Blue, Pigments.Blue]);
+            reverse2.Name = "Reverse Constitution";
 
-            Ability c3 = new Ability(c2.ability, "A_C_3_A", c1.Cost);
-            c3.Name = "Ability C 3";
-            c3.Description = "Heal this party member 8 health.\nGain 1 Haste, 55% chance to gain another.";
-            c3.Effects[0].entryVariable = 8;
-            c3.Effects[2].condition = Effects.ChanceCondition(55);
+            Ability reverse3 = new Ability(reverse2.ability, "A_Reverse_3_A", [Pigments.YellowBlue, Pigments.YellowBlue, Pigments.Blue]);
+            reverse3.Name = "Reverse Composition";
 
-            Ability c4 = new Ability(c3.ability, "A_C_4_A", c1.Cost);
-            c4.Name = "Ability C 4";
-            c4.Description = "Heal this party member 10 health.\nGain 1 Haste, 70% chance to gain another.";
-            c4.Effects[0].entryVariable = 10;
-            c4.Effects[2].condition = Effects.ChanceCondition(70);
+            Ability reverse4 = new Ability(reverse3.ability, "A_Reverse_4_A", [Pigments.YellowBlue, Pigments.YellowBlue, Pigments.YellowBlue]);
+            reverse4.Name = "Reverse Conformation";
 
-            alpha.AddLevelData(12, [a1, b1, c1]);
-            alpha.AddLevelData(16, [a2, b2, c2]);
-            alpha.AddLevelData(20, [a3, b3, c3]);
-            alpha.AddLevelData(24, [a4, b4, c4]);
-            alpha.AddCharacter(false, true);
+            alpha.AddLevelData(12, [newline1, alphabet1, reverse1]);
+            alpha.AddLevelData(16, [newline2, alphabet2, reverse2]);
+            alpha.AddLevelData(20, [newline3, alphabet3, reverse3]);
+            alpha.AddLevelData(24, [newline4, alphabet4, reverse4]);
+            alpha.AddCharacter(false);
         }
         public static void Items()
         {

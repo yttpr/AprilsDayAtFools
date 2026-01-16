@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 namespace AprilsDayAtFools
 {
@@ -37,6 +38,13 @@ namespace AprilsDayAtFools
             }
 
             return exitAmount > 0;
+        }
+
+        public static AddExtraAbilityIfNotHaveEffect Create(CharacterAbility ability)
+        {
+            AddExtraAbilityIfNotHaveEffect ret = ScriptableObject.CreateInstance<AddExtraAbilityIfNotHaveEffect>();
+            ret._extraAbility = new ExtraAbilityInfo(ability);
+            return ret;
         }
     }
 }
