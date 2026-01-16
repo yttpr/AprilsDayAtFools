@@ -163,7 +163,7 @@ namespace AprilsDayAtFools
 
             Class1.PCall(CustomDialogueHandler.Setup);
             Class1.PCall(Quests.Add);
-            Class1.PCall(FreeFool.AddSaea);
+            Class1.PCall(FreeFool.Add_Saea);
 
             Class1.PCall(PostLoading.Setup);
 

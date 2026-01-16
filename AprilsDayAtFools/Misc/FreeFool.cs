@@ -38,9 +38,9 @@ namespace AprilsDayAtFools//change this to your namespace
             //ok so basically what this is is,
             //Add("character id. the _CH", "any sort of name identifier, doesnt really matter", [area: 1 shore, 2 orph, 3 garden], color32(for the text color. its just thr rgb plus a 255 at the end for the alpha), bool do they face left, bool do they face center, bool should the show up in easy mode aswell)
         }
-        public static void AddSaea()
+        public static void Add_Saea()
         {
-            Add("Saea_CH", "Saea", 3, Color.white, true, false, false);
+            AddSaea("Saea_CH", "Saea", 3, Color.white, true, false, false);
         }
 
         //this is for setting up the YarnProgram. if you do this somewhere else you dont have to do it again, but do note that in the .Add method it references the yarn program ID so you do need to make sure that's consistent
