@@ -118,37 +118,37 @@ namespace AprilsDayAtFools
             reduce._randomBetweenPrevious = true;
 
             Ability ori1 = new Ability("Placated Origin", "Saea_Ori_1_A");
-            ori1.Description = "Attempt to resurrect an ally in the Left position at 3 health, inflicting 3 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 0-1.";
+            ori1.Description = "Attempt to resurrect an ally in the Left position at 3 health, inflicting 5 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 2.";
             ori1.AbilitySprite = ResourceLoader.LoadSprite("ability_origin.png");
             ori1.Cost = [Pigments.Purple];
             ori1.Effects = new EffectInfo[4];
             ori1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectEffect>(), 3, Targeting.Slot_AllyLeft);
-            ori1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true));
-            ori1.Effects[2] = Effects.GenerateEffect(BasicEffects.Empty, 0);
-            ori1.Effects[3] = Effects.GenerateEffect(reduce, 1, Targeting.Unit_AllAllies, BasicEffects.DidThat(false, 3));
+            ori1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 5, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true));
+            ori1.Effects[2] = Effects.GenerateEffect(BasicEffects.Empty, 2);
+            ori1.Effects[3] = Effects.GenerateEffect(reduce, 2, Targeting.Unit_AllAllies, BasicEffects.DidThat(false, 3));
             ori1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Other_Resurrect", Karma.Intent]);
             ori1.Visuals = CustomVisuals.GetVisuals("Salt/Insta/Shatter");
             ori1.AnimationTarget = Targeting.Slot_AllyLeft;
 
             Ability ori2 = new Ability(ori1.ability, "Saea_Ori_2_A", ori1.Cost);
             ori2.Name = "Cordial Origin";
-            ori2.Description = "Attempt to resurrect an ally in the Left position at 5 health, inflicting 5 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 1.";
+            ori2.Description = "Attempt to resurrect an ally in the Left position at 5 health, inflicting 7 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 2-3.";
             ori2.Effects[0].entryVariable = 5;
             ori2.Effects[1].entryVariable = 5;
-            ori2.Effects[2].entryVariable = 1;
+            ori2.Effects[3].entryVariable = 3;
 
             Ability ori3 = new Ability(ori2.ability, "Saea_Ori_3_A", ori1.Cost);
             ori3.Name = "Amiable Origin";
-            ori3.Description = "Attempt to resurrect an ally in the Left position at 8 health, inflicting 7 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 1.";
+            ori3.Description = "Attempt to resurrect an ally in the Left position at 8 health, inflicting 8 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 2-3.";
             ori3.Effects[0].entryVariable = 8;
-            ori3.Effects[1].entryVariable = 7;
+            ori3.Effects[1].entryVariable = 8;
 
             Ability ori4 = new Ability(ori3.ability, "Saea_Ori_4_A", ori1.Cost);
             ori4.Name = "Hospitable Origin";
-            ori4.Description = "Attempt to resurrect an ally in the Left position at 10 health, inflicting 9 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 1-2.";
+            ori4.Description = "Attempt to resurrect an ally in the Left position at 10 health, inflicting 10 Karma on them if succesful.\nIf no ally was resurrected, reduce Karma on All party members by 3.";
             ori4.Effects[0].entryVariable = 10;
-            ori4.Effects[1].entryVariable = 9;
-            ori4.Effects[3].entryVariable = 2;
+            ori4.Effects[1].entryVariable = 10;
+            ori4.Effects[2].entryVariable = 3;
 
             EffectInfo animself = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Slots.Self));
             EffectInfo animleft = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Targeting.Slot_AllyLeft));
@@ -157,7 +157,7 @@ namespace AprilsDayAtFools
             Intents.CreateAndAddCustom_Basic_IntentToPool("Claim_A", claim1.ability.abilitySprite, Color.white);
 
             Ability visions1 = new Ability("Dangerous Visions", "Saea_Visions_1_A");
-            visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability and inflict 6 Karma on them.\nIf they already have \"Action of Recovery,\" reduce their Karma by 1 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability and inflict 6 Karma on them.\nIf they already have \"Action of Recovery,\" reduce their Karma by 3 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions1.AbilitySprite = ResourceLoader.LoadSprite("ability_visions.png");
             visions1.Cost = [Pigments.Red, Pigments.Blue];
             visions1.Effects = new EffectInfo[2];
@@ -165,71 +165,71 @@ namespace AprilsDayAtFools
                 animleft,
                 Effects.GenerateEffect(act1, 1, Targeting.Slot_AllyLeft),
                 Effects.GenerateEffect(karma, 6, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 1),
-                Effects.GenerateEffect(reduce, 1, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(BasicEffects.Empty, 3),
+                Effects.GenerateEffect(reduce, 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, left);
             visions1.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act1, 1, Slots.Self),
                 Effects.GenerateEffect(karma, 6, Slots.Self, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 1),
-                Effects.GenerateEffect(reduce, 1, Slots.Self, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(BasicEffects.Empty, 3),
+                Effects.GenerateEffect(reduce, 3, Slots.Self, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, didnt);
             visions1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Claim_A", Karma.Intent]);
             visions1.AddIntentsToTarget(Slots.Self, ["Misc_Hidden"]);
 
             Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
             visions2.Name = "Vile Visions";
-            visions2.Description = "Give the Left ally \"Action of Reclamation\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Reclamation,\" reduce their Karma by 2 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions2.Description = "Give the Left ally \"Action of Reclamation\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Reclamation,\" reduce their Karma by 4 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions2.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act2, 1, Targeting.Slot_AllyLeft),
                 Effects.GenerateEffect(karma, 7, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 2),
-                Effects.GenerateEffect(reduce, 2, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(BasicEffects.Empty, 4),
+                Effects.GenerateEffect(reduce, 4, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, left);
             visions2.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act2, 1, Slots.Self),
                 Effects.GenerateEffect(karma, 7, Slots.Self, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 2),
-                Effects.GenerateEffect(reduce, 2, Slots.Self, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(BasicEffects.Empty, 4),
+                Effects.GenerateEffect(reduce, 4, Slots.Self, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, didnt);
 
             Ability visions3 = new Ability(visions2.ability, "Saea_Visions_3_A", visions1.Cost);
             visions3.Name = "Torturous Visions";
-            visions3.Description = "Give the Left ally \"Action of Repossession\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Repossession,\" reduce their Karma by 2-3 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions3.Description = "Give the Left ally \"Action of Repossession\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Repossession,\" reduce their Karma by 4-5 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions3.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act3, 1, Targeting.Slot_AllyLeft),
                 Effects.GenerateEffect(karma, 7, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 2),
-                Effects.GenerateEffect(reduce, 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(BasicEffects.Empty, 4),
+                Effects.GenerateEffect(reduce, 5, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, left);
             visions3.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act3, 1, Slots.Self),
                 Effects.GenerateEffect(karma, 7, Slots.Self, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 2),
-                Effects.GenerateEffect(reduce, 3, Slots.Self, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(BasicEffects.Empty, 4),
+                Effects.GenerateEffect(reduce, 5, Slots.Self, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, didnt);
 
             Ability visions4 = new Ability(visions3.ability, "Saea_Visions_4_A", visions1.Cost);
             visions4.Name = "Apocalyptic Visions";
-            visions4.Description = "Give the Left ally \"Action of Reappropriation\" as an extra ability and inflict 8 Karma on them.\nIf they already have \"Action of Reappropriation,\" reduce their Karma by 3-4 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions4.Description = "Give the Left ally \"Action of Reappropriation\" as an extra ability and inflict 8 Karma on them.\nIf they already have \"Action of Reappropriation,\" reduce their Karma by 5-6 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions4.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act4, 1, Targeting.Slot_AllyLeft),
                 Effects.GenerateEffect(karma, 8, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 3),
-                Effects.GenerateEffect(reduce, 4, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(BasicEffects.Empty, 5),
+                Effects.GenerateEffect(reduce, 6, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, left);
             visions4.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act4, 1, Slots.Self),
                 Effects.GenerateEffect(karma, 8, Slots.Self, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 3),
-                Effects.GenerateEffect(reduce, 4, Slots.Self, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(BasicEffects.Empty, 5),
+                Effects.GenerateEffect(reduce, 6, Slots.Self, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, didnt);
 
             saea.AddLevelData(10, [visions1, ori1, onset1]);
