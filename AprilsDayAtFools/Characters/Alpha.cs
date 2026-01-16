@@ -114,13 +114,13 @@ namespace AprilsDayAtFools
             reverse1.AnimationTarget = Targeting.Slot_AllyRight;
             reverse1.Visuals = CustomVisuals.GetVisuals("Salt/Notif");
 
-            Ability reverse2 = new Ability(reverse1.ability, "A_Reverse_2_A", [Pigments.YellowBlue, Pigments.Blue, Pigments.Blue]);
+            Ability reverse2 = new Ability(reverse1.ability, "A_Reverse_2_A", [Pigments.BlueYellow, Pigments.Blue, Pigments.Blue]);
             reverse2.Name = "Reverse Constitution";
 
-            Ability reverse3 = new Ability(reverse2.ability, "A_Reverse_3_A", [Pigments.YellowBlue, Pigments.YellowBlue, Pigments.Blue]);
+            Ability reverse3 = new Ability(reverse2.ability, "A_Reverse_3_A", [Pigments.BlueYellow, Pigments.YellowBlue, Pigments.Blue]);
             reverse3.Name = "Reverse Composition";
 
-            Ability reverse4 = new Ability(reverse3.ability, "A_Reverse_4_A", [Pigments.YellowBlue, Pigments.YellowBlue, Pigments.YellowBlue]);
+            Ability reverse4 = new Ability(reverse3.ability, "A_Reverse_4_A", [Pigments.BlueYellow, Pigments.YellowBlue, Pigments.YellowBlue]);
             reverse4.Name = "Reverse Conformation";
 
             alpha.AddLevelData(12, [newline1, alphabet1, reverse1]);
