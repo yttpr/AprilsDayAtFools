@@ -157,21 +157,21 @@ namespace AprilsDayAtFools
             Intents.CreateAndAddCustom_Basic_IntentToPool("Claim_A", claim1.ability.abilitySprite, Color.white);
 
             Ability visions1 = new Ability("Dangerous Visions", "Saea_Visions_1_A");
-            visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability and inflict 6 Karma on them.\nIf they already have \"Action of Recovery,\" reduce their Karma by 3 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability and inflict 2 Karma on them.\nIf they already have \"Action of Recovery,\" reduce their Karma by 3 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions1.AbilitySprite = ResourceLoader.LoadSprite("ability_visions.png");
             visions1.Cost = [Pigments.Red, Pigments.Blue];
             visions1.Effects = new EffectInfo[2];
             visions1.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act1, 1, Targeting.Slot_AllyLeft),
-                Effects.GenerateEffect(karma, 6, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(karma, 2, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 3),
                 Effects.GenerateEffect(reduce, 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, left);
             visions1.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act1, 1, Slots.Self),
-                Effects.GenerateEffect(karma, 6, Slots.Self, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(karma, 2, Slots.Self, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 3),
                 Effects.GenerateEffect(reduce, 3, Slots.Self, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, didnt);
@@ -180,54 +180,54 @@ namespace AprilsDayAtFools
 
             Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
             visions2.Name = "Vile Visions";
-            visions2.Description = "Give the Left ally \"Action of Reclamation\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Reclamation,\" reduce their Karma by 4 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions2.Description = "Give the Left ally \"Action of Reclamation\" as an extra ability and inflict 3 Karma on them.\nIf they already have \"Action of Reclamation,\" reduce their Karma by 4 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions2.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act2, 1, Targeting.Slot_AllyLeft),
-                Effects.GenerateEffect(karma, 7, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(karma, 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 4),
                 Effects.GenerateEffect(reduce, 4, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, left);
             visions2.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act2, 1, Slots.Self),
-                Effects.GenerateEffect(karma, 7, Slots.Self, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(karma, 3, Slots.Self, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 4),
                 Effects.GenerateEffect(reduce, 4, Slots.Self, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, didnt);
 
             Ability visions3 = new Ability(visions2.ability, "Saea_Visions_3_A", visions1.Cost);
             visions3.Name = "Torturous Visions";
-            visions3.Description = "Give the Left ally \"Action of Repossession\" as an extra ability and inflict 7 Karma on them.\nIf they already have \"Action of Repossession,\" reduce their Karma by 4-5 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions3.Description = "Give the Left ally \"Action of Repossession\" as an extra ability and inflict 3 Karma on them.\nIf they already have \"Action of Repossession,\" reduce their Karma by 4-5 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions3.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act3, 1, Targeting.Slot_AllyLeft),
-                Effects.GenerateEffect(karma, 7, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(karma, 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 4),
                 Effects.GenerateEffect(reduce, 5, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, left);
             visions3.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act3, 1, Slots.Self),
-                Effects.GenerateEffect(karma, 7, Slots.Self, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(karma, 3, Slots.Self, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 4),
                 Effects.GenerateEffect(reduce, 5, Slots.Self, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, didnt);
 
             Ability visions4 = new Ability(visions3.ability, "Saea_Visions_4_A", visions1.Cost);
             visions4.Name = "Apocalyptic Visions";
-            visions4.Description = "Give the Left ally \"Action of Reappropriation\" as an extra ability and inflict 8 Karma on them.\nIf they already have \"Action of Reappropriation,\" reduce their Karma by 5-6 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions4.Description = "Give the Left ally \"Action of Reappropriation\" as an extra ability and inflict 4 Karma on them.\nIf they already have \"Action of Reappropriation,\" reduce their Karma by 5-6 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions4.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act4, 1, Targeting.Slot_AllyLeft),
-                Effects.GenerateEffect(karma, 8, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(karma, 4, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 5),
                 Effects.GenerateEffect(reduce, 6, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, left);
             visions4.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act4, 1, Slots.Self),
-                Effects.GenerateEffect(karma, 8, Slots.Self, BasicEffects.DidThat(true)),
+                Effects.GenerateEffect(karma, 4, Slots.Self, BasicEffects.DidThat(true)),
                 Effects.GenerateEffect(BasicEffects.Empty, 5),
                 Effects.GenerateEffect(reduce, 6, Slots.Self, BasicEffects.DidThat(false, 3))
                 ]), 1, Slots.Self, didnt);
