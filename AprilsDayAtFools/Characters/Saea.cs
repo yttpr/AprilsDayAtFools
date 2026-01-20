@@ -156,7 +156,7 @@ namespace AprilsDayAtFools
             PreviousEffectCondition didnt = BasicEffects.DidThat(false);
             Intents.CreateAndAddCustom_Basic_IntentToPool("Claim_A", claim1.ability.abilitySprite, Color.white);
 
-            Ability visions1 = new Ability("Dangerous Visions", "Saea_Visions_1_A");
+            Ability visions1 = new Ability("Vile Visions", "Saea_Visions_1_A");
             visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability and inflict 2 Karma on them.\nIf they already have \"Action of Recovery,\" reduce their Karma by 3 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions1.AbilitySprite = ResourceLoader.LoadSprite("ability_visions.png");
             visions1.Cost = [Pigments.Red, Pigments.Blue];
@@ -179,7 +179,7 @@ namespace AprilsDayAtFools
             visions1.AddIntentsToTarget(Slots.Self, ["Misc_Hidden"]);
 
             Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
-            visions2.Name = "Vile Visions";
+            visions2.Name = "Torturous Visions";
             visions2.Description = "Give the Left ally \"Action of Reclamation\" as an extra ability and inflict 3 Karma on them.\nIf they already have \"Action of Reclamation,\" reduce their Karma by 4 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions2.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
@@ -197,7 +197,7 @@ namespace AprilsDayAtFools
                 ]), 1, Slots.Self, didnt);
 
             Ability visions3 = new Ability(visions2.ability, "Saea_Visions_3_A", visions1.Cost);
-            visions3.Name = "Torturous Visions";
+            visions3.Name = "Apocalyptic Visions";
             visions3.Description = "Give the Left ally \"Action of Repossession\" as an extra ability and inflict 3 Karma on them.\nIf they already have \"Action of Repossession,\" reduce their Karma by 4-5 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions3.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
@@ -215,7 +215,7 @@ namespace AprilsDayAtFools
                 ]), 1, Slots.Self, didnt);
 
             Ability visions4 = new Ability(visions3.ability, "Saea_Visions_4_A", visions1.Cost);
-            visions4.Name = "Apocalyptic Visions";
+            visions4.Name = "Cataclysmic Visions";
             visions4.Description = "Give the Left ally \"Action of Reappropriation\" as an extra ability and inflict 4 Karma on them.\nIf they already have \"Action of Reappropriation,\" reduce their Karma by 5-6 instead.\nIf there is no Left ally, this ability targets this party member.";
             visions4.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
