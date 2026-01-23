@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AprilsDayAtFools
@@ -18,6 +19,10 @@ namespace AprilsDayAtFools
                         value.AddModifier(new MultiplyIntValueModifier(true, 3));
                     }
                     else if (value.damagedUnit.Name.ToLower().Contains("clown"))
+                    {
+                        value.AddModifier(new MultiplyIntValueModifier(true, 3));
+                    }
+                    else if (value.damagedUnit.UnitTypes != null && value.damagedUnit.UnitTypes.Contains("Clown"))
                     {
                         value.AddModifier(new MultiplyIntValueModifier(true, 3));
                     }
