@@ -235,10 +235,10 @@ namespace AprilsDayAtFools
                 Effects.GenerateEffect(shield, 8, sh_self, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, didnt);
 
-            saea.AddLevelData(10, [visions1, ori1, onset1]);
-            saea.AddLevelData(12, [visions2, ori2, onset2]);
-            saea.AddLevelData(13, [visions3, ori3, onset3]);
-            saea.AddLevelData(14, [visions4, ori4, onset4]);
+            saea.AddLevelData(12, [visions1, ori1, onset1]);
+            saea.AddLevelData(14, [visions2, ori2, onset2]);
+            saea.AddLevelData(15, [visions3, ori3, onset3]);
+            saea.AddLevelData(16, [visions4, ori4, onset4]);
             saea.AddCharacter(false);
         }
         public static void Items()
