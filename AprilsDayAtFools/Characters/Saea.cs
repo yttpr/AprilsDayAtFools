@@ -190,8 +190,8 @@ namespace AprilsDayAtFools
                 Effects.GenerateEffect(act1, 1, Slots.Self),
                 Effects.GenerateEffect(shield, 4, sh_self, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, didnt);
-            visions1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Claim_A", Karma.Intent]);
-            visions1.AddIntentsToTarget(Slots.Self, ["Misc_Hidden"]);
+            visions1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Claim_A", "Field_Shield"]);
+            visions1.AddIntentsToTarget(Slots.Self, ["Field_Shield", "Misc_Hidden"]);
 
             Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
             visions2.Name = "Torturous Visions";
