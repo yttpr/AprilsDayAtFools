@@ -119,7 +119,7 @@ namespace AprilsDayAtFools
                     CombatManager.Instance.ProcessImmediateAction(new AddManaToManaBarAction(self.HealthColor, LoadedDBsHandler.CombatData.CharacterPigmentAmount, self.IsUnitCharacter, self.ID));
                 }
 
-                IntegerReference args = Help.GenerateDamageIntReference(num4, specialDamage, directDamage, ignoresShield, num, num2, killer, self);
+                IntegerReference args = Help.GenerateDamageIntReference(num4, specialDamage, deathTypeID, directDamage, ignoresShield, num, num2, killer, self);
 
                 CombatManager.Instance.PostNotification(TriggerCalls.OnDamaged.ToString(), self, args);
                 string notificationName = (directDamage ? TriggerCalls.OnDirectDamaged.ToString() : TriggerCalls.OnIndirectDamaged.ToString());
