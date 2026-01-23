@@ -44,6 +44,7 @@ namespace AprilsDayAtFools
 
                     if (has) continue;
                     target.Unit.AddExtraAbility(_extraAbility);
+                    CombatManager.Instance.AddUIAction(new ShowPassiveInformationUIAction(target.Unit.ID, target.Unit.IsUnitCharacter, _extraAbility.ability._abilityName + " Added", _extraAbility.ability.abilitySprite));
                     exitAmount++;
                 }
             }

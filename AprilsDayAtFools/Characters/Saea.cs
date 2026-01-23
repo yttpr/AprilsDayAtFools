@@ -94,7 +94,7 @@ namespace AprilsDayAtFools
             onset1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<MaxHealthlessHealEffect>(), 6, Targeting.Slot_SelfAndRight);
             onset1.Effects[1] = Effects.GenerateEffect(BasicEffects.Empty, 8);
             onset1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaCappedToExitEffect>(), 4, Targeting.Slot_SelfAndRight);
-            onset1.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Heal_5_10", Karma.Intent]);
+            onset1.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Heal_5_10", IntentType_GameIDs.Other_MaxHealth.ToString(), Karma.Intent]);
             onset1.Visuals = Visuals.UglyOnTheInside;
             onset1.AnimationTarget = Targeting.Slot_SelfAndRight;
 
