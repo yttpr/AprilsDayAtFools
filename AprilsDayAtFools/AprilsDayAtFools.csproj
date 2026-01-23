@@ -83,6 +83,7 @@
 	  <None Remove="Passives\Sprites\EternityPassive.png" />
 	  <None Remove="Passives\Sprites\MimicryPassive.png" />
 	  <None Remove="Passives\Sprites\OrdinaryPassive.png" />
+	  <None Remove="Passives\Sprites\PermanentPassive.png" />
 	  <None Remove="Passives\Sprites\ScaryPassive.png" />
 	  <None Remove="Passives\Sprites\SolitudePassive.png" />
 	  <None Remove="Passives\Sprites\SpecialPassive.png" />
@@ -603,6 +604,7 @@
 	  <EmbeddedResource Include="Passives\Sprites\EternityPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\MimicryPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\OrdinaryPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\PermanentPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\ScaryPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\SolitudePassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\SpecialPassive.png" />

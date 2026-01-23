@@ -35,5 +35,6 @@ namespace AprilsDayAtFools
         public static string DirectHealAttempt => "Heal_Try";
         public static string Saturn => "Saturn_CH";
         public static string SaturnDefault => "Saturn_Default";
+        public static string Permanent => "Permanent_PA";
     }
 }

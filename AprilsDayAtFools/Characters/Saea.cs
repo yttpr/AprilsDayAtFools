@@ -12,6 +12,19 @@ namespace AprilsDayAtFools
     {
         public static void Add()
         {
+            PerformEffectPassiveAbility permanent = ScriptableObject.CreateInstance<PerformEffectPassiveAbility>();
+            permanent._passiveName = "Permanent";
+            permanent.passiveIcon = PermanentPassiveHandler.Icon;
+            permanent.m_PassiveID = IDs.Permanent;
+            permanent.name = IDs.Permanent;
+            permanent._enemyDescription = "This enemy's maximum health cannot be changed.";
+            permanent._characterDescription = "This party member's maximum health cannot be changed.";
+            permanent.doesPassiveTriggerInformationPanel = true;
+            permanent.effects = [];
+            permanent._triggerOn = [];
+            permanent.AddPassiveToGlossary("Permanent", "This unit's maximum health cannot be changed.");
+            permanent.AddToPassiveDatabase();
+
             Character saea = new Character("Saea", "Saea_CH");
             saea.HealthColor = Pigments.Blue;
             saea.AddUnitType("FemaleID");
@@ -32,6 +45,7 @@ namespace AprilsDayAtFools
             saea.GenerateMenuCharacter(ResourceLoader.LoadSprite("SaeaMenu.png"), ResourceLoader.LoadSprite("SaeaLock.png"));
             saea.MenuCharacterIsSecret = true;
             saea.SetMenuCharacterAsFullSupport();
+            saea.AddPassive(permanent);
 
             DamageEffect damage = ScriptableObject.CreateInstance<DamageEffect>();
             HealEffect lifesteal = ScriptableObject.CreateInstance<HealEffect>();
@@ -73,11 +87,11 @@ namespace AprilsDayAtFools
             AddExtraAbilityIfNotHaveEffect act4 = AddExtraAbilityIfNotHaveEffect.Create(claim4.GenerateCharacterAbility(true));
 
             Ability onset1 = new Ability("Onset of Shadows", "Saea_Onset_1_A");
-            onset1.Description = "Heal this and the Right allies 6 health then inflict 4 Karma on them.\nKarma inflicted will not exceed 8.";
+            onset1.Description = "Heal this and the Right allies 6 health then inflict 4 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 8.";
             onset1.AbilitySprite = ResourceLoader.LoadSprite("ability_onset.png");
             onset1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
             onset1.Effects = new EffectInfo[3];
-            onset1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 6, Targeting.Slot_SelfAndRight);
+            onset1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<MaxHealthlessHealEffect>(), 6, Targeting.Slot_SelfAndRight);
             onset1.Effects[1] = Effects.GenerateEffect(BasicEffects.Empty, 8);
             onset1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaCappedToExitEffect>(), 4, Targeting.Slot_SelfAndRight);
             onset1.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Heal_5_10", Karma.Intent]);
@@ -86,7 +100,7 @@ namespace AprilsDayAtFools
 
             Ability onset2 = new Ability(onset1.ability, "Saea_Onset_2_A", onset1.Cost);
             onset2.Name = "Onset of Darkness";
-            onset2.Description = "Heal this, the Right, and Far Right allies 7 health then inflict 5 Karma on them.\nKarma inflicted will not exceed 10.";
+            onset2.Description = "Heal this, the Right, and Far Right allies 7 health then inflict 5 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 10.";
             onset2.Effects[0].entryVariable = 7;
             onset2.Effects[1].entryVariable = 10;
             onset2.Effects[2].entryVariable = 5;
@@ -97,7 +111,7 @@ namespace AprilsDayAtFools
 
             Ability onset3 = new Ability(onset2.ability, "Saea_Onset_3_A", onset1.Cost);
             onset3.Name = "Onset of Death";
-            onset3.Description = "Heal this, the Right, the Far Right, and the Far Far Right allies 8 health then inflict 6 Karma on them.\nKarma inflicted will not exceed 12.";
+            onset3.Description = "Heal this, the Right, the Far Right, and the Far Far Right allies 8 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 12.";
             onset3.Effects[0].entryVariable = 8;
             onset3.Effects[1].entryVariable = 12;
             onset3.Effects[2].entryVariable = 6;
@@ -108,7 +122,7 @@ namespace AprilsDayAtFools
 
             Ability onset4 = new Ability(onset3.ability, "Saea_Onset_4_A", onset1.Cost);
             onset4.Name = "Onset of Hell";
-            onset4.Description = "Heal this and All allies to the Rights 8 health then inflict 6 Karma on them.\nKarma inflicted will not exceed 12.";
+            onset4.Description = "Heal this and All allies to the Rights 8 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 12.";
             onset4.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3, 4], true);
             onset4.Effects[0].targets = onset4.ability.animationTarget;
             onset4.Effects[2].targets = onset4.ability.animationTarget;
@@ -155,81 +169,70 @@ namespace AprilsDayAtFools
             ExistsLeftAllyCondition left = ScriptableObject.CreateInstance<ExistsLeftAllyCondition>();
             PreviousEffectCondition didnt = BasicEffects.DidThat(false);
             Intents.CreateAndAddCustom_Basic_IntentToPool("Claim_A", claim1.ability.abilitySprite, Color.white);
+            ApplyShieldSlotEffect shield = ScriptableObject.CreateInstance<ApplyShieldSlotEffect>();
+            BaseCombatTargettingSO sh_left = Targeting.Slot_SelfAndLeft;
+            DoubleTargetting sh_self = ScriptableObject.CreateInstance<DoubleTargetting>();
+            sh_self.firstTargetting = Slots.Self;
+            sh_self.secondTargetting = Slots.Self;
 
             Ability visions1 = new Ability("Vile Visions", "Saea_Visions_1_A");
-            visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability and inflict 2 Karma on them.\nIf they already have \"Action of Recovery,\" reduce their Karma by 3 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability.\nIf they already have \"Action of Recovery,\" apply 4 Shield to them and this party member.\nIf there is no Left ally, this ability targets this party member.";
             visions1.AbilitySprite = ResourceLoader.LoadSprite("ability_visions.png");
             visions1.Cost = [Pigments.Red, Pigments.Blue];
             visions1.Effects = new EffectInfo[2];
             visions1.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act1, 1, Targeting.Slot_AllyLeft),
-                Effects.GenerateEffect(karma, 2, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 3),
-                Effects.GenerateEffect(reduce, 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(shield, 4, sh_left, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, left);
             visions1.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act1, 1, Slots.Self),
-                Effects.GenerateEffect(karma, 2, Slots.Self, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 3),
-                Effects.GenerateEffect(reduce, 3, Slots.Self, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(shield, 4, sh_self, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, didnt);
             visions1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Claim_A", Karma.Intent]);
             visions1.AddIntentsToTarget(Slots.Self, ["Misc_Hidden"]);
 
             Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
             visions2.Name = "Torturous Visions";
-            visions2.Description = "Give the Left ally \"Action of Reclamation\" as an extra ability and inflict 3 Karma on them.\nIf they already have \"Action of Reclamation,\" reduce their Karma by 4 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions2.Description = "Give the Left ally \"Action of Reclamation\" as an extra ability.\nIf they already have \"Action of Reclamation,\" apply 5 Shield to them and this party member.\nIf there is no Left ally, this ability targets this party member.";
             visions2.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act2, 1, Targeting.Slot_AllyLeft),
-                Effects.GenerateEffect(karma, 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 4),
-                Effects.GenerateEffect(reduce, 4, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(shield, 5, sh_left, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, left);
             visions2.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act2, 1, Slots.Self),
-                Effects.GenerateEffect(karma, 3, Slots.Self, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 4),
-                Effects.GenerateEffect(reduce, 4, Slots.Self, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(shield, 5, sh_self, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, didnt);
 
             Ability visions3 = new Ability(visions2.ability, "Saea_Visions_3_A", visions1.Cost);
             visions3.Name = "Apocalyptic Visions";
-            visions3.Description = "Give the Left ally \"Action of Repossession\" as an extra ability and inflict 3 Karma on them.\nIf they already have \"Action of Repossession,\" reduce their Karma by 4-5 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions3.Description = "Give the Left ally \"Action of Repossession\" as an extra ability.\nIf they already have \"Action of Repossession,\" apply 6 Shield to them and this party member.\nIf there is no Left ally, this ability targets this party member.";
             visions3.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act3, 1, Targeting.Slot_AllyLeft),
-                Effects.GenerateEffect(karma, 3, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 4),
-                Effects.GenerateEffect(reduce, 5, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(shield, 6, sh_left, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, left);
             visions3.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act3, 1, Slots.Self),
-                Effects.GenerateEffect(karma, 3, Slots.Self, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 4),
-                Effects.GenerateEffect(reduce, 5, Slots.Self, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(shield, 6, sh_self, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, didnt);
 
             Ability visions4 = new Ability(visions3.ability, "Saea_Visions_4_A", visions1.Cost);
             visions4.Name = "Cataclysmic Visions";
-            visions4.Description = "Give the Left ally \"Action of Reappropriation\" as an extra ability and inflict 4 Karma on them.\nIf they already have \"Action of Reappropriation,\" reduce their Karma by 5-6 instead.\nIf there is no Left ally, this ability targets this party member.";
+            visions4.Description = "Give the Left ally \"Action of Reappropriation\" as an extra ability.\nIf they already have \"Action of Reappropriation,\" apply 8 Shield to them and this party member.\nIf there is no Left ally, this ability targets this party member.";
             visions4.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
                 Effects.GenerateEffect(act4, 1, Targeting.Slot_AllyLeft),
-                Effects.GenerateEffect(karma, 4, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 5),
-                Effects.GenerateEffect(reduce, 6, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(shield, 8, sh_left, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, left);
             visions4.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animself,
                 Effects.GenerateEffect(act4, 1, Slots.Self),
-                Effects.GenerateEffect(karma, 4, Slots.Self, BasicEffects.DidThat(true)),
-                Effects.GenerateEffect(BasicEffects.Empty, 5),
-                Effects.GenerateEffect(reduce, 6, Slots.Self, BasicEffects.DidThat(false, 3))
+                Effects.GenerateEffect(shield, 8, sh_self, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, didnt);
 
             saea.AddLevelData(10, [visions1, ori1, onset1]);
