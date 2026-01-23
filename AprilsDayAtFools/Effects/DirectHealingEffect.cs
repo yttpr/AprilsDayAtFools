@@ -51,7 +51,7 @@ namespace AprilsDayAtFools
                         ExtraHealReturnInfo check = new ExtraHealReturnInfo();
                         amount = targetSlotInfo.Unit.Heal(num, caster, _directHeal, "", check);
 
-                        IntegerReference post = Help.GenerateDamageIntReference(Math.Max(amount, check.attemptedHealAmount), "Heal", _directHeal, _ignoreShield, targetSlotInfo.Unit.SlotID, targetSlotInfo.Unit.SlotID + targetSlotInfo.Unit.Size - 1, caster, targetSlotInfo.Unit);
+                        IntegerReference post = Help.GenerateDamageIntReference(Math.Max(amount, check.attemptedHealAmount), "Heal", "Basic", _directHeal, _ignoreShield, targetSlotInfo.Unit.SlotID, targetSlotInfo.Unit.SlotID + targetSlotInfo.Unit.Size - 1, caster, targetSlotInfo.Unit);
 
                         if (post.value > 0)
                         {
