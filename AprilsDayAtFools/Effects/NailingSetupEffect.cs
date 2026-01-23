@@ -48,7 +48,7 @@ namespace AprilsDayAtFools
                         num2 = targetSlotOffset;
                     }
 
-                    IntegerReference args = Help.GenerateDamageIntReference(num4, Tools.Utils.GetBasicDamageIDFromAmount(num4), target.Unit.SimpleGetStoredValue(NailingHandler.Direct) > 0, target.Unit.SimpleGetStoredValue(NailingHandler.Direct) <= 0, target.SlotID, target.SlotID, caster, target.Unit);
+                    IntegerReference args = Help.GenerateDamageIntReference(num4, Tools.Utils.GetBasicDamageIDFromAmount(num4), "Basic", target.Unit.SimpleGetStoredValue(NailingHandler.Direct) > 0, target.Unit.SimpleGetStoredValue(NailingHandler.Direct) <= 0, target.SlotID, target.SlotID, caster, target.Unit);
 
                     CombatManager.Instance.PostNotification(TriggerCalls.OnDamaged.ToString(), target.Unit, args);
 
