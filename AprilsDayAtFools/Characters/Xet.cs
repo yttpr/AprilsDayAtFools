@@ -19,6 +19,7 @@ namespace AprilsDayAtFools
             xet.HealthColor = Pigments.Yellow;
             xet.AddUnitType("FemaleID");
             xet.AddUnitType("Angel");
+            xet.AddUnitType("FemaleLooking");
             xet.UsesBasicAbility = true;
             xet.SetBasicAbility(draw.GenerateCharacterAbility());
             xet.UsesAllAbilities = false;

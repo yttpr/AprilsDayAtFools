@@ -15,6 +15,7 @@ namespace AprilsDayAtFools
             wtmiyr.HealthColor = Pigments.Purple;
             wtmiyr.AddUnitType("FemaleID");
             wtmiyr.AddUnitType("Sandwich_Silly");
+            wtmiyr.AddUnitType("FemaleLooking");
             wtmiyr.UsesBasicAbility = true;
             //slap
             wtmiyr.UsesAllAbilities = false;

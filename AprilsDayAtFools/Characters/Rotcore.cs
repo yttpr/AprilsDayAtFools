@@ -15,6 +15,7 @@ namespace AprilsDayAtFools
             rotcore.HealthColor = Pigments.Yellow;
             rotcore.AddUnitType("FemaleID");
             rotcore.AddUnitType("Sandwich_War");
+            rotcore.AddUnitType("FemaleLooking");
             rotcore.UsesBasicAbility = true;
             //slap
             rotcore.UsesAllAbilities = false;

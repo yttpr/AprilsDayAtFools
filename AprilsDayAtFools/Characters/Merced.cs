@@ -29,6 +29,7 @@ namespace AprilsDayAtFools
             merced.HealthColor = Pigments.Yellow;
             merced.AddUnitType("FemaleID");
             merced.AddUnitType("Sandwich_NULL");
+            merced.AddUnitType("FemaleLooking");
             merced.UsesBasicAbility = true;
             //slap
             merced.UsesAllAbilities = false;

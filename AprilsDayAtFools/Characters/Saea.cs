@@ -28,6 +28,7 @@ namespace AprilsDayAtFools
             Character saea = new Character("Saea", "Saea_CH");
             saea.HealthColor = Pigments.Blue;
             saea.AddUnitType("FemaleID");
+            saea.AddUnitType("FemaleLooking");
             saea.UsesBasicAbility = true;
             //slap
             saea.UsesAllAbilities = false;

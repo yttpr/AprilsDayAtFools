@@ -16,6 +16,7 @@ namespace AprilsDayAtFools
             patch.HealthColor = Pigments.Purple;
             patch.AddUnitType("FemaleID");
             patch.AddUnitType("Sandwich_Gore");
+            patch.AddUnitType("FemaleLooking");
             patch.UsesBasicAbility = true;
             //slap
             patch.UsesAllAbilities = false;

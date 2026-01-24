@@ -15,6 +15,7 @@ namespace AprilsDayAtFools
             rose.HealthColor = Pigments.Red;
             rose.AddUnitType("FemaleID");
             rose.AddUnitType("Sandwich_Gore");
+            rose.AddUnitType("FemaleLooking");
             rose.UsesBasicAbility = true;
             //slap
             rose.UsesAllAbilities = false;

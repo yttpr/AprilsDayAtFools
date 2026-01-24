@@ -38,6 +38,7 @@ namespace AprilsDayAtFools
             bodybag.HealthColor = Pigments.Purple;
             bodybag.AddUnitType("FemaleID");
             bodybag.AddUnitType("Sandwich_BDSM");
+            bodybag.AddUnitType("FemaleLooking");
             bodybag.UsesBasicAbility = true;
             //slap
             bodybag.UsesAllAbilities = false;

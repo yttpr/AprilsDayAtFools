@@ -28,6 +28,7 @@ namespace AprilsDayAtFools
             hangman.HealthColor = Pigments.Yellow;
             hangman.AddUnitType("FemaleID");
             hangman.AddUnitType("Sandwich_Spirit");
+            hangman.AddUnitType("FemaleLooking");
             hangman.UsesBasicAbility = true;
             //slap
             hangman.UsesAllAbilities = false;

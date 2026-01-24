@@ -28,6 +28,7 @@ namespace AprilsDayAtFools
             esther.HealthColor = Pigments.Purple;
             esther.AddUnitType("FemaleID");
             esther.AddUnitType("Sandwich_Sprit");
+            esther.AddUnitType("FemaleLooking");
             esther.UsesBasicAbility = true;
             //slap
             esther.UsesAllAbilities = false;

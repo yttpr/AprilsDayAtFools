@@ -29,6 +29,7 @@ namespace AprilsDayAtFools
             Character kafka = new Character("Kafka", "Kafka_CH");
             kafka.HealthColor = Pigments.Purple;
             kafka.AddUnitType("FemaleID");
+            kafka.AddUnitType("FemaleLooking");
             kafka.UsesBasicAbility = true;
             //slap
             kafka.UsesAllAbilities = false;

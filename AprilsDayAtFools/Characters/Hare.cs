@@ -16,6 +16,7 @@ namespace AprilsDayAtFools
             hare.HealthColor = Pigments.Grey;
             hare.AddUnitType("FemaleID");
             hare.AddUnitType("Sandwich_Pigment");
+            hare.AddUnitType("FemaleLooking");
             hare.UsesBasicAbility = true;
             //slap
             hare.UsesAllAbilities = false;

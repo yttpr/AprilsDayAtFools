@@ -31,6 +31,7 @@ namespace AprilsDayAtFools
             Character alpha = new Character("A", "Alpha_CH");
             alpha.HealthColor = Pigments.Purple;
             alpha.AddUnitType("FemaleID");
+            alpha.AddUnitType("FemaleLooking");
             alpha.UsesBasicAbility = true;
             //slap
             alpha.UsesAllAbilities = false;

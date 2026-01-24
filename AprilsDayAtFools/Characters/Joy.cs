@@ -49,6 +49,7 @@ namespace AprilsDayAtFools
             joy.HealthColor = Pigments.Blue;
             joy.AddUnitType("FemaleID");
             joy.AddUnitType("Sandwich_Robot");
+            joy.AddUnitType("FemaleLooking");
             joy.UsesBasicAbility = true;
             //slap
             joy.UsesAllAbilities = false;

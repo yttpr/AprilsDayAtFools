@@ -26,6 +26,7 @@ namespace AprilsDayAtFools
             Character cora = new Character("Cora", "Cora_CH");
             cora.HealthColor = Pigments.Blue;
             cora.AddUnitType("FemaleID");
+            cora.AddUnitType("FemaleLooking");
             cora.UsesBasicAbility = true;
             //slap
             cora.UsesAllAbilities = false;

@@ -31,6 +31,7 @@ namespace AprilsDayAtFools
             defacer.HealthColor = Pigments.Purple;
             defacer.AddUnitType("FemaleID");
             defacer.AddUnitType("Sandwich_Gore");
+            defacer.AddUnitType("FemaleLooking");
             defacer.UsesBasicAbility = true;
             //slap
             defacer.UsesAllAbilities = false;

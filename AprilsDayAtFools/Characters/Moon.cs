@@ -22,6 +22,7 @@ namespace AprilsDayAtFools
             moon.HealthColor = Pigments.Purple;
             moon.AddUnitType("FemaleID");
             moon.AddUnitType("Sandwich_Fire");
+            moon.AddUnitType("FemaleLooking");
             moon.UsesBasicAbility = true;
             //slap
             moon.UsesAllAbilities = false;

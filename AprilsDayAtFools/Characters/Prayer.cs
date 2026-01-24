@@ -15,6 +15,7 @@ namespace AprilsDayAtFools
             prayer.HealthColor = Pigments.Purple;
             prayer.AddUnitType("FemaleID");
             prayer.AddUnitType("Sandwich_Spirit");
+            prayer.AddUnitType("FemaleLooking");
             prayer.UsesBasicAbility = true;
             //slap
             prayer.UsesAllAbilities = false;

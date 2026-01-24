@@ -31,6 +31,7 @@ namespace AprilsDayAtFools
             catten.HealthColor = Pigments.Purple;
             catten.AddUnitType("FemaleID");
             catten.AddUnitType("Sandwich_Robot");
+            catten.AddUnitType("FemaleLooking");
             catten.UsesBasicAbility = true;
             //slap
             catten.UsesAllAbilities = false;

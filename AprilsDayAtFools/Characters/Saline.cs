@@ -27,6 +27,7 @@ namespace AprilsDayAtFools
             saline.HealthColor = Pigments.Purple;
             saline.AddUnitType("FemaleID");
             saline.AddUnitType("Sandwich_Gore");
+            saline.AddUnitType("FemaleLooking");
             saline.UsesBasicAbility = true;
             //slap
             saline.UsesAllAbilities = false;

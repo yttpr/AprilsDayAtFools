@@ -45,6 +45,7 @@ namespace AprilsDayAtFools
             saturn.HealthColor = Pigments.Grey;
             saturn.AddUnitType("FemaleID");
             saturn.AddUnitType("Sandwich_War");
+            saturn.AddUnitType("FemaleLooking");
             saturn.UsesBasicAbility = true;
             //slap
             saturn.UsesAllAbilities = false;

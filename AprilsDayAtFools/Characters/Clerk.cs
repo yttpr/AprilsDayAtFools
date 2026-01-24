@@ -15,6 +15,7 @@ namespace AprilsDayAtFools
             clerk.HealthColor = Pigments.Purple;
             clerk.AddUnitType("FemaleID");
             clerk.AddUnitType("Sandwich_Gambling");
+            clerk.AddUnitType("FemaleLooking");
             clerk.UsesBasicAbility = true;
             //slap
             clerk.UsesAllAbilities = false;

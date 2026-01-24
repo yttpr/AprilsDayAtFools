@@ -24,6 +24,7 @@ namespace AprilsDayAtFools
             rhys.HealthColor = Pigments.Blue;
             rhys.AddUnitType("FemaleID");
             rhys.AddUnitType("Sandwich_Silly");
+            rhys.AddUnitType("FemaleLooking");
             rhys.UsesBasicAbility = true;
             //slap
             rhys.UsesAllAbilities = false;

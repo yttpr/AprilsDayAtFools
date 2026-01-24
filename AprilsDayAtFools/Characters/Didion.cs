@@ -14,6 +14,7 @@ namespace AprilsDayAtFools
             Character didion = new Character("Didion", "Didion_CH");
             didion.HealthColor = Pigments.Blue;
             didion.AddUnitType("FemaleID");
+            didion.AddUnitType("FemaleLooking");
             didion.UsesBasicAbility = true;
             //slap
             didion.UsesAllAbilities = false;

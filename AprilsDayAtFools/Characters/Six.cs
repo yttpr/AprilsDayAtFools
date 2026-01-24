@@ -21,6 +21,7 @@ namespace AprilsDayAtFools
             six.HealthColor = Pigments.Red;
             six.AddUnitType("FemaleID");
             six.AddUnitType("Sandwich_Robot");
+            six.AddUnitType("FemaleLooking");
             six.UsesBasicAbility = true;
             //slap
             six.UsesAllAbilities = false;

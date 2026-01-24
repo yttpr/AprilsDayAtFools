@@ -30,6 +30,7 @@ namespace AprilsDayAtFools
             Character sunflower = new Character("Sunflower", "Sunflower_CH");
             sunflower.HealthColor = Pigments.Blue;
             sunflower.AddUnitType("FemaleID");
+            sunflower.AddUnitType("FemaleLooking");
             sunflower.UsesBasicAbility = true;
             //slap
             sunflower.UsesAllAbilities = false;
