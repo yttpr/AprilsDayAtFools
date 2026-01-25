@@ -55,6 +55,7 @@ namespace AprilsDayAtFools
             Class1.PCall(BlockFromShops.Setup);
             Class1.PCall(WontKillDamageHook.Setup);
             Class1.PCall(PermanentPassiveHandler.Setup);
+            Class1.PCall(SnailSpriteHandler.Setup);
 
             Class1.PCall(Anesthetics.Add);
             Class1.PCall(Power.Add);
