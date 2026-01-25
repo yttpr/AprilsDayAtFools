@@ -73,7 +73,7 @@ namespace AprilsDayAtFools
             Ability gaze1 = new Ability("Blind Gazer", "Saturn_Gaze_1_A");
             gaze1.Description = "If the Far Far Left and Far Far Right enemies are Cursed, deal 9 damage to them.\nOtherwise, Curse them.";
             gaze1.AbilitySprite = ResourceLoader.LoadSprite("ability_gazer");
-            gaze1.Cost = [Pigments.Purple];
+            gaze1.Cost = [Pigments.Red];
             gaze1.Effects = new EffectInfo[3];
             gaze1.Effects[0] = Effects.GenerateEffect(hasCursed, 1, Targeting.GenerateSlotTarget([-3, 3], false));
             gaze1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 9, gaze1.Effects[0].targets, BasicEffects.DidThat(true));

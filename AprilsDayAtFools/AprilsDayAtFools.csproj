@@ -302,6 +302,12 @@
 	  <None Remove="Sprites\Characters\Kafka\KafkaLocked.png" />
 	  <None Remove="Sprites\Characters\Kafka\KafkaMenu.png" />
 	  <None Remove="Sprites\Characters\Kafka\KafkaWorld.png" />
+	  <None Remove="Sprites\Characters\Lich\LichBack.png" />
+	  <None Remove="Sprites\Characters\Lich\LichFront.png" />
+	  <None Remove="Sprites\Characters\Lich\LichLock.png" />
+	  <None Remove="Sprites\Characters\Lich\LichMenu.png" />
+	  <None Remove="Sprites\Characters\Lich\LichWorld.png" />
+	  <None Remove="Sprites\Characters\Lich\LichWorms.png" />
 	  <None Remove="Sprites\Characters\Merced\MercedBack.png" />
 	  <None Remove="Sprites\Characters\Merced\MercedFront.png" />
 	  <None Remove="Sprites\Characters\Merced\MercedLock.png" />
@@ -367,6 +373,10 @@
 	  <None Remove="Sprites\Characters\Six\SixLock.png" />
 	  <None Remove="Sprites\Characters\Six\SixMenu.png" />
 	  <None Remove="Sprites\Characters\Six\SixWorld.png" />
+	  <None Remove="Sprites\Characters\Snail\SnailLock.png" />
+	  <None Remove="Sprites\Characters\Snail\SnailMenu.png" />
+	  <None Remove="Sprites\Characters\Snail\SnailSheet.png" />
+	  <None Remove="Sprites\Characters\Snail\SnailWorld.png" />
 	  <None Remove="Sprites\Characters\Sunflower\SunflowerBack.png" />
 	  <None Remove="Sprites\Characters\Sunflower\SunflowerFront.png" />
 	  <None Remove="Sprites\Characters\Sunflower\SunflowerLock.png" />
@@ -829,6 +839,12 @@
 	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaLocked.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaMenu.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Kafka\KafkaWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Lich\LichBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Lich\LichFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Lich\LichLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Lich\LichMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Lich\LichWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Lich\LichWorms.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Merced\MercedBack.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Merced\MercedFront.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Merced\MercedLock.png" />
@@ -894,6 +910,10 @@
 	  <EmbeddedResource Include="Sprites\Characters\Six\SixLock.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Six\SixMenu.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Six\SixWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Snail\SnailLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Snail\SnailMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Snail\SnailSheet.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Snail\SnailWorld.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Sunflower\SunflowerBack.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Sunflower\SunflowerFront.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Sunflower\SunflowerLock.png" />

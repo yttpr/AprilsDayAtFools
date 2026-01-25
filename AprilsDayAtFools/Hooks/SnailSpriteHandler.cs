@@ -1,7 +1,9 @@
 ﻿using BrutalAPI;
+using MonoMod.RuntimeDetour;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 
@@ -19,9 +21,23 @@ namespace AprilsDayAtFools
         {
             Sprites = new Dictionary<ManaColorSO, Sprite[]>();
             //none, maw only, hand only, both, back
+            Texture2D alien = ResourceLoader.LoadTexture("SnailSheet.png");
+            ManaColorSO[] types = [Pigments.Green, Pigments.Red, Pigments.Blue, Pigments.Yellow, Pigments.Purple, Pigments.Grey];
+            int row = 0;
+            foreach (ManaColorSO mana in types)
+            {
+                List<Sprite> list = [];
+                int column = 0;
+                for (int i = 0; i < 5; i++)
+                {
+                    list.Add(Sprite.Create(alien, new Rect(row, column, 64, 64), new Vector2(0.5f, 0.5f), 32));
+                    column += 64;
+                }
+                Sprites.Add(mana, list.ToArray());
+                row += 64;
+            }
 
-
-
+            IDetour hook = new Hook(typeof(CharacterCombat).GetMethod(nameof(CharacterCombat.DefaultPassiveAbilityInitialization), ~BindingFlags.Default), typeof(BlockFromShops).GetMethod(nameof(CharacterCombat_Initialize), ~BindingFlags.Default));
             NotificationHook.AddAction(NotifCheck);
         }
 
@@ -32,7 +48,7 @@ namespace AprilsDayAtFools
         }
         public static void NotifCheck(string name, object sender, object args)
         {
-            if (sender is CharacterCombat chara)
+            if (sender is CharacterCombat chara && chara.Character.name == IDs.Snail)
             {
                 if (name == Trigger || name == TriggerCalls.OnHealthColorChanged.ToString())
                 {
@@ -51,7 +67,25 @@ namespace AprilsDayAtFools
                 }
             }
         }
+        public static void CharacterCombat_Initialize(Action<CharacterCombat> orig, CharacterCombat self)
+        {
+            orig(self);
+            if (self.Character.name == IDs.Snail)
+            {
+                Sprite[] sprites = GetByColor(self.HealthColor);
+                Sprite front = sprites[0];
+                Sprite back = sprites[4];
 
+                bool maw = self.SimpleGetStoredValue(Maw) > 0;
+                bool hand = self.SimpleGetStoredValue(Hand) > 0;
+
+                if (maw && hand) front = sprites[3];
+                else if (hand) front = sprites[2];
+                else if (maw) front = sprites[1];
+
+                CombatManager.Instance.AddUIAction(new CharaSetSpritesUIAction(self.ID, front, back));
+            }
+        }
     }
 
     public class CharaSetSpritesUIAction : CombatAction
