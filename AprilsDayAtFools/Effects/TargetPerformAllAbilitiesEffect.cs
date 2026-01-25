@@ -69,7 +69,7 @@ namespace AprilsDayAtFools
             CombatManager.Instance.AddUIAction(new PlayAbilityAnimBySlotsAction(ability.visuals, ability.animationTarget.GetTargets(stats.combatSlots, self.SlotID, self.IsUnitCharacter), ability.animationTarget.AreTargetSlots, self));
             CombatManager.Instance.ProcessImmediateAction(new ImmediateEffectAction(ability.effects, self));
 
-            CombatManager.Instance.AddSubAction(new EndAbilityAction(new AbilityUsageReference(self.ID, self.IsUnitCharacter, ability)));
+            CombatManager.Instance.AddUIAction(new EndAbilityAction(new AbilityUsageReference(self.ID, self.IsUnitCharacter, ability)));
 
             self.SetVolatileUpdateUIAction();
             yield return null;

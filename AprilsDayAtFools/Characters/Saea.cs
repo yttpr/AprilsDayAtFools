@@ -62,7 +62,7 @@ namespace AprilsDayAtFools
             claim1.Effects[1] = Effects.GenerateEffect(lifesteal, 1, Slots.Self, BasicEffects.DidThat(true));
             claim1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
             claim1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
-            claim1.Visuals = Visuals.Absolve;
+            claim1.Visuals = Visuals.Womb;
             claim1.AnimationTarget = Slots.Front;
 
             Ability claim2 = new Ability(claim1.ability, "Saea_Claim_2_A", claim1.Cost);
