@@ -114,4 +114,43 @@ namespace AprilsDayAtFools
             return base.PerformEffect(stats, caster, targets, areTargetSlots, entryVariable, out exitAmount);
         }
     }
+    public class HalveAcidEffect : EffectSO
+    {
+        public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
+        {
+            exitAmount = 0;
+
+            foreach (TargetSlotInfo targetSlotInfo in targets)
+            {
+                if (targetSlotInfo.HasUnit)
+                {
+                    if (targetSlotInfo.Unit is IStatusEffector effector)
+                    {
+                        foreach (IStatusEffect status in new List<IStatusEffect>(effector.StatusEffects))
+                        {
+                            if (status.StatusID == Acid.StatusID)
+                            {
+                                int num = -1 * (int)Math.Ceiling((float)status.StatusContent / 2);
+                                if (num == 0) continue;
+
+                                if (status.StatusContent > Math.Abs(num))
+                                {
+                                    if (status.TryAddContent(num, 0))
+                                    {
+                                        effector.StatusEffectValuesChanged(status.StatusID, num, true);
+                                        exitAmount += Math.Abs(num);
+                                    }
+                                }
+                                else
+                                {
+                                    exitAmount += targetSlotInfo.Unit.TryRemoveStatusEffect(status.StatusID);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return exitAmount > 0;
+        }
+    }
 }
