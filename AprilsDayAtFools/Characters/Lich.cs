@@ -25,6 +25,7 @@ namespace AprilsDayAtFools
             undead.conditions = [];
             undead.effects = [];
             undead._triggerOn = [TriggerCalls.OnDeath];
+            undead.AddPassiveToGlossary("Undead", "On death, return to the world.");
 
             ExtraCCSprites_BasicSO lichExtra = ScriptableObject.CreateInstance<ExtraCCSprites_BasicSO>();
             lichExtra._DefaultID = IDs.LichDefault;
@@ -103,7 +104,7 @@ namespace AprilsDayAtFools
             baptism1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Purple];
             baptism1.Effects = new EffectInfo[2];
             baptism1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<TargetPerformAllAbilitiesEffect>(), 1, right);
-            baptism1.Effects[1] = Effects.GenerateEffect(SubOrRootBySidesEffect.Create([Effects.GenerateEffect(previousAcid, 1, Slots.Self)], false), 4, right);
+            baptism1.Effects[1] = Effects.GenerateEffect(SubOrRootBySidesEffect.Create([Effects.GenerateEffect(previousAcid, 1, Slots.Self)], false, true), 4, right);
             baptism1.AddIntentsToTarget(right, ["Misc_Hidden", Acid.Intent]);
             baptism1.AnimationTarget = right;
             baptism1.Visuals = Visuals.LifeLink;
