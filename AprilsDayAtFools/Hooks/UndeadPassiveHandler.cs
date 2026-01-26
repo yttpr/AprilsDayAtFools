@@ -87,7 +87,22 @@ namespace AprilsDayAtFools
             Card card = new Card(zone.CardCount, idInfo, CardType.EventFreeFool, PilePositionType.Last, freeFoolEncounter.signID, freeFoolEncounter.encounterRoom);
             zone.AddCard(card);
 
+            List<int> ints = [];
+            for (int i = 0; i < zone.ZonePiles.Length; i++)
+            {
+                if (zone.ZonePiles[i]._cards.Length <= 0) continue;
+                for (int j = zone.ZonePiles[i]._cards.Length - 1; j >= 0; j--)
+                {
+                    if (zone.ZonePiles[i]._cards[j].PilePosition == PilePositionType.End) continue;
+                    if (zone.ZonePiles[i]._cards[j].HasBeenSolved) continue;
+                    ints.Add(i);
+                    break;
+                }
+            }
+
             int pileID = UnityEngine.Random.Range(0, zone.ZonePiles.Length);
+            if (ints.Count > 0) pileID = ints.GetRandom();
+
             Card[] pile = zone.ZonePiles[pileID]._cards;
             List<Card> temp = new List<Card>();
             bool added = boss;
