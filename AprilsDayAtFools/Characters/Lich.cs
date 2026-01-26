@@ -129,7 +129,7 @@ namespace AprilsDayAtFools
             inside1.Effects[0] = Effects.GenerateEffect(rem_acid, 1, right);
             inside1.Effects[1] = Effects.GenerateEffect(rem_acid, 1, Targeting.Unit_AllAllies);
             inside1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right);
-            inside1.Effects[3] = Effects.GenerateEffect(heal, 3);
+            inside1.Effects[3] = Effects.GenerateEffect(heal, 3, right);
             inside1.AddIntentsToTarget(Targetting.Everything(true), [Acid.Rem]);
             inside1.AddIntentsToTarget(right, [Acid.Intent, "Heal_1_4"]);
             inside1.AnimationTarget = right;
