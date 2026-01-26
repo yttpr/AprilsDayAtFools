@@ -15,7 +15,8 @@ namespace AprilsDayAtFools
         public static void Add()
         {
             PerformEffectPassiveAbility undead = ScriptableObject.CreateInstance<PerformEffectPassiveAbility>();
-            undead._passiveName = "Undead_PA_FORTHELOVEOFGODTHISWONTWORKONANYONEOTHERTHANLICH";
+            undead.name = "Undead_PA_FORTHELOVEOFGODTHISWONTWORKONANYONEOTHERTHANLICH";
+            undead._passiveName = "Undead";
             undead.passiveIcon = ResourceLoader.LoadSprite("UndeadPassive.png");
             undead.m_PassiveID = IDs.Undead;
             undead._enemyDescription = "FUCK you.";

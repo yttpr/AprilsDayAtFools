@@ -175,7 +175,7 @@ namespace AprilsDayAtFools//change this to your namespace
             room._freeFool = chara.name;
             room.signID = id + "_Sign";
             room._dialogue = "Aprils." + name + ".Second";
-            room.encounterRoom = UndeadPassiveHandler.Room;
+            room.encounterRoom = "Aprils." + name + ".FreeFool";
 
             ModdedNPCs.AddCustom_FreeFoolEncounter(UndeadPassiveHandler.Room, room);
         }
