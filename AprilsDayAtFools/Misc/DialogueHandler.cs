@@ -242,6 +242,7 @@ namespace AprilsDayAtFools
             int rank = run.InGameData.GetIntData("Lich_Zone_" + run.CurrentZoneID.ToString() + "_Info_" + card.IDInfo.ToString() + "_Rank");
 
             run.playerData.AddNewCharacter(LoadedAssetsHandler.GetCharacter("Lich_CH"), rank, [first, second], false);
+            NtfUtils.notifications.PostNotification(Utils.updateCharacterVisuals);
 
             SaveDataManager_2024.FullySaveGameDataToCache(run);
         }
