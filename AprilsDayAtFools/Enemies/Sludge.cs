@@ -22,7 +22,7 @@ namespace AprilsDayAtFools
             RandomizeTargetHealthColorsEffect turnBlue = ScriptableObject.CreateInstance<RandomizeTargetHealthColorsEffect>();
             turnBlue.options = [Pigments.Blue];
             glrbl.Effects[0] = Effects.GenerateEffect(turnBlue, 1, Slots.Self);
-            glrbl.Effects[2] = start;
+            glrbl.Effects[1] = start;
             glrbl.AddIntentsToTarget(Slots.Self, ["Mana_Modify"]);
 
             Enemy sludge = new Enemy("The Sludge", "TheSludge_EN")
