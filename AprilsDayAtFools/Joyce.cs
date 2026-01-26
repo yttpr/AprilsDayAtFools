@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace AprilsDayAtFools
 {
-    [BepInPlugin("AprilsFoolsDay.Joyce", "Aprils' Day at Fools", "1.3.4.5")]//next tweak would be 1.3.5
+    [BepInPlugin("AprilsFoolsDay.Joyce", "Aprils' Day at Fools", "1.3.5")]//next tweak would be 1.3.5
     [BepInDependency("BrutalOrchestra.BrutalAPI", BepInDependency.DependencyFlags.HardDependency)]
     public class Joyce : BaseUnityPlugin
     {
@@ -56,6 +56,7 @@ namespace AprilsDayAtFools
             Class1.PCall(WontKillDamageHook.Setup);
             Class1.PCall(PermanentPassiveHandler.Setup);
             Class1.PCall(SnailSpriteHandler.Setup);
+            Class1.PCall(UndeadPassiveHandler.Setup);
 
             Class1.PCall(Anesthetics.Add);
             Class1.PCall(Power.Add);
@@ -98,8 +99,8 @@ namespace AprilsDayAtFools
             Class1.PCall(Rotcore.Add);
             Class1.PCall(Catten.Add);
             Class1.PCall(Sunflower.Add);
-            //alien
-            //lich
+            Class1.PCall(Snail.Add);
+            Class1.PCall(Lich.Add);
             Class1.PCall(Six.Add);
             Class1.PCall(Saea.Add);
             Class1.PCall(Alpha.Add);
@@ -107,6 +108,7 @@ namespace AprilsDayAtFools
 
             Class1.PCall(FreeFool.Setup);
             Class1.PCall(Defacer.AddDialogueEmote);
+            Class1.PCall(Snail.AddDialogueEmote);
 
             Class1.PCall(CascadingDamageItemHandler.Setup);
             Class1.PCall(ClownKiller.Setup);
@@ -170,7 +172,7 @@ namespace AprilsDayAtFools
 
             Class1.PCall(CustomDialogueHandler.Setup);
             Class1.PCall(Quests.Add);
-            Class1.PCall(FreeFool.Add_Saea);
+            Class1.PCall(FreeFool.Add_Extra);
 
             Class1.PCall(PostLoading.Setup);
 

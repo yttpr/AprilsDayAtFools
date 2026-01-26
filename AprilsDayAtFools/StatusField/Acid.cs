@@ -13,6 +13,7 @@ namespace AprilsDayAtFools
         public static string DamageType => "Dmg_Acid";
         public static string StatusID => "Acid_ID";
         public static string Intent => "Status_Acid";
+        public static string Rem => "Rem_Status_Acid";
         public static AcidSE_SO Object;
         public static void Add()
         {
@@ -46,6 +47,11 @@ namespace AprilsDayAtFools
             intentinfo._color = Color.white;
             intentinfo._sprite = ResourceLoader.LoadSprite("Acid.png");
             if (!LoadedDBsHandler.IntentDB.m_IntentBasicPool.ContainsKey(Intent)) LoadedDBsHandler.IntentDB.AddNewBasicIntent(Intent, intentinfo);
+
+            IntentInfoBasic reminfo = new IntentInfoBasic();
+            reminfo._color = LoadedDBsHandler.IntentDB.m_IntentBasicPool["Rem_Status_Frail"]._color;
+            reminfo._sprite = ResourceLoader.LoadSprite("Acid.png");
+            if (!LoadedDBsHandler.IntentDB.m_IntentBasicPool.ContainsKey(Rem)) LoadedDBsHandler.IntentDB.AddNewBasicIntent(Rem, reminfo);
         }
     }
     public class AcidSE_SO : StatusEffect_SO

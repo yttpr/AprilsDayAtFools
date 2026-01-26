@@ -37,5 +37,8 @@ namespace AprilsDayAtFools
         public static string SaturnDefault => "Saturn_Default";
         public static string Permanent => "Permanent_PA";
         public static string Snail => "Snail_CH";
+        public static string Undead => "Undead_PA";
+        public static string Lich => "Lich_CH";
+        public static string LichDefault => "Lich_Default";
     }
 }

@@ -82,11 +82,11 @@ namespace AprilsDayAtFools
             ink3.Effects[1].entryVariable = 13;
             ink3.Effects[2].entryVariable = 13;
 
-            Ability toy4 = new Ability(ink3.ability, "Cora_Ink_4_A", ink3.Cost);
-            toy4.Name = "Ink Flood";
-            toy4.Description = "Deal 15 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to the Left and Right.";
-            toy4.Effects[1].entryVariable = 15;
-            toy4.Effects[2].entryVariable = 15;
+            Ability ink4 = new Ability(ink3.ability, "Cora_Ink_4_A", ink3.Cost);
+            ink4.Name = "Ink Flood";
+            ink4.Description = "Deal 15 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to the Left and Right.";
+            ink4.Effects[1].entryVariable = 15;
+            ink4.Effects[2].entryVariable = 15;
 
             TargettingFarthestUnits farthest = ScriptableObject.CreateInstance<TargettingFarthestUnits>();
             farthest.ignoreCastSlot = false;
@@ -150,7 +150,7 @@ namespace AprilsDayAtFools
             cora.AddLevelData(10, [needles1, checkmate1, ink1]);
             cora.AddLevelData(12, [needles2, checkmate2, ink2]);
             cora.AddLevelData(15, [needles3, checkmate3, ink3]);
-            cora.AddLevelData(18, [needles4, checkmate4, toy4]);
+            cora.AddLevelData(18, [needles4, checkmate4, ink4]);
             cora.AddCharacter(true);
         }
         public static void Items()

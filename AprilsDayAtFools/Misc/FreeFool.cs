@@ -31,6 +31,8 @@ namespace AprilsDayAtFools//change this to your namespace
             Add("Rotcore_CH", "Rotcore", 3, new Color32(203, 191, 165, 255), true, false, false);
             Add("Catten_CH", "Catten", 2, new Color32(255, 255, 255, 255), true, true, false);
             Add("Sunflower_CH", "Sunflower", 1, new Color32(242, 215, 62, 255), true, false, false);
+            Add("Snail_CH", "Snail", 1, new Color32(91, 171, 65, 255), true, false, true);
+            Add("Lich_CH", "Lich", 2, new Color32(253, 153, 163, 255), true, false, false);
             Add("Six_CH", "Six", 1, new Color32(138, 17, 17, 255), true, false, false);
             if (April.Me) Add("Secret_CH", "Secret", 2, new Color32(241, 235, 232, 255), true, false, false);
             Add("Alpha_CH", "Alpha", 1, new Color32(238, 195, 154, 255), false, false, false);
@@ -38,9 +40,10 @@ namespace AprilsDayAtFools//change this to your namespace
             //ok so basically what this is is,
             //Add("character id. the _CH", "any sort of name identifier, doesnt really matter", [area: 1 shore, 2 orph, 3 garden], color32(for the text color. its just thr rgb plus a 255 at the end for the alpha), bool do they face left, bool do they face center, bool should the show up in easy mode aswell)
         }
-        public static void Add_Saea()
+        public static void Add_Extra()
         {
             AddSaea("Saea_CH", "Saea", 3, Color.white, true, false, false);
+            AddSecondLich("Lich_CH", "Lich", 2, new Color32(253, 153, 163, 255), true, false, false);
         }
 
         //this is for setting up the YarnProgram. if you do this somewhere else you dont have to do it again, but do note that in the .Add method it references the yarn program ID so you do need to make sure that's consistent
@@ -158,6 +161,23 @@ namespace AprilsDayAtFools//change this to your namespace
                         break;
                 }
             }
+        }
+        public static void AddSecondLich(string id, string name, int zone, Color text, bool left, bool center, bool easy = false)
+        {
+            CharacterSO chara = LoadedAssetsHandler.GetCharacter(id);
+
+            //replace Joyce.Yarn with whatever your YarnProgram is
+            //you may need to adjust your yarn IDs so that they match up with the naming convention here.
+            Dialogues.CreateAndAddCustom_DialogueSO("Aprils." + name + ".Second", Joyce.Yarn, "Aprils.Untitled", "Aprils." + name + ".Second");
+
+            FreeFoolEncounterSO room = ScriptableObject.CreateInstance<FreeFoolEncounterSO>();
+            room.encounterEntityIDs = new string[1] { chara.name };
+            room._freeFool = chara.name;
+            room.signID = id + "_Sign";
+            room._dialogue = "Aprils." + name + ".Second";
+            room.encounterRoom = UndeadPassiveHandler.Room;
+
+            ModdedNPCs.AddCustom_FreeFoolEncounter(UndeadPassiveHandler.Room, room);
         }
 
         //you dont need to touch this method i dont think

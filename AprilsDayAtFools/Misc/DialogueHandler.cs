@@ -9,6 +9,8 @@ using Tools;
 using Yarn;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking.Types;
+using BrutalAPI;
 
 namespace AprilsDayAtFools
 {
@@ -45,6 +47,7 @@ namespace AprilsDayAtFools
                 return HasAnAchievementWithEachChar();
             });
             dialogueRunner.AddCommandHandler("VomitTreasureItem", GenerateItemPresent);
+            dialogueRunner.AddCommandHandler("AddStoredLichFool", AddLich);
         }
 
         public static OverworldManagerBG World;
@@ -225,6 +228,22 @@ namespace AprilsDayAtFools
             bool first = LoadedDBsHandler.AchievementDB.GetModdedAchievementInfo(heaven).m_bAchieved || LoadedDBsHandler.AchievementDB.GetModdedAchievementInfo(heaven).m_offlinebAchieved;
             bool second = LoadedDBsHandler.AchievementDB.GetModdedAchievementInfo(osman).m_bAchieved || LoadedDBsHandler.AchievementDB.GetModdedAchievementInfo(osman).m_offlinebAchieved;
             return first || second;
+        }
+
+
+        public static void AddLich(string[] info)
+        {
+            RunDataSO run = LoadedDBsHandler.InfoHolder.Run;
+            RunZoneData currentZoneData = run.CurrentZoneData;
+            Card card = currentZoneData.GetCard(run._currentCardID);
+
+            int first = run.InGameData.GetIntData("Lich_Zone_" + run.CurrentZoneID.ToString() + "_Info_" + card.IDInfo.ToString() + "_FirstAB");
+            int second = run.InGameData.GetIntData("Lich_Zone_" + run.CurrentZoneID.ToString() + "_Info_" + card.IDInfo.ToString() + "_SecondAB");
+            int rank = run.InGameData.GetIntData("Lich_Zone_" + run.CurrentZoneID.ToString() + "_Info_" + card.IDInfo.ToString() + "_Rank");
+
+            run.playerData.AddNewCharacter(LoadedAssetsHandler.GetCharacter("Lich_CH"), rank, [first, second], false);
+
+            SaveDataManager_2024.FullySaveGameDataToCache(run);
         }
     }
 }
