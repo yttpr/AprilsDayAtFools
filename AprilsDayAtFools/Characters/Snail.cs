@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace AprilsDayAtFools
 {
@@ -47,30 +48,30 @@ namespace AprilsDayAtFools
             maw1.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability, then inflict 2 Acid on them.\nRandomize the health color of this party member.";
             maw1.AbilitySprite = ResourceLoader.LoadSprite("ability_themaw.png");
             maw1.Cost = [Pigments.Grey, Pigments.Grey];
-            maw1.Effects = new EffectInfo[6];
+            maw1.Effects = new EffectInfo[4];
             maw1.Effects[0] = Effects.GenerateEffect(BasicEffects.SetStoreValue(SnailSpriteHandler.Maw), 1, Slots.Self);
-            maw1.Effects[1] = Effects.GenerateEffect(trigger, 1, Slots.Self);
-            maw1.Effects[2] = Effects.GenerateEffect(BasicEffects.GetVisuals("Siphon_A", false, store), 1, Slots.Self);
-            maw1.Effects[3] = Effects.GenerateEffect(nogray, 1, store);
-            maw1.Effects[4] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyAcidEffect>(), 2, get);
-            maw1.Effects[5] = Effects.GenerateEffect(randomize, 1, Slots.Self);
+            maw1.Effects[1] = Effects.GenerateEffect(nogray, 1, store);
+            maw1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyAcidEffect>(), 2, get);
+            maw1.Effects[3] = Effects.GenerateEffect(randomize, 1, Slots.Self);
             maw1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc_Hidden", "Mana_Modify", Acid.Intent]);
             maw1.AddIntentsToTarget(Slots.Self, ["Mana_Modify"]);
+            maw1.Visuals = LoadedAssetsHandler.GetEnemyAbility("Siphon_A").visuals;
+            maw1.AnimationTarget = used;
 
             Ability maw2 = new Ability(maw1.ability, "Snail_TheMaw_2_A", maw1.Cost);
             maw2.Name = "Nourish the Maw";
             maw2.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability, then inflict 3 Acid on them.\nRandomize the health color of this party member.";
-            maw2.Effects[4].entryVariable = 3;
+            maw2.Effects[2].entryVariable = 3;
 
             Ability maw3 = new Ability(maw2.ability, "Snail_TheMaw_3_A", maw1.Cost);
             maw3.Name = "Fuel the Maw";
             maw3.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability, then inflict 5 Acid on them.\nRandomize the health color of this party member.";
-            maw3.Effects[4].entryVariable = 5;
+            maw3.Effects[2].entryVariable = 5;
 
             Ability maw4 = new Ability(maw3.ability, "Snail_TheMaw_4_A", maw1.Cost);
             maw4.Name = "Bloat the Maw";
             maw4.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability, then inflict 9 Acid on them.\nRandomize the health color of this party member.";
-            maw4.Effects[4].entryVariable = 9;
+            maw4.Effects[2].entryVariable = 9;
 
             AnimationVisualsEffect prov = ScriptableObject.CreateInstance<AnimationVisualsEffect>();
             prov._animationTarget = Slots.Front;

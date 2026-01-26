@@ -159,4 +159,89 @@ namespace AprilsDayAtFools
             return exitAmount > 0;
         }
     }
+    public class RemoveAllStatusOtherThanAcidEffect : EffectSO
+    {
+        public static int TryRemoveAllStatusEffectsExceptAcidCH(CharacterCombat chara)
+        {
+            int num = 0;
+            List<int> list = new List<int>();
+            List<int> list2 = new List<int>();
+            List<string> list3 = new List<string>();
+            for (int num2 = chara.StatusEffects.Count - 1; num2 >= 0; num2--)
+            {
+                if (chara.StatusEffects[num2].StatusID == Acid.StatusID) continue;
+
+                int num3 = chara.StatusEffects[num2].JustRemoveAllContent();
+                num += num3;
+                if (!chara.StatusEffects[num2].CanBeRemoved)
+                {
+                    if (num3 > 0)
+                    {
+                        list2.Add(num2);
+                        list3.Add(chara.StatusEffects[num2].DisplayText);
+                    }
+                }
+                else
+                {
+                    list.Add(num2);
+                    chara.StatusEffects[num2].OnTriggerDettached(chara);
+                    chara.StatusEffects.RemoveAt(num2);
+                }
+            }
+
+            CombatManager.Instance.AddUIAction(new CharacterStatusEffectRemovedAndUpdatedAllUIAction(chara.ID, list2.ToArray(), list3.ToArray(), list.ToArray(), showInfo: true));
+            chara.SetVolatileUpdateUIAction();
+            return num;
+        }
+        public static int TryRemoveAllStatusEffectsExceptAcidEN(EnemyCombat enemy)
+        {
+            int num = 0;
+            List<int> list = new List<int>();
+            List<int> list2 = new List<int>();
+            List<string> list3 = new List<string>();
+            //if (enemy.StatusEffects.Count > 0 && enemy.StatusEffects[0].EffectInfo != null)
+            //{
+                //_ = enemy.StatusEffects[0].EffectInfo.RemovedSoundEvent;
+            //}
+
+            for (int num2 = enemy.StatusEffects.Count - 1; num2 >= 0; num2--)
+            {
+                if (enemy.StatusEffects[num2].StatusID == Acid.StatusID) continue;
+
+                int num3 = enemy.StatusEffects[num2].JustRemoveAllContent();
+                num += num3;
+                if (!enemy.StatusEffects[num2].CanBeRemoved)
+                {
+                    if (num3 > 0)
+                    {
+                        list2.Add(num2);
+                        list3.Add(enemy.StatusEffects[num2].DisplayText);
+                    }
+                }
+                else
+                {
+                    list.Add(num2);
+                    enemy.StatusEffects[num2].OnTriggerDettached(enemy);
+                    enemy.StatusEffects.RemoveAt(num2);
+                }
+            }
+
+            CombatManager.Instance.AddUIAction(new EnemyStatusEffectRemovedAndUpdatedAllUIAction(enemy.ID, list2.ToArray(), list3.ToArray(), list.ToArray(), showInfo: true));
+            return num;
+        }
+
+        public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
+        {
+            exitAmount = 0;
+            foreach (TargetSlotInfo target in targets)
+            {
+                if (target.HasUnit)
+                {
+                    if (target.Unit is CharacterCombat chara) exitAmount += TryRemoveAllStatusEffectsExceptAcidCH(chara);
+                    if (target.Unit is EnemyCombat enemy) exitAmount += TryRemoveAllStatusEffectsExceptAcidEN(enemy);
+                }
+            }
+            return exitAmount > 0;
+        }
+    }
 }
