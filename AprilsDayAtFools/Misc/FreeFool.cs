@@ -28,10 +28,10 @@ namespace AprilsDayAtFools//change this to your namespace
             Add("Wtmiyr_CH", "Wtmiyr", 1, new Color32(172, 50, 50, 255), true, true, true);
             Add("Joy_CH", "Joy", 2, new Color32(0, 212, 255, 255), true, true, true);
             Add("Patch_CH", "Patch", 2, new Color32(203, 191, 165, 255), true, true, false);
-            Add("Six_CH", "Six", 1, new Color32(138, 17, 17, 255), true, false, false);
             Add("Rotcore_CH", "Rotcore", 3, new Color32(203, 191, 165, 255), true, false, false);
             Add("Catten_CH", "Catten", 2, new Color32(255, 255, 255, 255), true, true, false);
             Add("Sunflower_CH", "Sunflower", 1, new Color32(242, 215, 62, 255), true, false, false);
+            Add("Six_CH", "Six", 1, new Color32(138, 17, 17, 255), true, false, false);
             if (April.Me) Add("Secret_CH", "Secret", 2, new Color32(241, 235, 232, 255), true, false, false);
             Add("Alpha_CH", "Alpha", 1, new Color32(238, 195, 154, 255), false, false, false);
 

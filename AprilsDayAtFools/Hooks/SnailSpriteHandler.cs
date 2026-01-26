@@ -30,7 +30,7 @@ namespace AprilsDayAtFools
                 int column = 0;
                 for (int i = 0; i < 5; i++)
                 {
-                    list.Add(Sprite.Create(alien, new Rect(row, column, 64, 64), new Vector2(0.5f, 0.5f), 32));
+                    list.Add(Sprite.Create(alien, new Rect(column, row, 64, 64), new Vector2(0.5f, 0.5f), 32));
                     column += 64;
                 }
                 Sprites.Add(mana, list.ToArray());

@@ -94,12 +94,12 @@ namespace AprilsDayAtFools
             Class1.PCall(Wtmiyr.Add);
             Class1.PCall(Joy.Add);
             Class1.PCall(Patch.Add);
-            Class1.PCall(Six.Add);
             Class1.PCall(Rotcore.Add);
             Class1.PCall(Catten.Add);
             Class1.PCall(Sunflower.Add);
             //alien
             //lich
+            Class1.PCall(Six.Add);
             Class1.PCall(Saea.Add);
             Class1.PCall(Alpha.Add);
             Class1.PCall(Defacer.Add);
@@ -132,10 +132,10 @@ namespace AprilsDayAtFools
             Class1.PCall(Wtmiyr.Items);
             Class1.PCall(Joy.Items);
             Class1.PCall(Patch.Items);
-            Class1.PCall(Six.Items);
             Class1.PCall(Rotcore.Items);
             Class1.PCall(Catten.Items);
             Class1.PCall(Sunflower.Items);
+            Class1.PCall(Six.Items);
             Class1.PCall(Saea.Items);
             Class1.PCall(Alpha.Items);
             Class1.PCall(Defacer.Items);
@@ -159,10 +159,10 @@ namespace AprilsDayAtFools
             Class1.PCall(Wtmiyr.Unlocks);
             Class1.PCall(Joy.Unlocks);
             Class1.PCall(Patch.Unlocks);
-            Class1.PCall(Six.Unlocks);
             Class1.PCall(Rotcore.Unlocks);
             Class1.PCall(Catten.Unlocks);
             Class1.PCall(Sunflower.Unlocks);
+            Class1.PCall(Six.Unlocks);
             Class1.PCall(Saea.Unlocks);
             Class1.PCall(Alpha.Unlocks);
             Class1.PCall(Defacer.Unlocks);
