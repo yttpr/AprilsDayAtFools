@@ -98,6 +98,8 @@ namespace AprilsDayAtFools
             Class1.PCall(Rotcore.Add);
             Class1.PCall(Catten.Add);
             Class1.PCall(Sunflower.Add);
+            //alien
+            //lich
             Class1.PCall(Saea.Add);
             Class1.PCall(Alpha.Add);
             Class1.PCall(Defacer.Add);

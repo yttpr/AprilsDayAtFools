@@ -397,6 +397,9 @@
 	  <None Remove="Sprites\Enemies\ActivatorIcon.png" />
 	  <None Remove="Sprites\Enemies\BombIcon.png" />
 	  <None Remove="Sprites\Enemies\BombWorld.png" />
+	  <None Remove="Sprites\Enemies\SludgeIcon.png" />
+	  <None Remove="Sprites\Enemies\SludgeSubWorld.png" />
+	  <None Remove="Sprites\Enemies\SludgeWorld.png" />
 	  <None Remove="Sprites\Icons\Acid.png" />
 	  <None Remove="Sprites\Icons\Anesthetics.png" />
 	  <None Remove="Sprites\Icons\DeepFieldIcon.png" />
@@ -934,6 +937,9 @@
 	  <EmbeddedResource Include="Sprites\Enemies\ActivatorIcon.png" />
 	  <EmbeddedResource Include="Sprites\Enemies\BombIcon.png" />
 	  <EmbeddedResource Include="Sprites\Enemies\BombWorld.png" />
+	  <EmbeddedResource Include="Sprites\Enemies\SludgeIcon.png" />
+	  <EmbeddedResource Include="Sprites\Enemies\SludgeSubWorld.png" />
+	  <EmbeddedResource Include="Sprites\Enemies\SludgeWorld.png" />
 	  <EmbeddedResource Include="Sprites\Icons\Acid.png" />
 	  <EmbeddedResource Include="Sprites\Icons\Anesthetics.png" />
 	  <EmbeddedResource Include="Sprites\Icons\DeepFieldIcon.png" />
