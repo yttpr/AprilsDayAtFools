@@ -24,33 +24,29 @@ namespace AprilsDayAtFools
 
                 if (!self.CharactersAlive) break;
 
-                //party data
-                OverworldCombatSharedDataSO combatData = LoadedDBsHandler.InfoHolder.CombatData;
-                if (pair.Key < combatData.CharactersData.Length && pair.Key >= 0)
-                {
-                    CharacterInGameData data = combatData.CharactersData[pair.Key];
-
-                    int num = UnityEngine.Random.Range(0, 3);
-                    int num2 = ((num == 0) ? 1 : 0);
-                    int num3 = ((num == 2) ? 1 : 2);
-
-                    if (TestUsedAbilities(data.UsedAbilities.ToArray()))
-                    {
-                        num2 = chara.UsedAbilities[0];
-                        num3 = chara.UsedAbilities[1];
-                    }
-
-                    AddRoom(num2, num3, data.Rank, self.BundleDifficulty == BundleDifficulty.Boss);
-                    continue;
-                }
-
-                //combat data
                 if (!chara.IsAlive && chara.ContainsPassiveAbility(IDs.Undead) && !self.IsPassiveLocked(IDs.Undead))
                 {
                     int num = UnityEngine.Random.Range(0, 3);
                     int num2 = ((num == 0) ? 1 : 0);
                     int num3 = ((num == 2) ? 1 : 2);
 
+                    //party data
+                    OverworldCombatSharedDataSO combatData = LoadedDBsHandler.InfoHolder.CombatData;
+                    if (pair.Key < combatData.CharactersData.Length && pair.Key >= 0)
+                    {
+                        CharacterInGameData data = combatData.CharactersData[pair.Key];
+
+                        if (TestUsedAbilities(data.UsedAbilities.ToArray()))
+                        {
+                            num2 = chara.UsedAbilities[0];
+                            num3 = chara.UsedAbilities[1];
+                        }
+
+                        AddRoom(num2, num3, data.Rank, self.BundleDifficulty == BundleDifficulty.Boss);
+                        continue;
+                    }
+
+                    //combat data
                     if (TestUsedAbilities(chara.UsedAbilities))
                     {
                         num2 = chara.UsedAbilities[0];
