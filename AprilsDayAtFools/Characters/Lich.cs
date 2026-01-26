@@ -7,6 +7,7 @@ namespace AprilsDayAtFools
     //ApplyAcidByPreviousEffect
     //TargetPerformAllAbilitiesEffect
     //SubOrRootBySidesEffect.Create (apply acid)
+    //HalveAcidEffect
     public static class Lich
     {
         

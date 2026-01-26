@@ -87,6 +87,7 @@
 	  <None Remove="Passives\Sprites\ScaryPassive.png" />
 	  <None Remove="Passives\Sprites\SolitudePassive.png" />
 	  <None Remove="Passives\Sprites\SpecialPassive.png" />
+	  <None Remove="Passives\Sprites\UndeadPassive.png" />
 	  <None Remove="Passives\Sprites\UnpredictablePassive.png" />
 	  <None Remove="Sprites\Abilities\Items\purity_a.png" />
 	  <None Remove="Sprites\Abilities\Set1\ability_agriculture.png" />
@@ -621,6 +622,7 @@
 	  <EmbeddedResource Include="Passives\Sprites\ScaryPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\SolitudePassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\SpecialPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\UndeadPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\UnpredictablePassive.png" />
 	  <EmbeddedResource Include="Sprites\Abilities\Items\purity_a.png" />
 	  <EmbeddedResource Include="Sprites\Abilities\Set1\ability_agriculture.png" />

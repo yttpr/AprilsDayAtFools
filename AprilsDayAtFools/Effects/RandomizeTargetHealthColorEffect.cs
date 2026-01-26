@@ -24,6 +24,8 @@ namespace AprilsDayAtFools
                     List<ManaColorSO> list = new List<ManaColorSO>(options);
                     if (list.Contains(target.Unit.HealthColor)) list.Remove(target.Unit.HealthColor);
 
+                    if (list.Count <= 0) continue;
+
                     if (target.Unit.ChangeHealthColor(list.GetRandom())) exitAmount++;
                 }
             }
