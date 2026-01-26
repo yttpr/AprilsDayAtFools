@@ -82,6 +82,8 @@ namespace AprilsDayAtFools
             sludge._spawnTypeID = "Spawn_Basic";
             sludge.enemy = LoadedAssetsHandler.GetEnemy("TheSludge_EN");
 
+            EffectConditionSO condition = ScriptableObject.CreateInstance<FrontTargetUniqueHealthColorCondition>();
+
             Ability hand1 = new Ability("Fear the Hand", "Snail_TheHand_1_A");
             hand1.Description = "If the Opposing enemy is the only enemy of its health color, inflict 2 Frail on them.\nDeal 5 damage to the Opposing enemy.\nAttempt to spawn The Sludge.";
             hand1.AbilitySprite = ResourceLoader.LoadSprite("ability_thehand.png");
@@ -89,8 +91,8 @@ namespace AprilsDayAtFools
             hand1.Effects = new EffectInfo[7];
             hand1.Effects[0] = Effects.GenerateEffect(BasicEffects.SetStoreValue(SnailSpriteHandler.Hand), 1, Slots.Self);
             hand1.Effects[1] = Effects.GenerateEffect(trigger, 1, Slots.Self);
-            hand1.Effects[2] = Effects.GenerateEffect(prov, 1, Slots.Front);
-            hand1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyFrailEffect>(), 2, Slots.Front, ScriptableObject.CreateInstance<FrontTargetUniqueHealthColorCondition>());
+            hand1.Effects[2] = Effects.GenerateEffect(prov, 1, Slots.Front, condition);
+            hand1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyFrailEffect>(), 2, Slots.Front, condition);
             hand1.Effects[4] = Effects.GenerateEffect(BasicEffects.GetVisuals("Slap_A", true, Slots.Front), 1, Slots.Front);
             hand1.Effects[5] = Effects.GenerateEffect(damage, 5, Slots.Front);
             hand1.Effects[6] = Effects.GenerateEffect(sludge, 1, Slots.Self);
