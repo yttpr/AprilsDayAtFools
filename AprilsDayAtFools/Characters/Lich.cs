@@ -133,7 +133,7 @@ namespace AprilsDayAtFools
             inside1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right);
             inside1.Effects[3] = Effects.GenerateEffect(heal, 3, right);
             inside1.Effects[4] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
-            inside1.AddIntentsToTarget(Targetting.Everything(true), [Acid.Rem]);
+            inside1.AddIntentsToTarget(Targeting.Unit_AllAllies, [Acid.Rem]);
             inside1.AddIntentsToTarget(right, [Acid.Intent, "Heal_1_4"]);
             inside1.AnimationTarget = right;
             inside1.Visuals = Visuals.WrigglingWrath;
