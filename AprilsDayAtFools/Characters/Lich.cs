@@ -125,11 +125,12 @@ namespace AprilsDayAtFools
             inside1.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nHeal them 3 health.";
             inside1.AbilitySprite = ResourceLoader.LoadSprite("ability_insideme.png");
             inside1.Cost = [Pigments.Blue];
-            inside1.Effects = new EffectInfo[4];
+            inside1.Effects = new EffectInfo[5];
             inside1.Effects[0] = Effects.GenerateEffect(rem_acid, 1, right);
             inside1.Effects[1] = Effects.GenerateEffect(rem_acid, 1, Targeting.Unit_AllAllies);
             inside1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right);
             inside1.Effects[3] = Effects.GenerateEffect(heal, 3, right);
+            inside1.Effects[4] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
             inside1.AddIntentsToTarget(Targetting.Everything(true), [Acid.Rem]);
             inside1.AddIntentsToTarget(right, [Acid.Intent, "Heal_1_4"]);
             inside1.AnimationTarget = right;
