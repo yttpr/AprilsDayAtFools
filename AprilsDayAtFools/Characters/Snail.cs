@@ -104,13 +104,13 @@ namespace AprilsDayAtFools
             hand2.Description = "If the Opposing enemy is the only enemy of its health color, inflict 2 Frail on them.\nDeal 6 damage to the Opposing enemy.\nAttempt to spawn The Sludge.";
             hand2.Effects[5].entryVariable = 6;
 
-            Ability hand3 = new Ability(hand2.ability, "Snail_TheHand_3_A");
+            Ability hand3 = new Ability(hand2.ability, "Snail_TheHand_3_A", hand1.Cost);
             hand3.Name = "Awe the Hand";
             hand3.Description = "If the Opposing enemy is the only enemy of its health color, inflict 2 Frail on them.\nDeal 8 damage to the Opposing enemy.\nAttempt to spawn The Sludge.";
             hand3.Effects[5].entryVariable = 8;
             hand3.EffectIntents[0].intents[2] = "Damage_7_10";
 
-            Ability hand4 = new Ability(hand3.ability, "Snail_TheHand_4_A");
+            Ability hand4 = new Ability(hand3.ability, "Snail_TheHand_4_A", hand1.Cost);
             hand4.Name = "Revere the Hand";
             hand4.Description = "If the Opposing enemy is the only enemy of its health color, inflict 2 Frail on them.\nDeal 9 damage to the Opposing enemy.\nAttempt to spawn The Sludge.";
             hand4.Effects[5].entryVariable = 9;
