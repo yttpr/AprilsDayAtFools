@@ -37,7 +37,7 @@ namespace AprilsDayAtFools
                 row += 64;
             }
 
-            IDetour hook = new Hook(typeof(CharacterCombat).GetMethod(nameof(CharacterCombat.DefaultPassiveAbilityInitialization), ~BindingFlags.Default), typeof(BlockFromShops).GetMethod(nameof(CharacterCombat_Initialize), ~BindingFlags.Default));
+            IDetour hook = new Hook(typeof(CharacterCombat).GetMethod(nameof(CharacterCombat.DefaultPassiveAbilityInitialization), ~BindingFlags.Default), typeof(SnailSpriteHandler).GetMethod(nameof(CharacterCombat_Initialize), ~BindingFlags.Default));
             NotificationHook.AddAction(NotifCheck);
         }
 
