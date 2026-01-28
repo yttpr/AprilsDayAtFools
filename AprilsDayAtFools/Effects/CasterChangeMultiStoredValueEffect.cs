@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AprilsDayAtFools.Effects
+namespace AprilsDayAtFools
 {
     public class CasterChangeMultiStoredValueEffect : CasterStoredValueChangeEffect
     {
