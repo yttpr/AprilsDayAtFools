@@ -90,7 +90,7 @@ namespace AprilsDayAtFools
             Ability onset1 = new Ability("Onset of Shadows", "Saea_Onset_1_A");
             onset1.Description = "Heal this and the Right allies 6 health then inflict 4 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 8.";
             onset1.AbilitySprite = ResourceLoader.LoadSprite("ability_onset.png");
-            onset1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
+            onset1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Blue];
             onset1.Effects = new EffectInfo[3];
             onset1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<MaxHealthlessHealEffect>(), 6, Targeting.Slot_SelfAndRight);
             onset1.Effects[1] = Effects.GenerateEffect(BasicEffects.Empty, 8);
