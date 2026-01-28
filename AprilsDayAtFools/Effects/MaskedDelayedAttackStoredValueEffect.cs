@@ -12,9 +12,8 @@ namespace AprilsDayAtFools.Effects
             exitAmount = 0;
 
             int mod = caster.SimpleGetStoredValue(ValueName);
-            if (entryVariable + mod <= 0) return false;
 
-            return base.PerformEffect(stats, caster, targets, areTargetSlots, entryVariable + mod, out exitAmount);
+            return base.PerformEffect(stats, caster, targets, areTargetSlots, Math.Max(0, entryVariable + mod), out exitAmount);
         }
     }
 }
