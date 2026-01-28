@@ -88,12 +88,12 @@ namespace AprilsDayAtFools
             AddExtraAbilityIfNotHaveEffect act4 = AddExtraAbilityIfNotHaveEffect.Create(claim4.GenerateCharacterAbility(true));
 
             Ability onset1 = new Ability("Onset of Shadows", "Saea_Onset_1_A");
-            onset1.Description = "Heal this and the Right allies 6 health then inflict 4 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 10.";
+            onset1.Description = "Heal this and the Right allies 6 health then inflict 4 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 11.";
             onset1.AbilitySprite = ResourceLoader.LoadSprite("ability_onset.png");
             onset1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Blue];
             onset1.Effects = new EffectInfo[3];
             onset1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<MaxHealthlessHealEffect>(), 6, Targeting.Slot_SelfAndRight);
-            onset1.Effects[1] = Effects.GenerateEffect(BasicEffects.Empty, 10);
+            onset1.Effects[1] = Effects.GenerateEffect(BasicEffects.Empty, 11);
             onset1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaCappedToExitEffect>(), 4, Targeting.Slot_SelfAndRight);
             onset1.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Heal_5_10", IntentType_GameIDs.Other_MaxHealth.ToString(), Karma.Intent]);
             onset1.Visuals = Visuals.UglyOnTheInside;
@@ -101,9 +101,9 @@ namespace AprilsDayAtFools
 
             Ability onset2 = new Ability(onset1.ability, "Saea_Onset_2_A", onset1.Cost);
             onset2.Name = "Onset of Darkness";
-            onset2.Description = "Heal this, the Right, and Far Right allies 7 health then inflict 5 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 12.";
+            onset2.Description = "Heal this, the Right, and Far Right allies 7 health then inflict 5 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 13.";
             onset2.Effects[0].entryVariable = 7;
-            onset2.Effects[1].entryVariable = 12;
+            onset2.Effects[1].entryVariable = 13;
             onset2.Effects[2].entryVariable = 5;
             onset2.AnimationTarget = Slots.SlotTarget([0, 1, 2], true);
             onset2.Effects[0].targets = onset2.ability.animationTarget;
@@ -112,9 +112,9 @@ namespace AprilsDayAtFools
 
             Ability onset3 = new Ability(onset2.ability, "Saea_Onset_3_A", onset1.Cost);
             onset3.Name = "Onset of Death";
-            onset3.Description = "Heal this, the Right, the Far Right, and the Far Far Right allies 8 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 13.";
+            onset3.Description = "Heal this, the Right, the Far Right, and the Far Far Right allies 8 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 14.";
             onset3.Effects[0].entryVariable = 8;
-            onset3.Effects[1].entryVariable = 13;
+            onset3.Effects[1].entryVariable = 14;
             onset3.Effects[2].entryVariable = 6;
             onset3.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3], true);
             onset3.Effects[0].targets = onset3.ability.animationTarget;
@@ -123,9 +123,9 @@ namespace AprilsDayAtFools
 
             Ability onset4 = new Ability(onset3.ability, "Saea_Onset_4_A", onset1.Cost);
             onset4.Name = "Onset of Hell";
-            onset4.Description = "Heal this and All allies to the Rights 8 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 14.";
+            onset4.Description = "Heal this and All allies to the Rights 8 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 15.";
             onset4.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3, 4], true);
-            onset4.Effects[1].entryVariable = 14;
+            onset4.Effects[1].entryVariable = 15;
             onset4.Effects[0].targets = onset4.ability.animationTarget;
             onset4.Effects[2].targets = onset4.ability.animationTarget;
             onset4.EffectIntents[0].targets = onset4.ability.animationTarget;
