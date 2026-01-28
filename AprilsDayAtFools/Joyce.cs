@@ -57,6 +57,8 @@ namespace AprilsDayAtFools
             Class1.PCall(PermanentPassiveHandler.Setup);
             Class1.PCall(SnailSpriteHandler.Setup);
             Class1.PCall(UndeadPassiveHandler.Setup);
+            Class1.PCall(DelayedAttackManager.Setup);
+            Class1.PCall(DelayedAttackVisualizer.Add);
 
             Class1.PCall(Anesthetics.Add);
             Class1.PCall(Power.Add);
