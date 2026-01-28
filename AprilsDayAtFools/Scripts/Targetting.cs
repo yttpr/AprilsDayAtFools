@@ -1121,6 +1121,47 @@ namespace AprilsDayAtFools
             return list.ToArray();
         }
     }
+    public class DoubleTargettingPrioritizeFirst : DoubleTargetting
+    {
+        public override bool AreTargetAllies => firstTargetting.AreTargetAllies;
+        public override bool AreTargetSlots => firstTargetting.AreTargetSlots;
+
+        public override TargetSlotInfo[] GetTargets(SlotsCombat slots, int casterSlotID, bool isCasterCharacter)
+        {
+            List<TargetSlotInfo> list = new List<TargetSlotInfo>();
+
+            if (firstTargetting != null)
+            {
+                foreach (TargetSlotInfo target in firstTargetting.GetTargets(slots, casterSlotID, isCasterCharacter))
+                    list.Add(target);
+            }
+
+            if (secondTargetting != null)
+            {
+                foreach (TargetSlotInfo target in secondTargetting.GetTargets(slots, casterSlotID, isCasterCharacter))
+                {
+                    if (list.Contains(target)) continue;
+                    if (target.HasUnit && !AreTargetSlots)
+                    {
+                        bool copy = false;
+                        foreach (TargetSlotInfo compare in list)
+                        {
+                            if (compare.HasUnit && compare.Unit.ID == target.Unit.ID && compare.IsTargetCharacterSlot == target.IsTargetCharacterSlot)
+                            {
+                                copy = true;
+                                break;
+                            }
+                        }
+                        if (copy) continue;
+                    }
+
+                    list.Add(target);
+                }
+            }
+
+            return list.ToArray();
+        }
+    }
     public class EmptyTargetting : BaseCombatTargettingSO
     {
         public bool GetAllies;

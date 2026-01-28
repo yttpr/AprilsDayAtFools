@@ -41,11 +41,14 @@ namespace AprilsDayAtFools
             RandomizeTargetHealthColorsEffect nogray = RandomizeTargetHealthColorsEffect.Create(false);
 
             TargettingBySharingPigmentUsedColor used = ScriptableObject.CreateInstance<TargettingBySharingPigmentUsedColor>();
-            StoreTargetting store = StoreTargetting.Create(used);
+            DoubleTargettingPrioritizeFirst targets = ScriptableObject.CreateInstance<DoubleTargettingPrioritizeFirst>();
+            targets.firstTargetting = used;
+            targets.secondTargetting = Slots.Front;
+            StoreTargetting store = StoreTargetting.Create(targets);
             GetStoredTargetting get = GetStoredTargetting.Create(store);
 
             Ability maw1 = new Ability("Feed the Maw", "Snail_TheMaw_1_A");
-            maw1.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability, then inflict 2 Acid on them.\nRandomize the health color of this party member.";
+            maw1.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability and also the Opposing enemy, then inflict 2 Acid on them.\nRandomize the health color of this party member.";
             maw1.AbilitySprite = ResourceLoader.LoadSprite("ability_themaw.png");
             maw1.Cost = [Pigments.Grey, Pigments.Grey];
             maw1.Effects = new EffectInfo[4];
@@ -54,23 +57,24 @@ namespace AprilsDayAtFools
             maw1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyAcidEffect>(), 2, get);
             maw1.Effects[3] = Effects.GenerateEffect(randomize, 1, Slots.Self);
             maw1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc_Hidden", "Mana_Modify", Acid.Intent]);
+            maw1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden", "Mana_Modify", Acid.Intent]);
             maw1.AddIntentsToTarget(Slots.Self, ["Mana_Modify"]);
             maw1.Visuals = LoadedAssetsHandler.GetEnemyAbility("Siphon_A").visuals;
-            maw1.AnimationTarget = used;
+            maw1.AnimationTarget = targets;
 
             Ability maw2 = new Ability(maw1.ability, "Snail_TheMaw_2_A", maw1.Cost);
             maw2.Name = "Nourish the Maw";
-            maw2.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability, then inflict 3 Acid on them.\nRandomize the health color of this party member.";
+            maw2.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability and also the Opposing enemy, then inflict 3 Acid on them.\nRandomize the health color of this party member.";
             maw2.Effects[2].entryVariable = 3;
 
             Ability maw3 = new Ability(maw2.ability, "Snail_TheMaw_3_A", maw1.Cost);
             maw3.Name = "Fuel the Maw";
-            maw3.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability, then inflict 5 Acid on them.\nRandomize the health color of this party member.";
+            maw3.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability and also the Opposing enemy, then inflict 5 Acid on them.\nRandomize the health color of this party member.";
             maw3.Effects[2].entryVariable = 5;
 
             Ability maw4 = new Ability(maw3.ability, "Snail_TheMaw_4_A", maw1.Cost);
             maw4.Name = "Bloat the Maw";
-            maw4.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability, then inflict 9 Acid on them.\nRandomize the health color of this party member.";
+            maw4.Description = "Randomize the health colors of all enemies sharing health colors with the Pigment used for this ability and also the Opposing enemy, then inflict 9 Acid on them.\nRandomize the health color of this party member.";
             maw4.Effects[2].entryVariable = 9;
 
             AnimationVisualsEffect prov = ScriptableObject.CreateInstance<AnimationVisualsEffect>();
