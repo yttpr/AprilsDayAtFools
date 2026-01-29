@@ -81,10 +81,11 @@ namespace AprilsDayAtFools
             med1.Description = "Deal 2 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.\nFlee 1 turn sooner.";
             med1.AbilitySprite = ResourceLoader.LoadSprite("ability_meditations.png");
             med1.Cost = [Pigments.Purple, Pigments.Red];
-            med1.Effects = new EffectInfo[3];
+            med1.Effects = new EffectInfo[4];
             med1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 2, Slots.Front);
             med1.Effects[1] = Effects.GenerateEffect(increase, 1, Slots.Self, BasicEffects.DidThat(true));
             med1.Effects[2] = Effects.GenerateEffect(izideDefault, 1, Slots.Self);
+            med1.Effects[3] = Effects.GenerateEffect(fleeting, 1, Slots.Self);
             med1.AddIntentsToTarget(Slots.Front, ["Damage_1_2"]);
             med1.AddIntentsToTarget(Slots.Self, ["Misc"]);
             med1.AnimationTarget = Slots.Front;
