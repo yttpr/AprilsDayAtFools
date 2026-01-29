@@ -149,6 +149,7 @@ namespace AprilsDayAtFools
             behind1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc_Hidden"]);
             behind1.AddIntentsToTarget(behind_target, ["ADAF_Damage_Delay", "Damage_7_10"]);
             behind1.AddIntentsToTarget(Slots.Self, ["Misc"]);
+            behind1.UnitStoreData = UnitStoreData.GetCustom_UnitStoreData(IDs.Behind);
             behind1.AnimationTarget = TargettingByAlreadyAttacked.Create(Targeting.Unit_AllOpponents);
             behind1.Visuals = CustomVisuals.GetVisuals("Salt/Rose");
 
