@@ -16,7 +16,6 @@ namespace AprilsDayAtFools
         }
         public static void StringDump()
         {
-            //A
 
         }
         public static void SetAssets()

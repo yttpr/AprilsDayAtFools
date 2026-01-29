@@ -40,5 +40,9 @@ namespace AprilsDayAtFools
         public static string Undead => "Undead_PA";
         public static string Lich => "Lich_CH";
         public static string LichDefault => "Lich_Default";
+        public static string Ruin => "OfRuin_A";
+        public static string Behind => "FromBehind_A";
+        public static string Izide => "Izide_CH";
+        public static string IzideDefault => "Izide_Default";
     }
 }

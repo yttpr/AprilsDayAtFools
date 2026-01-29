@@ -13,8 +13,8 @@ namespace AprilsDayAtFools
         public static void Setup()
         {
             IDs = [];
-            IDetour hook1 = new Hook(typeof(OverworldCharactersManager).GetMethod(nameof(OverworldCharactersManager.SetPartyCharacters), ~BindingFlags.Default), typeof(SnailSpriteHandler).GetMethod(nameof(OverworldCharactersManager_SetPartyCharacters), ~BindingFlags.Default));
-            IDetour hook2 = new Hook(typeof(OverworldCharactersManager).GetMethod(nameof(OverworldCharactersManager.MoveCharacters), ~BindingFlags.Default), typeof(SnailSpriteHandler).GetMethod(nameof(OverworldCharactersManager_MoveCharacters), ~BindingFlags.Default));
+            IDetour hook1 = new Hook(typeof(OverworldCharactersManager).GetMethod(nameof(OverworldCharactersManager.SetPartyCharacters), ~BindingFlags.Default), typeof(SlidingHandler).GetMethod(nameof(OverworldCharactersManager_SetPartyCharacters), ~BindingFlags.Default));
+            IDetour hook2 = new Hook(typeof(OverworldCharactersManager).GetMethod(nameof(OverworldCharactersManager.MoveCharacters), ~BindingFlags.Default), typeof(SlidingHandler).GetMethod(nameof(OverworldCharactersManager_MoveCharacters), ~BindingFlags.Default));
         }
 
         public static void OverworldCharactersManager_SetPartyCharacters(Action<OverworldCharactersManager, IMinimalCharacterInfo[]> orig, OverworldCharactersManager self, IMinimalCharacterInfo[] characters)
@@ -39,7 +39,7 @@ namespace AprilsDayAtFools
             foreach (int id in IDs)
             {
                 if (id >= self._movableCharacters.Length) continue;
-                self._movableCharacters[i].SetMoveAnimation(false);
+                self._movableCharacters[id].SetMoveAnimation(false);
             }
         }
     }

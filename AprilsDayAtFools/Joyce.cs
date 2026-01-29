@@ -60,6 +60,7 @@ namespace AprilsDayAtFools
             Class1.PCall(DelayedAttackManager.Setup);
             Class1.PCall(DelayedAttackVisualizer.Add);
             Class1.PCall(SlidingHandler.Setup);
+            Class1.PCall(FromBehindHandler.Setup);
 
             Class1.PCall(Anesthetics.Add);
             Class1.PCall(Power.Add);
@@ -104,6 +105,7 @@ namespace AprilsDayAtFools
             Class1.PCall(Sunflower.Add);
             Class1.PCall(Snail.Add);
             Class1.PCall(Lich.Add);
+            Class1.PCall(Izide.Add);
             Class1.PCall(Six.Add);
             Class1.PCall(Saea.Add);
             Class1.PCall(Alpha.Add);
@@ -112,6 +114,9 @@ namespace AprilsDayAtFools
             Class1.PCall(FreeFool.Setup);
             Class1.PCall(Defacer.AddDialogueEmote);
             Class1.PCall(Snail.AddDialogueEmote);
+            Class1.PCall(Izide.AddDialogueEmote);
+
+            FreeFool.Idk();
 
             Class1.PCall(CascadingDamageItemHandler.Setup);
             Class1.PCall(ClownKiller.Setup);
