@@ -121,7 +121,7 @@ namespace AprilsDayAtFools
                 if (Target.HasUnit)
                 {
                     int amount = caster.WillApplyDamage(Damage, Target.Unit);
-                    DamageInfo hit = Target.Unit.Damage(amount, caster, DeathType_GameIDs.Basic.ToString(), -1, true, true, false);
+                    DamageInfo hit = Target.Unit.Damage(amount, caster, DeathType_GameIDs.Basic.ToString(), Target.SlotID - Target.Unit.SlotID, true, true, false);
                     return hit.damageAmount;
                 }
 
@@ -130,7 +130,7 @@ namespace AprilsDayAtFools
             {
                 if (Target.HasUnit)
                 {
-                    Target.Unit.Damage(Damage, null, DeathType_GameIDs.Basic.ToString(), -1, true, true, false);
+                    Target.Unit.Damage(Damage, null, DeathType_GameIDs.Basic.ToString(), Target.SlotID - Target.Unit.SlotID, true, true, false);
                     return 0;
                 }
             }
