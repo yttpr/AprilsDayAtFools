@@ -29,10 +29,11 @@ namespace AprilsDayAtFools
             saea.HealthColor = Pigments.Blue;
             saea.AddUnitType("FemaleID");
             saea.AddUnitType("FemaleLooking");
+            saea.AddUnitType(SlidingHandler.Type);
             saea.UsesBasicAbility = true;
             //slap
             saea.UsesAllAbilities = false;
-            saea.MovesOnOverworld = false;
+            saea.MovesOnOverworld = true;
             saea.Animator = LoadedAssetsHandler.GetCharacter("Rotcore_CH").characterAnimator;
             saea.FrontSprite = ResourceLoader.LoadSprite("SaeaFront.png");
             saea.BackSprite = ResourceLoader.LoadSprite("SaeaBack.png");

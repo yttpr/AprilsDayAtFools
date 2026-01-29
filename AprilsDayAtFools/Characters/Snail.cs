@@ -16,10 +16,11 @@ namespace AprilsDayAtFools
             snail.AddUnitType("FemaleID");
             snail.AddUnitType("FemaleLooking");
             snail.AddUnitType("Sandwich_SuperOrganism");
+            snail.AddUnitType(SlidingHandler.Type);
             snail.UsesBasicAbility = true;
             //slap
             snail.UsesAllAbilities = false;
-            snail.MovesOnOverworld = false;
+            snail.MovesOnOverworld = true;
             //custom animator
             snail.FrontSprite = SnailSpriteHandler.Sprites[Pigments.Green][0];
             snail.BackSprite = SnailSpriteHandler.Sprites[Pigments.Green][4] ;
