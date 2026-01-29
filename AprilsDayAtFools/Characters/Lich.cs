@@ -69,7 +69,7 @@ namespace AprilsDayAtFools
 
             HealEffect heal = ScriptableObject.CreateInstance<HealEffect>();
 
-            ImprovedRemoveAllNegativeStatusEffect rem_stat = ScriptableObject.CreateInstance<ImprovedRemoveAllNegativeStatusEffect>();
+            ImprovedRemoveAllNegativeStatusAndFieldEffect rem_stat = ScriptableObject.CreateInstance<ImprovedRemoveAllNegativeStatusAndFieldEffect>();
             rem_stat.Exclude = [Acid.StatusID];
 
             Ability fuzzy1 = new Ability("Fuzzy with Vomit", "Lich_Fuzzy_1_A");
