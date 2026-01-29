@@ -116,8 +116,6 @@ namespace AprilsDayAtFools
             Class1.PCall(Snail.AddDialogueEmote);
             Class1.PCall(Izide.AddDialogueEmote);
 
-            FreeFool.Idk();
-
             Class1.PCall(CascadingDamageItemHandler.Setup);
             Class1.PCall(ClownKiller.Setup);
             Class1.PCall(Anatomy.Add);
