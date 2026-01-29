@@ -69,13 +69,16 @@ namespace AprilsDayAtFools
 
             HealEffect heal = ScriptableObject.CreateInstance<HealEffect>();
 
+            ImprovedRemoveAllNegativeStatusEffect rem_stat = ScriptableObject.CreateInstance<ImprovedRemoveAllNegativeStatusEffect>();
+            rem_stat.Exclude = [Acid.StatusID];
+
             Ability fuzzy1 = new Ability("Fuzzy with Vomit", "Lich_Fuzzy_1_A");
             fuzzy1.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status Effects on them into Acid.\nHeal them 7 health.";
             fuzzy1.AbilitySprite = ResourceLoader.LoadSprite("ability_fuzzy.png");
             fuzzy1.Cost = [Pigments.Blue, Pigments.Blue];
             fuzzy1.Effects = new EffectInfo[4];
             fuzzy1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HalveAcidEffect>(), 1, right);
-            fuzzy1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RemoveAllStatusOtherThanAcidEffect>(), 1, right);
+            fuzzy1.Effects[1] = Effects.GenerateEffect(rem_stat, 1, right);
             fuzzy1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right);
             fuzzy1.Effects[3] = Effects.GenerateEffect(heal, 7, right);
             fuzzy1.AddIntentsToTarget(right, ["Misc", Acid.Intent, "Heal_5_10"]);

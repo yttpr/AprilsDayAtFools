@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AprilsDayAtFools
 {
-    public class ReduceAllNegativeStatusEffect : EffectSO
+    public class ImprovedRemoveAllNegativeStatusEffect : EffectSO
     {
         [SerializeField]
         public List<string> Exclude = new List<string>();
@@ -23,18 +23,7 @@ namespace AprilsDayAtFools
                         {
                             if (!status.IsPositive && !Exclude.Contains(status.StatusID))
                             {
-                                if (status.StatusContent > Math.Abs(entryVariable))
-                                {
-                                    if (status.TryAddContent(entryVariable, 0))
-                                    {
-                                        effector.StatusEffectValuesChanged(status.StatusID, entryVariable, true);
-                                        exitAmount += Math.Abs(entryVariable);
-                                    }
-                                }
-                                else
-                                {
-                                    exitAmount += Math.Max(1, targetSlotInfo.Unit.TryRemoveStatusEffect(status.StatusID));
-                                }
+                                exitAmount += Math.Max(1, targetSlotInfo.Unit.TryRemoveStatusEffect(status.StatusID));
                             }
                         }
                     }

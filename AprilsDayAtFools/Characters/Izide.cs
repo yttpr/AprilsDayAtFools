@@ -45,7 +45,7 @@ namespace AprilsDayAtFools
             izide.MenuCharacterIsSecret = false;
             izide.MenuCharacterIgnoreRandom = false;
             izide.SetMenuCharacterAsFullDPS();
-            izide.AddPassive(Passives.FleetingGenerator(5));
+            izide.AddPassive(Passives.Fleeting6);
 
             Intents.CreateAndAddCustom_Damage_IntentToPool("ADAF_Damage_Delay", ResourceLoader.LoadSprite("DelayedAttackIcon.png"), (Intents.GetInGame_IntentInfo(IntentType_GameIDs.Damage_11_15) as IntentInfoDamage).GetColor(true),
                 ResourceLoader.LoadSprite("DelayedAttackIcon.png"), (Intents.GetInGame_IntentInfo(IntentType_GameIDs.Damage_11_15) as IntentInfoDamage).GetColor(false));
@@ -66,6 +66,9 @@ namespace AprilsDayAtFools
             behind_stat._increase = false;
             behind_stat._minimumValue = -999;
             behind_stat.m_unitStoredDataID = IDs.Behind;
+            CasterStoredValueChangeEffect fleeting = ScriptableObject.CreateInstance<CasterStoredValueChangeEffect>();
+            fleeting._increase = true;
+            fleeting.m_unitStoredDataID = UnitStoredValueNames_GameIDs.FleetingPA.ToString();
 
             MaskedDelayedAttackStoredValueEffect ruin_dmg = ScriptableObject.CreateInstance<MaskedDelayedAttackStoredValueEffect>();
             ruin_dmg.ValueName = IDs.Ruin;
@@ -75,7 +78,7 @@ namespace AprilsDayAtFools
             TargettingByAlreadyAttacked behind_target = TargettingByAlreadyAttacked.Create(Targetting.Everything(false));
 
             Ability med1 = new Ability("Meditations on Senescence", "Izide_Med_1_A");
-            med1.Description = "Deal 2 damage to the Opposing enemy.\nIncrease the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.";
+            med1.Description = "Deal 2 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.\nFlee 1 turn sooner.";
             med1.AbilitySprite = ResourceLoader.LoadSprite("ability_meditations.png");
             med1.Cost = [Pigments.Purple, Pigments.Red];
             med1.Effects = new EffectInfo[3];
@@ -89,18 +92,18 @@ namespace AprilsDayAtFools
 
             Ability med2 = new Ability(med1.ability, "Izide_Med_2_A", med1.Cost);
             med2.Name = "Meditations on Passage";
-            med2.Description = "Deal 3 damage to the Opposing enemy.\nIncrease the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.";
+            med2.Description = "Deal 3 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.\nFlee 1 turn sooner.";
             med2.Effects[0].entryVariable = 3;
             med2.EffectIntents[0].intents[0] = "Damage_3_6";
 
             Ability med3 = new Ability(med2.ability, "Izide_Med_3_A", med1.Cost);
             med3.Name = "Meditations on Afterlife";
-            med3.Description = "Deal 4 damage to the Opposing enemy.\nIncrease the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.";
+            med3.Description = "Deal 4 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.\nFlee 1 turn sooner.";
             med3.Effects[0].entryVariable = 4;
 
             Ability med4 = new Ability(med3.ability, "Izide_Med_4_A", med1.Cost);
             med4.Name = "Meditations on Eternity";
-            med4.Description = "Deal 5 damage to the Opposing enemy.\nIncrease the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.";
+            med4.Description = "Deal 5 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.\nFlee 1 turn sooner.";
             med4.Effects[0].entryVariable = 5;
 
             Ability ruin1 = new Ability("Follower of Ruin", "Izide_Ruin_1_A");
