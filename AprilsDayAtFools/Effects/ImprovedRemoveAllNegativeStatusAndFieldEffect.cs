@@ -17,6 +17,8 @@ namespace AprilsDayAtFools
             int restrictor = 0;
             foreach (IFieldEffect fieldEffect in new List<IFieldEffect>(combatSlot.FieldEffects))
             {
+                if (fieldEffect.IsPositive) continue;
+
                 num = fieldEffect.FieldContent;
                 restrictor = fieldEffect.Restrictor;
 
