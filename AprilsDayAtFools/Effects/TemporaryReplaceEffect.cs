@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Tools;
 using UnityEngine;
@@ -12,16 +13,28 @@ namespace AprilsDayAtFools
     {
         public override bool CanBeUnboxed(CombatStats stats, BoxedUnit unit, object senderData)
         {
-            return true;
+            return !unit.unit.ContainsPassiveAbility(IDs.Depiction);
         }
         public static Dictionary<IUnit, IUnit> Replacements;
         public override void ProcessUnbox(CombatStats stats, BoxedUnit unit, object senderData)
         {
             Setup();
-            if (!Replacements.ContainsKey(unit.unit) && unit.unit is CharacterCombat chara && !stats.combatSlots.CharacterSlots[Replacements[chara].SlotID].HasUnit)
+            if (!Replacements.ContainsKey(unit.unit) && unit.unit is CharacterCombat chara)
             {
-                stats.combatSlots.RemoveCharacterFromSlot(chara);
-                stats.combatSlots.AddCharacterToSlot(chara, Replacements[chara].SlotID);
+                IUnit replace = Replacements[chara];
+
+                for (int i = 0; i < Replacements.Count && replace.ContainsPassiveAbility(IDs.Depiction) && Replacements.ContainsKey(replace); i++)
+                {
+                    IUnit oldkey = replace;
+                    replace = Replacements[oldkey];
+                    Replacements.Remove(oldkey);
+                }
+
+                if (!stats.combatSlots.CharacterSlots[replace.SlotID].HasUnit)
+                {
+                    stats.combatSlots.RemoveCharacterFromSlot(chara);
+                    stats.combatSlots.AddCharacterToSlot(chara, replace.SlotID);
+                }
             }
             
             base.ProcessUnbox(stats, unit, senderData);
@@ -29,10 +42,22 @@ namespace AprilsDayAtFools
         public static void Setup()
         {
             if (Replacements == null) Replacements = new Dictionary<IUnit, IUnit>();
+            Clean();
+        }
+        public static void Clean()
+        {
+            foreach (IUnit key in new List<IUnit>(Replacements.Keys))
+            {
+                if (Replacements[key] == null)
+                    Replacements.Remove(key);
+            }
         }
         public static void SetReplacement(IUnit target, IUnit replacement)
         {
             Setup();
+
+            if (replacement.ContainsPassiveAbility(IDs.Depiction) && target.ContainsPassiveAbility(IDs.Depiction) && Replacements.Values.Contains(target))
+
             Replacements[target] = replacement;
         }
         public static TemporaryReplaceBoxer Default;
@@ -113,9 +138,29 @@ namespace AprilsDayAtFools
 
             public override IEnumerator Execute(CombatStats stats)
             {
-                IEnumerator ret = base.Execute(stats);
-                TemporaryReplaceBoxer.SetReplacement(Origin, stats.Characters[stats.Characters.Count - 1]);
-                return ret;
+                int num;
+                if (_preferredSlot >= 0)
+                {
+                    num = stats.combatSlots.GetCharacterFitSlot(_preferredSlot, 1);
+                    if (num == -1 && _trySpawnAnyways)
+                    {
+                        num = stats.GetRandomCharacterSlot();
+                    }
+                }
+                else
+                {
+                    num = stats.GetRandomCharacterSlot();
+                }
+
+                if (num != -1)
+                {
+                    if (stats.AddNewCharacter(_character, num, _nameAddition, _permanentSpawn, _rank, _usedAbilities, _currentHealth, _modifiers))
+                    {
+                        TemporaryReplaceBoxer.SetReplacement(Origin, stats.Characters[stats.Characters.Count - 1]);
+                    }
+                }
+
+                yield return null;
             }
         }
     }

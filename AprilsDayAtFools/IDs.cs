@@ -44,5 +44,6 @@ namespace AprilsDayAtFools
         public static string Behind => "FromBehind_A";
         public static string Izide => "Izide_CH";
         public static string IzideDefault => "Izide_Default";
+        public static string Depiction => "Depiction_PA";
     }
 }

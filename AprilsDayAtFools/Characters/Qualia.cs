@@ -13,7 +13,7 @@ namespace AprilsDayAtFools
             ImmediatePerformEffectPassive depiction = ScriptableObject.CreateInstance<ImmediatePerformEffectPassive>();
             depiction._passiveName = "Depiction";
             depiction.passiveIcon = ResourceLoader.LoadSprite("DepictionPassive.png");
-            depiction.m_PassiveID = "Depiction_PA";
+            depiction.m_PassiveID = IDs.Depiction;
             depiction._enemyDescription = "This enemy is only temporary";
             depiction._characterDescription = "This party member is only temporary.";
             depiction.doesPassiveTriggerInformationPanel = true;
