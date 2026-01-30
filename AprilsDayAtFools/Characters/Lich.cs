@@ -132,8 +132,8 @@ namespace AprilsDayAtFools
             inside1.Cost = [Pigments.Blue];
             inside1.Effects = new EffectInfo[5];
             inside1.Effects[0] = Effects.GenerateEffect(rem_acid, 1, right);
-            inside1.Effects[1] = Effects.GenerateEffect(rem_acid, 1, Targeting.Unit_AllAllies);
-            inside1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right);
+            inside1.Effects[1] = Effects.GenerateEffect(rem_acid, 1, Targeting.Unit_AllAllies, ScriptableObject.CreateInstance<ExistsRightAllyCondition>());
+            inside1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right, BasicEffects.DidThat(true));
             inside1.Effects[3] = Effects.GenerateEffect(heal, 3, right);
             inside1.Effects[4] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
             inside1.AddIntentsToTarget(Targeting.Unit_AllAllies, [Acid.Rem]);

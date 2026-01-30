@@ -16,4 +16,15 @@ namespace AprilsDayAtFools
             return false;
         }
     }
+    public class ExistsRightAllyCondition : EffectConditionSO
+    {
+        public override bool MeetCondition(IUnit caster, EffectInfo[] effects, int currentIndex)
+        {
+            foreach (TargetSlotInfo target in Targeting.Slot_AllyRight.GetTargets(CombatManager.Instance._stats.combatSlots, caster.SlotID, caster.IsUnitCharacter))
+            {
+                if (target.HasUnit) return true;
+            }
+            return false;
+        }
+    }
 }
