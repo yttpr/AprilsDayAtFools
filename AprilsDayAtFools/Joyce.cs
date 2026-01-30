@@ -106,6 +106,7 @@ namespace AprilsDayAtFools
             Class1.PCall(Snail.Add);
             Class1.PCall(Lich.Add);
             Class1.PCall(Izide.Add);
+            //Qualia
             Class1.PCall(Six.Add);
             Class1.PCall(Saea.Add);
             Class1.PCall(Alpha.Add);
