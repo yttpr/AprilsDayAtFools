@@ -23,7 +23,7 @@ namespace AprilsDayAtFools
             ordinary.effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<SwapToSidesEffect>(), 1, Slots.Self);
             ordinary._triggerOn = [TriggerCalls.OnAbilityUsed];
             ordinary.AddToPassiveDatabase();
-            ordinary.AddPassiveToGlossary("Ordinary", "On using wrong pigment, move Left or Right");
+            ordinary.AddPassiveToGlossary("Ordinary", "On using wrong pigment, move Left or Right.");
 
             Character merced = new Character("Merced", "Merced_CH");
             merced.HealthColor = Pigments.Yellow;
