@@ -22,6 +22,15 @@ namespace AprilsDayAtFools
             depiction._triggerOn = [TimelineEndHandler.Before];
             depiction.AddToPassiveDatabase();
             depiction.AddPassiveToGlossary("Depiction", "This unit is only temporary.");
+
+            ExtraPassiveAbility_Wearable_SMS add_picture = ScriptableObject.CreateInstance<ExtraPassiveAbility_Wearable_SMS>();
+            add_picture._extraPassiveAbility = depiction;
+
+            TemporaryReplacementEffect replace_all = ScriptableObject.CreateInstance<TemporaryReplacementEffect>();
+            replace_all._extraModifiers = [add_picture];
+
+            TemporaryReplacementEffect replace_unused = ScriptableObject.CreateInstance<TemporaryReplacementEffect>();
+            replace_unused._extraModifiers = [add_picture];
         }
     }
 }

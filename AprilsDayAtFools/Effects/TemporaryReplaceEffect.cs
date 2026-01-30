@@ -90,12 +90,12 @@ namespace AprilsDayAtFools
 
         public static CharacterSO getRandom(int rank = -1)
         {
-            List<CharacterSO> randoms = new List<CharacterSO>(LoadedAssetsHandler.LoadedCharacters.Values);
+            List<CharacterSO> randoms = [..LoadedAssetsHandler.LoadedCharacters.Values];
 
             CharacterSO ret = randoms.GetRandom();
             for (int i = 0; i < 144; i++)
             {
-                if (ret == null || ret.Equals(null)) ret = new List<CharacterSO>(LoadedAssetsHandler.LoadedCharacters.Values).GetRandom();
+                if (ret == null || ret.Equals(null)) ret = randoms.GetRandom();
                 else if (!ret.HasRankedData || ret.rankedData.Count < rank) randoms.GetRandom();
                 else break;
             }
