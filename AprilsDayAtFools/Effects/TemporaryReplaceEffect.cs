@@ -95,6 +95,7 @@ namespace AprilsDayAtFools
             CharacterSO ret = randoms.GetRandom();
             for (int i = 0; i < 144; i++)
             {
+                randoms.Remove(ret);
                 if (ret == null || ret.Equals(null)) ret = randoms.GetRandom();
                 else if (!ret.HasRankedData || ret.rankedData.Count < rank) randoms.GetRandom();
                 else break;
