@@ -19,6 +19,7 @@ namespace AprilsDayAtFools
             Sliders = [];
             IDetour hook1 = new Hook(typeof(OverworldCharactersManager).GetMethod(nameof(OverworldCharactersManager.SetPartyCharacters), ~BindingFlags.Default), typeof(SlidingHandler).GetMethod(nameof(OverworldCharactersManager_SetPartyCharacters), ~BindingFlags.Default));
             IDetour hook2 = new Hook(typeof(OverworldCharactersManager).GetMethod(nameof(OverworldCharactersManager.MoveCharacters), ~BindingFlags.Default), typeof(SlidingHandler).GetMethod(nameof(OverworldCharactersManager_MoveCharacters), ~BindingFlags.Default));
+            IDetour hook3 = new Hook(typeof(CharacterInOverworld).GetMethod(nameof(CharacterInOverworld.SetMoveAnimation), ~BindingFlags.Default), typeof(SlidingHandler).GetMethod(nameof(CharacterInOverworld_SetMoveAnimation), ~BindingFlags.Default));
         }
 
         public static void AddCharacter(CharacterSO chara)
@@ -50,6 +51,11 @@ namespace AprilsDayAtFools
                 if (id >= self._movableCharacters.Length) continue;
                 self._movableCharacters[id].SetMoveAnimation(false);
             }
+        }
+        public static void CharacterInOverworld_SetMoveAnimation(Action<CharacterInOverworld, bool> orig, CharacterInOverworld self, bool active)
+        {
+            if (Sliders.Contains(self._renderer.sprite)) active = false;
+            orig(self, active);
         }
     }
 }
