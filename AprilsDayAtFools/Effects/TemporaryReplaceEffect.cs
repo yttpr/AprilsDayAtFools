@@ -13,6 +13,7 @@ namespace AprilsDayAtFools
     {
         public override bool CanBeUnboxed(CombatStats stats, BoxedUnit unit, object senderData)
         {
+            Debug.Log("canbeunboxed:" + unit.unit.Name + " has depiction: " + unit.unit.ContainsPassiveAbility(IDs.Depiction).ToString());
             return !unit.unit.ContainsPassiveAbility(IDs.Depiction);
         }
         public static Dictionary<IUnit, IUnit> Replacements;
@@ -56,7 +57,7 @@ namespace AprilsDayAtFools
         {
             Setup();
 
-            if (replacement.ContainsPassiveAbility(IDs.Depiction) && target.ContainsPassiveAbility(IDs.Depiction) && Replacements.Values.Contains(target))
+            //if (replacement.ContainsPassiveAbility(IDs.Depiction) && target.ContainsPassiveAbility(IDs.Depiction) && Replacements.Values.Contains(target))
 
             Replacements[target] = replacement;
         }
@@ -68,7 +69,7 @@ namespace AprilsDayAtFools
             if (Default == null)
             {
                 Default = ScriptableObject.CreateInstance<TemporaryReplaceBoxer>();
-                Default._unboxConditions = [TriggerCalls.TimelineEndReached];
+                Default._unboxConditions = [TimelineEndHandler.Late];
             }
 
             return Default;

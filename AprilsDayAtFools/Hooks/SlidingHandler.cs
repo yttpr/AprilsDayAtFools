@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using UnityEngine;
 
 namespace AprilsDayAtFools
 {
@@ -10,11 +11,19 @@ namespace AprilsDayAtFools
     {
         public static string Type => "ADAF_SlidingOverworld_Type";
         public static List<int> IDs = [];
+
+        public static List<Sprite> Sliders = [];
         public static void Setup()
         {
             IDs = [];
+            Sliders = [];
             IDetour hook1 = new Hook(typeof(OverworldCharactersManager).GetMethod(nameof(OverworldCharactersManager.SetPartyCharacters), ~BindingFlags.Default), typeof(SlidingHandler).GetMethod(nameof(OverworldCharactersManager_SetPartyCharacters), ~BindingFlags.Default));
             IDetour hook2 = new Hook(typeof(OverworldCharactersManager).GetMethod(nameof(OverworldCharactersManager.MoveCharacters), ~BindingFlags.Default), typeof(SlidingHandler).GetMethod(nameof(OverworldCharactersManager_MoveCharacters), ~BindingFlags.Default));
+        }
+
+        public static void AddCharacter(CharacterSO chara)
+        {
+            Sliders.Add(chara.characterOWSprite);
         }
 
         public static void OverworldCharactersManager_SetPartyCharacters(Action<OverworldCharactersManager, IMinimalCharacterInfo[]> orig, OverworldCharactersManager self, IMinimalCharacterInfo[] characters)

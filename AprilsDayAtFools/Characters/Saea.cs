@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using static UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing;
 
 namespace AprilsDayAtFools
 {
@@ -244,6 +245,7 @@ namespace AprilsDayAtFools
             saea.AddLevelData(15, [visions3, ori3, onset3]);
             saea.AddLevelData(16, [visions4, ori4, onset4]);
             saea.AddCharacter(false);
+            SlidingHandler.AddCharacter(saea.character);
         }
         public static void Items()
         {

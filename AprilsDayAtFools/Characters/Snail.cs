@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
+using static UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing;
 
 namespace AprilsDayAtFools
 {
@@ -156,6 +157,7 @@ namespace AprilsDayAtFools
             snail.AddLevelData(16, [maw3, hand3, camo3]);
             snail.AddLevelData(19, [maw4, hand4, camo4]);
             snail.AddCharacter(true);
+            SlidingHandler.AddCharacter(snail.character);
         }
         public static void AddDialogueEmote()
         {

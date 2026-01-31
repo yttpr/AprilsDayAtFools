@@ -147,6 +147,7 @@ namespace AprilsDayAtFools
             qualia.AddLevelData(22, [image1, change1, box1]);
             qualia.AddLevelData(23, [image1, change1, box1]);
             qualia.AddCharacter(true);
+            SlidingHandler.AddCharacter(qualia.character);
         }
 
 
