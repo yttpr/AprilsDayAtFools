@@ -19,7 +19,7 @@ namespace AprilsDayAtFools
         public override void ProcessUnbox(CombatStats stats, BoxedUnit unit, object senderData)
         {
             Setup();
-            if (!Replacements.ContainsKey(unit.unit) && unit.unit is CharacterCombat chara)
+            if (Replacements.ContainsKey(unit.unit) && unit.unit is CharacterCombat chara)
             {
                 IUnit replace = Replacements[chara];
 
