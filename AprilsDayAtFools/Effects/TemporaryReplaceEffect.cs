@@ -96,7 +96,7 @@ namespace AprilsDayAtFools
                     bool allow = true;
                     foreach (IUnit replacer in Replacements.Values)
                     {
-                        if (replacer.IsAlive && replacer.SlotID == preferredSlot)
+                        if (replacer.IsAlive && !replacer.HasFled && replacer.SlotID == preferredSlot)
                         {
                             allow = false;
                             break;
