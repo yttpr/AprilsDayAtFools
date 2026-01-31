@@ -20,7 +20,7 @@ namespace AprilsDayAtFools
             Character six = new Character("Six", "Six_CH");
             six.HealthColor = Pigments.Red;
             six.AddUnitType("FemaleID");
-            six.AddUnitType("Sandwich_Robot");
+            six.AddUnitType("Sandwich_Fish");
             six.AddUnitType("FemaleLooking");
             six.UsesBasicAbility = true;
             //slap
