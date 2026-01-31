@@ -24,9 +24,9 @@ namespace AprilsDayAtFools
             if (name == TriggerCalls.TimelineEndReached.ToString() && sender == null)
             {
                 CombatStats stats = CombatManager.Instance._stats;
-                foreach (EnemyCombat enemy in stats.EnemiesOnField.Values)
+                foreach (EnemyCombat enemy in new List<EnemyCombat>(stats.EnemiesOnField.Values))
                     enemy.TriggerNotification(Before.ToString(), null);
-                foreach (CharacterCombat chara in stats.CharactersOnField.Values)
+                foreach (CharacterCombat chara in new List<CharacterCombat>(stats.CharactersOnField.Values))
                     chara.TriggerNotification(Before.ToString(), null);
             }
         }
@@ -35,9 +35,9 @@ namespace AprilsDayAtFools
             if (name == TriggerCalls.TimelineEndReached.ToString() && sender == null)
             {
                 CombatStats stats = CombatManager.Instance._stats;
-                foreach (EnemyCombat enemy in stats.EnemiesOnField.Values)
+                foreach (EnemyCombat enemy in new List<EnemyCombat>(stats.EnemiesOnField.Values))
                     enemy.TriggerNotification(After.ToString(), null);
-                foreach (CharacterCombat chara in stats.CharactersOnField.Values)
+                foreach (CharacterCombat chara in new List<CharacterCombat>(stats.CharactersOnField.Values))
                     chara.TriggerNotification(After.ToString(), null);
 
                 CombatManager.Instance.AddSubAction(new TimelineLateNotifAction());
