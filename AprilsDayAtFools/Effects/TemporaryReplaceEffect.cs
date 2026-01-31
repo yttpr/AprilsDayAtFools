@@ -12,9 +12,33 @@ namespace AprilsDayAtFools
     public class TemporaryReplaceBoxer : UnboxUnitHandlerSO
     {
         public static string Temporary => "ADAF_TemporaryAlly";
+        public static string Late => "ADAF_Unboxing_SecondWave";
         public override bool CanBeUnboxed(CombatStats stats, BoxedUnit unit, object senderData)
         {
+            if (unit.unit.SimpleGetStoredValue(Late) > 0)
+            {
+                unit.unit.SimpleSetStoredValue(Late, 0);
+                return unit.unit.SimpleGetStoredValue(Temporary) <= 0;
+            }
             //Debug.Log("canbeunboxed:" + unit.unit.Name + " has depiction: " + unit.unit.ContainsPassiveAbility(IDs.Depiction).ToString());
+            if (!Replacements.ContainsKey(unit.unit))
+            {
+                unit.unit.SimpleSetStoredValue(Late, 1);
+                return false;
+            }
+
+            IUnit replace = Replacements[unit.unit]; for (int i = 0; i < Replacements.Count && Replacements.ContainsKey(replace); i++)
+            {
+                IUnit oldkey = replace;
+                replace = Replacements[oldkey];
+            }
+
+            if (!replace.IsAlive || !replace.HasFled)
+            {
+                unit.unit.SimpleSetStoredValue(Late, 1);
+                return false;
+            }
+
             return unit.unit.SimpleGetStoredValue(Temporary) <= 0;
         }
         public static Dictionary<IUnit, IUnit> Replacements;
@@ -35,11 +59,14 @@ namespace AprilsDayAtFools
                     //Debug.Log("went through one replaced replacement cycle.");
                 }
 
-                if (!stats.combatSlots.CharacterSlots[replace.SlotID].HasUnit)
+                int slot = replace.SlotID;
+                if (!replace.IsAlive) slot = GetRandomCharacterSlot();
+
+                if (slot >= 0 && !stats.combatSlots.CharacterSlots[slot].HasUnit)
                 {
                     //Debug.Log("is setting new slot id. should also always trigger.");
                     stats.combatSlots.RemoveCharacterFromSlot(chara);
-                    stats.combatSlots.AddCharacterToSlot(chara, replace.SlotID);
+                    stats.combatSlots.AddCharacterToSlot(chara, slot);
                 }
 
                 Replacements[unit.unit] = null;
@@ -47,6 +74,41 @@ namespace AprilsDayAtFools
             //Debug.Log("slot position unboxing into: " + unit.unit.SlotID.ToString());
             
             base.ProcessUnbox(stats, unit, senderData);
+        }
+        public static int GetRandomCharacterSlot()
+        {
+            CombatStats stats = CombatManager.Instance._stats;
+            int num = -1;
+            List<int> list = new List<int>();
+            for (int i = 0; i < stats.combatSlots.CharacterSlots.Length; i++)
+            {
+                list.Add(i);
+            }
+
+            while (list.Count > 0)
+            {
+                int index = UnityEngine.Random.Range(0, list.Count);
+                int preferredSlot = list[index];
+                list.RemoveAt(index);
+                num = stats.combatSlots.GetCharacterFitSlot(preferredSlot, 1);
+                if (num != -1)
+                {
+                    bool allow = true;
+                    foreach (IUnit replacer in Replacements.Values)
+                    {
+                        if (replacer.IsAlive && replacer.SlotID == preferredSlot)
+                        {
+                            allow = false;
+                            break;
+                        }
+                    }
+                    if (!allow) continue;
+
+                    break;
+                }
+            }
+
+            return num;
         }
         public static void Setup()
         {
@@ -79,7 +141,7 @@ namespace AprilsDayAtFools
             if (Default == null)
             {
                 Default = ScriptableObject.CreateInstance<TemporaryReplaceBoxer>();
-                Default._unboxConditions = [TriggerCalls.TimelineEndReached];
+                Default._unboxConditions = [TriggerCalls.TimelineEndReached, TimelineEndHandler.Second];
             }
 
             return Default;

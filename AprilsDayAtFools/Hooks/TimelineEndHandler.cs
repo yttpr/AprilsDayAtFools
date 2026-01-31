@@ -10,7 +10,8 @@ namespace AprilsDayAtFools
         public static TriggerCalls Before => (TriggerCalls)86856122;
 
         public static TriggerCalls After => (TriggerCalls)86856123;
-        public static TriggerCalls Late => (TriggerCalls)86856124;
+        public static TriggerCalls Second => (TriggerCalls)86856124;
+        public static TriggerCalls Late => (TriggerCalls)86856125;
 
         public static void Setup()
         {
@@ -40,6 +41,7 @@ namespace AprilsDayAtFools
                 foreach (CharacterCombat chara in new List<CharacterCombat>(stats.CharactersOnField.Values))
                     chara.TriggerNotification(After.ToString(), null);
 
+                CombatManager.Instance.PostNotification(Second.ToString(), null, null);
                 CombatManager.Instance.AddSubAction(new TimelineLateNotifAction());
             }
         }
