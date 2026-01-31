@@ -13,6 +13,7 @@ namespace AprilsDayAtFools
     {
         public static string Temporary => "ADAF_TemporaryAlly";
         public static string Late => "ADAF_Unboxing_SecondWave";
+        public static string AllowedFlee => "ADAF_Temp_AllowedFled";
         public override bool CanBeUnboxed(CombatStats stats, BoxedUnit unit, object senderData)
         {
             if (unit.unit.SimpleGetStoredValue(Late) > 0)
@@ -27,18 +28,22 @@ namespace AprilsDayAtFools
                 return false;
             }
 
-            IUnit replace = Replacements[unit.unit]; for (int i = 0; i < Replacements.Count && Replacements.ContainsKey(replace); i++)
+            IUnit replace = Replacements[unit.unit]; 
+            
+            for (int i = 0; i < Replacements.Count && replace != null && Replacements.ContainsKey(replace); i++)
             {
                 IUnit oldkey = replace;
                 replace = Replacements[oldkey];
             }
 
-            if (!replace.IsAlive || !replace.HasFled)
+            if (replace == null || !replace.IsAlive || (replace.HasFled && replace.SimpleGetStoredValue(AllowedFlee) <= 0))
             {
+                //Debug.Log(unit.unit.Name + " has null/fled/dead replacement");
                 unit.unit.SimpleSetStoredValue(Late, 1);
                 return false;
             }
 
+            Debug.Log(unit.unit.Name + " can return");
             return unit.unit.SimpleGetStoredValue(Temporary) <= 0;
         }
         public static Dictionary<IUnit, IUnit> Replacements;
@@ -60,7 +65,7 @@ namespace AprilsDayAtFools
                 }
 
                 int slot = replace.SlotID;
-                if (!replace.IsAlive) slot = GetRandomCharacterSlot();
+                if (!replace.IsAlive || (replace.HasFled && replace.SimpleGetStoredValue(AllowedFlee) <= 0)) slot = GetRandomCharacterSlot();
 
                 if (slot >= 0 && !stats.combatSlots.CharacterSlots[slot].HasUnit)
                 {
@@ -96,7 +101,7 @@ namespace AprilsDayAtFools
                     bool allow = true;
                     foreach (IUnit replacer in Replacements.Values)
                     {
-                        if (replacer.IsAlive && !replacer.HasFled && replacer.SlotID == preferredSlot)
+                        if (replacer.IsAlive && !(replacer.HasFled && replacer.SimpleGetStoredValue(AllowedFlee) <= 0) && replacer.SlotID == preferredSlot)
                         {
                             allow = false;
                             break;

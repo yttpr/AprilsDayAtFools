@@ -47,7 +47,8 @@ namespace AprilsDayAtFools
             depiction._characterDescription = "This party member is only temporary.";
             depiction.doesPassiveTriggerInformationPanel = true;
             depiction.conditions = [];
-            depiction.effects = [Effects.GenerateEffect(ScriptableObject.CreateInstance<ImmediateFleeEffect>(), 1, Slots.Self)];
+            depiction.effects = [BasicEffects.SetStoreValue(TemporaryReplaceBoxer.AllowedFlee), 1, Slots.Self),
+                Effects.GenerateEffect(ScriptableObject.CreateInstance<ImmediateFleeEffect>(), 1, Slots.Self)];
             depiction._triggerOn = [TimelineEndHandler.Before];
             depiction.AddToPassiveDatabase();
             depiction.AddPassiveToGlossary("Depiction", "This unit is only temporary.");
