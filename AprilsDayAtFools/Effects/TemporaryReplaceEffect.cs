@@ -21,28 +21,30 @@ namespace AprilsDayAtFools
         public override void ProcessUnbox(CombatStats stats, BoxedUnit unit, object senderData)
         {
             Setup();
-            Debug.Log("begin unbox for: " + unit.unit.Name);
+            //Debug.Log("begin unbox for: " + unit.unit.Name);
             if (Replacements.ContainsKey(unit.unit) && unit.unit is CharacterCombat chara)
             {
-                Debug.Log("was replaced yes. this should always trigger.");
+                //Debug.Log("was replaced yes. this should always trigger.");
                 IUnit replace = Replacements[chara];
 
-                for (int i = 0; i < Replacements.Count && replace.SimpleGetStoredValue(Temporary) > 1 && Replacements.ContainsKey(replace); i++)
+                for (int i = 0; i < Replacements.Count && Replacements.ContainsKey(replace); i++)
                 {
                     IUnit oldkey = replace;
                     replace = Replacements[oldkey];
                     Replacements.Remove(oldkey);
-                    Debug.Log("went through one replaced replacement cycle.");
+                    //Debug.Log("went through one replaced replacement cycle.");
                 }
 
                 if (!stats.combatSlots.CharacterSlots[replace.SlotID].HasUnit)
                 {
-                    Debug.Log("is setting new slot id. should also always trigger.");
+                    //Debug.Log("is setting new slot id. should also always trigger.");
                     stats.combatSlots.RemoveCharacterFromSlot(chara);
                     stats.combatSlots.AddCharacterToSlot(chara, replace.SlotID);
                 }
+
+                Replacements[unit.unit] = null;
             }
-            Debug.Log("slot position unboxing into: " + unit.unit.SlotID.ToString());
+            //Debug.Log("slot position unboxing into: " + unit.unit.SlotID.ToString());
             
             base.ProcessUnbox(stats, unit, senderData);
         }
@@ -77,7 +79,7 @@ namespace AprilsDayAtFools
             if (Default == null)
             {
                 Default = ScriptableObject.CreateInstance<TemporaryReplaceBoxer>();
-                Default._unboxConditions = [TimelineEndHandler.Late];
+                Default._unboxConditions = [TriggerCalls.TimelineEndReached];
             }
 
             return Default;
