@@ -29,6 +29,7 @@ namespace AprilsDayAtFools
             saea.HealthColor = Pigments.Blue;
             saea.AddUnitType("FemaleID");
             saea.AddUnitType("FemaleLooking");
+            saea.AddUnitType("Sandwich_Spirit");
             saea.AddUnitType(SlidingHandler.Type);
             saea.UsesBasicAbility = true;
             //slap

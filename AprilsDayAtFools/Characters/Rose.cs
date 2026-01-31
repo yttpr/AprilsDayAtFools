@@ -14,7 +14,7 @@ namespace AprilsDayAtFools
             Character rose = new Character("Rose", "Rose_CH");
             rose.HealthColor = Pigments.Red;
             rose.AddUnitType("FemaleID");
-            rose.AddUnitType("Sandwich_Gore");
+            rose.AddUnitType("Sandwich_BDSM");
             rose.AddUnitType("FemaleLooking");
             rose.UsesBasicAbility = true;
             //slap

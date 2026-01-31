@@ -14,7 +14,7 @@ namespace AprilsDayAtFools
             Character prayer = new Character("Prayer", "Prayer_CH");
             prayer.HealthColor = Pigments.Purple;
             prayer.AddUnitType("FemaleID");
-            prayer.AddUnitType("Sandwich_Spirit");
+            prayer.AddUnitType("Sandwich_War");
             prayer.AddUnitType("FemaleLooking");
             prayer.UsesBasicAbility = true;
             //slap
