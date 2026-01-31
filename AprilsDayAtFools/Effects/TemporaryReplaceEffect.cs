@@ -89,7 +89,9 @@ namespace AprilsDayAtFools
                 {
                     if (!OnlyUseAbilities || (target.Unit as CharacterCombat).CanUseAbilitiesNoTrigger)
                     {
-                        if (stats.TryBoxCharacter(target.Unit.ID, TemporaryReplaceBoxer.GetDefault(), CombatType_GameIDs.Exit_Fleeting.ToString()))
+                        IUnit unit = target.Unit;
+
+                        if (stats.TryBoxCharacter(unit.ID, TemporaryReplaceBoxer.GetDefault(), CombatType_GameIDs.Exit_Fleeting.ToString()))
                         {
                             CharacterSO character = getRandom(entryVariable);
                             int currentHealth = character.GetMaxHealth(entryVariable);
@@ -102,7 +104,7 @@ namespace AprilsDayAtFools
                             }
 
                             string nameAdditionData = "Depiction of {0}";
-                            CombatManager.Instance.AddSubAction(new ReplacementSpawnCharacterAction(target.Unit, character, target.Unit.SlotID, trySpawnAnyways: true, nameAdditionData, false, entryVariable, usedAbilities, currentHealth, modifiers));
+                            CombatManager.Instance.AddSubAction(new ReplacementSpawnCharacterAction(unit, character, unit.SlotID, trySpawnAnyways: true, nameAdditionData, false, entryVariable, usedAbilities, currentHealth, modifiers));
 
                             exitAmount++;
                         }
@@ -120,9 +122,9 @@ namespace AprilsDayAtFools
             CharacterSO ret = randoms.GetRandom();
             for (int i = 0; i < 144; i++)
             {
-                randoms.Remove(ret);
+                //randoms.Remove(ret);
                 if (ret == null || ret.Equals(null)) ret = randoms.GetRandom();
-                else if (!ret.HasRankedData || ret.rankedData.Count < rank) randoms.GetRandom();
+                else if (!ret.HasRankedData || ret.rankedData.Count < rank) ret = randoms.GetRandom();
                 else break;
             }
             return ret;

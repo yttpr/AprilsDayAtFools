@@ -59,9 +59,11 @@ namespace AprilsDayAtFools
 
             TemporaryReplacementEffect replace_all = ScriptableObject.CreateInstance<TemporaryReplacementEffect>();
             replace_all._extraModifiers = [add_picture];
+            replace_all.OnlyUseAbilities = false;
 
             TemporaryReplacementEffect replace_unused = ScriptableObject.CreateInstance<TemporaryReplacementEffect>();
             replace_unused._extraModifiers = [add_picture];
+            replace_unused.OnlyUseAbilities = true;
 
             TargettingCanUseAbilities unused = ScriptableObject.CreateInstance<TargettingCanUseAbilities>();
             unused.getAllies = true;
