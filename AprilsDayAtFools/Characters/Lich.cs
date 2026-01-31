@@ -42,7 +42,7 @@ namespace AprilsDayAtFools
             lich.HealthColor = Pigments.Red;
             lich.AddUnitType("FemaleID");
             lich.AddUnitType("FemaleLooking");
-            lich.AddUnitType("Sandwich_Spirit");
+            //lich.AddUnitType("Sandwich_Spirit");
             lich.UsesBasicAbility = true;
             //slap
             lich.UsesAllAbilities = false;
