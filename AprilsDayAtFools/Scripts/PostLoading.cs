@@ -26,6 +26,8 @@ namespace AprilsDayAtFools
             Called = true;
 
             Class1.PCall(ItemPostLoader.Load);
+            Class1.PCall(FreeFool.Add_Siren);
+            Class1.PCall(FreeFool.Add_Abyss);
 
             orig(self);
         }

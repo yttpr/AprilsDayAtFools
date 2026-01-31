@@ -37,6 +37,7 @@ namespace AprilsDayAtFools//change this to your namespace
             Add("Six_CH", "Six", 1, new Color32(138, 17, 17, 255), true, false, false);
             if (April.Me) Add("Secret_CH", "Secret", 2, new Color32(241, 235, 232, 255), true, false, false);
             Add("Alpha_CH", "Alpha", 1, new Color32(238, 195, 154, 255), false, false, false);
+            AddQualia("Qualia_CH", "Qualia", 3, new Color32(118, 66, 138, 255), false, false, false);
 
             //ok so basically what this is is,
             //Add("character id. the _CH", "any sort of name identifier, doesnt really matter", [area: 1 shore, 2 orph, 3 garden], color32(for the text color. its just thr rgb plus a 255 at the end for the alpha), bool do they face left, bool do they face center, bool should the show up in easy mode aswell)
@@ -45,6 +46,36 @@ namespace AprilsDayAtFools//change this to your namespace
         {
             AddSaea("Saea_CH", "Saea", 3, Color.white, true, false, false);
             AddSecondLich("Lich_CH", "Lich", 2, new Color32(253, 153, 163, 255), true, false, false);
+        }
+
+        public static void Add_Siren()
+        {
+            if (LoadedAssetsHandler.LoadedZoneDBs.ContainsKey("TheSiren"))
+            {
+                AddModdedArea("Xet_CH", "Xet", "TheSiren", "Siren");
+                AddModdedArea("Hangman_CH", "Hangman", "TheSiren", "Siren");
+                AddModdedArea("Moon_CH", "Moon", "TheSiren", "Siren");
+                AddModdedArea("Clerk_CH", "Clerk", "TheSiren", "Siren");
+                AddModdedArea("Rhys_CH", "Rhys", "TheSiren", "Siren");
+                AddModdedArea("Joy_CH", "Joy", "TheSiren", "Siren");
+                AddModdedArea("Patch_CH", "Patch", "TheSiren", "Siren");
+                AddModdedArea("Joy_CH", "Joy", "TheSiren", "Siren");
+                AddModdedArea("Lich_CH", "Lich", "TheSiren", "Siren");
+                AddModdedArea("Izide_CH", "Izide", "TheSiren", "Siren");
+            }
+        }
+        public static void Add_Abyss()
+        {
+            if (LoadedAssetsHandler.LoadedZoneDBs.ContainsKey("TheAbyss"))
+            {
+                AddModdedArea("Merced_CH", "Merced", "TheAbyss", "Abyss");
+                AddModdedArea("Cora_CH", "Cora", "TheAbyss", "Abyss");
+                AddModdedArea("Saline_CH", "Saline", "TheAbyss", "Abyss");
+                AddModdedArea("Saturn_CH", "Saturn", "TheAbyss", "Abyss");
+                AddModdedArea("Esther_CH", "Esther", "TheAbyss", "Abyss");
+                AddModdedArea("Rotcore_CH", "Rotcore", "TheAbyss", "Abyss");
+                AddModdedArea("Qualia_CH", "Qualia", "TheAbyss", "Abyss");
+            }
         }
 
         //this is for setting up the YarnProgram. if you do this somewhere else you dont have to do it again, but do note that in the .Add method it references the yarn program ID so you do need to make sure that's consistent
@@ -179,6 +210,88 @@ namespace AprilsDayAtFools//change this to your namespace
             room.encounterRoom = "Aprils." + name + ".FreeFool";
 
             ModdedNPCs.AddCustom_FreeFoolEncounter(UndeadPassiveHandler.Room, room);
+        }
+        public static void AddQualia(string id, string name, int zone, Color text, bool left, bool center, bool easy = false)
+        {
+            CharacterSO chara = LoadedAssetsHandler.GetCharacter(id);
+
+            SpeakerBundle speaker = new SpeakerBundle();
+            speaker.bundleTextColor = text;
+            speaker.dialogueSound = chara.dxSound;
+            speaker.portrait = ResourceLoader.LoadSprite("QualiaTalk.png");
+
+            Dialogues.CreateAndAddCustom_SpeakerData(name + "_SpeakerData", speaker, left, center, []);
+
+            //replace Joyce.Yarn with whatever your YarnProgram is
+            //you may need to adjust your yarn IDs so that they match up with the naming convention here.
+            Dialogues.CreateAndAddCustom_DialogueSO("Aprils." + name + ".TryHire", Joyce.Yarn, "Aprils.Untitled", "Aprils." + name + ".TryHire");
+
+            Portals.AddPortalSign(id + "_Sign", chara.characterOWSprite, Portals.NPCIDColor);
+
+            FreeFoolEncounterSO room = ScriptableObject.CreateInstance<FreeFoolEncounterSO>();
+            room.encounterEntityIDs = new string[1] { chara.name };
+            room._freeFool = chara.name;
+            room.signID = id + "_Sign";
+            room._dialogue = "Aprils." + name + ".TryHire";
+            room.encounterRoom = "Aprils." + name + ".FreeFool";
+
+            ModdedNPCs.AddCustom_FreeFoolEncounter("Aprils." + name + ".FreeFool", room);
+
+            //here, i have a bit of a systematic thing for how i name and organize the prefabs in the bundle so you may need to adjust this to your specifications. 
+            OldPatch_Prepare_NPC_RoomPrefab("Assets/Rooms2/" + name + "Room.prefab", "Aprils." + name + ".FreeFool", Joyce.Assets);//also change the assetbundle
+
+            switch (zone)
+            {
+                case 1:
+                    ZoneBGDataBaseSO zone1 = LoadedAssetsHandler.GetZoneDB("ZoneDB_Hard_01") as ZoneBGDataBaseSO;
+                    zone1._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                    break;
+                case 2:
+                    ZoneBGDataBaseSO zone2 = LoadedAssetsHandler.GetZoneDB("ZoneDB_Hard_02") as ZoneBGDataBaseSO;
+                    zone2._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                    break;
+                case 3:
+                    ZoneBGDataBaseSO zone3 = LoadedAssetsHandler.GetZoneDB("ZoneDB_Hard_03") as ZoneBGDataBaseSO;
+                    zone3._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                    break;
+            }
+
+            if (easy)
+            {
+                switch (zone)
+                {
+                    case 1:
+                        ZoneBGDataBaseSO zone1 = LoadedAssetsHandler.GetZoneDB("ZoneDB_01") as ZoneBGDataBaseSO;
+                        zone1._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                        break;
+                    case 2:
+                        ZoneBGDataBaseSO zone2 = LoadedAssetsHandler.GetZoneDB("ZoneDB_02") as ZoneBGDataBaseSO;
+                        zone2._FreeFoolsPool.Add("Aprils." + name + ".FreeFool");
+                        break;
+                }
+            }
+        }
+
+        //area
+
+        public static void AddModdedArea(string id, string name, string area_id, string area)
+        {
+            CharacterSO chara = LoadedAssetsHandler.GetCharacter(id);
+
+            FreeFoolEncounterSO room = ScriptableObject.CreateInstance<FreeFoolEncounterSO>();
+            room.encounterEntityIDs = new string[1] { chara.name };
+            room._freeFool = chara.name;
+            room.signID = id + "_Sign";
+            room._dialogue = "Aprils." + name + ".TryHire";
+            room.encounterRoom = "Aprils." + area + "." + name + ".FreeFool";
+
+            ModdedNPCs.AddCustom_FreeFoolEncounter("Aprils." + area + "." + name + ".FreeFool", room);
+
+            //here, i have a bit of a systematic thing for how i name and organize the prefabs in the bundle so you may need to adjust this to your specifications. 
+            OldPatch_Prepare_NPC_RoomPrefab("Assets/Rooms2/" + area + "/" + name + "Room.prefab", "Aprils." + area + "." + name + ".FreeFool", Joyce.Assets);//also change the assetbundle
+
+            ZoneBGDataBaseSO zone2 = LoadedAssetsHandler.GetZoneDB(area_id) as ZoneBGDataBaseSO;
+            zone2._FreeFoolsPool.Add("Aprils." + area + "." + name + ".FreeFool");
         }
 
         //you dont need to touch this method i dont think
