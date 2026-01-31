@@ -349,6 +349,12 @@
 	  <None Remove="Sprites\Characters\Prayer\PrayerLock.png" />
 	  <None Remove="Sprites\Characters\Prayer\PrayerMenu.png" />
 	  <None Remove="Sprites\Characters\Prayer\PrayerWorld.png" />
+	  <None Remove="Sprites\Characters\Qualia\QualiaBack.png" />
+	  <None Remove="Sprites\Characters\Qualia\QualiaFront.png" />
+	  <None Remove="Sprites\Characters\Qualia\QualiaLock.png" />
+	  <None Remove="Sprites\Characters\Qualia\QualiaMenu.png" />
+	  <None Remove="Sprites\Characters\Qualia\QualiaTalk.png" />
+	  <None Remove="Sprites\Characters\Qualia\QualiaWorld.png" />
 	  <None Remove="Sprites\Characters\Rhys\RhysBack.png" />
 	  <None Remove="Sprites\Characters\Rhys\RhysFront0.png" />
 	  <None Remove="Sprites\Characters\Rhys\RhysFront1.png" />
@@ -909,6 +915,12 @@
 	  <EmbeddedResource Include="Sprites\Characters\Prayer\PrayerLock.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Prayer\PrayerMenu.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Prayer\PrayerWorld.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Qualia\QualiaBack.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Qualia\QualiaFront.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Qualia\QualiaLock.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Qualia\QualiaMenu.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Qualia\QualiaTalk.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Qualia\QualiaWorld.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysBack.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysFront0.png" />
 	  <EmbeddedResource Include="Sprites\Characters\Rhys\RhysFront1.png" />
