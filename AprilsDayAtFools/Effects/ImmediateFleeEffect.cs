@@ -9,6 +9,7 @@ namespace AprilsDayAtFools
         public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
         {
             throw new NotImplementedException();
+            //FleetingPassiveAbility
             exitAmount = 0;
             foreach (TargetSlotInfo targetSlotInfo in targets)
             {

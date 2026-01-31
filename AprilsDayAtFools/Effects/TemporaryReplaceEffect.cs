@@ -23,9 +23,10 @@ namespace AprilsDayAtFools
             Setup();
             if (Replacements.ContainsKey(unit.unit) && unit.unit is CharacterCombat chara)
             {
+                //Debug.Log("was replaced yes. this should always trigger.");
                 IUnit replace = Replacements[chara];
 
-                for (int i = 0; i < Replacements.Count && replace.SimpleGetStoredValue(Temporary) <= 0 && Replacements.ContainsKey(replace); i++)
+                for (int i = 0; i < Replacements.Count && replace.SimpleGetStoredValue(Temporary) > 1 && Replacements.ContainsKey(replace); i++)
                 {
                     IUnit oldkey = replace;
                     replace = Replacements[oldkey];
