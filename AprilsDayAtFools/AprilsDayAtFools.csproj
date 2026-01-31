@@ -80,6 +80,7 @@
 	  <None Remove="Passives\Sprites\AmbushPassive.png" />
 	  <None Remove="Passives\Sprites\BacklashPassive.png" />
 	  <None Remove="Passives\Sprites\ChunkPassive.png" />
+	  <None Remove="Passives\Sprites\DepictionPassive.png" />
 	  <None Remove="Passives\Sprites\EternityPassive.png" />
 	  <None Remove="Passives\Sprites\MimicryPassive.png" />
 	  <None Remove="Passives\Sprites\OrdinaryPassive.png" />
@@ -640,6 +641,7 @@
 	  <EmbeddedResource Include="Passives\Sprites\AmbushPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\BacklashPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\ChunkPassive.png" />
+	  <EmbeddedResource Include="Passives\Sprites\DepictionPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\EternityPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\MimicryPassive.png" />
 	  <EmbeddedResource Include="Passives\Sprites\OrdinaryPassive.png" />

@@ -8,37 +8,12 @@ namespace AprilsDayAtFools
 {
     public static class Qualia
     {
-        public static void Test()
-        {
-            ImmediatePerformEffectPassive depiction = ScriptableObject.CreateInstance<ImmediatePerformEffectPassive>();
-            depiction._passiveName = "Depiction";
-            depiction.passiveIcon = ResourceLoader.LoadSprite("DepictionPassive.png");
-            depiction.m_PassiveID = IDs.Depiction;
-            depiction._enemyDescription = "This enemy is only temporary";
-            depiction._characterDescription = "This party member is only temporary.";
-            depiction.doesPassiveTriggerInformationPanel = true;
-            depiction.conditions = [];
-            depiction.effects = [Effects.GenerateEffect(ScriptableObject.CreateInstance<FleeTargetEffect>(), 1, Slots.Self)];
-            depiction._triggerOn = [TimelineEndHandler.Before];
-            depiction.AddToPassiveDatabase();
-            depiction.AddPassiveToGlossary("Depiction", "This unit is only temporary.");
-
-            ExtraPassiveAbility_Wearable_SMS add_picture = ScriptableObject.CreateInstance<ExtraPassiveAbility_Wearable_SMS>();
-            add_picture._extraPassiveAbility = depiction;
-
-            TemporaryReplacementEffect replace_all = ScriptableObject.CreateInstance<TemporaryReplacementEffect>();
-            replace_all._extraModifiers = [add_picture];
-
-            TemporaryReplacementEffect replace_unused = ScriptableObject.CreateInstance<TemporaryReplacementEffect>();
-            replace_unused._extraModifiers = [add_picture];
-
-            TargettingCanUseAbilities unused = ScriptableObject.CreateInstance<TargettingCanUseAbilities>();
-            unused.getAllies = true;
-            unused.getAllUnitSlots = false;
-            unused.ignoreCastSlot = true;
-        }
         public static void Add()
         {
+            BasePassiveAbilitySO inanimate = ScriptableObject.Instantiate(Passives.Inanimate);
+            inanimate.name = "Inanimate_Levelling";
+            inanimate._characterDescription = "This party member cannot be manually moved, healed, or Ruptured.";
+
             Character qualia = new Character("Qualia", "Qualia_CH");
             qualia.HealthColor = Pigments.Purple;
             qualia.AddUnitType("FemaleID");
@@ -62,6 +37,7 @@ namespace AprilsDayAtFools
             qualia.MenuCharacterIsSecret = false;
             qualia.MenuCharacterIgnoreRandom = false;
             qualia.SetMenuCharacterAsFullSupport();
+            qualia.AddPassives([inanimate, Passives.Withering]);
 
             ImmediatePerformEffectPassive depiction = ScriptableObject.CreateInstance<ImmediatePerformEffectPassive>();
             depiction._passiveName = "Depiction";
@@ -75,6 +51,8 @@ namespace AprilsDayAtFools
             depiction._triggerOn = [TimelineEndHandler.Before];
             depiction.AddToPassiveDatabase();
             depiction.AddPassiveToGlossary("Depiction", "This unit is only temporary.");
+
+            Intents.CreateAndAddCustom_Basic_IntentToPool(IDs.Depiction, depiction.passiveIcon, Color.white);
 
             ExtraPassiveAbility_Wearable_SMS add_picture = ScriptableObject.CreateInstance<ExtraPassiveAbility_Wearable_SMS>();
             add_picture._extraPassiveAbility = depiction;
@@ -90,46 +68,82 @@ namespace AprilsDayAtFools
             unused.getAllUnitSlots = false;
             unused.ignoreCastSlot = true;
 
-            SpawnEnemyAnywhereEffect summonScrap = ScriptableObject.CreateInstance<SpawnEnemyAnywhereEffect>();
-            summonScrap._spawnTypeID = "Spawn_Basic";
-            summonScrap.enemy = LoadedAssetsHandler.GetEnemy("ScrapBomb_EN");
-            Ability design1 = new Ability("Scrap Design", "Qualia_Design_1_A");
-            design1.Description = "Deal 4 damage to a random enemy.\nGain 4 Shield and spawn a Scrap Bomb.";
-            design1.Cost = [Pigments.Red, Pigments.Blue];
-            design1.AbilitySprite = ResourceLoader.LoadSprite("ability_creak");
-            design1.Effects = new EffectInfo[3];
-            design1.Effects[0] = Effects.GenerateEffect(replace1.Effects[0].effect, 4, ScriptableObject.CreateInstance<TargettingRandomUnit>());
-            design1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 4, Slots.Self);
-            design1.Effects[2] = Effects.GenerateEffect(summonScrap, 1);
-            design1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Damage_3_6"]);
-            design1.AddIntentsToTarget(Slots.Self, ["Field_Shield"]);
-            design1.Visuals = CustomVisuals.GetVisuals("Salt/Cube");
-            design1.AnimationTarget = Slots.Self;
+            Ability image1 = new Ability("Reimagine the Self", "Qualia_Image_1_A");
+            image1.Description = "Temporarily replace this character with a random level 1 party member.\nThis character will return at the end of the round.";
+            image1.Cost = [Pigments.Purple];
+            image1.AbilitySprite = ResourceLoader.LoadSprite("ability_reimagine.png");
+            image1.Effects = [Effects.GenerateEffect(replace_all, 1, Slots.Self)];
+            image1.AddIntentsToTarget(Slots.Self, [IDs.Depiction]);
+            image1.AnimationTarget = Slots.Self;
+            image1.Visuals = Visuals.Painting;
 
-            Ability design2 = new Ability(design1.ability, "Qualia_Design_2_A", design1.Cost);
-            design2.Name = "Creak Design";
-            design2.Description = "Deal 6 damage to a random enemy.\nGain 5 Shield and spawn a Scrap Bomb.";
-            design2.Effects[0].entryVariable = 6;
-            design2.Effects[1].entryVariable = 5;
+            Ability image2 = new Ability(image1.ability, "Qualia_Image_2_A", image1.Cost);
+            image2.Name = "Reimagine the Life";
+            image2.Description = "Temporarily replace this character with a random level 2 party member.\nThis character will return at the end of the round.";
+            image2.Effects[0].entryVariable = 2;
 
-            Ability design3 = new Ability(design2.ability, "Qualia_Design_3_A", design1.Cost);
-            design3.Name = "Tinker Design";
-            design3.Description = "Deal 7 damage to a random enemy.\nGain 6 Shield and spawn a Scrap Bomb.";
-            design3.Effects[0].entryVariable = 7;
-            design3.Effects[1].entryVariable = 6;
-            design3.EffectIntents[0].intents[0] = "Damage_7_10";
+            Ability image3 = new Ability(image2.ability, "Qualia_Image_3_A", image1.Cost);
+            image3.Name = "Reimagine the World";
+            image3.Description = "Temporarily replace this character with a random level 3 party member.\nThis character will return at the end of the round.";
+            image3.Effects[0].entryVariable = 3;
 
-            Ability design4 = new Ability(design3.ability, "Qualia_Design_4_A", design1.Cost);
-            design4.Name = "Homebrew Design";
-            design4.Description = "Deal 8 damage to a random enemy.\nGain 7 Shield and spawn a Scrap Bomb.";
-            design4.Effects[0].entryVariable = 8;
-            design4.Effects[1].entryVariable = 7;
+            Ability image4 = new Ability(image3.ability, "Qualia_Image_4_A", image1.Cost);
+            image4.Name = "Reimagine the Universe";
+            image4.Description = "Temporarily replace this character with a random level 4 party member.\nThis character will return at the end of the round.";
+            image4.Effects[0].entryVariable = 4;
 
+            Ability box1 = new Ability("Trapped in a Box", "Qualia_Box_1_A");
+            box1.Description = "Temporarily replace the left ally with a random level 1 party member.\nThey will return at the end of the round.";
+            box1.Cost = [Pigments.Blue];
+            box1.AbilitySprite = ResourceLoader.LoadSprite("ability_box.png");
+            box1.Effects = [Effects.GenerateEffect(replace_all, 1, Targeting.Slot_AllyLeft)];
+            box1.AddIntentsToTarget(Targeting.Slot_AllyLeft, [IDs.Depiction]);
+            box1.AnimationTarget = Targeting.Slot_AllyLeft;
+            box1.Visuals = Visuals.Painting;
 
-            qualia.AddLevelData(10, [design1, replace1, rearrange1]);
-            qualia.AddLevelData(14, [design2, replace2, rearrange2]);
-            qualia.AddLevelData(17, [design3, replace3, rearrange3]);
-            qualia.AddLevelData(19, [design4, replace4, rearrange4]);
+            Ability box2 = new Ability(box1.ability, "Qualia_Box_2_A", box1.Cost);
+            box2.Name = "Identity in a Box";
+            box2.Description = "Temporarily replace the left ally with a random level 2 party member.\nThey will return at the end of the round.";
+            box2.Effects[0].entryVariable = 2;
+
+            Ability box3 = new Ability(box2.ability, "Qualia_Box_3_A", box1.Cost);
+            box3.Name = "Life in a Box";
+            box3.Description = "Temporarily replace the left ally with a random level 3 party member.\nThey will return at the end of the round.";
+            box3.Effects[0].entryVariable = 3;
+
+            Ability box4 = new Ability(box3.ability, "Qualia_Box_4_A", box1.Cost);
+            box4.Name = "Reality in a Box";
+            box4.Description = "Temporarily replace the left ally with a random level 4 party member.\nThey will return at the end of the round.";
+            box4.Effects[0].entryVariable = 4;
+
+            Ability change1 = new Ability("Changeling Adoption", "Qualia_Change_1_A");
+            change1.Description = "Temporarily replace the all other allies that still have ability usage with a random level 1 party members.\nThey will return at the end of the round.";
+            change1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Red];
+            change1.AbilitySprite = ResourceLoader.LoadSprite("ability_changeling.png");
+            change1.Effects = [Effects.GenerateEffect(replace_unused, 1, Targeting.Unit_OtherAllies)];
+            change1.AddIntentsToTarget(Targeting.Unit_OtherAllies, [IDs.Depiction]);
+            change1.AnimationTarget = unused;
+            change1.Visuals = Visuals.Painting;
+
+            Ability change2 = new Ability(change1.ability, "Qualia_Change_2_A", change1.Cost);
+            change2.Name = "Changeling Enrollment";
+            change2.Description = "Temporarily replace the all other allies that still have ability usage with a random level 2 party members.\nThey will return at the end of the round.";
+            change2.Effects[0].entryVariable = 1;
+
+            Ability change3 = new Ability(change2.ability, "Qualia_Change_3_A", change1.Cost);
+            change3.Name = "Changeling Occupation";
+            change3.Description = "Temporarily replace the all other allies that still have ability usage with a random level 3 party members.\nThey will return at the end of the round.";
+            change3.Effects[0].entryVariable = 3;
+
+            Ability change4 = new Ability(change3.ability, "Qualia_Change_4_A", change1.Cost);
+            change4.Name = "Changeling Invasion";
+            change4.Description = "Temporarily replace the all other allies that still have ability usage with a random level 4 party members.\nThey will return at the end of the round.";
+            change4.Effects[0].entryVariable = 4;
+
+            qualia.AddLevelData(20, [image1, change1, box1]);
+            qualia.AddLevelData(21, [image1, change1, box1]);
+            qualia.AddLevelData(22, [image1, change1, box1]);
+            qualia.AddLevelData(23, [image1, change1, box1]);
             qualia.AddCharacter(true);
         }
 
