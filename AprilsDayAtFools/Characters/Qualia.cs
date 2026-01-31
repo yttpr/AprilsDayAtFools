@@ -74,7 +74,7 @@ namespace AprilsDayAtFools
             image1.Description = "Temporarily replace this character with a random level 1 party member.\nThis character will return at the end of the round.";
             image1.Cost = [Pigments.Purple];
             image1.AbilitySprite = ResourceLoader.LoadSprite("ability_reimagine.png");
-            image1.Effects = [Effects.GenerateEffect(replace_all, 1, Slots.Self)];
+            image1.Effects = [Effects.GenerateEffect(replace_all, 0, Slots.Self)];
             image1.AddIntentsToTarget(Slots.Self, [IDs.Depiction]);
             image1.AnimationTarget = Slots.Self;
             image1.Visuals = Visuals.Painting;
@@ -82,23 +82,23 @@ namespace AprilsDayAtFools
             Ability image2 = new Ability(image1.ability, "Qualia_Image_2_A", image1.Cost);
             image2.Name = "Reimagine the Life";
             image2.Description = "Temporarily replace this character with a random level 2 party member.\nThis character will return at the end of the round.";
-            image2.Effects[0].entryVariable = 2;
+            image2.Effects[0].entryVariable = 1;
 
             Ability image3 = new Ability(image2.ability, "Qualia_Image_3_A", image1.Cost);
             image3.Name = "Reimagine the World";
             image3.Description = "Temporarily replace this character with a random level 3 party member.\nThis character will return at the end of the round.";
-            image3.Effects[0].entryVariable = 3;
+            image3.Effects[0].entryVariable = 2;
 
             Ability image4 = new Ability(image3.ability, "Qualia_Image_4_A", image1.Cost);
             image4.Name = "Reimagine the Universe";
             image4.Description = "Temporarily replace this character with a random level 4 party member.\nThis character will return at the end of the round.";
-            image4.Effects[0].entryVariable = 4;
+            image4.Effects[0].entryVariable = 3;
 
             Ability box1 = new Ability("Trapped in a Box", "Qualia_Box_1_A");
             box1.Description = "Temporarily replace the left ally with a random level 1 party member.\nThey will return at the end of the round.";
             box1.Cost = [Pigments.Blue];
             box1.AbilitySprite = ResourceLoader.LoadSprite("ability_box.png");
-            box1.Effects = [Effects.GenerateEffect(replace_all, 1, Targeting.Slot_AllyLeft)];
+            box1.Effects = [Effects.GenerateEffect(replace_all, 0, Targeting.Slot_AllyLeft)];
             box1.AddIntentsToTarget(Targeting.Slot_AllyLeft, [IDs.Depiction]);
             box1.AnimationTarget = Targeting.Slot_AllyLeft;
             box1.Visuals = Visuals.Painting;
@@ -106,23 +106,23 @@ namespace AprilsDayAtFools
             Ability box2 = new Ability(box1.ability, "Qualia_Box_2_A", box1.Cost);
             box2.Name = "Identity in a Box";
             box2.Description = "Temporarily replace the left ally with a random level 2 party member.\nThey will return at the end of the round.";
-            box2.Effects[0].entryVariable = 2;
+            box2.Effects[0].entryVariable = 1;
 
             Ability box3 = new Ability(box2.ability, "Qualia_Box_3_A", box1.Cost);
             box3.Name = "Life in a Box";
             box3.Description = "Temporarily replace the left ally with a random level 3 party member.\nThey will return at the end of the round.";
-            box3.Effects[0].entryVariable = 3;
+            box3.Effects[0].entryVariable = 2;
 
             Ability box4 = new Ability(box3.ability, "Qualia_Box_4_A", box1.Cost);
             box4.Name = "Reality in a Box";
             box4.Description = "Temporarily replace the left ally with a random level 4 party member.\nThey will return at the end of the round.";
-            box4.Effects[0].entryVariable = 4;
+            box4.Effects[0].entryVariable = 3;
 
             Ability change1 = new Ability("Changeling Adoption", "Qualia_Change_1_A");
             change1.Description = "Temporarily replace the all other allies that still have ability usage with a random level 1 party members.\nThey will return at the end of the round.";
             change1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Red];
             change1.AbilitySprite = ResourceLoader.LoadSprite("ability_changeling.png");
-            change1.Effects = [Effects.GenerateEffect(replace_unused, 1, Targeting.Unit_OtherAllies)];
+            change1.Effects = [Effects.GenerateEffect(replace_unused, 0, Targeting.Unit_OtherAllies)];
             change1.AddIntentsToTarget(Targeting.Unit_OtherAllies, [IDs.Depiction]);
             change1.AnimationTarget = unused;
             change1.Visuals = Visuals.Painting;
@@ -135,12 +135,12 @@ namespace AprilsDayAtFools
             Ability change3 = new Ability(change2.ability, "Qualia_Change_3_A", change1.Cost);
             change3.Name = "Changeling Occupation";
             change3.Description = "Temporarily replace the all other allies that still have ability usage with a random level 3 party members.\nThey will return at the end of the round.";
-            change3.Effects[0].entryVariable = 3;
+            change3.Effects[0].entryVariable = 2;
 
             Ability change4 = new Ability(change3.ability, "Qualia_Change_4_A", change1.Cost);
             change4.Name = "Changeling Invasion";
             change4.Description = "Temporarily replace the all other allies that still have ability usage with a random level 4 party members.\nThey will return at the end of the round.";
-            change4.Effects[0].entryVariable = 4;
+            change4.Effects[0].entryVariable = 3;
 
             qualia.AddLevelData(20, [image1, change1, box1]);
             qualia.AddLevelData(21, [image1, change1, box1]);
