@@ -62,6 +62,7 @@ namespace AprilsDayAtFools
             Replacements[target] = replacement;
         }
         public static TemporaryReplaceBoxer Default;
+        public static CannotUnboxHandler Empty;
         public static TemporaryReplaceBoxer GetDefault()
         {
             Setup();
@@ -73,6 +74,23 @@ namespace AprilsDayAtFools
             }
 
             return Default;
+        }
+        public static CannotUnboxHandler GetEmpty()
+        {
+            if (Empty == null)
+            {
+                Empty = ScriptableObject.CreateInstance<CannotUnboxHandler>();
+                Empty._unboxConditions = [TriggerCalls.Count];
+            }
+
+            return Empty;
+        }
+    }
+    public class CannotUnboxHandler : UnboxUnitHandlerSO
+    {
+        public override bool CanBeUnboxed(CombatStats stats, BoxedUnit unit, object senderData)
+        {
+            return false;
         }
     }
 
@@ -92,7 +110,10 @@ namespace AprilsDayAtFools
                     {
                         IUnit unit = target.Unit;
 
-                        if (stats.TryBoxCharacter(unit.ID, TemporaryReplaceBoxer.GetDefault(), CombatType_GameIDs.Exit_Fleeting.ToString()))
+                        UnboxUnitHandlerSO handler = TemporaryReplaceBoxer.GetDefault();
+                        if (unit.ContainsPassiveAbility(IDs.Depiction)) handler = TemporaryReplaceBoxer.GetEmpty();
+
+                        if (stats.TryBoxCharacter(unit.ID, handler, CombatType_GameIDs.Exit_Fleeting.ToString()))
                         {
                             CharacterSO character = getRandom(entryVariable);
                             int currentHealth = character.GetMaxHealth(entryVariable);
