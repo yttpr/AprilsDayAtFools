@@ -47,6 +47,7 @@ namespace AprilsDayAtFools
             saea.AddFinalBossAchievementData("Heaven", HeavenACH);
             saea.GenerateMenuCharacter(ResourceLoader.LoadSprite("SaeaMenu.png"), ResourceLoader.LoadSprite("SaeaLock.png"));
             saea.MenuCharacterIsSecret = true;
+            saea.MenuCharacterIgnoreRandom = false;
             saea.SetMenuCharacterAsFullSupport();
             saea.AddPassive(permanent);
 

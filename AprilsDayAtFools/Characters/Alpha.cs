@@ -48,7 +48,7 @@ namespace AprilsDayAtFools
             alpha.AddFinalBossAchievementData("Heaven", HeavenACH);
             alpha.GenerateMenuCharacter(ResourceLoader.LoadSprite("AlphaMenu.png"), ResourceLoader.LoadSprite("AlphaLock.png"));
             alpha.MenuCharacterIsSecret = true;
-            alpha.MenuCharacterIgnoreRandom = true;
+            alpha.MenuCharacterIgnoreRandom = false;
             alpha.SetMenuCharacterAsFullSupport();
             alpha.AddPassive(special);
 
