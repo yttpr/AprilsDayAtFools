@@ -11,10 +11,11 @@ namespace AprilsDayAtFools
 {
     public class TemporaryReplaceBoxer : UnboxUnitHandlerSO
     {
+        public static string Temporary => "ADAF_TemporaryAlly";
         public override bool CanBeUnboxed(CombatStats stats, BoxedUnit unit, object senderData)
         {
-            Debug.Log("canbeunboxed:" + unit.unit.Name + " has depiction: " + unit.unit.ContainsPassiveAbility(IDs.Depiction).ToString());
-            return !unit.unit.ContainsPassiveAbility(IDs.Depiction);
+            //Debug.Log("canbeunboxed:" + unit.unit.Name + " has depiction: " + unit.unit.ContainsPassiveAbility(IDs.Depiction).ToString());
+            return unit.unit.SimpleGetStoredValue(Temporary) <= 0;
         }
         public static Dictionary<IUnit, IUnit> Replacements;
         public override void ProcessUnbox(CombatStats stats, BoxedUnit unit, object senderData)
@@ -24,7 +25,7 @@ namespace AprilsDayAtFools
             {
                 IUnit replace = Replacements[chara];
 
-                for (int i = 0; i < Replacements.Count && replace.ContainsPassiveAbility(IDs.Depiction) && Replacements.ContainsKey(replace); i++)
+                for (int i = 0; i < Replacements.Count && replace.SimpleGetStoredValue(Temporary) <= 0 && Replacements.ContainsKey(replace); i++)
                 {
                     IUnit oldkey = replace;
                     replace = Replacements[oldkey];
@@ -60,6 +61,7 @@ namespace AprilsDayAtFools
             //if (replacement.ContainsPassiveAbility(IDs.Depiction) && target.ContainsPassiveAbility(IDs.Depiction) && Replacements.Values.Contains(target))
 
             Replacements[target] = replacement;
+            replacement.SimpleSetStoredValue(Temporary, 1);
         }
         public static TemporaryReplaceBoxer Default;
         public static CannotUnboxHandler Empty;
@@ -111,7 +113,7 @@ namespace AprilsDayAtFools
                         IUnit unit = target.Unit;
 
                         UnboxUnitHandlerSO handler = TemporaryReplaceBoxer.GetDefault();
-                        if (unit.ContainsPassiveAbility(IDs.Depiction)) handler = TemporaryReplaceBoxer.GetEmpty();
+                        //if (unit.ContainsPassiveAbility(IDs.Depiction)) handler = TemporaryReplaceBoxer.GetEmpty();
 
                         if (stats.TryBoxCharacter(unit.ID, handler, CombatType_GameIDs.Exit_Fleeting.ToString()))
                         {
