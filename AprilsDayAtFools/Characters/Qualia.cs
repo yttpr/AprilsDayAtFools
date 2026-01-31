@@ -31,6 +31,11 @@ namespace AprilsDayAtFools
 
             TemporaryReplacementEffect replace_unused = ScriptableObject.CreateInstance<TemporaryReplacementEffect>();
             replace_unused._extraModifiers = [add_picture];
+
+            TargettingCanUseAbilities unused = ScriptableObject.CreateInstance<TargettingCanUseAbilities>();
+            unused.getAllies = true;
+            unused.getAllUnitSlots = false;
+            unused.ignoreCastSlot = true;
         }
     }
 }
