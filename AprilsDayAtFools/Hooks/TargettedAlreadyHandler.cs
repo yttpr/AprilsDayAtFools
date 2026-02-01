@@ -53,6 +53,15 @@ namespace AprilsDayAtFools
             IDetour hook1 = new Hook(typeof(EffectInfo).GetMethod(nameof(EffectInfo.StartEffect), ~BindingFlags.Default), typeof(TargettedAlreadyHandler).GetMethod(nameof(TargettedAlreadyHandler_StartEffect), ~BindingFlags.Default));
             Fools = new Dictionary<int, List<int>>();
             Enemies = new Dictionary<int, List<int>>();
+            NotificationHook.AddAction(NotifCheck);
+        }
+        public static void NotifCheck(string name, object sender, object args)
+        {
+            if (name == TriggerCalls.OnBeforeCombatStart.ToString())
+            {
+                Fools.Clear();
+                Enemies.Clear();
+            }
         }
     }
 
@@ -62,23 +71,10 @@ namespace AprilsDayAtFools
         public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
         {
             List<TargetSlotInfo> ret = [];
-            foreach (TargetSlotInfo target in targets)
+            foreach (CombatSlot slot in caster.IsUnitCharacter ? stats.combatSlots.EnemySlots : stats.combatSlots.CharacterSlots)
             {
-                if (target.IsTargetCharacterSlot == caster.IsUnitCharacter) continue;
-
-                bool add = false;
-
-                if (TargettedAlreadyHandler.CheckSlot(caster, target.SlotID)) add = true;
-
-                if (!areTargetSlots && target.HasUnit)
-                {
-                    for (int i = 0; i < target.Unit.Size; i++)
-                    {
-                        if (TargettedAlreadyHandler.CheckSlot(caster, target.Unit.SlotID + i)) add = true;
-                    }
-                }
-
-                if (add) ret.Add(target);
+                if (TargettedAlreadyHandler.CheckSlot(caster, slot.SlotID))
+                    ret.Add(slot.TargetSlotInformation);
             }
 
             return Effect.PerformEffect(stats, caster, ret.ToArray(), areTargetSlots, entryVariable, out exitAmount);
