@@ -77,7 +77,7 @@ namespace AprilsDayAtFools
                     ret.Add(slot.TargetSlotInformation);
             }
 
-            return Effect.PerformEffect(stats, caster, ret.ToArray(), areTargetSlots, entryVariable, out exitAmount);
+            return Effect.PerformEffect(stats, caster, ret.ToArray(), true, entryVariable, out exitAmount);
         }
 
         public static TargettedAlreadyControllerEffect Create(EffectSO effect)
