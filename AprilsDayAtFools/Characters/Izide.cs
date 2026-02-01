@@ -45,7 +45,7 @@ namespace AprilsDayAtFools
             izide.MenuCharacterIsSecret = false;
             izide.MenuCharacterIgnoreRandom = false;
             izide.SetMenuCharacterAsFullDPS();
-            izide.AddPassive(Passives.Fleeting6);
+            izide.AddPassive(Passives.Fleeting4);
 
             Intents.CreateAndAddCustom_Damage_IntentToPool("ADAF_Damage_Delay", ResourceLoader.LoadSprite("DelayedAttackIcon.png"), (Intents.GetInGame_IntentInfo(IntentType_GameIDs.Damage_11_15) as IntentInfoDamage).GetColor(true),
                 ResourceLoader.LoadSprite("DelayedAttackIcon.png"), (Intents.GetInGame_IntentInfo(IntentType_GameIDs.Damage_11_15) as IntentInfoDamage).GetColor(false));
@@ -78,34 +78,32 @@ namespace AprilsDayAtFools
             TargettingByAlreadyAttacked behind_target = TargettingByAlreadyAttacked.Create(Targetting.Everything(false));
 
             Ability med1 = new Ability("Meditations on Senescence", "Izide_Med_1_A");
-            med1.Description = "Deal 2 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.\nFlee 1 turn sooner.";
+            med1.Description = "Deal 2 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.";
             med1.AbilitySprite = ResourceLoader.LoadSprite("ability_meditations.png");
-            med1.Cost = [Pigments.Purple, Pigments.Red];
-            med1.Effects = new EffectInfo[4];
+            med1.Cost = [Pigments.Red, Pigments.Red];
+            med1.Effects = new EffectInfo[3];
             med1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 2, Slots.Front);
             med1.Effects[1] = Effects.GenerateEffect(increase, 1, Slots.Self, BasicEffects.DidThat(true));
             med1.Effects[2] = Effects.GenerateEffect(izideDefault, 1, Slots.Self);
-            med1.Effects[3] = Effects.GenerateEffect(fleeting, 1, Slots.Self);
             med1.AddIntentsToTarget(Slots.Front, ["Damage_1_2"]);
             med1.AddIntentsToTarget(Slots.Self, ["Misc"]);
             med1.AnimationTarget = Slots.Front;
             med1.Visuals = Visuals.RingABell;
 
-            Ability med2 = new Ability(med1.ability, "Izide_Med_2_A", med1.Cost);
+            Ability med2 = new Ability(med1.ability, "Izide_Med_2_A", [Pigments.RedBlue, Pigments.RedBlue]);
             med2.Name = "Meditations on Passage";
-            med2.Description = "Deal 3 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.\nFlee 1 turn sooner.";
-            med2.Effects[0].entryVariable = 3;
-            med2.EffectIntents[0].intents[0] = "Damage_3_6";
+            med2.Description = "Deal 2 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.";
 
-            Ability med3 = new Ability(med2.ability, "Izide_Med_3_A", med1.Cost);
+            Ability med3 = new Ability(med2.ability, "Izide_Med_3_A", med2.Cost);
             med3.Name = "Meditations on Afterlife";
-            med3.Description = "Deal 4 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.\nFlee 1 turn sooner.";
-            med3.Effects[0].entryVariable = 4;
+            med3.Description = "Deal 3 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.";
+            med3.Effects[0].entryVariable = 3;
+            med3.EffectIntents[0].intents[0] = "Damage_3_6";
 
-            Ability med4 = new Ability(med3.ability, "Izide_Med_4_A", med1.Cost);
+            Ability med4 = new Ability(med3.ability, "Izide_Med_4_A", [Pigments.Grey, Pigments.Grey]);
             med4.Name = "Meditations on Eternity";
-            med4.Description = "Deal 5 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.\nFlee 1 turn sooner.";
-            med4.Effects[0].entryVariable = 5;
+            med4.Description = "Deal 3 damage to the Opposing enemy and increase the damage of \"Of Ruin\" and \"From Behind\" by the amount of damage dealt.";
+            med4.Effects[0].entryVariable = 3;
 
             Ability ruin1 = new Ability("Follower of Ruin", "Izide_Ruin_1_A");
             ruin1.Description = "At the start of the next turn, deal 12 damage to the current Opposing enemy position.\nDecrease this ability's damage by 3.";
@@ -141,40 +139,46 @@ namespace AprilsDayAtFools
             ruin4.Effects[1].entryVariable = 6;
             ruin4.EffectIntents[0].intents[1] = "Damage_21";
 
+            //idea: targets every enemy position this party member targetted before?
+            //hook into effectinfo start effect, static dictionary<int, List<int>> to hold slotIDs. store specifically opposing slots.
+
+            BaseCombatTargettingSO everything = Targetting.Everything(false);
+
             Ability behind1 = new Ability("From Behind Time", "Izide_Behind_1_A");
-            behind1.Description = "At the start of the next turn, deal 8 damage to the current positions of all enemies this party member has damaged before.\nDecrease this ability's damage by 3.";
+            behind1.Description = "At the start of the next turn, deal 8 damage to all enemy positions this party member has targetted before.\nDecrease this ability's damage by 3.";
             behind1.AbilitySprite = ResourceLoader.LoadSprite("ability_behind.png");
             behind1.Cost = [Pigments.Yellow, Pigments.Red, Pigments.Red];
-            behind1.Effects = new EffectInfo[4];
-            behind1.Effects[0] = Effects.GenerateEffect(behind_dmg, 8, behind_target);
-            behind1.Effects[1] = Effects.GenerateEffect(behind_stat, 3, Slots.Self);
-            behind1.Effects[2] = Effects.GenerateEffect(izideDefault, 1, Slots.Self);
-            behind1.Effects[3] = Effects.GenerateEffect(izideSprites, 1, Slots.Self, BasicEffects.DidThat(false, 3));
-            behind1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc_Hidden"]);
-            behind1.AddIntentsToTarget(behind_target, ["ADAF_Damage_Delay", "Damage_7_10"]);
+            behind1.Effects = new EffectInfo[5];
+            behind1.Effects[0] = Effects.GenerateEffect(TargettedAlreadyVisualsEffect.Create(CustomVisuals.GetVisuals("Salt/Rose")));
+            behind1.Effects[1] = Effects.GenerateEffect(TargettedAlreadyControllerEffect.Create(behind_dmg), 8, everything);
+            behind1.Effects[2] = Effects.GenerateEffect(behind_stat, 3, Slots.Self);
+            behind1.Effects[3] = Effects.GenerateEffect(izideDefault, 1, Slots.Self);
+            behind1.Effects[4] = Effects.GenerateEffect(izideSprites, 1, Slots.Self, BasicEffects.DidThat(false, 3));
+            behind1.AddIntentsToTarget(everything, ["Misc_Hidden"]);
+            behind1.AddIntentsToTarget(ScriptableObject.CreateInstance<TargettedAlreadyTargetting>(), ["ADAF_Damage_Delay", "Damage_7_10"]);
             behind1.AddIntentsToTarget(Slots.Self, ["Misc"]);
             behind1.UnitStoreData = UnitStoreData.GetCustom_UnitStoreData(IDs.Behind);
-            behind1.AnimationTarget = TargettingByAlreadyAttacked.Create(Targeting.Unit_AllOpponents);
-            behind1.Visuals = CustomVisuals.GetVisuals("Salt/Rose");
+            behind1.AnimationTarget = Slots.Front;
+            behind1.Visuals = null;
 
             Ability behind2 = new Ability(behind1.ability, "Izide_Behind_2_A", behind1.Cost);
             behind2.Name = "From Behind Past";
-            behind2.Description = "At the start of the next turn, deal 10 damage to the current positions of all enemies this party member has damaged before.\nDecrease this ability's damage by 4.";
-            behind2.Effects[0].entryVariable = 10;
-            behind2.Effects[1].entryVariable = 4;
+            behind2.Description = "At the start of the next turn, deal 10 damage to all enemy positions this party member has targetted before.\nDecrease this ability's damage by 4.";
+            behind2.Effects[1].entryVariable = 10;
+            behind2.Effects[2].entryVariable = 4;
 
             Ability behind3 = new Ability(behind2.ability, "Izide_Behind_3_A", behind1.Cost);
             behind3.Name = "From Behind History";
-            behind3.Description = "At the start of the next turn, deal 12 damage to the current positions of all enemies this party member has damaged before.\nDecrease this ability's damage by 5.";
-            behind3.Effects[0].entryVariable = 12;
-            behind3.Effects[1].entryVariable = 5;
+            behind3.Description = "At the start of the next turn, deal 12 damage to all enemy positions this party member has targetted before.\nDecrease this ability's damage by 5.";
+            behind3.Effects[1].entryVariable = 12;
+            behind3.Effects[2].entryVariable = 5;
             behind3.EffectIntents[1].intents[1] = "Damage_11_15";
 
             Ability behind4 = new Ability(behind3.ability, "Izide_Behind_4_A", behind1.Cost);
             behind4.Name = "From Behind Creation";
-            behind4.Description = "At the start of the next turn, deal 14 damage to the current positions of all enemies this party member has damaged before.\nDecrease this ability's damage by 6.";
-            behind4.Effects[0].entryVariable = 14;
-            behind4.Effects[1].entryVariable = 6;
+            behind4.Description = "At the start of the next turn, deal 14 damage to all enemy positions this party member has targetted before.\nDecrease this ability's damage by 6.";
+            behind4.Effects[1].entryVariable = 14;
+            behind4.Effects[2].entryVariable = 6;
             
             izide.AddLevelData(12, [med1, ruin1, behind1]);
             izide.AddLevelData(16, [med2, ruin2, behind2]);
