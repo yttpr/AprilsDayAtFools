@@ -63,6 +63,7 @@ namespace AprilsDayAtFools
             Class1.PCall(FromBehindHandler.Setup);
             Class1.PCall(TimelineEndHandler.Setup);
             Class1.PCall(TargettedAlreadyHandler.Setup);
+            Class1.PCall(BiggerCharacterDragSizeHook.Setup);
 
             Class1.PCall(Anesthetics.Add);
             Class1.PCall(Power.Add);
