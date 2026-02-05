@@ -12,7 +12,7 @@ namespace AprilsDayAtFools
         {
             BasePassiveAbilitySO inanimate = ScriptableObject.Instantiate(Passives.Inanimate);
             inanimate.name = "Inanimate_Levelling";
-            inanimate._characterDescription = "This party member cannot be manually moved, healed, or Ruptured.";
+            inanimate._characterDescription = "This party member cannot be manually moved, healed, resurrected, or Ruptured.";
 
             Character qualia = new Character("Qualia", "Qualia_CH");
             qualia.HealthColor = Pigments.Purple;
