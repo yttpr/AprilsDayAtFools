@@ -19,7 +19,7 @@ namespace AprilsDayAtFools
 
         public static IEnumerator CombatPointerLayout_Dragging(Func<CombatPointerLayout, Image, IEnumerator> orig, CombatPointerLayout self, Image dragItem)
         {
-            if (Names.Contains(dragItem.transform.parent.parent.GetComponent<Animator>().runtimeAnimatorController.name))
+            if (dragItem.transform.parent.parent.GetComponent<Animator>() != null && Names.Contains(dragItem.transform.parent.parent.GetComponent<Animator>().runtimeAnimatorController.name))
             {
                 //Debug.Log(dragItem.transform.parent.parent.GetComponent<Animator>().name);
                 //Debug.Log(dragItem.gameObject.GetComponent<RectTransform>().rect.size);

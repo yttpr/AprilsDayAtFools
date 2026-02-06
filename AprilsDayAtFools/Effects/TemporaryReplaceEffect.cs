@@ -43,7 +43,7 @@ namespace AprilsDayAtFools
                 return false;
             }
 
-            Debug.Log(unit.unit.Name + " can return");
+            //Debug.Log(unit.unit.Name + " can return");
             return unit.unit.SimpleGetStoredValue(Temporary) <= 0;
         }
         public static Dictionary<IUnit, IUnit> Replacements;

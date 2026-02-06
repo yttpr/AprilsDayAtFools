@@ -19,7 +19,7 @@ namespace AprilsDayAtFools
                 }
                 else
                 {
-                    Debug.Log("hi");
+                    //Debug.Log("hi");
                     _run = ScriptableObject.CreateInstance<AddDelayedAttackEffect>();
                 }
             }
