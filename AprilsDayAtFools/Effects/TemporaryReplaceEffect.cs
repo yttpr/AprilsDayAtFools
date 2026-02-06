@@ -39,8 +39,11 @@ namespace AprilsDayAtFools
             if (replace == null || !replace.IsAlive || (replace.HasFled && replace.SimpleGetStoredValue(AllowedFlee) <= 0))
             {
                 //Debug.Log(unit.unit.Name + " has null/fled/dead replacement");
-                unit.unit.SimpleSetStoredValue(Late, 1);
-                return false;
+                if (stats.combatSlots.CharacterSlots[replace.SlotID].HasUnit)
+                {
+                    unit.unit.SimpleSetStoredValue(Late, 1);
+                    return false;
+                }
             }
 
             //Debug.Log(unit.unit.Name + " can return");
