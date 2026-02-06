@@ -184,6 +184,7 @@ namespace AprilsDayAtFools
             if (!CheckCharHasBosses("Sunflower_CH")) return false;
             if (!CheckCharHasBosses("Snail_CH")) return false;
             if (!CheckCharHasBosses("Lich_CH")) return false;
+            if (!CheckCharHasBosses("Izide")) return false;
 
             return true;
         }
