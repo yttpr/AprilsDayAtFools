@@ -67,9 +67,7 @@ namespace AprilsDayAtFools
             replace_unused.OnlyUseAbilities = true;
 
             TargettingCanUseAbilities unused = ScriptableObject.CreateInstance<TargettingCanUseAbilities>();
-            unused.getAllies = true;
-            unused.getAllUnitSlots = false;
-            unused.ignoreCastSlot = true;
+            unused.Source = Targeting.Slot_AlliesAllRights;
 
             AnimationVisualsEffect painting = ScriptableObject.CreateInstance<AnimationVisualsEffect>();
             painting._animationTarget = Slots.Self;
@@ -103,7 +101,7 @@ namespace AprilsDayAtFools
             image4.Effects[2].entryVariable = 3;
 
             Ability box1 = new Ability("Trapped in a Box", "Qualia_Box_1_A");
-            box1.Description = "Temporarily replace the left ally with a random level 1 party member.\nThey will return at the end of the round.";
+            box1.Description = "Temporarily replace the Left ally with a random level 1 party member.\nThey will return at the end of the round.";
             box1.Cost = [Pigments.Blue];
             box1.AbilitySprite = ResourceLoader.LoadSprite("ability_box.png");
             box1.Effects = [Effects.GenerateEffect(replace_all, 0, Targeting.Slot_AllyLeft)];
@@ -113,47 +111,48 @@ namespace AprilsDayAtFools
 
             Ability box2 = new Ability(box1.ability, "Qualia_Box_2_A", box1.Cost);
             box2.Name = "Identity in a Box";
-            box2.Description = "Temporarily replace the left ally with a random level 2 party member.\nThey will return at the end of the round.";
+            box2.Description = "Temporarily replace the Left ally with a random level 2 party member.\nThey will return at the end of the round.";
             box2.Effects[0].entryVariable = 1;
 
             Ability box3 = new Ability(box2.ability, "Qualia_Box_3_A", box1.Cost);
             box3.Name = "Life in a Box";
-            box3.Description = "Temporarily replace the left ally with a random level 3 party member.\nThey will return at the end of the round.";
+            box3.Description = "Temporarily replace the Left ally with a random level 3 party member.\nThey will return at the end of the round.";
             box3.Effects[0].entryVariable = 2;
 
             Ability box4 = new Ability(box3.ability, "Qualia_Box_4_A", box1.Cost);
             box4.Name = "Reality in a Box";
-            box4.Description = "Temporarily replace the left ally with a random level 4 party member.\nThey will return at the end of the round.";
+            box4.Description = "Temporarily replace the Left ally with a random level 4 party member.\nThey will return at the end of the round.";
             box4.Effects[0].entryVariable = 3;
 
+            //rework !
             Ability change1 = new Ability("Changeling Adoption", "Qualia_Change_1_A");
-            change1.Description = "Temporarily replace the all other allies that still have ability usage with a random level 1 party members.\nThey will return at the end of the round.";
+            change1.Description = "Temporarily replace all allies to the Right that still have ability usage with a random level 1 party members.\nThey will return at the end of the round.";
             change1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Red];
             change1.AbilitySprite = ResourceLoader.LoadSprite("ability_changeling.png");
-            change1.Effects = [Effects.GenerateEffect(replace_unused, 0, Targeting.Unit_OtherAllies)];
-            change1.AddIntentsToTarget(Targeting.Unit_OtherAllies, [IDs.Depiction]);
+            change1.Effects = [Effects.GenerateEffect(replace_unused, 0, Targeting.Slot_AlliesAllRights)];
+            change1.AddIntentsToTarget(Targeting.Slot_AlliesAllRights, [IDs.Depiction]);
             change1.AnimationTarget = unused;
             change1.Visuals = Visuals.Painting;
 
             Ability change2 = new Ability(change1.ability, "Qualia_Change_2_A", change1.Cost);
             change2.Name = "Changeling Enrollment";
-            change2.Description = "Temporarily replace the all other allies that still have ability usage with a random level 2 party members.\nThey will return at the end of the round.";
+            change2.Description = "Temporarily replace all allies to the Right that still have ability usage with a random level 2 party members.\nThey will return at the end of the round.";
             change2.Effects[0].entryVariable = 1;
 
             Ability change3 = new Ability(change2.ability, "Qualia_Change_3_A", change1.Cost);
             change3.Name = "Changeling Occupation";
-            change3.Description = "Temporarily replace the all other allies that still have ability usage with a random level 3 party members.\nThey will return at the end of the round.";
+            change3.Description = "Temporarily replace all allies to the Right that still have ability usage with a random level 3 party members.\nThey will return at the end of the round.";
             change3.Effects[0].entryVariable = 2;
 
             Ability change4 = new Ability(change3.ability, "Qualia_Change_4_A", change1.Cost);
             change4.Name = "Changeling Invasion";
-            change4.Description = "Temporarily replace the all other allies that still have ability usage with a random level 4 party members.\nThey will return at the end of the round.";
+            change4.Description = "Temporarily replace all allies to the Right that still have ability usage with a random level 4 party members.\nThey will return at the end of the round.";
             change4.Effects[0].entryVariable = 3;
 
-            qualia.AddLevelData(20, [image1, change1, box1]);
-            qualia.AddLevelData(21, [image2, change2, box2]);
-            qualia.AddLevelData(22, [image3, change3, box3]);
-            qualia.AddLevelData(23, [image4, change4, box4]);
+            qualia.AddLevelData(20, [image1, box1, change1]);
+            qualia.AddLevelData(21, [image2, box2, change2]);
+            qualia.AddLevelData(22, [image3, box3, change3]);
+            qualia.AddLevelData(23, [image4, box4, change4]);
             qualia.AddCharacter(true);
             SlidingHandler.AddCharacter(qualia.character);
         }
