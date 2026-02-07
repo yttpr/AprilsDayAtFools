@@ -59,7 +59,7 @@ namespace AprilsDayAtFools//change this to your namespace
                 AddModdedArea("Rhys_CH", "Rhys", "TheSiren", "Siren");
                 AddModdedArea("Joy_CH", "Joy", "TheSiren", "Siren");
                 AddModdedArea("Patch_CH", "Patch", "TheSiren", "Siren");
-                AddModdedArea("Joy_CH", "Joy", "TheSiren", "Siren");
+                AddModdedArea("Catten_CH", "Catten", "TheSiren", "Siren");
                 AddModdedArea("Lich_CH", "Lich", "TheSiren", "Siren");
                 AddModdedArea("Izide_CH", "Izide", "TheSiren", "Siren");
             }
