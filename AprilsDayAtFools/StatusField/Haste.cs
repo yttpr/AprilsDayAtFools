@@ -34,6 +34,7 @@ namespace AprilsDayAtFools
             if (!LoadedDBsHandler.IntentDB.m_IntentBasicPool.ContainsKey(Intent)) LoadedDBsHandler.IntentDB.AddNewBasicIntent(Intent, intentinfo);
 
             Setup();
+            AddValue();
         }
         public static string Trigger => "AprilsFools_Haste_Trigger";
         public static void CombatStats_TurnStart(Action<CombatStats> orig, CombatStats self)
@@ -48,30 +49,43 @@ namespace AprilsDayAtFools
         {
             IDetour hook = new Hook(typeof(CombatStats).GetMethod(nameof(CombatStats.PlayerTurnStart), ~System.Reflection.BindingFlags.Default), typeof(Haste).GetMethod(nameof(CombatStats_TurnStart), ~System.Reflection.BindingFlags.Default));
         }
+
+
+        public static string Refresh => "ADAF_Haste_Refresh";
+        public static void AddValue()
+        {
+            UnitStoreData.CreateAndAdd_IntTooltip_UnitStoreDataToPool(Refresh, "Haste +{0}", Misc.GetInGame_UITextColor(Misc.UITextColorIDs.Positive));
+        }
     }
     public class HasteSE_SO : StatusEffect_SO
     {
         public override bool IsPositive => true;
         public override void OnTriggerAttached(StatusEffect_Holder holder, IStatusEffector caller)
         {
-            if (caller.IsStatusEffectorCharacter) CombatManager.Instance.AddObserver(holder.OnEventTriggered_01, TriggerCalls.OnAbilityUsed.ToString(), caller);
-            else CombatManager.Instance.AddObserver(holder.OnEventTriggered_03, Haste.Trigger, caller);
+            if (caller.IsStatusEffectorCharacter)
+            {
+                CombatManager.Instance.AddObserver(holder.OnEventTriggered_01, TriggerCalls.OnAbilityUsed.ToString(), caller);
+            }
+            CombatManager.Instance.AddObserver(holder.OnEventTriggered_03, Haste.Trigger, caller);
             CombatManager.Instance.AddObserver(holder.OnEventTriggered_02, TriggerCalls.AttacksPerTurn.ToString(), caller);
         }
 
         public override void OnTriggerDettached(StatusEffect_Holder holder, IStatusEffector caller)
         {
-            if (caller.IsStatusEffectorCharacter) CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_01, TriggerCalls.OnAbilityUsed.ToString(), caller);
-            else CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_03, Haste.Trigger, caller);
+            if (caller.IsStatusEffectorCharacter)
+            {
+                CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_01, TriggerCalls.OnAbilityUsed.ToString(), caller);
+            }
+            CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_03, Haste.Trigger, caller);
             CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_02, TriggerCalls.AttacksPerTurn.ToString(), caller);
         }
 
         public override void OnEventCall_01(StatusEffect_Holder holder, object sender, object args)
         {
-            if (sender is CharacterCombat chara)
+            if (sender is CharacterCombat chara && chara.SimpleGetStoredValue(Haste.Refresh) > 0)
             {
-                chara.RefreshAbilityUse();
-                ReduceDuration(holder, sender as IStatusEffector);
+                if (chara.RefreshAbilityUse())
+                    chara.SimpleSetStoredValue(Haste.Refresh, chara.SimpleGetStoredValue(Haste.Refresh) - 1);
             }
         }
         public override void OnEventCall_02(StatusEffect_Holder holder, object sender, object args)
