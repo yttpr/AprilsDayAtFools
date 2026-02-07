@@ -10,9 +10,19 @@ namespace AprilsDayAtFools
     {
         public static void Add()
         {
-            BasePassiveAbilitySO inanimate = ScriptableObject.Instantiate(Passives.Inanimate);
+            EvilInanimatePassive inanimate = ScriptableObject.CreateInstance<EvilInanimatePassive>();
             inanimate.name = "Inanimate_Levelling";
-            inanimate._characterDescription = "This party member cannot be manually moved, healed, resurrected, or Ruptured.";
+            inanimate._passiveName = Passives.Inanimate._passiveName;
+            inanimate.passiveIcon = Passives.Inanimate.passiveIcon;
+            inanimate.m_PassiveID = Passives.Inanimate.m_PassiveID;
+            inanimate._enemyDescription = Passives.Inanimate._enemyDescription;
+            inanimate._characterDescription = "This party member cannot be manually moved, healed, resurrected, Gutted, or Ruptured.";
+            inanimate.conditions = Passives.Inanimate.conditions;
+            inanimate._triggerOn = Passives.Inanimate._triggerOn;
+            inanimate.doesPassiveTriggerInformationPanel = Passives.Inanimate.doesPassiveTriggerInformationPanel;
+            inanimate.specialStoredData = Passives.Inanimate.specialStoredData;
+            inanimate._GuttedStatus = (Passives.Inanimate as InanimatePassiveAbility)._GuttedStatus;
+            inanimate._RupturedStatus = (Passives.Inanimate as InanimatePassiveAbility)._RupturedStatus;
 
             Character qualia = new Character("Qualia", "Qualia_CH");
             qualia.HealthColor = Pigments.Purple;
@@ -125,6 +135,7 @@ namespace AprilsDayAtFools
             box4.Effects[0].entryVariable = 3;
 
             //rework !
+            // i did
             Ability change1 = new Ability("Changeling Adoption", "Qualia_Change_1_A");
             change1.Description = "Temporarily replace all allies to the Right that still have ability usage with a random level 1 party members.\nThey will return at the end of the round.";
             change1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Red];
