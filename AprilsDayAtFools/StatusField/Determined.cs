@@ -16,8 +16,8 @@ namespace AprilsDayAtFools
         public static void Add()
         {
             TMP_ColorGradient determinedColor = ScriptableObject.CreateInstance<TMP_ColorGradient>();
-            determinedColor.bottomRight = new Color32(75, 18, 18, 255);
-            determinedColor.bottomLeft = new Color32(121, 30, 30, 255);
+            determinedColor.bottomRight = new Color32(121, 30, 30, 255);
+            determinedColor.bottomLeft = new Color32(172, 50, 50, 255);
             determinedColor.topRight = new Color32(172, 50, 50, 255);
             determinedColor.topLeft = new Color32(255, 255, 255, 255);
             if (!LoadedDBsHandler.CombatDB.m_TxtColorPool.ContainsKey(HealType)) 
