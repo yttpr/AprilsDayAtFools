@@ -54,7 +54,7 @@ namespace AprilsDayAtFools
             halve._cascadeIsIndirect = true;
             halve._pigment = 3;
             Ability ink1 = new Ability("Ink Drop", "Cora_Ink_1_A");
-            ink1.Description = "Deal 8 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to the Left and Right.";
+            ink1.Description = "Deal 8 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to adjacent enemies.";
             ink1.AbilitySprite = ResourceLoader.LoadSprite("ability_ink.png");
             ink1.Cost = [Pigments.Red, Pigments.Yellow, Pigments.Yellow];
             ink1.Effects = new EffectInfo[4];
@@ -71,20 +71,20 @@ namespace AprilsDayAtFools
 
             Ability ink2 = new Ability(ink1.ability, "Cora_Ink_2_A", [Pigments.Red, Pigments.YellowRed, Pigments.Yellow]);
             ink2.Name = "Ink Spill";
-            ink2.Description = "Deal 11 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to the Left and Right.";
+            ink2.Description = "Deal 11 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to adjacent enemies.";
             ink2.Effects[1].entryVariable = 11;
             ink2.Effects[2].entryVariable = 11;
             ink2.EffectIntents[1].intents[0] = "Damage_11_15";
 
             Ability ink3 = new Ability(ink2.ability, "Cora_Ink_3_A", [Pigments.Red, Pigments.YellowRed, Pigments.YellowRed]);
             ink3.Name = "Ink Pour";
-            ink3.Description = "Deal 13 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to the Left and Right.";
+            ink3.Description = "Deal 13 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to adjacent enemies.";
             ink3.Effects[1].entryVariable = 13;
             ink3.Effects[2].entryVariable = 13;
 
             Ability ink4 = new Ability(ink3.ability, "Cora_Ink_4_A", ink3.Cost);
             ink4.Name = "Ink Flood";
-            ink4.Description = "Deal 15 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to the Left and Right.";
+            ink4.Description = "Deal 15 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, this damage spreads indirectly to adjacent enemies.";
             ink4.Effects[1].entryVariable = 15;
             ink4.Effects[2].entryVariable = 15;
 

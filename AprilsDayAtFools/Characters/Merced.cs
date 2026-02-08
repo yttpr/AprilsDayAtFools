@@ -56,7 +56,7 @@ namespace AprilsDayAtFools
             halve._decreaseAsPercentage = true;
             halve._cascadeIsIndirect = true;
             Ability toy1 = new Ability("Tick Toy", "Merced_Toy_1_A");
-            toy1.Description = "Deal 8 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to the Left and Right.";
+            toy1.Description = "Deal 8 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies.";
             toy1.AbilitySprite = ResourceLoader.LoadSprite("ability_toy.png");
             toy1.Cost = [Pigments.Red, Pigments.Red, Pigments.Red];
             toy1.Effects = new EffectInfo[3];
@@ -71,20 +71,20 @@ namespace AprilsDayAtFools
 
             Ability toy2 = new Ability(toy1.ability, "Merced_Toy_2_A", toy1.Cost);
             toy2.Name = "Mosquito Toy";
-            toy2.Description = "Deal 11 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to the Left and Right.";
+            toy2.Description = "Deal 11 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies.";
             toy2.Effects[1].entryVariable = 11;
             toy2.Effects[2].entryVariable = 11;
             toy2.EffectIntents[0].intents[1] = "Damage_11_15";
 
             Ability toy3 = new Ability(toy2.ability, "Merced_Toy_3_A", toy1.Cost);
             toy3.Name = "Horsefly Toy";
-            toy3.Description = "Deal 13 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to the Left and Right.";
+            toy3.Description = "Deal 13 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies.";
             toy3.Effects[1].entryVariable = 13;
             toy3.Effects[2].entryVariable = 13;
 
             Ability toy4 = new Ability(toy3.ability, "Merced_Toy_4_A", toy1.Cost);
             toy4.Name = "Leech Toy";
-            toy4.Description = "Deal 15 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to the Left and Right.";
+            toy4.Description = "Deal 15 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies.";
             toy4.Effects[1].entryVariable = 15;
             toy4.Effects[2].entryVariable = 15;
 
