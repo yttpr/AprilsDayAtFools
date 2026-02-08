@@ -125,7 +125,7 @@ namespace AprilsDayAtFools
             remove._status = Drowning.Object;
 
             Ability haze1 = new Ability("Afternoon Haze", "Flower_Haze_1_A");
-            haze1.Description = "Remove all Drowning from all party members.\nHeal this party member for the amount of Drowning removed, healing spreads Left and Right.";
+            haze1.Description = "Remove all Drowning from all party members.\nHeal this party member for the amount of Drowning removed, healing spreads to adjacent allies.";
             haze1.AbilitySprite = ResourceLoader.LoadSprite("ability_haze.png");
             haze1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Blue, Pigments.Blue];
             haze1.Effects = new EffectInfo[2];
@@ -140,17 +140,17 @@ namespace AprilsDayAtFools
 
             Ability haze2 = new Ability(haze1.ability, "Flower_Haze_2_A", haze1.Cost);
             haze2.Name = "Sunset Haze";
-            haze2.Description = "Remove all Drowning from all party members.\nHeal this party member for the amount of Drowning removed + 2, healing spreads Left and Right.";
+            haze2.Description = "Remove all Drowning from all party members.\nHeal this party member for the amount of Drowning removed + 2, healing spreads to adjacent allies.";
             haze2.Effects[1].entryVariable = 2;
 
             Ability haze3 = new Ability(haze2.ability, "Flower_Haze_3_A", haze1.Cost);
             haze3.Name = "Twilight Haze";
-            haze3.Description = "Remove all Drowning from all party members.\nHeal this party member for the amount of Drowning removed + 3, healing spreads Left and Right.";
+            haze3.Description = "Remove all Drowning from all party members.\nHeal this party member for the amount of Drowning removed + 3, healing spreads to adjacent allies.";
             haze3.Effects[1].entryVariable = 3;
 
             Ability haze4 = new Ability(haze3.ability, "Flower_Haze_4_A", haze1.Cost);
             haze4.Name = "Moonless Haze";
-            haze4.Description = "Remove all Drowning from all party members.\nHeal this party member for the amount of Drowning removed + 5, healing spreads Left and Right.";
+            haze4.Description = "Remove all Drowning from all party members.\nHeal this party member for the amount of Drowning removed + 5, healing spreads to adjacent allies.";
             haze4.Effects[1].entryVariable = 5;
 
 
