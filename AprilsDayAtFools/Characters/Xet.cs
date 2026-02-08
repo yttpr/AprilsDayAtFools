@@ -31,7 +31,7 @@ namespace AprilsDayAtFools
             //extra sprites
             xet.DamageSound = LoadedAssetsHandler.GetCharacter("Doll_CH").damageSound;
             xet.DeathSound = LoadedAssetsHandler.GetCharacter("Doll_CH").deathSound;
-            xet.DialogueSound = LoadedAssetsHandler.GetCharacter("Doll_CH").dxSound;
+            xet.DialogueSound = LoadedAssetsHandler.GetCharacter("Doll_CH").damageSound;
             xet.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             xet.AddFinalBossAchievementData("Heaven", HeavenACH);
             xet.GenerateMenuCharacter(ResourceLoader.LoadSprite("XetMenu.png"), ResourceLoader.LoadSprite("XetLock.png"));
