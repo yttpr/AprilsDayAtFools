@@ -213,8 +213,10 @@ namespace AprilsDayAtFools
             if (!CheckBaseGameAch(Rotcore.HeavenACH, Rotcore.OsmanACH)) return false;
             if (!CheckBaseGameAch(Catten.HeavenACH, Catten.OsmanACH)) return false;
             if (!CheckBaseGameAch(Sunflower.HeavenACH, Sunflower.OsmanACH)) return false;
-            //snail and lich
-            
+            if (!CheckBaseGameAch(Snail.HeavenACH, Snail.OsmanACH)) return false;
+            if (!CheckBaseGameAch(Lich.HeavenACH, Lich.OsmanACH)) return false;
+            if (!CheckBaseGameAch(Izide.HeavenACH, Izide.OsmanACH)) return false;
+
             return true;
         }
         public static bool CheckCharHasBosses(string charID)
