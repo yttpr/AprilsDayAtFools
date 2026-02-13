@@ -58,18 +58,18 @@ namespace AprilsDayAtFools
             violence1.AbilitySprite = ResourceLoader.LoadSprite("ability_violence.png");
             violence1.Cost = [Pigments.Red, Pigments.Red];
             violence1.Effects = new EffectInfo[3];
-            violence1.Effects[0] = Effects.GenerateEffect(infant, 1, Slots.Front);
-            violence1.Effects[1] = Effects.GenerateEffect(damage, 13, Slots.Front, BasicEffects.DidThat(true));
-            violence1.Effects[2] = Effects.GenerateEffect(damage, 5, Slots.Front, BasicEffects.DidThat(false, 2));
+            //violence1.Effects[0] = Effects.GenerateEffect(infant, 1, Slots.Front);
+            //violence1.Effects[1] = Effects.GenerateEffect(damage, 13, Slots.Front, BasicEffects.DidThat(true));
+            //violence1.Effects[2] = Effects.GenerateEffect(damage, 5, Slots.Front, BasicEffects.DidThat(false, 2));
             violence1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden", "Damage_3_6", "Damage_11_15"]);
             violence1.Visuals = Visuals.Crush;
             violence1.AnimationTarget = Slots.Front;
 
 
-            telomere.AddLevelData(10, [away1, violence1, fun1]);
-            telomere.AddLevelData(13, [away2, violence2, fun2]);
-            telomere.AddLevelData(16, [away3, violence3, fun3]);
-            telomere.AddLevelData(18, [away4, violence4, fun4]);
+            //telomere.AddLevelData(10, [away1, violence1, fun1]);
+            //telomere.AddLevelData(13, [away2, violence2, fun2]);
+            //telomere.AddLevelData(16, [away3, violence3, fun3]);
+            //telomere.AddLevelData(18, [away4, violence4, fun4]);
             telomere.AddCharacter(true);
         }
     }
