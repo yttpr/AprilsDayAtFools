@@ -165,7 +165,7 @@ namespace AprilsDayAtFools
             catten.AddLevelData(22, [interest2, line2, graph2]);
             catten.AddLevelData(25, [interest3, line3, graph3]);
             catten.AddLevelData(27, [interest4, line4, graph4]);
-            catten.AddCharacter(true);
+            catten.AddCharacter(false);
         }
 
         public static void Items()

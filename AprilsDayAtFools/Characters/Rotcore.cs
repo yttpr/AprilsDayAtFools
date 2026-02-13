@@ -130,7 +130,7 @@ namespace AprilsDayAtFools
             rotcore.AddLevelData(14, [suffer2, goat2, karma2]);
             rotcore.AddLevelData(18, [suffer3, goat3, karma3]);
             rotcore.AddLevelData(22, [suffer4, goat4, karma4]);
-            rotcore.AddCharacter(true);
+            rotcore.AddCharacter(false);
         }
         public static void Items()
         {
