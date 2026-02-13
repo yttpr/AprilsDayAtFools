@@ -53,7 +53,7 @@ namespace AprilsDayAtFools
             alpha.AddPassive(special);
 
             Ability newline1 = new Ability("Newline Addition", "A_Newline_1_A");
-            newline1.Description = "Perform one of the Opposing enemy's actions.\n 20% chance to refresh this party member's ability usage.";
+            newline1.Description = "Perform one of the Opposing enemy's actions.\n20% chance to refresh this party member's ability usage.";
             newline1.AbilitySprite = ResourceLoader.LoadSprite("ability_newline.png");
             newline1.Cost = [Pigments.Yellow];
             newline1.Effects = new EffectInfo[2];
