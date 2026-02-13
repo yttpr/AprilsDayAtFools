@@ -18,6 +18,8 @@ namespace AprilsDayAtFools
         static bool Called;
         public static void ProcessGameStart(Action<MainMenuController> orig, MainMenuController self)
         {
+            Class1.PCall(Unlocker.Unlock);
+
             if (Called)
             {
                 orig(self);
@@ -41,8 +43,6 @@ namespace AprilsDayAtFools
 
             Class1.PCall(MarchItems.Add);
             Class1.PCall(MarchAchievements.Add);
-
-            Class1.PCall(Unlocker.Unlock);
 
             orig(self);
         }
