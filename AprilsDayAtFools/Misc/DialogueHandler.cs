@@ -179,12 +179,6 @@ namespace AprilsDayAtFools
             if (!CheckCharHasBosses("Joy_CH")) return false;
             if (!CheckCharHasBosses("Patch_CH")) return false;
             if (!CheckCharHasBosses("Six_CH")) return false;
-            if (!CheckCharHasBosses("Rotcore_CH")) return false;
-            if (!CheckCharHasBosses("Catten_CH")) return false;
-            if (!CheckCharHasBosses("Sunflower_CH")) return false;
-            if (!CheckCharHasBosses("Snail_CH")) return false;
-            if (!CheckCharHasBosses("Lich_CH")) return false;
-            if (!CheckCharHasBosses("Izide")) return false;
 
             return true;
         }
@@ -210,12 +204,6 @@ namespace AprilsDayAtFools
             if (!CheckBaseGameAch(Joy.HeavenACH, Joy.OsmanACH)) return false;
             if (!CheckBaseGameAch(Patch.HeavenACH, Patch.OsmanACH)) return false;
             if (!CheckBaseGameAch(Six.HeavenACH, Six.OsmanACH)) return false;
-            if (!CheckBaseGameAch(Rotcore.HeavenACH, Rotcore.OsmanACH)) return false;
-            if (!CheckBaseGameAch(Catten.HeavenACH, Catten.OsmanACH)) return false;
-            if (!CheckBaseGameAch(Sunflower.HeavenACH, Sunflower.OsmanACH)) return false;
-            if (!CheckBaseGameAch(Snail.HeavenACH, Snail.OsmanACH)) return false;
-            if (!CheckBaseGameAch(Lich.HeavenACH, Lich.OsmanACH)) return false;
-            if (!CheckBaseGameAch(Izide.HeavenACH, Izide.OsmanACH)) return false;
 
             return true;
         }

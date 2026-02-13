@@ -11,7 +11,14 @@ namespace AprilsDayAtFools
         public static void Add()
         {
             AddUnlock("Saea", "Saea_CH");
+            AddUnlock("Rotcore", "Rotcore_CH");
+            AddUnlock("Catten", "Catten_CH");
+            AddUnlock("Sunflower", "Sunflower_CH");
+            AddUnlock("Snail", "Snail_CH");
+            AddUnlock("Lich", "Lich_CH");
+            AddUnlock("Izide", "Izide_CH");
             AddUnlock("Alpha", "Alpha_CH");
+            AddUnlock("Qualia", "Qualia_CH");
 
             AddQuest("Saea_CH", "Saea", 3, Color.white, true, false, false);
         }
