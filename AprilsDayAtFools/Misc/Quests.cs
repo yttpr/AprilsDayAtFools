@@ -96,4 +96,21 @@ namespace AprilsDayAtFools
             }
         }
     }
+
+    public static class Unlocker
+    {
+        public static void Unlock()
+        {
+            if (!LoadedDBsHandler.InfoHolder.Game.UnlockedCharacters.Contains("Saea_CH")) return;
+
+            LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Rotcore_CH");
+            LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Catten_CH");
+            LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Sunflower_CH");
+            LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Snail_CH");
+            LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Lich_CH");
+            LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Izide_CH");
+            LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Alpha_CH");
+            LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Qualia_CH");
+        }
+    }
 }

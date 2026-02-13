@@ -42,6 +42,8 @@ namespace AprilsDayAtFools
             Class1.PCall(MarchItems.Add);
             Class1.PCall(MarchAchievements.Add);
 
+            Class1.PCall(Unlocker.Unlock);
+
             orig(self);
         }
     }
