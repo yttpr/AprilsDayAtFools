@@ -31,7 +31,7 @@ namespace AprilsDayAtFools
             rotcore.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             rotcore.AddFinalBossAchievementData("Heaven", HeavenACH);
             rotcore.GenerateMenuCharacter(ResourceLoader.LoadSprite("RotcoreMenu.png"), ResourceLoader.LoadSprite("RotcoreLock.png"));
-            rotcore.MenuCharacterIsSecret = false;
+            rotcore.MenuCharacterIsSecret = true;
             rotcore.MenuCharacterIgnoreRandom = false;
             rotcore.SetMenuCharacterAsFullDPS();
 

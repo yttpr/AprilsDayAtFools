@@ -44,7 +44,7 @@ namespace AprilsDayAtFools
             //qualia.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             //qualia.AddFinalBossAchievementData("Heaven", HeavenACH);
             qualia.GenerateMenuCharacter(ResourceLoader.LoadSprite("QualiaMenu.png"), ResourceLoader.LoadSprite("QualiaLock.png"));
-            qualia.MenuCharacterIsSecret = false;
+            qualia.MenuCharacterIsSecret = true;
             qualia.MenuCharacterIgnoreRandom = false;
             qualia.SetMenuCharacterAsFullSupport();
             qualia.AddPassives([inanimate, Passives.Withering]);

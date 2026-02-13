@@ -47,7 +47,7 @@ namespace AprilsDayAtFools
             catten.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             catten.AddFinalBossAchievementData("Heaven", HeavenACH);
             catten.GenerateMenuCharacter(ResourceLoader.LoadSprite("CattenMenu.png"), ResourceLoader.LoadSprite("CattenLock.png"));
-            catten.MenuCharacterIsSecret = false;
+            catten.MenuCharacterIsSecret = true;
             catten.MenuCharacterIgnoreRandom = false;
             catten.SetMenuCharacterAsFullDPS();
             catten.AddPassive(liminal);

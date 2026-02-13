@@ -58,7 +58,7 @@ namespace AprilsDayAtFools
             //lich.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             //lich.AddFinalBossAchievementData("Heaven", HeavenACH);
             lich.GenerateMenuCharacter(ResourceLoader.LoadSprite("LichMenu.png"), ResourceLoader.LoadSprite("LichLock.png"));
-            lich.MenuCharacterIsSecret = false;
+            lich.MenuCharacterIsSecret = true;
             lich.MenuCharacterIgnoreRandom = false;
             lich.SetMenuCharacterAsFullSupport();
             lich.AddPassive(undead);

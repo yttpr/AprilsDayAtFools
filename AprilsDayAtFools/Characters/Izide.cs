@@ -42,7 +42,7 @@ namespace AprilsDayAtFools
             //snail.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             //snail.AddFinalBossAchievementData("Heaven", HeavenACH);
             izide.GenerateMenuCharacter(ResourceLoader.LoadSprite("IzideMenu.png"), ResourceLoader.LoadSprite("IzideLock.png"));
-            izide.MenuCharacterIsSecret = false;
+            izide.MenuCharacterIsSecret = true;
             izide.MenuCharacterIgnoreRandom = false;
             izide.SetMenuCharacterAsFullDPS();
             izide.AddPassive(Passives.Fleeting4);

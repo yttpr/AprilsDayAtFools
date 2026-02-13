@@ -33,7 +33,7 @@ namespace AprilsDayAtFools
             //snail.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             //snail.AddFinalBossAchievementData("Heaven", HeavenACH);
             snail.GenerateMenuCharacter(ResourceLoader.LoadSprite("SnailMenu.png"), ResourceLoader.LoadSprite("SnailLock.png"));
-            snail.MenuCharacterIsSecret = false;
+            snail.MenuCharacterIsSecret = true;
             snail.MenuCharacterIgnoreRandom = false;
             snail.SetMenuCharacterAsFullDPS();
 

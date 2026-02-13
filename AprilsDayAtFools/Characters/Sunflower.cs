@@ -46,7 +46,7 @@ namespace AprilsDayAtFools
             sunflower.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             sunflower.AddFinalBossAchievementData("Heaven", HeavenACH);
             sunflower.GenerateMenuCharacter(ResourceLoader.LoadSprite("SunflowerMenu.png"), ResourceLoader.LoadSprite("SunflowerLock.png"));
-            sunflower.MenuCharacterIsSecret = false;
+            sunflower.MenuCharacterIsSecret = true;
             sunflower.MenuCharacterIgnoreRandom = false;
             sunflower.SetMenuCharacterAsFullSupport();
             sunflower.AddPassives([trench]);
