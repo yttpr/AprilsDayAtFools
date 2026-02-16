@@ -89,7 +89,7 @@ namespace AprilsDayAtFools
             shell1.AbilitySprite = ResourceLoader.LoadSprite("ability_egg.png");
             shell1.Cost = [Pigments.YellowRed];
             shell1.Effects = new EffectInfo[3];
-            shell1.Effects[0] = Effects.GenerateEffect(BasicEffects.GenPigment(Pigments.Blue), 3, Slots.Self));
+            shell1.Effects[0] = Effects.GenerateEffect(BasicEffects.GenPigment(Pigments.Blue), 3, Slots.Self);
             shell1.Effects[1] = Effects.GenerateEffect(BasicEffects.Empty, 0);
             shell1.Effects[2] = Effects.GenerateEffect(scars, 1, Slots.Self);
             shell1.AddIntentsToTarget(Slots.Self, ["Mana_Generate", "Status_Scars"]);
