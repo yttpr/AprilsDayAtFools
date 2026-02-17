@@ -31,7 +31,7 @@ namespace AprilsDayAtFools
                     }
                     else combatSlot.RemoveFieldEffect(fieldEffect.FieldID);
 
-                    ret += num;
+                    ret += Math.Max(1, num);
                 }
             }
 
