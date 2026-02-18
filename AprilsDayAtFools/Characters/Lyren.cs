@@ -39,7 +39,7 @@ namespace AprilsDayAtFools
             DamageEffect indirect = BasicEffects.Indirect;
             CasterConstrictedToggleEffect constrict = ScriptableObject.CreateInstance<CasterConstrictedToggleEffect>();
             EffectInfo off = Effects.GenerateEffect(constrict, 1, Slots.Self);
-            EffectInfo on = Effects.GenerateEffect(CasterRootActionEffect.Create([Effects.GenerateEffect(constrict, 1, Slots.Self)]));
+            EffectInfo on = off;
 
             Ability breakfast1 = new Ability("Rain Breakfast", "Lyren_Breakfast_1_A");
             breakfast1.Description = "Deal 3 indirect damage to the Opposing enemy.\nReduce all Negative Field Effects on this position by 1 and restore this party member's swap usage.";

@@ -21,7 +21,7 @@ namespace AprilsDayAtFools
             minds.Cost = [Pigments.Grey, Pigments.Grey, Pigments.Grey];
             minds.Effects = new EffectInfo[2];
             minds.Effects[0] = Effects.GenerateEffect(cast, 1, Slots.Front);
-            minds.Effects[1] = Effects.GenerateEffect(SubActionEffect.Create([Effects.GenerateEffect(cast, 1, Slots.Front)]), 1, Slots.Front);
+            minds.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([Effects.GenerateEffect(cast, 1, Slots.Front)]), 1, Slots.Front);
             minds.AddIntentsToTarget(Slots.Self, ["Misc"]);
             minds.AddIntentsToTarget(Slots.Front, ["Misc"]);
             minds.AnimationTarget = selfandfront;
