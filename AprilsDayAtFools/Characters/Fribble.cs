@@ -126,13 +126,13 @@ namespace AprilsDayAtFools
 
             Ability earworm3 = new Ability(earworm2.ability, "Fribble_Earworm_3_A", earworm1.Cost);
             earworm3.Name = "Earworm Cruel";
-            earworm3.Description = "Deal 15 damage to the Opposing enemy.\nTake 0 damage, then increase the self damage of this move by 1.";
-            earworm3.Effects[0].entryVariable = 15;
+            earworm3.Description = "Deal 14 damage to the Opposing enemy.\nTake 0 damage, then increase the self damage of this move by 1.";
+            earworm3.Effects[0].entryVariable = 14;
 
             Ability earworm4 = new Ability(earworm3.ability, "Fribble_Earworm_4_A", earworm1.Cost);
             earworm4.Name = "Earworm Sadistic";
-            earworm4.Description = "Deal 18 damage to the Opposing enemy.\nTake 0 damage, then increase the self damage of this move by 1.";
-            earworm4.Effects[0].entryVariable = 18;
+            earworm4.Description = "Deal 16 damage to the Opposing enemy.\nTake 0 damage, then increase the self damage of this move by 1.";
+            earworm4.Effects[0].entryVariable = 16;
             earworm4.EffectIntents[0].intents[0] = "Damage_16_20";
 
             fribble.AddLevelData(10, [noise1, flavor1, earworm1]);
