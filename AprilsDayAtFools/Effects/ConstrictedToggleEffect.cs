@@ -20,14 +20,14 @@ namespace AprilsDayAtFools
                     stats.combatSlots.DettachSlotStatusRestrictor("Constricted_ID", caster.SlotID, !caster.IsUnitCharacter, caster.Size);
                     caster.SimpleSetStoredValue(Value, 1);
                     exitAmount++;
-                    Debug.Log("disable");
+                    //Debug.Log("disable");
                 }
                 else if (caster.SimpleGetStoredValue(Value) > 0)
                 {
                     stats.combatSlots.ApplyFieldEffect(caster.SlotID, !caster.IsUnitCharacter, StatusField.Constricted, 0, 1, caster.Size);
                     caster.SimpleSetStoredValue(Value, 0);
                     exitAmount++;
-                    Debug.Log("enable");
+                    //Debug.Log("enable");
                 }
             }
             return exitAmount > 0;
