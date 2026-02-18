@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace AprilsDayAtFools
 {
@@ -13,15 +14,18 @@ namespace AprilsDayAtFools
             exitAmount = 0;
             if (caster.ContainsPassiveAbility(PassiveType_GameIDs.Constricting.ToString()))
             {
-                caster.SimpleSetStoredValue(Value, 1);
-                if (caster.TryRemovePassiveAbility(PassiveType_GameIDs.Constricting.ToString()))
+                if (caster.SimpleGetStoredValue(Value) <= 0)
+                {
+                    stats.combatSlots.DettachSlotStatusRestrictor("Constricted_ID", caster.SlotID, !caster.IsUnitCharacter, caster.Size);
+                    caster.SimpleSetStoredValue(Value, 1);
                     exitAmount++;
-            }
-            else if (caster.SimpleGetStoredValue(Value) > 0)
-            {
-                caster.AddPassiveAbility(Passives.Constricting);
-                caster.SimpleSetStoredValue(Value, 0);
-                exitAmount++;
+                }
+                else if (caster.SimpleGetStoredValue(Value) > 0)
+                {
+                    stats.combatSlots.ApplyFieldEffect(caster.SlotID, !caster.IsUnitCharacter, StatusField.Constricted, 0, 1, caster.Size);
+                    caster.SimpleSetStoredValue(Value, 0);
+                    exitAmount++;
+                }
             }
             return exitAmount > 0;
         }

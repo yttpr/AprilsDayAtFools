@@ -25,7 +25,7 @@ namespace AprilsDayAtFools
             minds.AddIntentsToTarget(Slots.Self, ["Misc"]);
             minds.AddIntentsToTarget(Slots.Front, ["Misc"]);
             minds.AnimationTarget = selfandfront;
-            minds.Visuals = Visuals.Connection;
+            minds.Visuals = LoadedAssetsHandler.GetCharacterAbility("Entwined_1_A").visuals;
 
             Character telomere = new Character("Telomere", "Telomere_CH");
             telomere.HealthColor = Pigments.Grey;

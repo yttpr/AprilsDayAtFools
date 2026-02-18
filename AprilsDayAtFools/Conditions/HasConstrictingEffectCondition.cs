@@ -10,6 +10,7 @@ namespace AprilsDayAtFools
         public bool Has;
         public override bool MeetCondition(IUnit caster, EffectInfo[] effects, int currentIndex)
         {
+            //return true;//test
             return caster.ContainsPassiveAbility(PassiveType_GameIDs.Constricting.ToString()) == Has;
         }
         public static HasConstrictingEffectCondition Create(bool shouldHave)
