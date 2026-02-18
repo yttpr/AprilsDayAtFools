@@ -24,4 +24,20 @@ namespace AprilsDayAtFools
             return ret;
         }
     }
+
+    public class WrongPigmentEffectCondition : EffectConditionSO
+    {
+        public bool Used;
+        public override bool MeetCondition(IUnit caster, EffectInfo[] effects, int currentIndex)
+        {
+            return caster.LastCalculatedWrongMana > 0 == Used;
+        }
+
+        public static WrongPigmentEffectCondition Create(bool used)
+        {
+            WrongPigmentEffectCondition ret = ScriptableObject.CreateInstance<WrongPigmentEffectCondition>();
+            ret.Used = used;
+            return ret;
+        }
+    }
 }
