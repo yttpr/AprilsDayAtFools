@@ -14,14 +14,15 @@ namespace AprilsDayAtFools
             DoubleTargetting selfandfront = ScriptableObject.CreateInstance<DoubleTargetting>();
             selfandfront.firstTargetting = Slots.Self;
             selfandfront.secondTargetting = Slots.Front;
+            EffectConditionSO life = ScriptableObject.CreateInstance<IsAliveEffectCondition>();
 
             Ability minds = new Ability("Exchange of Minds", "Telomere_ExchangeOfMinds_A");
             minds.Description = "Use one of the Opposing enemy's abilities.\nForce the Opposing enemy to use one of this party member's abilities.";
             minds.AbilitySprite = ResourceLoader.LoadSprite("ability_minds.png");
             minds.Cost = [Pigments.Grey, Pigments.Grey, Pigments.Grey];
             minds.Effects = new EffectInfo[2];
-            minds.Effects[0] = Effects.GenerateEffect(cast, 1, Slots.Front);
-            minds.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([Effects.GenerateEffect(cast, 1, Slots.Front)]), 1, Slots.Front);
+            minds.Effects[0] = Effects.GenerateEffect(cast, 1, Slots.Front, life);
+            minds.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([Effects.GenerateEffect(cast, 1, Slots.Front, life)]), 1, Slots.Front);
             minds.AddIntentsToTarget(Slots.Self, ["Misc"]);
             minds.AddIntentsToTarget(Slots.Front, ["Misc"]);
             minds.AnimationTarget = selfandfront;
