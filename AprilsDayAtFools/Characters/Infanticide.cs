@@ -86,15 +86,15 @@ namespace AprilsDayAtFools
             Ability violence3 = new Ability(violence2.ability, "Girl_Abort_3_A", violence1.Cost);
             violence3.Name = "Violence Against Infants";
             violence3.Description = "Deal 9 damage to the Opposing enemy, deal 21 damage instead of they have Infantile as a passive.";
-            violence3.Effects[1].entryVariable = 9;
-            violence3.Effects[2].entryVariable = 21;
+            violence3.Effects[1].entryVariable = 21;
+            violence3.Effects[2].entryVariable = 9;
             violence3.EffectIntents[0].intents[2] = "Damage_21";
 
             Ability violence4 = new Ability(violence3.ability, "Girl_Abort_4_A", violence1.Cost);
             violence4.Name = "Violence Against Fetus";
             violence4.Description = "Deal 11 damage to the Opposing enemy, deal 26 damage instead of they have Infantile as a passive.";
-            violence4.Effects[1].entryVariable = 11;
-            violence4.Effects[2].entryVariable = 21;
+            violence4.Effects[1].entryVariable = 26;
+            violence4.Effects[2].entryVariable = 11;
             violence4.EffectIntents[0].intents[1] = "Damage_11_15";
 
             Ability fun1 = new Ability("No Room for Fun", "Girl_Fun_1_A");
