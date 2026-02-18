@@ -29,10 +29,10 @@ namespace AprilsDayAtFools
             lyren.DialogueSound = LoadedAssetsHandler.GetEnemy("Woodwind_EN").damageSound;
             //lyren.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             //lyren.AddFinalBossAchievementData("Heaven", HeavenACH);
-            lyren.GenerateMenuCharacter(ResourceLoader.LoadSprite("LyrenMenu.png"), ResourceLoader.LoadSprite("LyrenLock.png"));
-            lyren.MenuCharacterIsSecret = false;
-            lyren.MenuCharacterIgnoreRandom = false;
-            lyren.SetMenuCharacterAsFullDPS();
+            //lyren.GenerateMenuCharacter(ResourceLoader.LoadSprite("LyrenMenu.png"), ResourceLoader.LoadSprite("LyrenLock.png"));
+            //lyren.MenuCharacterIsSecret = false;
+            //lyren.MenuCharacterIgnoreRandom = false;
+            //lyren.SetMenuCharacterAsFullDPS();
             lyren.AddPassive(Passives.Constricting);
             
             ApplyRupturedEffect rupture = ScriptableObject.CreateInstance<ApplyRupturedEffect>();
@@ -146,7 +146,7 @@ namespace AprilsDayAtFools
             lyren.AddLevelData(18, [breakfast2, novelty2, sing2]);
             lyren.AddLevelData(20, [breakfast3, novelty3, sing3]);
             lyren.AddLevelData(25, [breakfast4, novelty4, sing4]);
-            lyren.AddCharacter(true);
+            lyren.AddCharacter();
         }
     }
 }

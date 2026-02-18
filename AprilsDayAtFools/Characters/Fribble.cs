@@ -30,10 +30,10 @@ namespace AprilsDayAtFools
             fribble.DialogueSound = LoadedAssetsHandler.GetEnemy("SkinningHomunculus_EN").damageSound;
             //fribble.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             //fribble.AddFinalBossAchievementData("Heaven", HeavenACH);
-            fribble.GenerateMenuCharacter(ResourceLoader.LoadSprite("FribbleMenu.png"), ResourceLoader.LoadSprite("FribbleLock.png"));
-            fribble.MenuCharacterIsSecret = false;
-            fribble.MenuCharacterIgnoreRandom = false;
-            fribble.SetMenuCharacterAsFullDPS();
+            //fribble.GenerateMenuCharacter(ResourceLoader.LoadSprite("FribbleMenu.png"), ResourceLoader.LoadSprite("FribbleLock.png"));
+            //fribble.MenuCharacterIsSecret = false;
+            //fribble.MenuCharacterIgnoreRandom = false;
+            //fribble.SetMenuCharacterAsFullDPS();
 
             UnitStoreData.CreateAndAdd_IntTooltip_UnitStoreDataToPool("Fribble_Earworm_A", "Earworm +{0}", Misc.GetInGame_UITextColor(Misc.UITextColorIDs.Negative));
             UnitStoreData.CreateAndAdd_IntTooltip_UnitStoreDataToPool("Fribble_Noise_A", "Noise +{0}", Misc.GetInGame_UITextColor(Misc.UITextColorIDs.Negative));
@@ -139,7 +139,7 @@ namespace AprilsDayAtFools
             fribble.AddLevelData(13, [noise2, flavor2, earworm2]);
             fribble.AddLevelData(16, [noise3, flavor3, earworm3]);
             fribble.AddLevelData(18, [noise4, flavor4, earworm4]);
-            fribble.AddCharacter(true);
+            fribble.AddCharacter();
         }
     }
 }

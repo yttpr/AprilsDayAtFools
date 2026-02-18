@@ -41,10 +41,10 @@ namespace AprilsDayAtFools
             infanticide.DialogueSound = LoadedAssetsHandler.GetEnemy("Bronzo_Bananas_Mean_EN").damageSound;
             //infanticide.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             //infanticide.AddFinalBossAchievementData("Heaven", HeavenACH);
-            infanticide.GenerateMenuCharacter(ResourceLoader.LoadSprite("InfanticideMenu.png"), ResourceLoader.LoadSprite("InfanticideLock.png"));
-            infanticide.MenuCharacterIsSecret = false;
-            infanticide.MenuCharacterIgnoreRandom = false;
-            infanticide.SetMenuCharacterAsFullDPS();
+            //infanticide.GenerateMenuCharacter(ResourceLoader.LoadSprite("InfanticideMenu.png"), ResourceLoader.LoadSprite("InfanticideLock.png"));
+            //infanticide.MenuCharacterIsSecret = false;
+            //infanticide.MenuCharacterIgnoreRandom = false;
+            //infanticide.SetMenuCharacterAsFullDPS();
             infanticide.AddPassive(passive);
 
             CheckMultiplePassivesEffect moving = ScriptableObject.CreateInstance<CheckMultiplePassivesEffect>();
@@ -160,7 +160,7 @@ namespace AprilsDayAtFools
             infanticide.AddLevelData(13, [away2, violence2, fun2]);
             infanticide.AddLevelData(16, [away3, violence3, fun3]);
             infanticide.AddLevelData(18, [away4, violence4, fun4]);
-            infanticide.AddCharacter(true);
+            infanticide.AddCharacter();
         }
     }
 }
