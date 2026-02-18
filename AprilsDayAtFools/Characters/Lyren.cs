@@ -34,12 +34,12 @@ namespace AprilsDayAtFools
             lyren.MenuCharacterIgnoreRandom = false;
             lyren.SetMenuCharacterAsFullDPS();
             lyren.AddPassive(Passives.Constricting);
-
+            
             ApplyRupturedEffect rupture = ScriptableObject.CreateInstance<ApplyRupturedEffect>();
             DamageEffect indirect = BasicEffects.Indirect;
             CasterConstrictedToggleEffect constrict = ScriptableObject.CreateInstance<CasterConstrictedToggleEffect>();
-            EffectInfo off = Effects.GenerateEffect(constrict, 1, Slots.Self, HasConstrictingEffectCondition.Create(true));
-            EffectInfo on = Effects.GenerateEffect(CasterRootActionEffect.Create([Effects.GenerateEffect(constrict, 1, Slots.Self, HasConstrictingEffectCondition.Create(false))]));
+            EffectInfo off = Effects.GenerateEffect(constrict, 1, Slots.Self);
+            EffectInfo on = Effects.GenerateEffect(CasterRootActionEffect.Create([Effects.GenerateEffect(constrict, 1, Slots.Self)]));
 
             Ability breakfast1 = new Ability("Rain Breakfast", "Lyren_Breakfast_1_A");
             breakfast1.Description = "Deal 3 indirect damage to the Opposing enemy.\nReduce all Negative Field Effects on this position by 1 and restore this party member's swap usage.";
@@ -81,12 +81,12 @@ namespace AprilsDayAtFools
             novelty1.Cost = [Pigments.Red, Pigments.Blue];
             novelty1.Effects = new EffectInfo[5];
             novelty1.Effects[0] = off;
-            novelty1.Effects[1] = Effects.GenerateEffect(indirect, 6, Slots.Front);
+            novelty1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 6, Slots.Front);
             novelty1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<SwapToSidesEffect>(), 1, Slots.Front);
             novelty1.Effects[3] = Effects.GenerateEffect(BasicEffects.GenPigment(Pigments.Blue), 2, Slots.Self);
             novelty1.Effects[4] = on;
             novelty1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Swap_Sides"]);
-            novelty1.AddIntentsToTarget(Slots.Self, [IntentType_GameIDs.PA_Constricting.ToString(), "Mana_Generate"]);
+            novelty1.AddIntentsToTarget(Slots.Self, ["PA_Constricting", "Mana_Generate"]);
             novelty1.Visuals = CustomVisuals.GetVisuals("Salt/Class");
             novelty1.AnimationTarget = Slots.Front;
 
@@ -121,7 +121,7 @@ namespace AprilsDayAtFools
             sing1.AddIntentsToTarget(Slots.LeftRight, ["Damage_3_6", "Status_Ruptured"]);
             sing1.AddIntentsToTarget(Slots.Left, ["Swap_Right"]);
             sing1.AddIntentsToTarget(Slots.Right, ["Swap_Left"]);
-            sing1.AddIntentsToTarget(Slots.Self, [IntentType_GameIDs.PA_Constricting.ToString()]);
+            sing1.AddIntentsToTarget(Slots.Self, ["PA_Constricting"]);
             sing1.Visuals = CustomVisuals.GetVisuals("Salt/Coda");
             sing1.AnimationTarget = Slots.LeftRight;
 

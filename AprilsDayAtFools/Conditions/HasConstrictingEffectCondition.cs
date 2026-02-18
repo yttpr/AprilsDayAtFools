@@ -10,6 +10,7 @@ namespace AprilsDayAtFools
         public bool Has;
         public override bool MeetCondition(IUnit caster, EffectInfo[] effects, int currentIndex)
         {
+            throw new NotImplementedException();
             //return true;//test
             return caster.ContainsPassiveAbility(PassiveType_GameIDs.Constricting.ToString()) == Has;
         }

@@ -67,7 +67,7 @@ namespace AprilsDayAtFools
         {
             if (sender is IUnit unit)
             {
-                if (unit.ContainsPassiveAbility(PassiveType_GameIDs.Dying.ToString()) || unit.ContainsPassiveAbility(PassiveType_GameIDs.Inanimate.ToString()) || unit.ContainsStatusEffect(StatusField_GameIDs.Cursed_ID.ToString())) return;
+                if (unit.ContainsPassiveAbility("Dying") || unit.ContainsPassiveAbility("Inanimate") || unit.ContainsStatusEffect(StatusField_GameIDs.Cursed_ID.ToString())) return;
             }
             BooleanReference reference = args as BooleanReference;
             if (reference == null)

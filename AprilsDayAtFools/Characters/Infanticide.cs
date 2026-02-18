@@ -49,17 +49,17 @@ namespace AprilsDayAtFools
 
             CheckMultiplePassivesEffect moving = ScriptableObject.CreateInstance<CheckMultiplePassivesEffect>();
             moving.m_PassiveIDs = [
-                Passives.Skittish.m_PassiveID, Passives.Slippery.m_PassiveID, Passives.Constricting.m_PassiveID, PassiveType_GameIDs.Anchored.ToString(),
+                Passives.Skittish.m_PassiveID, Passives.Slippery.m_PassiveID, Passives.Constricting.m_PassiveID, "Anchored",
                 "Jumpy_PA", "Lightweight_PA", "Scramble_PA", "Evasive_PA", "Turbulent_PA", "CCTV_PA", "Jittery_PA", "Fluttery_PA", "Warping_PA",
                 "Lonely_PA", "Melancholy_PA", "Gluttony_PA", "Rotary_PA", "Marching_PA", "Hiding_PA", "Seeking_PA",
                 "Lockstep_ID", "Cadence_ID", "RightStrafe_ID", "LeftStrafe_ID"
                 ];
 
             CheckPassiveAbilityEffect infant = ScriptableObject.CreateInstance<CheckPassiveAbilityEffect>();
-            infant.m_PassiveID = PassiveType_GameIDs.Infantile.ToString();
+            infant.m_PassiveID = "Infantile";
 
             CheckPassiveAbilityEffect wither = ScriptableObject.CreateInstance<CheckPassiveAbilityEffect>();
-            wither.m_PassiveID = PassiveType_GameIDs.Withering.ToString();
+            wither.m_PassiveID = "Withering";
 
             DamageEffect damage = ScriptableObject.CreateInstance<DamageEffect>();
 
