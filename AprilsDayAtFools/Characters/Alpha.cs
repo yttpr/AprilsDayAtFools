@@ -62,18 +62,18 @@ namespace AprilsDayAtFools
             newline1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden"]);
 
             Ability newline2 = new Ability(newline1.ability, "A_Newline_2_A", newline1.Cost);
-            newline2.Name = "Newline Multiplication";
+            newline2.Name = "Newline Rotation";
             newline2.Description = "Perform one of the Opposing enemy's actions.\n30% chance to refresh this party member's ability usage.";
             newline2.Effects[1].condition = Effects.ChanceCondition(30);
             newline2.AddIntentsToTarget(Slots.Self, ["Misc"]);
 
             Ability newline3 = new Ability(newline2.ability, "A_Newline_3_A", newline1.Cost);
-            newline3.Name = "Newline Factorial";
+            newline3.Name = "Newline Translation";
             newline3.Description = "Perform one of the Opposing enemy's actions.\n35% chance to refresh this party member's ability usage.";
             newline3.Effects[1].condition = Effects.ChanceCondition(35);
 
             Ability newline4 = new Ability(newline3.ability, "A_Newline_4_A", newline1.Cost);
-            newline4.Name = "Newline Exponential";
+            newline4.Name = "Newline Transformation";
             newline4.Description = "Perform one of the Opposing enemy's actions.\n40% chance to refresh this party member's ability usage.";
             newline4.Effects[1].condition = Effects.ChanceCondition(40);
 
