@@ -47,7 +47,7 @@ namespace AprilsDayAtFools
             defacer.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             defacer.AddFinalBossAchievementData("Heaven", HeavenACH);
             defacer.GenerateMenuCharacter(ResourceLoader.LoadSprite("DefacerMenu.png"), ResourceLoader.LoadSprite("DefacerLock.png"));
-            defacer.MenuCharacterIsSecret = false;
+            defacer.MenuCharacterIsSecret = true;
             defacer.MenuCharacterIgnoreRandom = false;
             defacer.SetMenuCharacterAsFullSupport();
             defacer.AddPassive(Passives.Delicate);
