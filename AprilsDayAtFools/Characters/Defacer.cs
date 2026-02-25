@@ -60,7 +60,7 @@ namespace AprilsDayAtFools
             Ability skin1 = new Ability("Skin Tear", "Secret_Skin_1_A");
             skin1.Description = "Deal 4-6 damage to all enemies with Terror.\nInflict Terror on the Opposing enemy,";
             skin1.AbilitySprite = ResourceLoader.LoadSprite("ability_mask.png");
-            skin1.Cost = [Pigments.Blue, Pigments.Red];
+            skin1.Cost = [Pigments.BlueRed];
             skin1.Effects = new EffectInfo[3];
             skin1.Effects[0] = Effects.GenerateEffect(BasicEffects.Empty, 4);
             skin1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RandomDamageBetweenPreviousAndEntryEffect>(), 6, hasTerror);
