@@ -25,7 +25,7 @@ namespace AprilsDayAtFools
             ripper.conditions = [DamageTargetEffectsCondition.Create([Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyTerrorEffect>(), 1, Slots.Self)], false)];
             ripper.effects = [];
             ripper.AddToPassiveDatabase();
-            ripper.AddPassiveToGlossary("Ripper", "Inflict Terror on damaged targets.");
+            //ripper.AddPassiveToGlossary("Ripper", "Inflict Terror on damaged targets.");
 
             Character defacer = new Character("Defacer", "Secret_CH");
             defacer.HealthColor = Pigments.Purple;
