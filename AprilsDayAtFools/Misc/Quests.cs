@@ -19,6 +19,7 @@ namespace AprilsDayAtFools
             AddUnlock("Izide", "Izide_CH");
             AddUnlock("Alpha", "Alpha_CH");
             AddUnlock("Qualia", "Qualia_CH");
+            AddUnlock("ADAF_Secret", "Secret_CH");
 
             AddQuest("Saea_CH", "Saea", 3, Color.white, true, false, false);
         }
@@ -111,6 +112,7 @@ namespace AprilsDayAtFools
             LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Izide_CH");
             LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Alpha_CH");
             LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Qualia_CH");
+            LoadedDBsHandler.InfoHolder.Game.TryUnlockCharacter("Secret_CH");
         }
     }
 }
