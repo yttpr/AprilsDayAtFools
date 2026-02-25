@@ -16,6 +16,7 @@ namespace AprilsDayAtFools
             wtmiyr.AddUnitType("FemaleID");
             wtmiyr.AddUnitType("Sandwich_Silly");
             wtmiyr.AddUnitType("FemaleLooking");
+            wtmiyr.AddUnitType(":)");
             wtmiyr.UsesBasicAbility = true;
             //slap
             wtmiyr.UsesAllAbilities = false;
