@@ -146,36 +146,36 @@ namespace AprilsDayAtFools
             reduce._randomBetweenPrevious = true;
 
             Ability ori1 = new Ability("Placated Origin", "Saea_Ori_1_A");
-            ori1.Description = "Attempt to resurrect an ally in the Left position at 3 health, inflicting 10 Karma on them if succesful.\nIf no ally was resurrected, apply 8 Shield on the Left ally.";
+            ori1.Description = "Attempt to resurrect an ally in the Left position at 3 health, inflicting 10 Karma on them if succesful.\nIf no ally was resurrected, apply 10 Shield on the Left ally.";
             ori1.AbilitySprite = ResourceLoader.LoadSprite("ability_origin.png");
             ori1.Cost = [Pigments.Purple];
             ori1.Effects = new EffectInfo[3];
             ori1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectEffect>(), 3, Targeting.Slot_AllyLeft);
             ori1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 10, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true));
-            ori1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 8, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 2));
+            ori1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 10, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 2));
             ori1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Other_Resurrect", Karma.Intent, "Field_Shield"]);
             ori1.Visuals = CustomVisuals.GetVisuals("Salt/Insta/Shatter");
             ori1.AnimationTarget = Targeting.Slot_AllyLeft;
 
             Ability ori2 = new Ability(ori1.ability, "Saea_Ori_2_A", ori1.Cost);
             ori2.Name = "Cordial Origin";
-            ori2.Description = "Attempt to resurrect an ally in the Left position at 5 health, inflicting 12 Karma on them if succesful.\nIf no ally was resurrected, apply 9 Shield on the Left ally.";
+            ori2.Description = "Attempt to resurrect an ally in the Left position at 5 health, inflicting 12 Karma on them if succesful.\nIf no ally was resurrected, apply 11 Shield on the Left ally.";
             ori2.Effects[0].entryVariable = 5;
             ori2.Effects[1].entryVariable = 12;
-            ori2.Effects[2].entryVariable = 9;
+            ori2.Effects[2].entryVariable = 11;
 
             Ability ori3 = new Ability(ori2.ability, "Saea_Ori_3_A", ori1.Cost);
             ori3.Name = "Amiable Origin";
-            ori3.Description = "Attempt to resurrect an ally in the Left position at 8 health, inflicting 14 Karma on them if succesful.\nIf no ally was resurrected, apply 9 Shield on the Left ally.";
+            ori3.Description = "Attempt to resurrect an ally in the Left position at 8 health, inflicting 14 Karma on them if succesful.\nIf no ally was resurrected, apply 11 Shield on the Left ally.";
             ori3.Effects[0].entryVariable = 8;
             ori3.Effects[1].entryVariable = 14;
 
             Ability ori4 = new Ability(ori3.ability, "Saea_Ori_4_A", ori1.Cost);
             ori4.Name = "Hospitable Origin";
-            ori4.Description = "Attempt to resurrect an ally in the Left position at 10 health, inflicting 15 Karma on them if succesful.\nIf no ally was resurrected, apply 10 Shield on the Left ally.";
+            ori4.Description = "Attempt to resurrect an ally in the Left position at 10 health, inflicting 15 Karma on them if succesful.\nIf no ally was resurrected, apply 12 Shield on the Left ally.";
             ori4.Effects[0].entryVariable = 10;
             ori4.Effects[1].entryVariable = 15;
-            ori4.Effects[2].entryVariable = 10;
+            ori4.Effects[2].entryVariable = 12;
 
             EffectInfo animself = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Slots.Self));
             EffectInfo animleft = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Targeting.Slot_AllyLeft));
@@ -187,6 +187,7 @@ namespace AprilsDayAtFools
             DoubleTargetting sh_self = ScriptableObject.CreateInstance<DoubleTargetting>();
             sh_self.firstTargetting = Slots.Self;
             sh_self.secondTargetting = Slots.Self;
+            //DoubleEffectCondition
 
             Ability visions1 = new Ability("Vile Visions", "Saea_Visions_1_A");
             visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability.\nIf they already have \"Action of Recovery,\" apply 4 Shield to them and this party member.\nIf there is no Left ally, this ability targets this party member.";
