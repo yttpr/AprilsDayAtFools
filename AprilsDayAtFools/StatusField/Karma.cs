@@ -31,7 +31,7 @@ namespace AprilsDayAtFools
             StatusEffectInfoSO karma_info = ScriptableObject.CreateInstance<StatusEffectInfoSO>();
             karma_info.icon = ResourceLoader.LoadSprite("KarmaIcon.png");
             karma_info._statusName = "Karma";
-            karma_info._description = "At the end of combat, take direct damage equal to the amount of Karma.";
+            karma_info._description = "At the end of combat, take direct damage equal to the amount of Karma.\nKarma is reduced by the amount of any damage taken.";
             karma_info._applied_SE_Event = "event:/Lunacy/Misc3/KarmaApply";
             karma_info._removed_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Ruptured_ID.ToString()]._EffectInfo.RemovedSoundEvent;
             karma_info._updated_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Ruptured_ID.ToString()]._EffectInfo.UpdatedSoundEvent;
@@ -59,18 +59,37 @@ namespace AprilsDayAtFools
         public override void OnTriggerAttached(StatusEffect_Holder holder, IStatusEffector caller)
         {
             CombatManager.Instance.AddObserver(holder.OnEventTriggered_01, TriggerCalls.OnCombatEnd.ToString(), caller);
+            CombatManager.Instance.AddObserver(holder.OnEventTriggered_02, TriggerCalls.OnDamaged.ToString(), caller);
         }
 
         public override void OnTriggerDettached(StatusEffect_Holder holder, IStatusEffector caller)
         {
             CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_01, TriggerCalls.OnCombatEnd.ToString(), caller);
+            CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_02, TriggerCalls.OnDamaged.ToString(), caller);
         }
 
         public override void OnEventCall_01(StatusEffect_Holder holder, object sender, object args)
         {
             if (sender is IUnit unit) unit.Damage(holder.m_ContentMain + holder.Restrictor, null, "Karma", -1, true, true, false, Karma.DamageType);
-            if (sender is IStatusEffector effector && effector.IsStatusEffectorCharacter) effector.RemoveStatusEffect(holder.StatusID);
+            //if (sender is IStatusEffector effector && effector.IsStatusEffectorCharacter) effector.RemoveStatusEffect(holder.StatusID);
         }
+        public override void OnEventCall_02(StatusEffect_Holder holder, object sender, object args)
+        {
+            if (args is IntegerReference amount && sender is IStatusEffector effector)
+            {
+                ReduceDurationValue(holder, effector, amount.value);
+            }
+        }
+        public virtual void ReduceDurationValue(StatusEffect_Holder holder, IStatusEffector effector, int amount)
+        {
+            int contentMain = holder.m_ContentMain;
+            holder.m_ContentMain = Mathf.Max(0, contentMain - amount);
+            if (!TryRemoveStatusEffect(holder, effector) && contentMain != holder.m_ContentMain)
+            {
+                effector.StatusEffectValuesChanged(_StatusID, holder.m_ContentMain - contentMain, doesPopUp: true);
+            }
+        }
+
     }
     public class ApplyKarmaEffect : StatusEffect_Apply_Effect
     {
