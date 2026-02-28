@@ -183,7 +183,7 @@ namespace AprilsDayAtFools
             Ability visions1 = new Ability("Vile Visions", "Saea_Visions_1_A");
             visions1.Description = "Give the Left ally \"Action of Recovery\" as an extra ability.\nIf they already have \"Action of Recovery,\" apply 4 Shield to them and this party member.\nIf there is no Left ally, this ability targets this party member.";
             visions1.AbilitySprite = ResourceLoader.LoadSprite("ability_visions.png");
-            visions1.Cost = [Pigments.Red, Pigments.Blue];
+            visions1.Cost = [Pigments.BlueRed, Pigments.BlueRed];
             visions1.Effects = new EffectInfo[2];
             visions1.Effects[0] = Effects.GenerateEffect(ImmediateActionEffect.Create([
                 animleft,
