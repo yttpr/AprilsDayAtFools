@@ -74,17 +74,20 @@ namespace AprilsDayAtFools
             claim2.Description = "Deal 6 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
             claim2.Effects[0].entryVariable = 6;
             claim2.EffectIntents[1].intents[0] = "Heal_5_10";
+            claim2.Effects[1].entryVariable = 12;
 
             Ability claim3 = new Ability(claim2.ability, "Saea_Claim_3_A", claim1.Cost);
             claim3.Name = "Action of Repossession";
             claim3.Description = "Deal 7 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
             claim3.Effects[0].entryVariable = 7;
             claim3.EffectIntents[0].intents[0] = "Damage_7_10";
+            claim3.Effects[1].entryVariable = 14;
 
             Ability claim4 = new Ability(claim3.ability, "Saea_Claim_4_A", claim1.Cost);
             claim4.Name = "Action of Reappropriation";
             claim4.Description = "Deal 8 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
             claim4.Effects[0].entryVariable = 8;
+            claim4.Effects[1].entryVariable = 16;
 
             AddExtraAbilityIfNotHaveEffect act1 = AddExtraAbilityIfNotHaveEffect.Create(claim1.GenerateCharacterAbility(true));
             claim1.Effects[3].effect = act1.Remove;
