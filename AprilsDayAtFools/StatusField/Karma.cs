@@ -31,7 +31,7 @@ namespace AprilsDayAtFools
             StatusEffectInfoSO karma_info = ScriptableObject.CreateInstance<StatusEffectInfoSO>();
             karma_info.icon = ResourceLoader.LoadSprite("KarmaIcon.png");
             karma_info._statusName = "Karma";
-            karma_info._description = "At the end of combat, take direct damage equal to the amount of Karma.\nKarma is reduced by the amount of any damage taken.";
+            karma_info._description = "At the end of combat, take direct damage equal to the amount of Karma.\nOn receiving any damage, reduce Karma by an equal amount.";
             karma_info._applied_SE_Event = "event:/Lunacy/Misc3/KarmaApply";
             karma_info._removed_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Ruptured_ID.ToString()]._EffectInfo.RemovedSoundEvent;
             karma_info._updated_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Ruptured_ID.ToString()]._EffectInfo.UpdatedSoundEvent;

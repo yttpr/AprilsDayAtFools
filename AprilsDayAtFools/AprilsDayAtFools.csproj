@@ -472,6 +472,7 @@
 	  <None Remove="Sprites\Icons\Haste.png" />
 	  <None Remove="Sprites\Icons\Inverted.png" />
 	  <None Remove="Sprites\Icons\KarmaIcon.png" />
+	  <None Remove="Sprites\Icons\LifestealIcon.png" />
 	  <None Remove="Sprites\Icons\Pale.png" />
 	  <None Remove="Sprites\Icons\PimplesIcon.png" />
 	  <None Remove="Sprites\Icons\Power.png" />
@@ -600,6 +601,10 @@
 	  <None Remove="Sprites\New\witness_defacer.png" />
 	  <None Remove="Sprites\New\witness_rotcore.png" />
 	  <None Remove="Sprites\New\witness_sunflower.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Sprites\Icons\LifestealIcon.png" />
 	</ItemGroup>
 
 	<ItemGroup>

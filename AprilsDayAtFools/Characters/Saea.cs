@@ -55,7 +55,7 @@ namespace AprilsDayAtFools
             LifestealEffect damage = ScriptableObject.CreateInstance<LifestealEffect>();
             ApplyKarmaEffect karma = ScriptableObject.CreateInstance<ApplyKarmaEffect>();
 
-            Ability claim1 = new Ability("Action of Recovery", "Saea_Claim_1_A");
+            /*Ability claim1 = new Ability("Action of Recovery", "Saea_Claim_1_A");
             claim1.Description = "Deal 4 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
             claim1.AbilitySprite = ResourceLoader.LoadSprite("ability_claim.png");
             claim1.Cost = [Pigments.Grey, Pigments.Grey, Pigments.Red];
@@ -96,7 +96,7 @@ namespace AprilsDayAtFools
             AddExtraAbilityIfNotHaveEffect act3 = AddExtraAbilityIfNotHaveEffect.Create(claim3.GenerateCharacterAbility(true));
             claim3.Effects[3].effect = act3.Remove;
             AddExtraAbilityIfNotHaveEffect act4 = AddExtraAbilityIfNotHaveEffect.Create(claim4.GenerateCharacterAbility(true));
-            claim4.Effects[3].effect = act4.Remove;
+            claim4.Effects[3].effect = act4.Remove;*/
 
 
             Ability onset1 = new Ability("Onset of Shadows", "Saea_Onset_1_A");
@@ -177,7 +177,7 @@ namespace AprilsDayAtFools
             ori4.Effects[1].entryVariable = 15;
             ori4.Effects[2].entryVariable = 12;
 
-            EffectInfo animself = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Slots.Self));
+            /*EffectInfo animself = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Slots.Self));
             EffectInfo animleft = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Targeting.Slot_AllyLeft));
             ExistsLeftAllyCondition left = ScriptableObject.CreateInstance<ExistsLeftAllyCondition>();
             PreviousEffectCondition didnt = BasicEffects.DidThat(false);
@@ -247,7 +247,33 @@ namespace AprilsDayAtFools
                 animself,
                 Effects.GenerateEffect(act4, 1, Slots.Self),
                 Effects.GenerateEffect(shield, 8, sh_self, BasicEffects.DidThat(false)),
-                ]), 1, Slots.Self, didnt);
+                ]), 1, Slots.Self, didnt);*/
+
+            Ability visions1 = new Ability("Vile Visions", "Saea_Visions_1_A");
+            visions1.Description = "Apply 2 Lifesteal on the Left position.\nHeal this party member 2 health, this healing is treated as Shield-Piercing direct damage.";
+            visions1.AbilitySprite = ResourceLoader.LoadSprite("ability_visions.png");
+            visions1.Cost = [Pigments.Red, Pigments.Blue];
+            visions1.Effects = new EffectInfo[2];
+            visions1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 2, Targeting.Slot_AllyLeft);
+            visions1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DirectHealingEffect>(), 2, Slots.Self);
+            visions1.AddIntentsToTarget(Targeting.Slot_AllyLeft, [Lifesteal.Intent]);
+            visions1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
+            visions1.Visuals = CustomVisuals.GetVisuals("Salt/Keyhole");
+            visions1.AnimationTarget = Targeting.Slot_AllyLeft;
+
+            Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
+            visions2.Name = "Torturous Visions";
+            visions2.Description = "Apply 2 Lifesteal on the Left position.\nHeal this party member 3 health, this healing is treated as Shield-Piercing direct damage.";
+            visions2.Effects[1].entryVariable = 3;
+
+            Ability visions3 = new Ability(visions2.ability, "Saea_Visions_3_A", visions1.Cost);
+            visions3.Name = "Apocalyptic Visions";
+            visions3.Description = "Apply 3 Lifesteal on the Left position.\nHeal this party member 3 health, this healing is treated as Shield-Piercing direct damage.";
+            visions3.Effects[0].entryVariable = 3;
+
+            Ability visions4 = new Ability(visions3.ability, "Saea_Visions_4_A", [Pigments.BlueRed, Pigments.BlueRed]);
+            visions4.Name = "Cataclysmic Visions";
+            visions4.Description = "Apply 3 Lifesteal on the Left position.\nHeal this party member 3 health, this healing is treated as Shield-Piercing direct damage.";
 
             saea.AddLevelData(12, [visions1, ori1, onset1]);
             saea.AddLevelData(14, [visions2, ori2, onset2]);
