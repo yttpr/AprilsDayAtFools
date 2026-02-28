@@ -52,63 +52,68 @@ namespace AprilsDayAtFools
             saea.SetMenuCharacterAsFullSupport();
             saea.AddPassive(permanent);
 
-            DamageEffect damage = ScriptableObject.CreateInstance<DamageEffect>();
-            HealEffect lifesteal = ScriptableObject.CreateInstance<HealEffect>();
-            lifesteal.usePreviousExitValue = true;
+            LifestealEffect damage = ScriptableObject.CreateInstance<LifestealEffect>();
             ApplyKarmaEffect karma = ScriptableObject.CreateInstance<ApplyKarmaEffect>();
 
             Ability claim1 = new Ability("Action of Recovery", "Saea_Claim_1_A");
-            claim1.Description = "Deal 4 damage to the Opposing enemy and heal this party member for the amount of damage dealt.";
+            claim1.Description = "Deal 4 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
             claim1.AbilitySprite = ResourceLoader.LoadSprite("ability_claim.png");
             claim1.Cost = [Pigments.Grey, Pigments.Grey, Pigments.Red];
-            claim1.Effects = new EffectInfo[2];
+            claim1.Effects = new EffectInfo[4];
             claim1.Effects[0] = Effects.GenerateEffect(damage, 4, Slots.Front);
-            claim1.Effects[1] = Effects.GenerateEffect(lifesteal, 1, Slots.Self, BasicEffects.DidThat(true));
+            claim1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ExitMeetsEntryEffect>(), 8);
+            claim1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RefreshAbilityUseEffect>(), 1, Slots.Self, BasicEffects.DidThat(false));
+            claim1.Effects[3] = Effects.GenerateEffect(BasicEffects.Empty, 0, Slots.Self, BasicEffects.DidThat(false, 2));
             claim1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
-            claim1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
+            claim1.AddIntentsToTarget(Slots.Self, ["Heal_1_4", "Misc"]);
             claim1.Visuals = Visuals.Womb;
             claim1.AnimationTarget = Slots.Front;
 
             Ability claim2 = new Ability(claim1.ability, "Saea_Claim_2_A", claim1.Cost);
             claim2.Name = "Action of Reclamation";
-            claim2.Description = "Deal 6 damage to the Opposing enemy and heal this party member for the amount of damage dealt.";
+            claim2.Description = "Deal 6 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
             claim2.Effects[0].entryVariable = 6;
             claim2.EffectIntents[1].intents[0] = "Heal_5_10";
 
             Ability claim3 = new Ability(claim2.ability, "Saea_Claim_3_A", claim1.Cost);
             claim3.Name = "Action of Repossession";
-            claim3.Description = "Deal 7 damage to the Opposing enemy and heal this party member for the amount of damage dealt.";
+            claim3.Description = "Deal 7 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
             claim3.Effects[0].entryVariable = 7;
             claim3.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability claim4 = new Ability(claim3.ability, "Saea_Claim_4_A", claim1.Cost);
             claim4.Name = "Action of Reappropriation";
-            claim4.Description = "Deal 8 damage to the Opposing enemy and heal this party member for the amount of damage dealt.";
+            claim4.Description = "Deal 8 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
             claim4.Effects[0].entryVariable = 8;
 
             AddExtraAbilityIfNotHaveEffect act1 = AddExtraAbilityIfNotHaveEffect.Create(claim1.GenerateCharacterAbility(true));
+            claim1.Effects[3].effect = act1.Remove;
             AddExtraAbilityIfNotHaveEffect act2 = AddExtraAbilityIfNotHaveEffect.Create(claim2.GenerateCharacterAbility(true));
+            claim2.Effects[3].effect = act2.Remove;
             AddExtraAbilityIfNotHaveEffect act3 = AddExtraAbilityIfNotHaveEffect.Create(claim3.GenerateCharacterAbility(true));
+            claim3.Effects[3].effect = act3.Remove;
             AddExtraAbilityIfNotHaveEffect act4 = AddExtraAbilityIfNotHaveEffect.Create(claim4.GenerateCharacterAbility(true));
+            claim4.Effects[3].effect = act4.Remove;
+
 
             Ability onset1 = new Ability("Onset of Shadows", "Saea_Onset_1_A");
-            onset1.Description = "Heal this and the Right allies 6 health then inflict 4 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 11.";
+            onset1.Description = "Heal this and the Right allies 6 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 11.";
             onset1.AbilitySprite = ResourceLoader.LoadSprite("ability_onset.png");
             onset1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Blue];
             onset1.Effects = new EffectInfo[3];
             onset1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<MaxHealthlessHealEffect>(), 6, Targeting.Slot_SelfAndRight);
             onset1.Effects[1] = Effects.GenerateEffect(BasicEffects.Empty, 11);
-            onset1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaCappedToExitEffect>(), 4, Targeting.Slot_SelfAndRight);
+            onset1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaCappedToExitEffect>(), 6, Targeting.Slot_SelfAndRight);
             onset1.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Heal_5_10", IntentType_GameIDs.Other_MaxHealth.ToString(), Karma.Intent]);
             onset1.Visuals = Visuals.UglyOnTheInside;
             onset1.AnimationTarget = Targeting.Slot_SelfAndRight;
 
             Ability onset2 = new Ability(onset1.ability, "Saea_Onset_2_A", onset1.Cost);
             onset2.Name = "Onset of Darkness";
-            onset2.Description = "Heal this, the Right, and Far Right allies 7 health then inflict 5 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 13.";
+            onset2.Description = "Heal this, the Right, and Far Right allies 7 health then inflict 7 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 13.";
             onset2.Effects[0].entryVariable = 7;
             onset2.Effects[1].entryVariable = 13;
-            onset2.Effects[2].entryVariable = 5;
+            onset2.Effects[2].entryVariable = 7;
             onset2.AnimationTarget = Slots.SlotTarget([0, 1, 2], true);
             onset2.Effects[0].targets = onset2.ability.animationTarget;
             onset2.Effects[2].targets = onset2.ability.animationTarget;
@@ -116,10 +121,10 @@ namespace AprilsDayAtFools
 
             Ability onset3 = new Ability(onset2.ability, "Saea_Onset_3_A", onset1.Cost);
             onset3.Name = "Onset of Death";
-            onset3.Description = "Heal this, the Right, the Far Right, and the Far Far Right allies 8 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 14.";
+            onset3.Description = "Heal this, the Right, the Far Right, and the Far Far Right allies 8 health then inflict 8 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 14.";
             onset3.Effects[0].entryVariable = 8;
             onset3.Effects[1].entryVariable = 14;
-            onset3.Effects[2].entryVariable = 6;
+            onset3.Effects[2].entryVariable = 8;
             onset3.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3], true);
             onset3.Effects[0].targets = onset3.ability.animationTarget;
             onset3.Effects[2].targets = onset3.ability.animationTarget;
@@ -127,7 +132,7 @@ namespace AprilsDayAtFools
 
             Ability onset4 = new Ability(onset3.ability, "Saea_Onset_4_A", onset1.Cost);
             onset4.Name = "Onset of Hell";
-            onset4.Description = "Heal this and All allies to the Rights 8 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 15.";
+            onset4.Description = "Heal this and All allies to the Rights 8 health then inflict 8 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 15.";
             onset4.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3, 4], true);
             onset4.Effects[1].entryVariable = 15;
             onset4.Effects[0].targets = onset4.ability.animationTarget;

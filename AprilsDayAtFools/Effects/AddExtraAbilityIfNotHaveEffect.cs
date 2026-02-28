@@ -8,6 +8,7 @@ namespace AprilsDayAtFools
     public class AddExtraAbilityIfNotHaveEffect : EffectSO
     {
         public ExtraAbilityInfo _extraAbility;
+        public RemoveExtraAbilityEffect Remove;
 
         public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
         {
@@ -56,7 +57,25 @@ namespace AprilsDayAtFools
         {
             AddExtraAbilityIfNotHaveEffect ret = ScriptableObject.CreateInstance<AddExtraAbilityIfNotHaveEffect>();
             ret._extraAbility = new ExtraAbilityInfo(ability);
+            ret.Remove = ScriptableObject.CreateInstance<RemoveExtraAbilityEffect>();
+            ret.Remove._extraAbility = ret._extraAbility;
             return ret;
+        }
+    }
+    public class RemoveExtraAbilityEffect : EffectSO
+    {
+        public ExtraAbilityInfo _extraAbility;
+        public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
+        {
+            exitAmount = 0;
+            foreach (TargetSlotInfo target in targets)
+            {
+                if (target.HasUnit)
+                {
+                    target.Unit.TryRemoveExtraAbility(_extraAbility);
+                }
+            }
+            return true;
         }
     }
 }
