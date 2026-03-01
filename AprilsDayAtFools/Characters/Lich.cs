@@ -104,12 +104,15 @@ namespace AprilsDayAtFools
             fuzzy4.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 14 health.";
             fuzzy4.Effects[2].entryVariable = 14;
 
+            TargetPerformAllAbilitiesEffect perform = ScriptableObject.CreateInstance<TargetPerformAllAbilitiesEffect>();
+            perform.Reverse = true;
+
             Ability baptism1 = new Ability("Baptism of Beetles", "Lich_Baptism_1_A");
-            baptism1.Description = "Force the Right ally to perform all of their abilities.\nInflict 4 Acid on them.";
+            baptism1.Description = "Force the Right ally to perform all of their abilities in reverse order.\nInflict 4 Acid on them.";
             baptism1.AbilitySprite = ResourceLoader.LoadSprite("ability_baptism.png");
             baptism1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Purple];
             baptism1.Effects = new EffectInfo[2];
-            baptism1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<TargetPerformAllAbilitiesEffect>(), 1, right);
+            baptism1.Effects[0] = Effects.GenerateEffect(perform, 1, right);
             baptism1.Effects[1] = Effects.GenerateEffect(SubOrRootBySidesEffect.Create([Effects.GenerateEffect(previousAcid, 1, Slots.Self)], false, true), 4, right);
             baptism1.AddIntentsToTarget(right, ["Misc_Hidden", Acid.Intent]);
             baptism1.AnimationTarget = right;
@@ -117,7 +120,7 @@ namespace AprilsDayAtFools
 
             Ability baptism2 = new Ability(baptism1.ability, "Lich_Baptism_2_A", baptism1.Cost);
             baptism2.Name = "Baptism of Flies";
-            baptism2.Description = "Force the Right ally to perform all of their abilities.\nInflict 3 Acid on them.";
+            baptism2.Description = "Force the Right ally to perform all of their abilities in reverse order.\nInflict 3 Acid on them.";
             baptism2.Effects[1].entryVariable = 3;
 
             Ability baptism3 = new Ability(baptism2.ability, "Lich_Baptism_3_A", [Pigments.BlueYellow, Pigments.Blue, Pigments.Purple]);

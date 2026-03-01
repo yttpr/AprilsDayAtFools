@@ -8,6 +8,7 @@ namespace AprilsDayAtFools
 {
     public class TargetPerformAllAbilitiesEffect : EffectSO
     {
+        public bool Reverse;
         public static void CharaUseAbility(CharacterCombat self, int abilityID)
         {
             CombatManager.Instance.AddSubAction(new CharaUseAbilityByIndexAction(self, abilityID));
@@ -25,18 +26,40 @@ namespace AprilsDayAtFools
                 {
                     if (target.Unit is CharacterCombat chara)
                     {
-                        for (int i = 0; i < chara.AbilityCount; i++)
+                        if (!Reverse)
                         {
-                            CharaUseAbility(chara, i);
+                            for (int i = 0; i < chara.AbilityCount; i++)
+                            {
+                                CharaUseAbility(chara, i);
+                            }
+                        }
+                        else
+                        {
+                            for (int i = chara.AbilityCount - 1; i >= 0; i--)
+                            {
+                                CharaUseAbility(chara, i);
+                            }
                         }
                     }
                     else if (target.Unit is EnemyCombat enemy)
                     {
-                        for (int i = 0; i < enemy.AbilityCount; i++)
+                        if (!Reverse)
                         {
-                            enems.Add(enemy);
-                            enemABs.Add(i);
-                            exitAmount++;
+                            for (int i = 0; i < enemy.AbilityCount; i++)
+                            {
+                                enems.Add(enemy);
+                                enemABs.Add(i);
+                                exitAmount++;
+                            }
+                        }
+                        else
+                        {
+                            for (int i = enemy.AbilityCount - 1; i >= 0; i--)
+                            {
+                                enems.Add(enemy);
+                                enemABs.Add(i);
+                                exitAmount++;
+                            }
                         }
                     }
                 }
