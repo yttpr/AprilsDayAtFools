@@ -30,7 +30,7 @@ namespace AprilsDayAtFools
             SlotStatusEffectInfoSO LifestealInfo = ScriptableObject.CreateInstance<SlotStatusEffectInfoSO>();
             LifestealInfo.icon = ResourceLoader.LoadSprite("LifestealIcon.png");
             LifestealInfo._fieldName = "Lifesteal";
-            LifestealInfo._description = "On dealing damage in Lifesteal, heal for half the damage dealt.\nLifesteal reduces by 1 on turn end and on taking direct damage in Lifesteal.";
+            LifestealInfo._description = "On dealing damage in Lifesteal, heal for half the damage dealt.\nLifesteal reduces by 1 on turn end and on taking any damage in Lifesteal.";
             LifestealInfo._applied_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Cursed_ID.ToString()]._EffectInfo._applied_SE_Event;
             LifestealInfo._removed_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Cursed_ID.ToString()]._EffectInfo.RemovedSoundEvent;
             LifestealInfo._updated_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Cursed_ID.ToString()]._EffectInfo.UpdatedSoundEvent;
@@ -76,12 +76,12 @@ namespace AprilsDayAtFools
         public override void OnTriggerAttached(FieldEffect_Holder holder, IUnit caller)
         {
             CombatManager.Instance.AddObserver(holder.OnEventTriggered_02, TriggerCalls.OnDidApplyDamage.ToString(), caller);
-            CombatManager.Instance.AddObserver(holder.OnEventTriggered_01, TriggerCalls.OnDirectDamaged.ToString(), caller);
+            CombatManager.Instance.AddObserver(holder.OnEventTriggered_01, TriggerCalls.OnDamaged.ToString(), caller);
         }
         public override void OnTriggerDettached(FieldEffect_Holder holder, IUnit caller)
         {
             CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_02, TriggerCalls.OnDidApplyDamage.ToString(), caller);
-            CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_01, TriggerCalls.OnDirectDamaged.ToString(), caller);
+            CombatManager.Instance.RemoveObserver(holder.OnEventTriggered_01, TriggerCalls.OnDamaged.ToString(), caller);
         }
         public override void OnEventCall_01(FieldEffect_Holder holder, object sender, object args)
         {
