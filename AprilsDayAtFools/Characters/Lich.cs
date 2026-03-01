@@ -130,7 +130,7 @@ namespace AprilsDayAtFools
             inside1.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nApply 1 Lifesteal on them.";
             inside1.AbilitySprite = ResourceLoader.LoadSprite("ability_insideme.png");
             inside1.Cost = [Pigments.Yellow, Pigments.Blue];
-            inside1.Effects = new EffectInfo[5];
+            inside1.Effects = new EffectInfo[6];
             inside1.Effects[0] = Effects.GenerateEffect(rem_acid, 1, right);
             inside1.Effects[1] = Effects.GenerateEffect(rem_acid, 1, Targeting.Unit_AllAllies, ScriptableObject.CreateInstance<ExistsRightAllyCondition>());
             inside1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right, BasicEffects.DidThat(true));
