@@ -53,7 +53,7 @@ namespace AprilsDayAtFools
                         target.Unit.AddPassiveAbility(Mutualism);
                         exitAmount++;
                     }
-                    target.Unit.SimpleSetStoredValue(Value, target.Unit.SimpleGetStoredValue(Value) + entryVariable);\
+                    target.Unit.SimpleSetStoredValue(Value, target.Unit.SimpleGetStoredValue(Value) + entryVariable);
 
                     ids.Add(target.Unit.ID);
                     charas.Add(target.Unit.IsUnitCharacter);
