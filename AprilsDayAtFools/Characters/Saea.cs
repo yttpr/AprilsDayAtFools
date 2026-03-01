@@ -135,7 +135,7 @@ namespace AprilsDayAtFools
 
             Ability onset4 = new Ability(onset3.ability, "Saea_Onset_4_A", onset1.Cost);
             onset4.Name = "Onset of Hell";
-            onset4.Description = "Heal this and All allies to the Rights 8 health then inflict 8 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 15.";
+            onset4.Description = "Heal this and All allies to the Right 8 health then inflict 8 Karma on them, increasing their maximum health if necessary.\nKarma inflicted will not exceed 15.";
             onset4.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3, 4], true);
             onset4.Effects[1].entryVariable = 15;
             onset4.Effects[0].targets = onset4.ability.animationTarget;
