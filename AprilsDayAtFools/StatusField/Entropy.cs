@@ -1,6 +1,7 @@
 ﻿using BrutalAPI;
 using MonoMod.RuntimeDetour;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -89,44 +90,69 @@ namespace AprilsDayAtFools
         }
         public override void OnEventCall_01(StatusEffect_Holder holder, object sender, object args)
         {
+            CombatManager.Instance.AddSubAction(new TriggerEntropyAction(this, holder, sender, args));
+            return;
             if (sender is IUnit && (sender as IUnit).IsAlive && (sender as IUnit).CurrentHealth > 0)
             {
                 (sender as IUnit).Damage(1, null, DeathType_GameIDs.None.ToString(), -1, false, false, true, Entropy.DamageType);
+                ReduceDuration(holder, sender as IStatusEffector);
+                if (!(sender as IUnit).ContainsStatusEffect(Entropy.StatusID)) return;
                 int reduction = UnityEngine.Random.Range(3, 10);
                 int timing = (sender as IUnit).SimpleGetStoredValue(Entropy.Limit) - reduction;
                 int time = Math.Max(timing, 1);
                 (sender as IUnit).SimpleSetStoredValue(Entropy.Limit, time);
                 Thread timerThread = new Thread(new ParameterizedThreadStart(AddTurnsThread));
                 timerThread.Start(sender as IUnit);
-                ReduceDuration(holder, sender as IStatusEffector);
+            }
+        }
+        public class TriggerEntropyAction : CombatAction
+        {
+            public EntropySE_SO self;
+            public StatusEffect_Holder holder;
+            public object sender;
+            public object args;
+            public TriggerEntropyAction(EntropySE_SO self, StatusEffect_Holder holder, object sender, object args)
+            {
+                this.self = self;
+                this.holder = holder;
+                this.sender = sender;
+                this.args = args;
+            }
+            public override IEnumerator Execute(CombatStats stats)
+            {
+                if (sender is IUnit && (sender as IUnit).IsAlive && (sender as IUnit).CurrentHealth > 0)
+                {
+                    (sender as IUnit).Damage(1, null, DeathType_GameIDs.None.ToString(), -1, false, false, true, Entropy.DamageType);
+                    self.ReduceDuration(holder, sender as IStatusEffector);
+                    if (!(sender as IUnit).ContainsStatusEffect(Entropy.StatusID)) yield break;
+                    int reduction = UnityEngine.Random.Range(3, 10);
+                    int timing = (sender as IUnit).SimpleGetStoredValue(Entropy.Limit) - reduction;
+                    int time = Math.Max(timing, 1);
+                    (sender as IUnit).SimpleSetStoredValue(Entropy.Limit, time);
+                    Thread timerThread = new Thread(new ParameterizedThreadStart(AddTurnsThread));
+                    timerThread.Start(sender as IUnit);
+                }
             }
         }
         public static void AddTurnsThread(object obj)
         {
-            try
+            if (CombatManager._instance == null || CombatManager._instance.Equals(null)) return;
+            if (obj is IUnit unit)
             {
-                if (obj is IUnit unit)
+                if (!unit.Equals(null) && unit.IsAlive)
                 {
                     int timing = unit.SimpleGetStoredValue(Entropy.Limit);
-                    //Debug.Log(timing);
-                    if (!unit.Equals(null) && unit.IsAlive)
+                    for (int i = 0; i < timing; i++)
                     {
-                        for (int i = 0; i < timing; i++)
-                        {
-                            Thread.Sleep(1000);
-                            if (CombatManager._instance == null) return;
-                        }
-                        if (!unit.Equals(null) && unit.IsAlive && unit.ContainsStatusEffect(Entropy.StatusID))
-                        {
-                            CombatManager.Instance.PostNotification(Entropy.TriggerCall, unit, null);
-                        }
-
+                        Thread.Sleep(1000);
+                        if (CombatManager._instance == null || CombatManager._instance.Equals(null)) return;
                     }
-                }
-            }
-            catch
-            {
+                    if (!unit.Equals(null) && unit.IsAlive && unit.ContainsStatusEffect(Entropy.StatusID))
+                    {
+                        CombatManager.Instance.PostNotification(Entropy.TriggerCall, unit, null);
+                    }
 
+                }
             }
         }
     }

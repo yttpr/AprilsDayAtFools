@@ -127,36 +127,36 @@ namespace AprilsDayAtFools
             rem_acid._status = Acid.Object;
 
             Ability inside1 = new Ability("Inside Me, Squishies", "Lich_Inside_1_A");
-            inside1.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nHeal them 3 health.";
+            inside1.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nApply 1 Lifesteal on them.";
             inside1.AbilitySprite = ResourceLoader.LoadSprite("ability_insideme.png");
-            inside1.Cost = [Pigments.Blue];
+            inside1.Cost = [Pigments.Yellow, Pigments.Blue];
             inside1.Effects = new EffectInfo[5];
             inside1.Effects[0] = Effects.GenerateEffect(rem_acid, 1, right);
             inside1.Effects[1] = Effects.GenerateEffect(rem_acid, 1, Targeting.Unit_AllAllies, ScriptableObject.CreateInstance<ExistsRightAllyCondition>());
             inside1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right, BasicEffects.DidThat(true));
-            inside1.Effects[3] = Effects.GenerateEffect(heal, 3, right);
-            inside1.Effects[4] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
+            inside1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 1, right);
+            inside1.Effects[4] = Effects.GenerateEffect(BasicEffects.Empty, 2, right);
+            inside1.Effects[5] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
             inside1.AddIntentsToTarget(Targeting.Unit_AllAllies, [Acid.Rem]);
-            inside1.AddIntentsToTarget(right, [Acid.Intent, "Heal_1_4"]);
+            inside1.AddIntentsToTarget(right, [Acid.Intent, Lifesteal.Intent]);
             inside1.AnimationTarget = right;
             inside1.Visuals = Visuals.WrigglingWrath;
 
             Ability inside2 = new Ability(inside1.ability, "Lich_Inside_2_A", inside1.Cost);
             inside2.Name = "Inside Me, Wrigglies";
-            inside2.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nHeal them 4 health.";
-            inside2.Effects[3].entryVariable = 4;
+            inside2.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nApply 1 Lifesteal on them and heal them 2 health.";
+            inside2.Effects[4].effect = heal;
+            inside2.AddIntentsToTarget(right, ["Heal_1_4"]);
 
-            Ability inside3 = new Ability(inside2.ability, "Lich_Inside_3_A", inside1.Cost);
+            Ability inside3 = new Ability(inside2.ability, "Lich_Inside_3_A", [Pigments.Blue]);
             inside3.Name = "Inside Me, Crawlies";
-            inside3.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nHeal them 5 health.";
-            inside3.Effects[3].entryVariable = 5;
-            inside3.EffectIntents[1].intents[1] = "Heal_5_10";
+            inside3.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nApply 1 Lifesteal on them and heal them 2 health.";
 
-            Ability inside4 = new Ability(inside3.ability, "Lich_Inside_4_A", inside1.Cost);
+            Ability inside4 = new Ability(inside3.ability, "Lich_Inside_4_A", inside3.Cost);
             inside4.Name = "Inside Me, Squirmies";
-            inside4.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nHeal them 6 health.";
-            inside4.Effects[3].entryVariable = 6;
-
+            inside4.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nApply 1 Lifesteal on them and heal them 5 health.";
+            inside4.Effects[4].entryVariable = 5;
+            inside4.EffectIntents[2].intents[0] = "Heal_5_10";
 
 
             lich.AddLevelData(6, [fuzzy1, baptism1, inside1]);
