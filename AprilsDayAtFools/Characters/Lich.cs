@@ -145,7 +145,7 @@ namespace AprilsDayAtFools
             inside1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyAcidEffect>(), 1, right);
             inside1.Effects[3] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
             inside1.AddIntentsToTarget(right, [Lifesteal.Intent, "Misc", Acid.Intent]);
-            inside1.AddIntentsToTarget(right, ["Damage_3_6"]);
+            inside1.AddIntentsToTarget(Slots.Right, ["Damage_3_6"]);
             inside1.AnimationTarget = right;
             inside1.Visuals = Visuals.WrigglingWrath;
 
