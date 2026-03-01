@@ -73,7 +73,7 @@ namespace AprilsDayAtFools
             rem_stat.Exclude = [Acid.StatusID];
 
             Ability fuzzy1 = new Ability("Fuzzy with Vomit", "Lich_Fuzzy_1_A");
-            fuzzy1.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status Effects on them into Acid.\nHeal them 7 health.";
+            fuzzy1.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status and Field Effects on them into Acid.\nHeal them 7 health.";
             fuzzy1.AbilitySprite = ResourceLoader.LoadSprite("ability_fuzzy.png");
             fuzzy1.Cost = [Pigments.Blue, Pigments.Blue];
             fuzzy1.Effects = new EffectInfo[4];
@@ -87,18 +87,18 @@ namespace AprilsDayAtFools
 
             Ability fuzzy2 = new Ability(fuzzy1.ability, "Lich_Fuzzy_2_A", fuzzy1.Cost);
             fuzzy2.Name = "Fuzzy with Mold";
-            fuzzy2.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status Effects on them into Acid.\nHeal them 9 health.";
+            fuzzy2.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status and Field Effects on them into Acid.\nHeal them 9 health.";
             fuzzy2.Effects[3].entryVariable = 9;
 
             Ability fuzzy3 = new Ability(fuzzy2.ability, "Lich_Fuzzy_3_A", fuzzy1.Cost);
             fuzzy3.Name = "Fuzzy with Parasites";
-            fuzzy3.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status Effects on them into Acid.\nHeal them 11 health.";
+            fuzzy3.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status and Field Effects on them into Acid.\nHeal them 11 health.";
             fuzzy3.Effects[3].entryVariable = 11;
             fuzzy3.EffectIntents[0].intents[2] = "Heal_11_20";
 
             Ability fuzzy4 = new Ability(fuzzy3.ability, "Lich_Fuzzy_4_A", fuzzy1.Cost);
             fuzzy4.Name = "Fuzzy with Larvae";
-            fuzzy4.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status Effects on them into Acid.\nHeal them 13 health.";
+            fuzzy4.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status and Field Effects on them into Acid.\nHeal them 13 health.";
             fuzzy4.Effects[3].entryVariable = 13;
 
             Ability baptism1 = new Ability("Baptism of Beetles", "Lich_Baptism_1_A");
