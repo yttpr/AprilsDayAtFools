@@ -163,7 +163,7 @@ namespace AprilsDayAtFools
             lich.AddLevelData(8, [fuzzy2, baptism2, inside2]);
             lich.AddLevelData(10, [fuzzy3, baptism3, inside3]);
             lich.AddLevelData(11, [fuzzy4, baptism4, inside4]);
-            lich.AddCharacter(false);
+            lich.AddCharacter(Class1.UnlockedByDefault);
         }
 
 

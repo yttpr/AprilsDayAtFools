@@ -161,7 +161,7 @@ namespace AprilsDayAtFools
             defacer.AddLevelData(14, [skin2, mask2, face2]);
             defacer.AddLevelData(17, [skin3, mask3, face3]);
             defacer.AddLevelData(19, [skin4, mask4, face4]);
-            defacer.AddCharacter(false);
+            defacer.AddCharacter(Class1.UnlockedByDefault);
         }
         public static void AddDialogueEmote()
         {

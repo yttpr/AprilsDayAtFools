@@ -158,7 +158,7 @@ namespace AprilsDayAtFools
             sunflower.AddLevelData(11, [buried2, void2, haze2]);
             sunflower.AddLevelData(15, [buried3, void3, haze3]);
             sunflower.AddLevelData(17, [buried4, void4, haze4]);
-            sunflower.AddCharacter(false);
+            sunflower.AddCharacter(Class1.UnlockedByDefault);
         }
 
 

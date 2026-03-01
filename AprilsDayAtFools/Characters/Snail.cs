@@ -156,7 +156,7 @@ namespace AprilsDayAtFools
             snail.AddLevelData(15, [maw2, hand2, camo2]);
             snail.AddLevelData(16, [maw3, hand3, camo3]);
             snail.AddLevelData(19, [maw4, hand4, camo4]);
-            snail.AddCharacter(false);
+            snail.AddCharacter(Class1.UnlockedByDefault);
             SlidingHandler.AddCharacter(snail.character);
         }
         public static void AddDialogueEmote()

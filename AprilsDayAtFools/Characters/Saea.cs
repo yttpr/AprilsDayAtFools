@@ -279,7 +279,7 @@ namespace AprilsDayAtFools
             saea.AddLevelData(14, [visions2, ori2, onset2]);
             saea.AddLevelData(15, [visions3, ori3, onset3]);
             saea.AddLevelData(16, [visions4, ori4, onset4]);
-            saea.AddCharacter(false);
+            saea.AddCharacter(Class1.UnlockedByDefault);
             SlidingHandler.AddCharacter(saea.character);
         }
         public static void Items()

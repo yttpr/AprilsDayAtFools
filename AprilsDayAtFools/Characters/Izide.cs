@@ -182,7 +182,7 @@ namespace AprilsDayAtFools
             izide.AddLevelData(16, [med2, ruin2, behind2]);
             izide.AddLevelData(20, [med3, ruin3, behind3]);
             izide.AddLevelData(22, [med4, ruin4, behind4]);
-            izide.AddCharacter(false);
+            izide.AddCharacter(Class1.UnlockedByDefault);
         }
         public static void AddDialogueEmote()
         {

@@ -14,6 +14,8 @@ namespace AprilsDayAtFools
         public static AssetBundle Attacks;
         public static AssetBundle Other;
         public static YarnProgram Yarn;
+
+        public static bool UnlockByDefault = false;
         public void Awake()
         {
             Logger.LogInfo("Aprils);");

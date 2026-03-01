@@ -128,7 +128,7 @@ namespace AprilsDayAtFools
             alpha.AddLevelData(16, [newline2, alphabet2, reverse2]);
             alpha.AddLevelData(20, [newline3, alphabet3, reverse3]);
             alpha.AddLevelData(24, [newline4, alphabet4, reverse4]);
-            alpha.AddCharacter(false);
+            alpha.AddCharacter(Class1.UnlockedByDefault);
         }
         public static void Items()
         {

@@ -7,6 +7,7 @@ namespace AprilsDayAtFools
 {
     public class Class1
     {
+        public static bool UnlockedByDefault => Joyce.UnlockByDefault;
         public static void Test()
         {
             DamageByStoredValueEffect d;
