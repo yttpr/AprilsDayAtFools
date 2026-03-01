@@ -53,10 +53,11 @@ namespace AprilsDayAtFools
             saea.AddPassive(permanent);
 
             LifestealEffect damage = ScriptableObject.CreateInstance<LifestealEffect>();
+            damage.Heal = ScriptableObject.CreateInstance<ApplyShieldSlotEffect>();
             ApplyKarmaEffect karma = ScriptableObject.CreateInstance<ApplyKarmaEffect>();
 
-            /*Ability claim1 = new Ability("Action of Recovery", "Saea_Claim_1_A");
-            claim1.Description = "Deal 4 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
+            Ability claim1 = new Ability("Action of Recovery", "Saea_Claim_1_A");
+            claim1.Description = "Deal 4 damage to the Opposing enemy and gain Shield for the amount of damage dealt.\nIf the full amount of damage and Shielding did not occur, refresh this party member's ability usage and remove this ability.";
             claim1.AbilitySprite = ResourceLoader.LoadSprite("ability_claim.png");
             claim1.Cost = [Pigments.Grey, Pigments.Grey, Pigments.Red];
             claim1.Effects = new EffectInfo[4];
@@ -65,27 +66,26 @@ namespace AprilsDayAtFools
             claim1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RefreshAbilityUseEffect>(), 1, Slots.Self, BasicEffects.DidThat(false));
             claim1.Effects[3] = Effects.GenerateEffect(BasicEffects.Empty, 0, Slots.Self, BasicEffects.DidThat(false, 2));
             claim1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
-            claim1.AddIntentsToTarget(Slots.Self, ["Heal_1_4", "Misc"]);
+            claim1.AddIntentsToTarget(Slots.Self, ["Field_Shield", "Misc"]);
             claim1.Visuals = Visuals.Womb;
             claim1.AnimationTarget = Slots.Front;
 
             Ability claim2 = new Ability(claim1.ability, "Saea_Claim_2_A", claim1.Cost);
             claim2.Name = "Action of Reclamation";
-            claim2.Description = "Deal 6 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
+            claim2.Description = "Deal 6 damage to the Opposing enemy and gain Shield for the amount of damage dealt.\nIf the full amount of damage and Shielding did not occur, refresh this party member's ability usage and remove this ability.";
             claim2.Effects[0].entryVariable = 6;
-            claim2.EffectIntents[1].intents[0] = "Heal_5_10";
             claim2.Effects[1].entryVariable = 12;
 
             Ability claim3 = new Ability(claim2.ability, "Saea_Claim_3_A", claim1.Cost);
             claim3.Name = "Action of Repossession";
-            claim3.Description = "Deal 7 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
+            claim3.Description = "Deal 7 damage to the Opposing enemy and gain Shield for the amount of damage dealt.\nIf the full amount of damage and Shielding did not occur, refresh this party member's ability usage and remove this ability.";
             claim3.Effects[0].entryVariable = 7;
             claim3.EffectIntents[0].intents[0] = "Damage_7_10";
             claim3.Effects[1].entryVariable = 14;
 
             Ability claim4 = new Ability(claim3.ability, "Saea_Claim_4_A", claim1.Cost);
             claim4.Name = "Action of Reappropriation";
-            claim4.Description = "Deal 8 damage to the Opposing enemy and heal this party member for the amount of damage dealt.\nIf the full amount of damage and healing did not occur, refresh this party member's ability usage and remove this ability.";
+            claim4.Description = "Deal 8 damage to the Opposing enemy and gain Shield for the amount of damage dealt.\nIf the full amount of damage and Shielding did not occur, refresh this party member's ability usage and remove this ability.";
             claim4.Effects[0].entryVariable = 8;
             claim4.Effects[1].entryVariable = 16;
 
@@ -96,7 +96,7 @@ namespace AprilsDayAtFools
             AddExtraAbilityIfNotHaveEffect act3 = AddExtraAbilityIfNotHaveEffect.Create(claim3.GenerateCharacterAbility(true));
             claim3.Effects[3].effect = act3.Remove;
             AddExtraAbilityIfNotHaveEffect act4 = AddExtraAbilityIfNotHaveEffect.Create(claim4.GenerateCharacterAbility(true));
-            claim4.Effects[3].effect = act4.Remove;*/
+            claim4.Effects[3].effect = act4.Remove;
 
 
             Ability onset1 = new Ability("Onset of Shadows", "Saea_Onset_1_A");
@@ -144,38 +144,43 @@ namespace AprilsDayAtFools
 
             ReduceKarmaEffect reduce = ScriptableObject.CreateInstance<ReduceKarmaEffect>();
             reduce._randomBetweenPrevious = true;
+            Intents.CreateAndAddCustom_Basic_IntentToPool("Claim_A", claim1.ability.abilitySprite, Color.white);
 
             Ability ori1 = new Ability("Placated Origin", "Saea_Ori_1_A");
-            ori1.Description = "Attempt to resurrect an ally in the Left position at 3 health, inflicting 10 Karma on them if succesful.\nIf no ally was resurrected, apply 10 Shield on the Left ally.";
+            ori1.Description = "Attempt to resurrect an ally in the Left position at 3 health, inflicting 10 Karma on them if succesful.\nIf no ally was resurrected, apply 8 Shield on the Left ally and give them \"Action of Recovery\" as an extra ability.";
             ori1.AbilitySprite = ResourceLoader.LoadSprite("ability_origin.png");
             ori1.Cost = [Pigments.Purple];
-            ori1.Effects = new EffectInfo[3];
+            ori1.Effects = new EffectInfo[4];
             ori1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectEffect>(), 3, Targeting.Slot_AllyLeft);
             ori1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 10, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true));
-            ori1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 10, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 2));
-            ori1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Other_Resurrect", Karma.Intent, "Field_Shield"]);
+            ori1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 8, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 2));
+            ori1.Effects[3] = Effects.GenerateEffect(act1, 1, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3));
+            ori1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Other_Resurrect", Karma.Intent, "Field_Shield", "Claim_A"]);
             ori1.Visuals = CustomVisuals.GetVisuals("Salt/Insta/Shatter");
             ori1.AnimationTarget = Targeting.Slot_AllyLeft;
 
             Ability ori2 = new Ability(ori1.ability, "Saea_Ori_2_A", ori1.Cost);
             ori2.Name = "Cordial Origin";
-            ori2.Description = "Attempt to resurrect an ally in the Left position at 5 health, inflicting 12 Karma on them if succesful.\nIf no ally was resurrected, apply 11 Shield on the Left ally.";
+            ori2.Description = "Attempt to resurrect an ally in the Left position at 5 health, inflicting 12 Karma on them if succesful.\nIf no ally was resurrected, apply 9 Shield on the Left ally and give them \"Action of Reclamation\" as an extra ability.";
             ori2.Effects[0].entryVariable = 5;
             ori2.Effects[1].entryVariable = 12;
-            ori2.Effects[2].entryVariable = 11;
+            ori2.Effects[2].entryVariable = 9;
+            ori2.Effects[3].effect = act2;
 
             Ability ori3 = new Ability(ori2.ability, "Saea_Ori_3_A", ori1.Cost);
             ori3.Name = "Amiable Origin";
-            ori3.Description = "Attempt to resurrect an ally in the Left position at 8 health, inflicting 14 Karma on them if succesful.\nIf no ally was resurrected, apply 11 Shield on the Left ally.";
+            ori3.Description = "Attempt to resurrect an ally in the Left position at 8 health, inflicting 14 Karma on them if succesful.\nIf no ally was resurrected, apply 9 Shield on the Left ally and give them \"Action of Repossession\" as an extra ability.";
             ori3.Effects[0].entryVariable = 8;
             ori3.Effects[1].entryVariable = 14;
+            ori3.Effects[3].effect = act3;
 
             Ability ori4 = new Ability(ori3.ability, "Saea_Ori_4_A", ori1.Cost);
             ori4.Name = "Hospitable Origin";
-            ori4.Description = "Attempt to resurrect an ally in the Left position at 10 health, inflicting 15 Karma on them if succesful.\nIf no ally was resurrected, apply 12 Shield on the Left ally.";
+            ori4.Description = "Attempt to resurrect an ally in the Left position at 10 health, inflicting 15 Karma on them if succesful.\nIf no ally was resurrected, apply 10 Shield on the Left ally and give them \"Action of Reappropriation\" as an extra ability.";
             ori4.Effects[0].entryVariable = 10;
             ori4.Effects[1].entryVariable = 15;
-            ori4.Effects[2].entryVariable = 12;
+            ori4.Effects[2].entryVariable = 10;
+            ori4.Effects[3].effect = act4;
 
             /*EffectInfo animself = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Slots.Self));
             EffectInfo animleft = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Keyhole", false, Targeting.Slot_AllyLeft));
