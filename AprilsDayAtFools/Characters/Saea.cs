@@ -266,7 +266,7 @@ namespace AprilsDayAtFools
             Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
             visions2.Name = "Torturous Visions";
             visions2.Description = "Apply 2 Lifesteal on the Left and Far Left positions.\nHeal this party member 2 health, this healing is treated as Shield-Piercing direct damage.";
-            visions2.Effects[1].targets = multileft;
+            visions2.Effects[0].targets = multileft;
             visions2.EffectIntents[0].targets = multileft;
             visions2.AnimationTarget = multileft;
 
