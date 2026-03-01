@@ -72,34 +72,37 @@ namespace AprilsDayAtFools
             ImprovedRemoveAllNegativeStatusAndFieldEffect rem_stat = ScriptableObject.CreateInstance<ImprovedRemoveAllNegativeStatusAndFieldEffect>();
             rem_stat.Exclude = [Acid.StatusID];
 
+            EffectChainPerTargetEffect replace_acid = ScriptableObject.CreateInstance<EffectChainPerTargetEffect>();
+            replace_acid.Primary = rem_stat;
+            replace_acid.Secondary = previousAcid;
+
             Ability fuzzy1 = new Ability("Fuzzy with Vomit", "Lich_Fuzzy_1_A");
-            fuzzy1.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status and Field Effects on them into Acid.\nHeal them 7 health.";
+            fuzzy1.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 9 health.";
             fuzzy1.AbilitySprite = ResourceLoader.LoadSprite("ability_fuzzy.png");
             fuzzy1.Cost = [Pigments.Blue, Pigments.Blue];
-            fuzzy1.Effects = new EffectInfo[4];
-            fuzzy1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HalveAcidEffect>(), 1, right);
-            fuzzy1.Effects[1] = Effects.GenerateEffect(rem_stat, 1, right);
-            fuzzy1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right);
-            fuzzy1.Effects[3] = Effects.GenerateEffect(heal, 7, right);
+            fuzzy1.Effects = new EffectInfo[3];
+            fuzzy1.Effects[0] = Effects.GenerateEffect(rem_stat, 1, right);
+            fuzzy1.Effects[1] = Effects.GenerateEffect(previousAcid, 1, right);
+            fuzzy1.Effects[2] = Effects.GenerateEffect(heal, 9, right);
             fuzzy1.AddIntentsToTarget(right, ["Misc", Acid.Intent, "Heal_5_10"]);
             fuzzy1.AnimationTarget = right;
             fuzzy1.Visuals = CustomVisuals.GetVisuals("Salt/Ribbon");
 
             Ability fuzzy2 = new Ability(fuzzy1.ability, "Lich_Fuzzy_2_A", fuzzy1.Cost);
             fuzzy2.Name = "Fuzzy with Mold";
-            fuzzy2.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status and Field Effects on them into Acid.\nHeal them 9 health.";
-            fuzzy2.Effects[3].entryVariable = 9;
+            fuzzy2.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 10 health.";
+            fuzzy2.Effects[2].entryVariable = 10;
 
             Ability fuzzy3 = new Ability(fuzzy2.ability, "Lich_Fuzzy_3_A", fuzzy1.Cost);
             fuzzy3.Name = "Fuzzy with Parasites";
-            fuzzy3.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status and Field Effects on them into Acid.\nHeal them 11 health.";
-            fuzzy3.Effects[3].entryVariable = 11;
+            fuzzy3.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 12 health.";
+            fuzzy3.Effects[2].entryVariable = 12;
             fuzzy3.EffectIntents[0].intents[2] = "Heal_11_20";
 
             Ability fuzzy4 = new Ability(fuzzy3.ability, "Lich_Fuzzy_4_A", fuzzy1.Cost);
             fuzzy4.Name = "Fuzzy with Larvae";
-            fuzzy4.Description = "Halve the duration of Acid on the Right ally, then convert all Negative Status and Field Effects on them into Acid.\nHeal them 13 health.";
-            fuzzy4.Effects[3].entryVariable = 13;
+            fuzzy4.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 14 health.";
+            fuzzy4.Effects[2].entryVariable = 14;
 
             Ability baptism1 = new Ability("Baptism of Beetles", "Lich_Baptism_1_A");
             baptism1.Description = "Force the Right ally to perform all of their abilities.\nInflict 4 Acid on them.";
@@ -126,37 +129,39 @@ namespace AprilsDayAtFools
             RemoveStatusEffectEffect rem_acid = ScriptableObject.CreateInstance<RemoveStatusEffectEffect>();
             rem_acid._status = Acid.Object;
 
+            DamageEffect damage = ScriptableObject.CreateInstance<DamageEffect>();
+            damage._usePreviousExitValue = true;
+
             Ability inside1 = new Ability("Inside Me, Squishies", "Lich_Inside_1_A");
-            inside1.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nApply 1 Lifesteal on them.";
+            inside1.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 6 damage to their Opposing enemy.\nInflict 1 Acid on them.";
             inside1.AbilitySprite = ResourceLoader.LoadSprite("ability_insideme.png");
-            inside1.Cost = [Pigments.Yellow, Pigments.Blue];
-            inside1.Effects = new EffectInfo[6];
-            inside1.Effects[0] = Effects.GenerateEffect(rem_acid, 1, right);
-            inside1.Effects[1] = Effects.GenerateEffect(rem_acid, 1, Targeting.Unit_AllAllies, ScriptableObject.CreateInstance<ExistsRightAllyCondition>());
-            inside1.Effects[2] = Effects.GenerateEffect(previousAcid, 1, right, BasicEffects.DidThat(true));
-            inside1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 1, right);
-            inside1.Effects[4] = Effects.GenerateEffect(BasicEffects.Empty, 2, right);
-            inside1.Effects[5] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
-            inside1.AddIntentsToTarget(Targeting.Unit_AllAllies, [Acid.Rem]);
-            inside1.AddIntentsToTarget(right, [Acid.Intent, Lifesteal.Intent]);
+            inside1.Cost = [Pigments.Blue];
+            inside1.Effects = new EffectInfo[4];
+            inside1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 1, right);
+            inside1.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([Effects.GenerateEffect(damage, 1, Slots.Front)]), 6, right);
+            inside1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyAcidEffect>(), 1, right);
+            inside1.Effects[3] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
+            inside1.AddIntentsToTarget(right, [Lifesteal.Intent, "Misc", Acid.Intent]);
+            inside1.AddIntentsToTarget(right, ["Damage_3_6"]);
             inside1.AnimationTarget = right;
             inside1.Visuals = Visuals.WrigglingWrath;
 
             Ability inside2 = new Ability(inside1.ability, "Lich_Inside_2_A", inside1.Cost);
             inside2.Name = "Inside Me, Wrigglies";
-            inside2.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nApply 1 Lifesteal on them and heal them 2 health.";
-            inside2.Effects[4].effect = heal;
-            inside2.AddIntentsToTarget(right, ["Heal_1_4"]);
+            inside2.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 8 damage to their Opposing enemy.\nInflict 1 Acid on them.";
+            inside2.Effects[1].entryVariable = 8;
+            inside2.EffectIntents[1].intents[0] = "Damage_3_6";
 
-            Ability inside3 = new Ability(inside2.ability, "Lich_Inside_3_A", [Pigments.Blue]);
+            Ability inside3 = new Ability(inside2.ability, "Lich_Inside_3_A", inside1.Cost);
             inside3.Name = "Inside Me, Crawlies";
-            inside3.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nApply 1 Lifesteal on them and heal them 2 health.";
+            inside3.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 10 damage to their Opposing enemy.\nInflict 1 Acid on them.";
+            inside3.Effects[1].entryVariable = 10;
 
-            Ability inside4 = new Ability(inside3.ability, "Lich_Inside_4_A", inside3.Cost);
+            Ability inside4 = new Ability(inside3.ability, "Lich_Inside_4_A", inside1.Cost);
             inside4.Name = "Inside Me, Squirmies";
-            inside4.Description = "Remove all Acid from the Right ally, then move all Acid from all party members to them.\nApply 1 Lifesteal on them and heal them 5 health.";
-            inside4.Effects[4].entryVariable = 5;
-            inside4.EffectIntents[2].intents[0] = "Heal_5_10";
+            inside4.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 12 damage to their Opposing enemy.\nInflict 1 Acid on them.";
+            inside4.Effects[1].entryVariable = 12;
+            inside4.EffectIntents[1].intents[0] = "Damage_11_15";
 
 
             lich.AddLevelData(6, [fuzzy1, baptism1, inside1]);

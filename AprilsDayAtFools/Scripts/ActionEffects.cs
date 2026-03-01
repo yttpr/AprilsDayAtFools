@@ -189,7 +189,7 @@ namespace AprilsDayAtFools
             {
                 if (target.HasUnit)
                 {
-                    CombatManager.Instance.ProcessImmediateAction(new ImmediateEffectAction(effectInfoArray, target.Unit, 0));
+                    CombatManager.Instance.ProcessImmediateAction(new ImmediateEffectAction(effectInfoArray, target.Unit, entryVariable));
                     ++exitAmount;
                 }
             }
