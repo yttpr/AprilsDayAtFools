@@ -139,7 +139,7 @@ namespace AprilsDayAtFools
             fribble.AddLevelData(13, [noise2, flavor2, earworm2]);
             fribble.AddLevelData(16, [noise3, flavor3, earworm3]);
             fribble.AddLevelData(18, [noise4, flavor4, earworm4]);
-            fribble.AddCharacter();
+            fribble.AddCharacter(false, true);
         }
     }
 }

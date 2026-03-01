@@ -146,7 +146,7 @@ namespace AprilsDayAtFools
             telomere.AddLevelData(23, [shell2, pain2, break2]);
             telomere.AddLevelData(25, [shell3, pain3, break3]);
             telomere.AddLevelData(27, [shell4, pain4, break4]);
-            telomere.AddCharacter();
+            telomere.AddCharacter(false, true);
         }
     }
 }

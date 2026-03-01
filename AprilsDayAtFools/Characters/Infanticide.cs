@@ -160,7 +160,7 @@ namespace AprilsDayAtFools
             infanticide.AddLevelData(13, [away2, violence2, fun2]);
             infanticide.AddLevelData(16, [away3, violence3, fun3]);
             infanticide.AddLevelData(18, [away4, violence4, fun4]);
-            infanticide.AddCharacter();
+            infanticide.AddCharacter(false, true);
         }
     }
 }

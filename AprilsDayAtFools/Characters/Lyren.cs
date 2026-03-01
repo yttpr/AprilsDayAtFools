@@ -146,7 +146,7 @@ namespace AprilsDayAtFools
             lyren.AddLevelData(18, [breakfast2, novelty2, sing2]);
             lyren.AddLevelData(20, [breakfast3, novelty3, sing3]);
             lyren.AddLevelData(25, [breakfast4, novelty4, sing4]);
-            lyren.AddCharacter();
+            lyren.AddCharacter(false, true);
         }
     }
 }
