@@ -31,15 +31,15 @@ namespace AprilsDayAtFools
             LifestealInfo.icon = ResourceLoader.LoadSprite("LifestealIcon.png");
             LifestealInfo._fieldName = "Lifesteal";
             LifestealInfo._description = "On dealing damage in Lifesteal, heal for half the damage dealt.\nLifesteal reduces by 1 on turn end and on taking direct damage in Lifesteal.";
-            LifestealInfo._applied_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.OilSlicked_ID.ToString()]._EffectInfo._applied_SE_Event;
-            LifestealInfo._removed_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.OilSlicked_ID.ToString()]._EffectInfo.RemovedSoundEvent;
-            LifestealInfo._updated_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.OilSlicked_ID.ToString()]._EffectInfo.UpdatedSoundEvent;
+            LifestealInfo._applied_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Cursed_ID.ToString()]._EffectInfo._applied_SE_Event;
+            LifestealInfo._removed_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Cursed_ID.ToString()]._EffectInfo.RemovedSoundEvent;
+            LifestealInfo._updated_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Cursed_ID.ToString()]._EffectInfo.UpdatedSoundEvent;
 
             GameObject Fool = Joyce.Assets.LoadAsset<GameObject>("Assets/Lifesteal/LifestealHolder.prefab");
             Animator_CFE_Layout LayoutFool = Fool.AddComponent<Animator_CFE_Layout>();
             LayoutFool.m_Front = new RectTransform[] { Fool.transform.GetChild(0).GetComponent<RectTransform>() };
             LayoutFool.m_Back = new RectTransform[] { Fool.transform.GetChild(1).GetComponent<RectTransform>() };
-            LayoutFool.m_Animators = new Animator[] { Fool.GetComponent<Animator>() };
+            LayoutFool.m_Animators = new Animator[] { Fool.transform.GetChild(0).GetComponent<Animator>(), Fool.transform.GetChild(1).GetComponent<Animator>() };
             LifestealInfo.m_CharacterLayoutTemplate = LayoutFool;
 
             GameObject Enemy = Joyce.Assets.LoadAsset<GameObject>("Assets/Lifesteal/LifestealEnemy.prefab");
