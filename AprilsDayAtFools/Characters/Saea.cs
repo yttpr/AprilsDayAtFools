@@ -257,12 +257,12 @@ namespace AprilsDayAtFools
             BaseCombatTargettingSO multileft = Slots.SlotTarget([-1, -2], true);
 
             Ability visions1 = new Ability("Vile Visions", "Saea_Visions_1_A");
-            visions1.Description = "Apply 2 Lifesteal on the Left position.\nHeal this party member 2 health, this healing is treated as Shield-Piercing direct damage.";
+            visions1.Description = "Apply 2 Lifesteal on the Left position.\nIf the correct Pigment is used heal this party member 3 health, this healing is treated as Shield-Piercing direct damage.";
             visions1.AbilitySprite = ResourceLoader.LoadSprite("ability_visions.png");
             visions1.Cost = [Pigments.Red, Pigments.Blue];
             visions1.Effects = new EffectInfo[2];
             visions1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 2, Targeting.Slot_AllyLeft);
-            visions1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DirectHealingEffect>(), 2, Slots.Self);
+            visions1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DirectHealingEffect>(), 3, Slots.Self, WrongPigmentEffectCondition.Create(false));
             visions1.AddIntentsToTarget(Targeting.Slot_AllyLeft, [Lifesteal.Intent]);
             visions1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
             visions1.Visuals = CustomVisuals.GetVisuals("Salt/Keyhole");
@@ -270,20 +270,23 @@ namespace AprilsDayAtFools
 
             Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
             visions2.Name = "Torturous Visions";
-            visions2.Description = "Apply 2 Lifesteal on the Left and Far Left positions.\nHeal this party member 2 health, this healing is treated as Shield-Piercing direct damage.";
+            visions2.Description = "Apply 2 Lifesteal on the Left and Far Left positions.\nIf the correct Pigment is used heal this party member 4 health, this healing is treated as Shield-Piercing direct damage.";
             visions2.Effects[0].targets = multileft;
             visions2.EffectIntents[0].targets = multileft;
             visions2.AnimationTarget = multileft;
+            visions2.Effects[1].entryVariable = 4;
 
             Ability visions3 = new Ability(visions2.ability, "Saea_Visions_3_A", visions1.Cost);
             visions3.Name = "Apocalyptic Visions";
-            visions3.Description = "Apply 3 Lifesteal on the Left and Far Left positions.\nHeal this party member 3 health, this healing is treated as Shield-Piercing direct damage.";
+            visions3.Description = "Apply 3 Lifesteal on the Left and Far Left positions.\nIf the correct Pigment is used heal this party member 5 health, this healing is treated as Shield-Piercing direct damage.";
             visions3.Effects[0].entryVariable = 3;
-            visions3.Effects[1].entryVariable = 3;
+            visions3.Effects[1].entryVariable = 5;
+            visions3.EffectIntents[1].intents[0] = "Heal_5_10";
 
             Ability visions4 = new Ability(visions3.ability, "Saea_Visions_4_A", [Pigments.BlueRed, Pigments.BlueRed]);
             visions4.Name = "Cataclysmic Visions";
-            visions4.Description = "Apply 3 Lifesteal on the Left and Far Left positions.\nHeal this party member 3 health, this healing is treated as Shield-Piercing direct damage.";
+            visions4.Description = "Apply 3 Lifesteal on the Left and Far Left positions.\nIf the correct Pigment is used heal this party member 6 health, this healing is treated as Shield-Piercing direct damage.";
+            visions4.Effects[1].entryVariable = 6;
 
             saea.AddLevelData(12, [visions1, ori1, onset1]);
             saea.AddLevelData(14, [visions2, ori2, onset2]);
