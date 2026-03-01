@@ -139,11 +139,12 @@ namespace AprilsDayAtFools
             inside1.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 6 damage to their Opposing enemy.\nInflict 1 Acid on them.";
             inside1.AbilitySprite = ResourceLoader.LoadSprite("ability_insideme.png");
             inside1.Cost = [Pigments.Blue];
-            inside1.Effects = new EffectInfo[4];
+            inside1.Effects = new EffectInfo[5];
             inside1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 1, right);
-            inside1.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([Effects.GenerateEffect(damage, 1, Slots.Front)]), 6, right);
-            inside1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyAcidEffect>(), 1, right);
-            inside1.Effects[3] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
+            inside1.Effects[1] = Effects.GenerateEffect(ImmediateActionEffect.Create([Effects.GenerateEffect(BasicEffects.GetVisuals("WrigglingWrath_A", false, Slots.Front))]), 0, right);
+            inside1.Effects[2] = Effects.GenerateEffect(ImmediateActionEffect.Create([Effects.GenerateEffect(damage, 1, Slots.Front)]), 6, right);
+            inside1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyAcidEffect>(), 1, right);
+            inside1.Effects[4] = Effects.GenerateEffect(lichSprites, 1, Slots.Self);
             inside1.AddIntentsToTarget(right, [Lifesteal.Intent, "Misc", Acid.Intent]);
             inside1.AddIntentsToTarget(Slots.Right, ["Damage_3_6"]);
             inside1.AnimationTarget = right;
@@ -152,18 +153,18 @@ namespace AprilsDayAtFools
             Ability inside2 = new Ability(inside1.ability, "Lich_Inside_2_A", inside1.Cost);
             inside2.Name = "Inside Me, Wrigglies";
             inside2.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 8 damage to their Opposing enemy.\nInflict 1 Acid on them.";
-            inside2.Effects[1].entryVariable = 8;
+            inside2.Effects[2].entryVariable = 8;
             inside2.EffectIntents[1].intents[0] = "Damage_7_10";
 
             Ability inside3 = new Ability(inside2.ability, "Lich_Inside_3_A", inside1.Cost);
             inside3.Name = "Inside Me, Crawlies";
             inside3.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 10 damage to their Opposing enemy.\nInflict 1 Acid on them.";
-            inside3.Effects[1].entryVariable = 10;
+            inside3.Effects[2].entryVariable = 10;
 
             Ability inside4 = new Ability(inside3.ability, "Lich_Inside_4_A", inside1.Cost);
             inside4.Name = "Inside Me, Squirmies";
             inside4.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 12 damage to their Opposing enemy.\nInflict 1 Acid on them.";
-            inside4.Effects[1].entryVariable = 12;
+            inside4.Effects[2].entryVariable = 12;
             inside4.EffectIntents[1].intents[0] = "Damage_11_15";
 
 
