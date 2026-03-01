@@ -153,7 +153,7 @@ namespace AprilsDayAtFools
             inside2.Name = "Inside Me, Wrigglies";
             inside2.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 8 damage to their Opposing enemy.\nInflict 1 Acid on them.";
             inside2.Effects[1].entryVariable = 8;
-            inside2.EffectIntents[1].intents[0] = "Damage_3_6";
+            inside2.EffectIntents[1].intents[0] = "Damage_7_10";
 
             Ability inside3 = new Ability(inside2.ability, "Lich_Inside_3_A", inside1.Cost);
             inside3.Name = "Inside Me, Crawlies";
