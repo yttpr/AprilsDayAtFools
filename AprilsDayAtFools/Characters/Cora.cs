@@ -61,7 +61,7 @@ namespace AprilsDayAtFools
             ink1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ExtraVariableForNextEffect>(), 1, null, ScriptableObject.CreateInstance<FirstAbilityUsedCondition>());
             ink1.Effects[1] = Effects.GenerateEffect(damage, 11, Slots.Front, BasicEffects.DidThat(true));
             ink1.Effects[2] = Effects.GenerateEffect(damage, 8, Slots.Front, BasicEffects.DidThat(false, 2));
-            ink1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<GenerateTargetHealthManaEffect>(), 3, Slots.Front, BasicEffects.DidThat(false, 3));
+            ink1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<GenerateTargetHealthManaEffect>(), 3, Slots.Front);
             ink1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden", "Damage_7_10", "Damage_11_15", "Mana_Generate"]);
             ink1.Visuals = CustomVisuals.GetVisuals("Salt/Curse");
             ink1.AnimationTarget = Slots.Front;
