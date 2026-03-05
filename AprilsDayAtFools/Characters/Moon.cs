@@ -58,6 +58,7 @@ namespace AprilsDayAtFools
             FireDamageByStoredValueBlockedByFieldEffect isolDmg = ScriptableObject.CreateInstance<FireDamageByStoredValueBlockedByFieldEffect>();
             isolDmg._increaseDamage = false;
             isolDmg.m_unitStoredDataID = IDs.Isolation;
+            isolDmg._Field = StatusField.OnFire;
             CasterStoredValueChangeEffect isolDown = ScriptableObject.CreateInstance<CasterStoredValueChangeEffect>();
             isolDown._increase = true;
             isolDown.m_unitStoredDataID = IDs.Isolation;
@@ -93,7 +94,7 @@ namespace AprilsDayAtFools
             isol1.Effects[3] = Effects.GenerateEffect(isolSet, 0, null, BasicEffects.DidThat(true));
             isol1.Effects[4] = Effects.GenerateEffect(fire, 1, Slots.Self);
             isol1.Effects[5] = Effects.GenerateEffect(fire, 2, Slots.Front);
-            isol1.AddIntentsToTarget(Slots.Front, ["Damage_11_15"]);
+            isol1.AddIntentsToTarget(Slots.Front, ["Damage_11_15", "Field_Fire"]);
             isol1.AddIntentsToTarget(Slots.Self, ["Misc", "Field_Fire"]);
             isol1.Visuals = LoadedAssetsHandler.GetCharacterAbility("Sear_1_A").visuals;
             isol1.AnimationTarget = Slots.Front;
