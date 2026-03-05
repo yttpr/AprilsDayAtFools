@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AprilsDayAtFools
 {
-    public class FireDamageByStoredValueEffect : EffectSO
+    public class FireDamageByStoredValueBlockedByFieldEffect : EffectSO
     {
         [DeathTypeEnumRef]
         public string _DeathTypeID = "Basic";
@@ -18,6 +18,9 @@ namespace AprilsDayAtFools
         public bool _increaseDamage = true;
 
         public bool _indirect;
+
+        [Header("Field")]
+        public FieldEffect_SO _Field;
 
         public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
         {
@@ -38,12 +41,14 @@ namespace AprilsDayAtFools
             {
                 if (targetSlotInfo.HasUnit)
                 {
-                    int amount = number;
+                    int amount = ((!stats.combatSlots.UnitInSlotContainsFieldEffect(targetSlotInfo.SlotID, targetSlotInfo.IsTargetCharacterSlot, _Field.FieldID)) ? number : 0);
+
                     if (targetSlotInfo.Unit.ContainsStatusEffect("OilSlicked_ID") && amount > 0)
                     {
                         targetSlotInfo.Unit.TryRemoveStatusEffect("OilSlicked_ID");
                         amount *= 3;
                     }
+
                     int targetSlotOffset = (areTargetSlots ? (targetSlotInfo.SlotID - targetSlotInfo.Unit.SlotID) : (-1));
                     DamageInfo damageInfo;
                     if (_indirect)

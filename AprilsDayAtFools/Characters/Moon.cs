@@ -55,7 +55,7 @@ namespace AprilsDayAtFools
             solitude.AddPassiveToGlossary("Solitude", "Fire does not decrease on this unit's position.\nThis unit is immune to Fire damage.");
             moon.AddPassive(solitude);
 
-            FireDamageByStoredValueEffect isolDmg = ScriptableObject.CreateInstance<FireDamageByStoredValueEffect>();
+            FireDamageByStoredValueBlockedByFieldEffect isolDmg = ScriptableObject.CreateInstance<FireDamageByStoredValueBlockedByFieldEffect>();
             isolDmg._increaseDamage = false;
             isolDmg.m_unitStoredDataID = IDs.Isolation;
             CasterStoredValueChangeEffect isolDown = ScriptableObject.CreateInstance<CasterStoredValueChangeEffect>();
@@ -80,17 +80,20 @@ namespace AprilsDayAtFools
             CasterStoreValueSetterEffect lighterEffect = ScriptableObject.CreateInstance<CasterStoreValueSetterEffect>();
             lighterEffect.m_unitStoredDataID = IDs.Lighter;
 
+            ApplyFireSlotEffect fire = ScriptableObject.CreateInstance<ApplyFireSlotEffect>();
+
             Ability isol1 = new Ability("Lingering Isolation", "Moon_Isolation_1_A");
-            isol1.Description = "Deal 10 direct Fire damage to the Opposing position and decrease this move's damage by 2, resetting if it would reach 0.\nThis move's damage decreases by 2 on turn end and on taking any damage.\nApply 1 Fire to this party member.";
+            isol1.Description = "Deal 11 direct Fire damage to the Opposing position and decrease this move's damage by 2, resetting if it would reach 0. The damage is entirely blocked by Fire.\nThis move's damage decreases by 2 on turn end and on taking any damage.\nApply 1 Fire to this party member and 2 to the Opposing position.";
             isol1.AbilitySprite = ResourceLoader.LoadSprite("ability_isolation.png");
             isol1.Cost = [Pigments.Red, Pigments.Yellow, Pigments.Yellow];
-            isol1.Effects = new EffectInfo[5];
-            isol1.Effects[0] = Effects.GenerateEffect(isolDmg, 10, Slots.Front);
+            isol1.Effects = new EffectInfo[6];
+            isol1.Effects[0] = Effects.GenerateEffect(isolDmg, 11, Slots.Front);
             isol1.Effects[1] = Effects.GenerateEffect(isolDown, 2, null, ScriptableObject.CreateInstance<MoonLighterCondition>());
-            isol1.Effects[2] = Effects.GenerateEffect(isolCap, 10);
+            isol1.Effects[2] = Effects.GenerateEffect(isolCap, 11);
             isol1.Effects[3] = Effects.GenerateEffect(isolSet, 0, null, BasicEffects.DidThat(true));
-            isol1.Effects[4] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyFireSlotEffect>(), 1, Slots.Self);
-            isol1.AddIntentsToTarget(Slots.Front, ["Damage_7_10"]);
+            isol1.Effects[4] = Effects.GenerateEffect(fire, 1, Slots.Self);
+            isol1.Effects[5] = Effects.GenerateEffect(fire, 2, Slots.Front);
+            isol1.AddIntentsToTarget(Slots.Front, ["Damage_11_15"]);
             isol1.AddIntentsToTarget(Slots.Self, ["Misc", "Field_Fire"]);
             isol1.Visuals = LoadedAssetsHandler.GetCharacterAbility("Sear_1_A").visuals;
             isol1.AnimationTarget = Slots.Front;
@@ -98,37 +101,38 @@ namespace AprilsDayAtFools
 
             Ability isol2 = new Ability(isol1.ability, "Moon_Isolation_2_A", isol1.Cost);
             isol2.Name = "Embering Isolation";
-            isol2.Description = "Deal 13 direct Fire damage to the Opposing position and decrease this move's damage by 3, resetting if it would reach 0.\nThis move's damage decreases by 2 on turn end and on taking any damage.\nApply 1 Fire to this party member.";
-            isol2.Effects[0].entryVariable = 13;
+            isol2.Description = "Deal 15 direct Fire damage to the Opposing position and decrease this move's damage by 3, resetting if it would reach 0. The damage is entirely blocked by Fire.\nThis move's damage decreases by 2 on turn end and on taking any damage.\nApply 1 Fire to this party member and 2 to the Opposing position.";
+            isol2.Effects[0].entryVariable = 15;
             isol2.Effects[1].entryVariable = 3;
-            isol2.Effects[2].entryVariable = 13;
-            isol2.EffectIntents[0].intents[0] = "Damage_11_15";
+            isol2.Effects[2].entryVariable = 15;
 
             Ability isol3 = new Ability(isol2.ability, "Moon_Isolation_3_A", isol1.Cost);
             isol3.Name = "Burning Isolation";
-            isol3.Description = "Deal 16 direct Fire damage to the Opposing position and decrease this move's damage by 4, resetting if it would reach 0.\nThis move's damage decreases by 2 on turn end and on taking any damage.\nApply 1 Fire to this party member.";
-            isol3.Effects[0].entryVariable = 16;
+            isol3.Description = "Deal 18 direct Fire damage to the Opposing position and decrease this move's damage by 4, resetting if it would reach 0. The damage is entirely blocked by Fire.\nThis move's damage decreases by 2 on turn end and on taking any damage.\nApply 1 Fire to this party member and 2 to the Opposing position.";
+            isol3.Effects[0].entryVariable = 18;
             isol3.Effects[1].entryVariable = 4;
-            isol3.Effects[2].entryVariable = 16;
+            isol3.Effects[2].entryVariable = 18;
             isol3.EffectIntents[0].intents[0] = "Damage_16_20";
 
             Ability isol4 = new Ability(isol3.ability, "Moon_Isolation_4_A", isol1.Cost);
             isol4.Name = "Scorched Isolation";
-            isol4.Description = "Deal 20 direct Fire damage to the Opposing position and decrease this move's damage by 5, resetting if it would reach 0.\nThis move's damage decreases by 2 on turn end and on taking any damage.\nApply 1 Fire to this party member.";
-            isol4.Effects[0].entryVariable = 20;
+            isol4.Description = "Deal 22 direct Fire damage to the Opposing position and decrease this move's damage by 5, resetting if it would reach 0. The damage is entirely blocked by Fire.\nThis move's damage decreases by 2 on turn end and on taking any damage.\nApply 1 Fire to this party member and 2 to the Opposing position.";
+            isol4.Effects[0].entryVariable = 22;
             isol3.Effects[1].entryVariable = 5;
-            isol4.Effects[2].entryVariable = 20;
+            isol4.Effects[2].entryVariable = 22;
+            isol4.EffectIntents[0].intents[0] = "Damage_21";
 
             Ability light1 = new Ability("Little Lighter", "Moon_Light_1_A");
             light1.Description = "Apply 1 Fire to this party member and 2 Fire to the Opposing enemy.\nRestore the damage of \"Isolation\" and \"Wallowing\" to their bases; their damages won't decrease at the end of this turn.";
             light1.AbilitySprite = ResourceLoader.LoadSprite("ability_lighter.png");
             light1.Cost = [Pigments.Red, Pigments.Yellow];
-            light1.Effects = new EffectInfo[5];
-            light1.Effects[0] = Effects.GenerateEffect(isol1.Effects[4].effect, 1, Slots.Self);
-            light1.Effects[1] = Effects.GenerateEffect(isol1.Effects[4].effect, 2, Slots.Front);
-            light1.Effects[2] = Effects.GenerateEffect(isolSet, 0);
-            light1.Effects[3] = Effects.GenerateEffect(wallowSet, 0);
-            light1.Effects[4] = Effects.GenerateEffect(lighterEffect, 1);
+            light1.Effects = new EffectInfo[6];
+            light1.Effects[0] = Effects.GenerateEffect(fire, 1, Slots.Self);
+            light1.Effects[1] = Effects.GenerateEffect(fire, 2, Slots.Front);
+            light1.Effects[2] = Effects.GenerateEffect(fire, 0, Slots.Front, Effects.ChanceCondition(50));
+            light1.Effects[3] = Effects.GenerateEffect(isolSet, 0);
+            light1.Effects[4] = Effects.GenerateEffect(wallowSet, 0);
+            light1.Effects[5] = Effects.GenerateEffect(lighterEffect, 1);
             light1.AddIntentsToTarget(Slots.Front, ["Field_Fire"]);
             light1.AddIntentsToTarget(Slots.Self, ["Field_Fire", "Misc"]);
             light1.Visuals = LoadedAssetsHandler.GetCharacterAbility("WholeAgain_1_A").visuals;
@@ -137,18 +141,17 @@ namespace AprilsDayAtFools
 
             Ability light2 = new Ability(light1.ability, "Moon_Light_2_A", light1.Cost);
             light2.Name = "Loose Lighter";
-            light2.Description = "Apply 1 Fire to this party member and 3 Fire to the Opposing enemy.\nRestore the damage of \"Isolation\" and \"Wallowing\" to their bases; their damages won't decrease at the end of this turn.";
-            light2.Effects[1].entryVariable = 3;
+            light2.Description = "Apply 1 Fire to this party member and 2-3 Fire to the Opposing enemy.\nRestore the damage of \"Isolation\" and \"Wallowing\" to their bases; their damages won't decrease at the end of this turn.";
+            light2.Effects[2].entryVariable = 1;
 
-            Ability light3 = new Ability(light2.ability, "Moon_Light_3_A", light1.Cost);
+            Ability light3 = new Ability(light2.ability, "Moon_Light_3_A", [Pigments.YellowRed, Pigments.Yellow]);
             light3.Name = "Risky Lighter";
-            light3.Description = "Apply 1 Fire to this party member and 3 Fire to the Opposing enemy.\nRestore the damage of \"Isolation\" and \"Wallowing\" to their bases; their damages won't decrease at the end of this turn.";
-            light3.Effects[1].entryVariable = 3;
 
             Ability light4 = new Ability(light3.ability, "Moon_Light_4_A", light1.Cost);
             light4.Name = "Reckless Lighter";
-            light4.Description = "Apply 1 Fire to this party member and 4 Fire to the Opposing enemy.\nRestore the damage of \"Isolation\" and \"Wallowing\" to their bases; their damages won't decrease at the end of this turn.";
-            light4.Effects[1].entryVariable = 4;
+            light4.Description = "Apply 1 Fire to this party member and 3 Fire to the Opposing enemy.\nRestore the damage of \"Isolation\" and \"Wallowing\" to their bases; their damages won't decrease at the end of this turn.";
+            light4.Effects[1].entryVariable = 3;
+            light4.Effects[2].entryVariable = 0;
 
             DoubleTargetting selfFront = ScriptableObject.CreateInstance<DoubleTargetting>();
             selfFront.firstTargetting = Slots.Front;
