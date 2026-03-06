@@ -12,6 +12,7 @@ namespace AprilsDayAtFools
             CombatManager.Instance.AddSubAction(new PlayAbilityAnimationAction(selectedAbility.visuals, selectedAbility.animationTarget, unit));
             CombatManager.Instance.AddSubAction(new SafetyEffectAction(selectedAbility.effects, unit));
             unit.SetVolatileUpdateUIAction();
+            CombatManager.Instance.AddSubAction(new ForceUsedAbilityAction(unit));
         }
         public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
         {

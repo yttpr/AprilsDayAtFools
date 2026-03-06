@@ -174,10 +174,10 @@ namespace AprilsDayAtFools
             MultiPerformEffectItem prayer = new MultiPerformEffectItem("Aprils_TheHumanAlgorithm_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<SwapToSidesEffect>(), 1, Slots.Self)]);
             prayer.Name = "The Human Algorithm";
             prayer.Flavour = "\"Tells you what to do for you!\"";
-            prayer.Description = "On manually moving, 25% chance to move Left or Right.\nOn manually using an ability, 40% chance to use a random ability.";
+            prayer.Description = "On moving, 25% chance to move Left or Right.\nOn using an ability, 40% chance to use a random ability.";
             prayer.Icon = ResourceLoader.LoadSprite("item_thehumanalgorithm.png");
             prayer.EquippedModifiers = [];
-            prayer.TriggerOn = TriggerCalls.OnSwapTo;
+            prayer.TriggerOn = TriggerCalls.OnMoved;
             prayer.DoesPopUpInfo = true;
             prayer.Conditions = [quarter];
             prayer.DoesActionOnTriggerAttached = false;
@@ -191,7 +191,7 @@ namespace AprilsDayAtFools
             prayer.UsesSpecialUnlockText = false;
             prayer.SpecialUnlockID = UILocID.None;
             prayer.item._ItemTypeIDs = ["Heart"];
-            EffectTrigger prayer_second = new EffectTrigger([Effects.GenerateEffect(ScriptableObject.CreateInstance<PerformRandomAbilityEffect>(), 1, Slots.Self)], [TriggerCalls.OnAbilityUsed], [forty]);
+            EffectTrigger prayer_second = new EffectTrigger([Effects.GenerateEffect(ScriptableObject.CreateInstance<PerformRandomAbilityEffect>(), 1, Slots.Self)], [TriggerCalls.OnAbilityUsed, HumanAlgorithmHandler.Trigger], [forty]);
             prayer.AddEffectTrigger(prayer_second);
             prayer.item.AddItem("locked_thehumanalgorithm.png", "Aprils_Prayer_March_ACH");
 

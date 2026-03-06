@@ -199,6 +199,7 @@ namespace AprilsDayAtFools
             Class1.PCall(SidesWillApplyDamageHandler.Setup);
             Class1.PCall(AlarmHandler.Setup);
             Class1.PCall(YouVoodooDollHandler.Setup);
+            Class1.PCall(HumanAlgorithmHandler.Setup);
 
             Logger.LogInfo("day At Foolss");
 
