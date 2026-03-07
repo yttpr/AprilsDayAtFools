@@ -54,12 +54,12 @@ namespace AprilsDayAtFools
             halve._cascadeIsIndirect = true;
             halve._pigment = 3;
             Ability ink1 = new Ability("Ink Drop", "Cora_Ink_1_A");
-            ink1.Description = "Deal 8 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 11 damage instead.";
+            ink1.Description = "Deal 8 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 12 damage instead.";
             ink1.AbilitySprite = ResourceLoader.LoadSprite("ability_ink.png");
             ink1.Cost = [Pigments.Red, Pigments.Blue, Pigments.Yellow];
             ink1.Effects = new EffectInfo[4];
             ink1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ExtraVariableForNextEffect>(), 1, null, ScriptableObject.CreateInstance<FirstAbilityUsedCondition>());
-            ink1.Effects[1] = Effects.GenerateEffect(damage, 11, Slots.Front, BasicEffects.DidThat(true));
+            ink1.Effects[1] = Effects.GenerateEffect(damage, 12, Slots.Front, BasicEffects.DidThat(true));
             ink1.Effects[2] = Effects.GenerateEffect(damage, 8, Slots.Front, BasicEffects.DidThat(false, 2));
             ink1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<GenerateTargetHealthManaEffect>(), 3, Slots.Front);
             ink1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden", "Damage_7_10", "Damage_11_15", "Mana_Generate"]);
@@ -68,23 +68,24 @@ namespace AprilsDayAtFools
 
             Ability ink2 = new Ability(ink1.ability, "Cora_Ink_2_A", ink1.Cost);
             ink2.Name = "Ink Spill";
-            ink2.Description = "Deal 11 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 14 damage instead.";
-            ink2.Effects[1].entryVariable = 14;
+            ink2.Description = "Deal 11 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 16 damage instead.";
+            ink2.Effects[1].entryVariable = 16;
             ink2.Effects[2].entryVariable = 11;
             ink2.EffectIntents[0].intents[1] = "Damage_11_15";
+            ink2.EffectIntents[0].intents[2] = "Damage_16_20";
 
             Ability ink3 = new Ability(ink2.ability, "Cora_Ink_3_A", ink1.Cost);
             ink3.Name = "Ink Pour";
-            ink3.Description = "Deal 13 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 18 damage instead.";
-            ink3.Effects[1].entryVariable = 18;
+            ink3.Description = "Deal 13 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 20 damage instead.";
+            ink3.Effects[1].entryVariable = 20;
             ink3.Effects[2].entryVariable = 13;
-            ink3.EffectIntents[0].intents[2] = "Damage_16_20";
 
             Ability ink4 = new Ability(ink3.ability, "Cora_Ink_4_A", ink1.Cost);
             ink4.Name = "Ink Flood";
-            ink4.Description = "Deal 15 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 20 damage instead.";
-            ink4.Effects[1].entryVariable = 20;
+            ink4.Description = "Deal 15 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 23 damage instead.";
+            ink4.Effects[1].entryVariable = 23;
             ink4.Effects[2].entryVariable = 15;
+            ink4.EffectIntents[0].intents[2] = "Damage_21";
 
             TargettingFarthestUnits farthest = ScriptableObject.CreateInstance<TargettingFarthestUnits>();
             farthest.ignoreCastSlot = false;
