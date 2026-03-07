@@ -36,6 +36,8 @@ namespace AprilsDayAtFools
                     {
                         CharacterInGameData data = combatData.CharactersData[pair.Key];
 
+                        if (data.IsMainCharacter) continue;
+
                         if (TestUsedAbilities(data.UsedAbilities.ToArray()))
                         {
                             num2 = chara.UsedAbilities[0];
@@ -45,6 +47,8 @@ namespace AprilsDayAtFools
                         AddRoom(num2, num3, data.Rank, self.BundleDifficulty == BundleDifficulty.Boss);
                         continue;
                     }
+
+                    if (chara.IsMainCharacter) continue;
 
                     //combat data
                     if (TestUsedAbilities(chara.UsedAbilities))

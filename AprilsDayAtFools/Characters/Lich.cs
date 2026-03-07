@@ -22,7 +22,7 @@ namespace AprilsDayAtFools
             undead._enemyDescription = "FUCK you.";
             undead._characterDescription = "On death, return to the world.";
             undead.doesPassiveTriggerInformationPanel = true;
-            undead.conditions = [];
+            undead.conditions = [ScriptableObject.CreateInstance<IsMainCharacterEffectorCondition>()];
             undead.effects = [];
             undead._triggerOn = [TriggerCalls.OnDeath];
             undead.AddPassiveToGlossary("Undead", "On death, return to the world.");
