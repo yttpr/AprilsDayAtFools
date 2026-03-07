@@ -302,7 +302,7 @@ namespace AprilsDayAtFools
     {
         public bool getAllies;
 
-        public bool ignoreCastSlot = true;
+        public bool ignoreCastSlot = false;
 
         public override bool AreTargetAllies => getAllies;
 
