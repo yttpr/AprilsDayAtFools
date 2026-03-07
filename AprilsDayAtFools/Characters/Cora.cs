@@ -108,12 +108,12 @@ namespace AprilsDayAtFools
             checkmate2.Effects[0].entryVariable = 12;
             checkmate2.EffectIntents[0].intents[0] = "Damage_11_15";
 
-            Ability checkmate3 = new Ability(checkmate2.ability, "Cora_Checkmate_3_A", [Pigments.Blue]);
+            Ability checkmate3 = new Ability(checkmate2.ability, "Cora_Checkmate_3_A", checkmate1.Cost);
             checkmate3.Name = "Doll Checkmate";
             checkmate3.Description = "Deal 15 damage to the Farthest enemy(s) from this party member and give them another action.";
             checkmate3.Effects[0].entryVariable = 15;
 
-            Ability checkmate4 = new Ability(checkmate3.ability, "Cora_Checkmate_4_A", checkmate3.Cost);
+            Ability checkmate4 = new Ability(checkmate3.ability, "Cora_Checkmate_4_A", checkmate1.Cost);
             checkmate4.Name = "Queen's Checkmate";
             checkmate4.Description = "Deal 18 damage to the Farthest enemy(s) from this party member and give them another action.";
             checkmate4.Effects[0].entryVariable = 18;
