@@ -138,6 +138,7 @@ namespace AprilsDayAtFools
             cuts2.Description = "Deal 6 damage to the Opposing enemy and inflict 1 Ruptured on them.\nIf damage is dealt, inflict 2 Ruptured on all enemies.";
             cuts2.Effects[0].entryVariable = 6;
             cuts2.Effects[1].entryVariable = 1;
+            cuts2.AddIntentsToTarget(Slots.Front, ["Status_Ruptured"]);
 
             Ability cuts3 = new Ability(cuts2.ability, "Merced_Cuts_3_A", cuts1.Cost);
             cuts3.Name = "A Million Papercuts";
