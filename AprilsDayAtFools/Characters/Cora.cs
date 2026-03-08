@@ -68,24 +68,24 @@ namespace AprilsDayAtFools
 
             Ability ink2 = new Ability(ink1.ability, "Cora_Ink_2_A", ink1.Cost);
             ink2.Name = "Ink Spill";
-            ink2.Description = "Deal 9 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 16 damage instead.";
+            ink2.Description = "Deal 8 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 16 damage instead.";
             ink2.Effects[1].entryVariable = 16;
-            ink2.Effects[2].entryVariable = 9;
+            ink2.Effects[2].entryVariable = 8;
             ink2.EffectIntents[0].intents[1] = "Damage_7_10";
             ink2.EffectIntents[0].intents[2] = "Damage_16_20";
 
             Ability ink3 = new Ability(ink2.ability, "Cora_Ink_3_A", ink1.Cost);
             ink3.Name = "Ink Pour";
-            ink3.Description = "Deal 11 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 20 damage instead.";
+            ink3.Description = "Deal 10 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 20 damage instead.";
             ink3.Effects[1].entryVariable = 20;
-            ink3.Effects[2].entryVariable = 11;
-            ink3.EffectIntents[0].intents[1] = "Damage_11_15";
+            ink3.Effects[2].entryVariable = 10;
 
             Ability ink4 = new Ability(ink3.ability, "Cora_Ink_4_A", ink1.Cost);
             ink4.Name = "Ink Flood";
-            ink4.Description = "Deal 14 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 23 damage instead.";
+            ink4.Description = "Deal 12 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 23 damage instead.";
             ink4.Effects[1].entryVariable = 23;
-            ink4.Effects[2].entryVariable = 14;
+            ink4.Effects[2].entryVariable = 12;
+            ink4.EffectIntents[0].intents[1] = "Damage_11_15";
             ink4.EffectIntents[0].intents[2] = "Damage_21";
 
             TargettingFarthestUnits farthest = ScriptableObject.CreateInstance<TargettingFarthestUnits>();

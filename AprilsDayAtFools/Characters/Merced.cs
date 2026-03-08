@@ -71,23 +71,23 @@ namespace AprilsDayAtFools
 
             Ability toy2 = new Ability(toy1.ability, "Merced_Toy_2_A", toy1.Cost);
             toy2.Name = "Mosquito Toy";
-            toy2.Description = "Deal 9 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
-            toy2.Effects[1].entryVariable = 9;
-            toy2.Effects[2].entryVariable = 9;
+            toy2.Description = "Deal 8 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
+            toy2.Effects[1].entryVariable = 8;
+            toy2.Effects[2].entryVariable = 8;
             toy2.EffectIntents[0].intents[1] = "Damage_7_10";
 
             Ability toy3 = new Ability(toy2.ability, "Merced_Toy_3_A", toy1.Cost);
             toy3.Name = "Horsefly Toy";
-            toy3.Description = "Deal 11 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
-            toy3.Effects[1].entryVariable = 11;
-            toy3.Effects[2].entryVariable = 11;
-            toy3.EffectIntents[0].intents[1] = "Damage_11_15";
+            toy3.Description = "Deal 10 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
+            toy3.Effects[1].entryVariable = 10;
+            toy3.Effects[2].entryVariable = 10;
 
             Ability toy4 = new Ability(toy3.ability, "Merced_Toy_4_A", toy1.Cost);
             toy4.Name = "Leech Toy";
-            toy4.Description = "Deal 14 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
-            toy4.Effects[1].entryVariable = 14;
-            toy4.Effects[2].entryVariable = 14;
+            toy4.Description = "Deal 12 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
+            toy4.Effects[1].entryVariable = 12;
+            toy4.Effects[2].entryVariable = 12;
+            toy4.EffectIntents[0].intents[1] = "Damage_11_15";
 
             Ability gambit1 = new Ability("Fools Gambit", "Merced_Gambit_1_A");
             gambit1.Description = "If the Opposing enemy is Ruptured, deal 10 damage to them.\nOtherwise, permenantly Rupture the Opposing enemy.";
