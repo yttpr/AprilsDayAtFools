@@ -121,30 +121,31 @@ namespace AprilsDayAtFools
             checkmate4.EffectIntents[0].intents[0] = "Damage_16_20";
 
             Ability needles1 = new Ability("A Hundred Needles", "Cora_Needles_1_A");
-            needles1.Description = "Deal 4 damage to the Opposing enemy and reroll one of their actions on the timeline.\nThis ability's damage ignores Shield.";
+            needles1.Description = "Deal 4 damage to the Opposing enemy and reroll one of their actions on the timeline.\nInflict 1 Frail on the Opposing enemy if this ability is used before the end of the 1st turn.";
             needles1.AbilitySprite = ResourceLoader.LoadSprite("ability_needles.png");
             needles1.Cost = [Pigments.Red, Pigments.BlueYellow];
-            needles1.Effects = new EffectInfo[2];
-            needles1.Effects[0] = Effects.GenerateEffect(BasicEffects.ShieldPierce, 4, Slots.Front);
+            needles1.Effects = new EffectInfo[3];
+            needles1.Effects[0] = Effects.GenerateEffect(damage, 4, Slots.Front);
             needles1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ReRollTargetTimelineAbilityEffect>(), 1, Slots.Front);
-            needles1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Misc"]);
+            needles1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyFrailEffect>(), 1, Slots.Front, BeforeSpecificTurnCondition.Create(1));
+            needles1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Misc", "Status_Frail"]);
             needles1.Visuals = CustomVisuals.GetVisuals("Salt/Needle");
             needles1.AnimationTarget = Slots.Front;
 
             Ability needles2 = new Ability(needles1.ability, "Cora_Needles_2_A", needles1.Cost);
             needles2.Name = "A Thousand Needles";
-            needles2.Description = "Deal 6 damage to the Opposing enemy and reroll one of their actions on the timeline.\nThis ability's damage ignores Shield.";
+            needles2.Description = "Deal 6 damage to the Opposing enemy and reroll one of their actions on the timeline.\nInflict 1 Frail on the Opposing enemy if this ability is used before the end of the 1st turn.";
             needles2.Effects[0].entryVariable = 6;
 
             Ability needles3 = new Ability(needles2.ability, "Cora_Needles_3_A", [Pigments.RedBlue, Pigments.BlueYellow]);
             needles3.Name = "A Million Needles";
-            needles3.Description = "Deal 7 damage to the Opposing enemy and reroll one of their actions on the timeline.\nThis ability's damage ignores Shield.";
+            needles3.Description = "Deal 7 damage to the Opposing enemy and reroll one of their actions on the timeline.\nInflict 1 Frail on the Opposing enemy if this ability is used before the end of the 1st turn.";
             needles3.Effects[0].entryVariable = 7;
             needles3.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability needles4 = new Ability(needles3.ability, "Cora_Needles_4_A", needles3.Cost);
             needles4.Name = "A Trillion Needles";
-            needles4.Description = "Deal 8 damage to the Opposing enemy and reroll one of their actions on the timeline.\nThis ability's damage ignores Shield.";
+            needles4.Description = "Deal 8 damage to the Opposing enemy and reroll one of their actions on the timeline.\nInflict 1 Frail on the Opposing enemy if this ability is used before the end of the 1st turn.";
             needles4.Effects[0].entryVariable = 8;
 
             cora.AddLevelData(10, [needles1, checkmate1, ink1]);
