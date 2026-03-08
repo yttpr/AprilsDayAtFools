@@ -51,19 +51,19 @@ namespace AprilsDayAtFools
             merced.AddPassive(ordinary);
 
             DamageEffect damage = ScriptableObject.CreateInstance<DamageEffect>();
-            DamageOnDoubleCascadeEffect halve = ScriptableObject.CreateInstance<DamageOnDoubleCascadeEffect>();
-            halve._cascadeDecrease = 50;
-            halve._decreaseAsPercentage = true;
-            halve._cascadeIsIndirect = true;
+            DamageOnDoubleCascadeEffect cascade = ScriptableObject.CreateInstance<DamageOnDoubleCascadeEffect>();
+            cascade._cascadeDecrease = 0;
+            cascade._decreaseAsPercentage = true;
+            cascade._cascadeIsIndirect = true;
             Ability toy1 = new Ability("Tick Toy", "Merced_Toy_1_A");
-            toy1.Description = "Deal 8 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies.";
+            toy1.Description = "Deal 6 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
             toy1.AbilitySprite = ResourceLoader.LoadSprite("ability_toy.png");
             toy1.Cost = [Pigments.Red, Pigments.Red, Pigments.Red];
             toy1.Effects = new EffectInfo[3];
             toy1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ExtraVariableForNextEffect>(), 1, null, ScriptableObject.CreateInstance<FrontHasRupturedCondition>());
-            toy1.Effects[1] = Effects.GenerateEffect(halve, 8, Targeting.GenerateSlotTarget([0, 1, 2, 3, 4, -1, -2, -3, -4], false), BasicEffects.DidThat(true));
-            toy1.Effects[2] = Effects.GenerateEffect(damage, 8, Slots.Front, BasicEffects.DidThat(false, 2));
-            toy1.AddIntentsToTarget(Slots.Front, ["Misc", "Damage_7_10"]);
+            toy1.Effects[1] = Effects.GenerateEffect(cascade, 6, Targeting.GenerateSlotTarget([0, 1, 2, 3, 4, -1, -2, -3, -4], false), BasicEffects.DidThat(true));
+            toy1.Effects[2] = Effects.GenerateEffect(damage, 6, Slots.Front, BasicEffects.DidThat(false, 2));
+            toy1.AddIntentsToTarget(Slots.Front, ["Misc", "Damage_3_6"]);
             toy1.AddIntentsToTarget(Slots.Left, ["Swap_Left"]);
             toy1.AddIntentsToTarget(Slots.Right, ["Swap_Right"]);
             toy1.Visuals = CustomVisuals.GetVisuals("Salt/Decapitate");
@@ -71,22 +71,23 @@ namespace AprilsDayAtFools
 
             Ability toy2 = new Ability(toy1.ability, "Merced_Toy_2_A", toy1.Cost);
             toy2.Name = "Mosquito Toy";
-            toy2.Description = "Deal 11 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies.";
-            toy2.Effects[1].entryVariable = 11;
-            toy2.Effects[2].entryVariable = 11;
-            toy2.EffectIntents[0].intents[1] = "Damage_11_15";
+            toy2.Description = "Deal 9 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
+            toy2.Effects[1].entryVariable = 9;
+            toy2.Effects[2].entryVariable = 9;
+            toy2.EffectIntents[0].intents[1] = "Damage_7_10";
 
             Ability toy3 = new Ability(toy2.ability, "Merced_Toy_3_A", toy1.Cost);
             toy3.Name = "Horsefly Toy";
-            toy3.Description = "Deal 13 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies.";
-            toy3.Effects[1].entryVariable = 13;
-            toy3.Effects[2].entryVariable = 13;
+            toy3.Description = "Deal 11 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
+            toy3.Effects[1].entryVariable = 11;
+            toy3.Effects[2].entryVariable = 11;
+            toy3.EffectIntents[0].intents[1] = "Damage_11_15";
 
             Ability toy4 = new Ability(toy3.ability, "Merced_Toy_4_A", toy1.Cost);
             toy4.Name = "Leech Toy";
-            toy4.Description = "Deal 15 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies.";
-            toy4.Effects[1].entryVariable = 15;
-            toy4.Effects[2].entryVariable = 15;
+            toy4.Description = "Deal 14 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
+            toy4.Effects[1].entryVariable = 14;
+            toy4.Effects[2].entryVariable = 14;
 
             Ability gambit1 = new Ability("Fools Gambit", "Merced_Gambit_1_A");
             gambit1.Description = "If the Opposing enemy is Ruptured, deal 10 damage to them.\nOtherwise, permenantly Rupture the Opposing enemy.";
@@ -107,22 +108,26 @@ namespace AprilsDayAtFools
 
             Ability gambit3 = new Ability(gambit2.ability, "Merced_Gambit_3_A", gambit1.Cost);
             gambit3.Name = "Doll Gambit";
-            gambit3.Description = "If the Opposing enemy is Ruptured, deal 16 damage to them.\nOtherwise, permenantly Rupture the Opposing enemy.";
-            gambit3.Effects[1].entryVariable = 16;
+            gambit3.Description = "If the Opposing enemy is Ruptured, deal 18 damage to them.\nOtherwise, permenantly Rupture the Opposing enemy.";
+            gambit3.Effects[1].entryVariable = 18;
             gambit3.EffectIntents[0].intents[0] = "Damage_16_20";
 
             Ability gambit4 = new Ability(gambit3.ability, "Merced_Gambit_4_A", gambit1.Cost);
             gambit4.Name = "Queen's Gambit";
-            gambit4.Description = "If the Opposing enemy is Ruptured, deal 20 damage to them.\nOtherwise, permenantly Rupture the Opposing enemy.";
-            gambit4.Effects[1].entryVariable = 20;
+            gambit4.Description = "If the Opposing enemy is Ruptured, deal 22 damage to them.\nOtherwise, permenantly Rupture the Opposing enemy.";
+            gambit4.Effects[1].entryVariable = 22;
+            gambit4.EffectIntents[0].intents[0] = "Damage_21";
+
+            ApplyRupturedEffect rupture = ScriptableObject.CreateInstance<ApplyRupturedEffect>();
 
             Ability cuts1 = new Ability("A Hundred Papercuts", "Merced_Cuts_1_A");
             cuts1.Description = "Deal 4 damage to the Opposing enemy.\nIf damage is dealt, inflict 2 Ruptured on all enemies.";
             cuts1.AbilitySprite = ResourceLoader.LoadSprite("ability_papercuts.png");
             cuts1.Cost = [Pigments.Red, Pigments.Yellow];
-            cuts1.Effects = new EffectInfo[2];
+            cuts1.Effects = new EffectInfo[3];
             cuts1.Effects[0] = Effects.GenerateEffect(damage, 4, Slots.Front);
-            cuts1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyRupturedEffect>(), 2, Targeting.Unit_AllOpponents, BasicEffects.DidThat(true));
+            cuts1.Effects[1] = Effects.GenerateEffect(rupture, 0, Slots.Front);
+            cuts1.Effects[2] = Effects.GenerateEffect(rupture, 2, Targeting.Unit_AllOpponents, BasicEffects.DidThat(true, 2));
             cuts1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
             cuts1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Status_Ruptured"]);
             cuts1.Visuals = CustomVisuals.GetVisuals("Salt/Needle");
@@ -130,19 +135,21 @@ namespace AprilsDayAtFools
 
             Ability cuts2 = new Ability(cuts1.ability, "Merced_Cuts_2_A", cuts1.Cost);
             cuts2.Name = "A Thousand Papercuts";
-            cuts2.Description = "Deal 6 damage to the Opposing enemy.\nIf damage is dealt, inflict 2 Ruptured on all enemies.";
+            cuts2.Description = "Deal 6 damage to the Opposing enemy and inflict 1 Ruptured on them.\nIf damage is dealt, inflict 2 Ruptured on all enemies.";
             cuts2.Effects[0].entryVariable = 6;
+            cuts2.Effects[1].entryVariable = 1;
 
             Ability cuts3 = new Ability(cuts2.ability, "Merced_Cuts_3_A", cuts1.Cost);
             cuts3.Name = "A Million Papercuts";
-            cuts3.Description = "Deal 7 damage to the Opposing enemy.\nIf damage is dealt, inflict 2 Ruptured on all enemies.";
+            cuts3.Description = "Deal 7 damage to the Opposing enemy and inflict 1 Ruptured on them.\nIf damage is dealt, inflict 2 Ruptured on all enemies.";
             cuts3.Effects[0].entryVariable = 7;
             cuts3.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability cuts4 = new Ability(cuts3.ability, "Merced_Cuts_4_A", cuts1.Cost);
             cuts4.Name = "A Trillion Papercuts";
-            cuts4.Description = "Deal 8 damage to the Opposing enemy.\nIf damage is dealt, inflict 2 Ruptured on all enemies.";
+            cuts4.Description = "Deal 8 damage to the Opposing enemy and inflict 2 Ruptured on them.\nIf damage is dealt, inflict 2 Ruptured on all enemies.";
             cuts4.Effects[0].entryVariable = 8;
+            cuts4.Effects[1].entryVariable = 2;
 
             merced.AddLevelData(10, [cuts1, gambit1, toy1]);
             merced.AddLevelData(12, [cuts2, gambit2, toy2]);
