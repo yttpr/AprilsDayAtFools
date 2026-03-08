@@ -53,7 +53,7 @@ namespace AprilsDayAtFools
             DamageEffect damage = ScriptableObject.CreateInstance<DamageEffect>();
             DamageOnDoubleCascadeEffect cascade = ScriptableObject.CreateInstance<DamageOnDoubleCascadeEffect>();
             cascade._cascadeDecrease = 0;
-            cascade._decreaseAsPercentage = true;
+            cascade._decreaseAsPercentage = false;
             cascade._cascadeIsIndirect = true;
             Ability toy1 = new Ability("Tick Toy", "Merced_Toy_1_A");
             toy1.Description = "Deal 6 damage to the Opposing enemy.\nIf the Opposing enemy is Ruptured, this damage spreads indirectly to adjacent enemies without falloff.";
