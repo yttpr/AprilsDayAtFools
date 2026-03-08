@@ -318,7 +318,7 @@ namespace AprilsDayAtFools
             {
                 foreach (CombatSlot slot in slots.CharacterSlots)
                 {
-                    if ((slot.HasUnit && slot.SlotID > casterSlotID) && (!ignoreCastSlot || casterSlotID != slot.SlotID))
+                    if ((slot.HasUnit && slot.SlotID >= casterSlotID) && (!ignoreCastSlot || casterSlotID != slot.SlotID))
                     {
                         if (greaterest == null)
                         {
@@ -329,7 +329,7 @@ namespace AprilsDayAtFools
                             greaterest = slot;
                         }
                     }
-                    else if (slot.HasUnit && (slot.SlotID < casterSlotID) && (!ignoreCastSlot || casterSlotID != slot.SlotID))
+                    else if (slot.HasUnit && (slot.SlotID <= casterSlotID) && (!ignoreCastSlot || casterSlotID != slot.SlotID))
                     {
                         if (lesserest == null)
                         {
@@ -346,7 +346,7 @@ namespace AprilsDayAtFools
             {
                 foreach (CombatSlot slot in slots.EnemySlots)
                 {
-                    if ((slot.HasUnit && slot.SlotID > casterSlotID) && (!ignoreCastSlot || casterSlotID != slot.SlotID))
+                    if ((slot.HasUnit && slot.SlotID >= casterSlotID) && (!ignoreCastSlot || casterSlotID != slot.SlotID))
                     {
                         if (greaterest == null)
                         {
@@ -357,7 +357,7 @@ namespace AprilsDayAtFools
                             greaterest = slot;
                         }
                     }
-                    else if (slot.HasUnit && (slot.SlotID < casterSlotID) && (!ignoreCastSlot || casterSlotID != slot.SlotID))
+                    else if (slot.HasUnit && (slot.SlotID <= casterSlotID) && (!ignoreCastSlot || casterSlotID != slot.SlotID))
                     {
                         if (lesserest == null)
                         {
