@@ -44,7 +44,7 @@ namespace AprilsDayAtFools
                             num3 = chara.UsedAbilities[1];
                         }
 
-                        AddRoom(num2, num3, data.Rank, self.BundleDifficulty == BundleDifficulty.Boss);
+                        AddRoom(num2, num3, data.Rank, self.BundleDifficulty == BundleDifficulty.Boss, data.Character.name);
                         continue;
                     }
 
@@ -57,7 +57,7 @@ namespace AprilsDayAtFools
                         num3 = chara.UsedAbilities[1];
                     }
 
-                    AddRoom(num2, num3, chara.Rank, self.BundleDifficulty == BundleDifficulty.Boss);
+                    AddRoom(num2, num3, chara.Rank, self.BundleDifficulty == BundleDifficulty.Boss, chara.Character.name);
 
                     continue;
                 }
@@ -74,7 +74,7 @@ namespace AprilsDayAtFools
             return true;
         }
 
-        public static int AddRoom(int first, int second, int rank, bool boss)
+        public static int AddRoom(int first, int second, int rank, bool boss, string fool = "Lich_CH")
         {
             RunDataSO run = LoadedDBsHandler.InfoHolder.Run;
             RunZoneData zone = run.CurrentZoneData;
@@ -130,6 +130,7 @@ namespace AprilsDayAtFools
             data.SetIntData("Lich_Zone_" + zoneid.ToString() + "_Info_" + idInfo.ToString() + "_FirstAB", first);
             data.SetIntData("Lich_Zone_" + zoneid.ToString() + "_Info_" + idInfo.ToString() + "_SecondAB", second);
             data.SetIntData("Lich_Zone_" + zoneid.ToString() + "_Info_" + idInfo.ToString() + "_Rank", rank);
+            data.SetStringData("Lich_Zone_" + zoneid.ToString() + "_Info_" + idInfo.ToString() + "_Fool", fool);
 
             //SaveDataManager_2024.FullySaveGameDataToCache(run);
 

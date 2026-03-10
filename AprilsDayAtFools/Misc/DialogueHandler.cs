@@ -234,8 +234,9 @@ namespace AprilsDayAtFools
             int first = run.InGameData.GetIntData("Lich_Zone_" + run.CurrentZoneID.ToString() + "_Info_" + card.IDInfo.ToString() + "_FirstAB");
             int second = run.InGameData.GetIntData("Lich_Zone_" + run.CurrentZoneID.ToString() + "_Info_" + card.IDInfo.ToString() + "_SecondAB");
             int rank = run.InGameData.GetIntData("Lich_Zone_" + run.CurrentZoneID.ToString() + "_Info_" + card.IDInfo.ToString() + "_Rank");
+            string fool = run.InGameData.GetStringData("Lich_Zone_" + run.CurrentZoneID.ToString() + "_Info_" + card.IDInfo.ToString() + "_Fool");
 
-            run.playerData.AddNewCharacter(LoadedAssetsHandler.GetCharacter("Lich_CH"), rank, [first, second], false);
+            run.playerData.AddNewCharacter(LoadedAssetsHandler.GetCharacter(fool), rank, [first, second], false);
             NtfUtils.notifications.PostNotification(Utils.updateCharacterVisuals);
 
             SaveDataManager_2024.FullySaveGameDataToCache(run);
