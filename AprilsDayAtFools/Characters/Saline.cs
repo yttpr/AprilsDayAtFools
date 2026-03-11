@@ -152,7 +152,7 @@ namespace AprilsDayAtFools
             agony3.Description = "Heal the Opposing enemy 7 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 7 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
             agony3.Effects[0].entryVariable = 7;
             agony3.Effects[1].entryVariable = 7;
-            agony2.EffectIntents[1].intents[1] = "Damage_7_10";
+            agony3.EffectIntents[1].intents[1] = "Damage_7_10";
 
             Ability agony4 = new Ability(agony3.ability, "Saline_Agony_4_A", agony1.Cost);
             agony4.Name = "Agony of Death";
