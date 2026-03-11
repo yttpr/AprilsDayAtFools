@@ -14,6 +14,8 @@ namespace AprilsDayAtFools
 
         public bool _directHeal = true;
 
+        public bool _useFirstAsStart;
+
         public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
         {
             if (_usePreviousExitValue)
@@ -54,7 +56,10 @@ namespace AprilsDayAtFools
             }
 
             orig = num;
-            exitAmount += start.Unit.Heal(num, caster, _directHeal);
+            int first = start.Unit.Heal(num, caster, _directHeal);
+            exitAmount += first;
+            if (_useFirstAsStart)
+                orig = first;
 
             num = orig;
             num = (int)Math.Ceiling((float)num * _cascadeDecay);

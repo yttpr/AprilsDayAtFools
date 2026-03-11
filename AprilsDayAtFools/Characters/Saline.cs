@@ -122,6 +122,7 @@ namespace AprilsDayAtFools
             heal_spread._consistentCascade = true;
             heal_spread._directHeal = true;
             heal_spread._usePreviousExitValue = false;
+            heal_spread._useFirstAsStart = true;
 
             BaseCombatTargettingSO cascade_slots = Targeting.GenerateSlotTarget([0, 1, 2, 3, 4, -1, -2, -3, -4], false);
 
