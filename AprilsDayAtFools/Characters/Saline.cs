@@ -149,16 +149,16 @@ namespace AprilsDayAtFools
 
             Ability agony3 = new Ability(agony2.ability, "Saline_Agony_3_A", agony1.Cost);
             agony3.Name = "Agony of Fantasy";
-            agony3.Description = "Heal the Opposing enemy 7 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 7 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
-            agony3.Effects[0].entryVariable = 7;
-            agony3.Effects[1].entryVariable = 7;
+            agony3.Description = "Heal the Opposing enemy 8 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 8 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
+            agony3.Effects[0].entryVariable = 8;
+            agony3.Effects[1].entryVariable = 8;
             agony3.EffectIntents[1].intents[1] = "Damage_7_10";
 
             Ability agony4 = new Ability(agony3.ability, "Saline_Agony_4_A", agony1.Cost);
             agony4.Name = "Agony of Death";
-            agony4.Description = "Heal the Opposing enemy 8 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 8 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
-            agony4.Effects[0].entryVariable = 8;
-            agony4.Effects[1].entryVariable = 8;
+            agony4.Description = "Heal the Opposing enemy 9 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 9 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
+            agony4.Effects[0].entryVariable = 9;
+            agony4.Effects[1].entryVariable = 9;
 
             saline.AddLevelData(20, [agony1, nightmare1, nails1]);
             saline.AddLevelData(21, [agony2, nightmare2, nails2]);
