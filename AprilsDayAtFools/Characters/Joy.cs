@@ -189,7 +189,7 @@ namespace AprilsDayAtFools
             PerformEffect_Item rustedsurgeonstools = new PerformEffect_Item("Aprils_RustedSurgeonsTools_SW", []);
             rustedsurgeonstools.Name = "Rusted Surgeon's Tools";
             rustedsurgeonstools.Flavour = "\"I mean, they work still.\"";
-            rustedsurgeonstools.Description = "Double healing dealt by this party member.\nInflict 2 Ruptured on healed targets.";
+            rustedsurgeonstools.Description = "Increase healing dealt by this party member by 4.\nInflict 2 Ruptured on healed targets.";
             rustedsurgeonstools.Icon = ResourceLoader.LoadSprite("item_rustedsurgeonstools.png");
             rustedsurgeonstools.EquippedModifiers = [];
             rustedsurgeonstools.TriggerOn = TriggerCalls.OnWillApplyHeal;
@@ -199,7 +199,7 @@ namespace AprilsDayAtFools
             rustedsurgeonstools.ConsumeOnTrigger = TriggerCalls.Count;
             rustedsurgeonstools.ConsumeOnUse = false;
             rustedsurgeonstools.ConsumeConditions = [];
-            rustedsurgeonstools.ShopPrice = 8;
+            rustedsurgeonstools.ShopPrice = 6;
             rustedsurgeonstools.IsShopItem = true;
             rustedsurgeonstools.StartsLocked = true;
             rustedsurgeonstools.OnUnlockUsesTHE = true;

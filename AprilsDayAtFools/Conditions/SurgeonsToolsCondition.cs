@@ -13,7 +13,7 @@ namespace AprilsDayAtFools
             if (args is HealingDealtValueChangeException reference)
             {
                 (effector as IUnit).ShowItem();
-                reference.AddModifier(new MultiplyIntValueModifier(false, 2));
+                reference.AddModifier(new AdditionValueModifier(true, 4));
                 CombatManager.Instance.AddSubAction(new EffectAction([Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyRupturedEffect>(), 2, Slots.Self)], reference.healingUnit));
             }
             return true;
