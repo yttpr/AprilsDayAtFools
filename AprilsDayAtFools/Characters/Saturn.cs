@@ -140,7 +140,7 @@ namespace AprilsDayAtFools
             number3.Description = "If the Opposing enemy is Cursed, deal 7 damage and remove Cursed from them, damage spreads to adjacent enemies, increasing by 2.\nOtherwise, increase Ambush by 10 until the start of the next turn.";
             number3.Effects[1].entryVariable = 7;
             number3.Effects[3].entryVariable = 10;
-            number2.EffectIntents[0].intents[0] = "Damage_7_10";
+            number3.EffectIntents[1].intents[0] = "Damage_7_10";
 
             Ability number4 = new Ability(number3.ability, "Saturn_Number_4_A", number1.Cost);
             number4.Name = "Frameshift Number";
