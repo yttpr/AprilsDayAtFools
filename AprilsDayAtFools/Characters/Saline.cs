@@ -113,37 +113,51 @@ namespace AprilsDayAtFools
             nails4.Effects[2].entryVariable = 15;
             nails4.EffectIntents[0].intents[0] = "Damage_21";
 
+            DamageOnDoubleCascadeEffect cascade = ScriptableObject.CreateInstance<DamageOnDoubleCascadeEffect>();
+            cascade._cascadeDecrease = 0;
+            cascade._decreaseAsPercentage = false;
+            cascade._cascadeIsIndirect = true;
+            CascadeHealPercentEffect heal_spread = ScriptableObject.CreateInstance<CascadeHealPercentEffect>();
+            heal_spread._cascadeDecay = 1f;
+            heal_spread._consistentCascade = true;
+            heal_spread._directHeal = true;
+            heal_spread._usePreviousExitValue = false;
+
+            BaseCombatTargettingSO cascade_slots = Targeting.GenerateSlotTarget([0, 1, 2, 3, 4, -1, -2, -3, -4], false);
+
             Ability agony1 = new Ability("Agony of Flesh", "Saline_Agony_1_A");
-            agony1.Description = "Heal the Opposing enemy 3 health.\nDeal 5 damage to them, dealing 50% more if they are above half health.";
+            agony1.Description = "Heal the Opposing enemy 5 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 5 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
             agony1.AbilitySprite = ResourceLoader.LoadSprite("ability_agony.png");
             agony1.Cost = [Pigments.Blue, Pigments.RedBlue];
-            agony1.Effects = new EffectInfo[2];
-            agony1.Effects[0] = Effects.GenerateEffect(nightmare1.Effects[0].effect, 3, Slots.Front);
-            agony1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageIncreaseIfTargetAboveHalfEffect>(), 5, Slots.Front);
-            agony1.AddIntentsToTarget(Slots.Front, ["Heal_1_4", "Damage_3_6"]);
+            agony1.Effects = new EffectInfo[3];
+            agony1.Effects[0] = Effects.GenerateEffect(heal_spread, 5, cascade_slots);
+            agony1.Effects[1] = Effects.GenerateEffect(cascade, 5, cascade_slots);
+            agony1.Effects[2] = Effects.GenerateEffect(nightmare1.Effects[1].effect, 1, Targetting.Random(false), BasicEffects.DidThat(false, 2));
+            agony1.AddIntentsToTarget(Slots.Left, ["Swap_Left"]);
+            agony1.AddIntentsToTarget(Slots.Front, ["Heal_5_10", "Damage_3_6"]);
+            agony1.AddIntentsToTarget(Slots.Right, ["Swap_Right"]);
+            agony1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Status_Cursed"]);
             agony1.Visuals = CustomVisuals.GetVisuals("Salt/Needle");
             agony1.AnimationTarget = Slots.Front;
 
             Ability agony2 = new Ability(agony1.ability, "Saline_Agony_2_A", agony1.Cost);
             agony2.Name = "Agony of Material";
-            agony2.Description = "Heal the Opposing enemy 4 health.\nDeal 7 damage to them, dealing 50% more if they are above half health.";
-            agony2.Effects[0].entryVariable = 4;
-            agony2.Effects[1].entryVariable = 7;
-            agony2.EffectIntents[0].intents[1] = "Damage_7_10";
+            agony2.Description = "Heal the Opposing enemy 6 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 6 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
+            agony2.Effects[0].entryVariable = 6;
+            agony2.Effects[1].entryVariable = 6;
 
             Ability agony3 = new Ability(agony2.ability, "Saline_Agony_3_A", agony1.Cost);
             agony3.Name = "Agony of Fantasy";
-            agony3.Description = "Heal the Opposing enemy 5 health.\nDeal 9 damage to them, dealing 50% more if they are above half health.";
-            agony3.Effects[0].entryVariable = 5;
-            agony3.Effects[1].entryVariable = 9;
-            agony3.EffectIntents[0].intents[0] = "Heal_5_10";
+            agony3.Description = "Heal the Opposing enemy 7 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 7 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
+            agony3.Effects[0].entryVariable = 7;
+            agony3.Effects[1].entryVariable = 7;
+            agony2.EffectIntents[1].intents[1] = "Damage_7_10";
 
             Ability agony4 = new Ability(agony3.ability, "Saline_Agony_4_A", agony1.Cost);
             agony4.Name = "Agony of Death";
-            agony4.Description = "Heal the Opposing enemy 6 health.\nDeal 11 damage to them, dealing 50% more if they are above half health.";
-            agony4.Effects[0].entryVariable = 6;
-            agony4.Effects[1].entryVariable = 11;
-            agony4.EffectIntents[0].intents[1] = "Damage_11_15";
+            agony4.Description = "Heal the Opposing enemy 8 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 8 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
+            agony4.Effects[0].entryVariable = 8;
+            agony4.Effects[1].entryVariable = 8;
 
             saline.AddLevelData(20, [agony1, nightmare1, nails1]);
             saline.AddLevelData(21, [agony2, nightmare2, nails2]);
