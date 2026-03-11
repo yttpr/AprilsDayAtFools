@@ -59,7 +59,10 @@ namespace AprilsDayAtFools
             int first = start.Unit.Heal(num, caster, _directHeal);
             exitAmount += first;
             if (_useFirstAsStart)
+            {
                 orig = first;
+                if (orig <= 0) return false;
+            }
 
             num = orig;
             num = (int)Math.Ceiling((float)num * _cascadeDecay);
