@@ -54,39 +54,35 @@ namespace AprilsDayAtFools
             halve._cascadeIsIndirect = true;
             halve._pigment = 3;
             Ability ink1 = new Ability("Ink Drop", "Cora_Ink_1_A");
-            ink1.Description = "Deal 6 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 12 damage instead.";
+            ink1.Description = "Deal 6 damage to the Opposing enemy.\nIf this is the first ability used this turn, refresh this party member's ability usage.\nOtherwise, generate 3 Pigment of the Opposing enemy's health color.";
             ink1.AbilitySprite = ResourceLoader.LoadSprite("ability_ink.png");
             ink1.Cost = [Pigments.Red, Pigments.Blue, Pigments.Yellow];
             ink1.Effects = new EffectInfo[4];
             ink1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ExtraVariableForNextEffect>(), 1, null, ScriptableObject.CreateInstance<FirstAbilityUsedCondition>());
-            ink1.Effects[1] = Effects.GenerateEffect(damage, 12, Slots.Front, BasicEffects.DidThat(true));
-            ink1.Effects[2] = Effects.GenerateEffect(damage, 6, Slots.Front, BasicEffects.DidThat(false, 2));
-            ink1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<GenerateTargetHealthManaEffect>(), 3, Slots.Front);
-            ink1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden", "Damage_3_6", "Damage_11_15", "Mana_Generate"]);
+            ink1.Effects[1] = Effects.GenerateEffect(damage, 6, Slots.Front);
+            ink1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RefreshAbilityUseEffect>(), 1, Slots.Self, BasicEffects.DidThat(true, 2));
+            ink1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<GenerateTargetHealthManaEffect>(), 3, Slots.Front, BasicEffects.DidThat(false, 3));
+            ink1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden", "Damage_3_6", "Mana_Generate"]);
+            ink1.AddIntentsToTarget(Slots.Self, ["Misc_Additional"]);
             ink1.Visuals = CustomVisuals.GetVisuals("Salt/Curse");
             ink1.AnimationTarget = Slots.Front;
 
             Ability ink2 = new Ability(ink1.ability, "Cora_Ink_2_A", ink1.Cost);
             ink2.Name = "Ink Spill";
-            ink2.Description = "Deal 8 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 16 damage instead.";
-            ink2.Effects[1].entryVariable = 16;
-            ink2.Effects[2].entryVariable = 8;
+            ink2.Description = "Deal 8 damage to the Opposing enemy.\nIf this is the first ability used this turn, refresh this party member's ability usage.\nOtherwise, generate 3 Pigment of the Opposing enemy's health color.";
+            ink2.Effects[1].entryVariable = 8;
             ink2.EffectIntents[0].intents[1] = "Damage_7_10";
-            ink2.EffectIntents[0].intents[2] = "Damage_16_20";
 
             Ability ink3 = new Ability(ink2.ability, "Cora_Ink_3_A", ink1.Cost);
             ink3.Name = "Ink Pour";
-            ink3.Description = "Deal 10 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 20 damage instead.";
-            ink3.Effects[1].entryVariable = 20;
-            ink3.Effects[2].entryVariable = 10;
+            ink3.Description = "Deal 10 damage to the Opposing enemy.\nIf this is the first ability used this turn, refresh this party member's ability usage.\nOtherwise, generate 3 Pigment of the Opposing enemy's health color.";
+            ink3.Effects[1].entryVariable = 10;
 
             Ability ink4 = new Ability(ink3.ability, "Cora_Ink_4_A", ink1.Cost);
             ink4.Name = "Ink Flood";
-            ink4.Description = "Deal 12 damage to the Opposing enemy and generate 3 additional Pigment of their health color.\nIf this is the first ability used this turn, deal 23 damage instead.";
-            ink4.Effects[1].entryVariable = 23;
-            ink4.Effects[2].entryVariable = 12;
+            ink4.Description = "Deal 12 damage to the Opposing enemy.\nIf this is the first ability used this turn, refresh this party member's ability usage.\nOtherwise, generate 3 Pigment of the Opposing enemy's health color.";
+            ink4.Effects[1].entryVariable = 12;
             ink4.EffectIntents[0].intents[1] = "Damage_11_15";
-            ink4.EffectIntents[0].intents[2] = "Damage_21";
 
             TargettingFarthestUnits farthest = ScriptableObject.CreateInstance<TargettingFarthestUnits>();
             farthest.ignoreCastSlot = false;
@@ -95,7 +91,7 @@ namespace AprilsDayAtFools
             Ability checkmate1 = new Ability("Fools Checkmate", "Cora_Checkmate_1_A");
             checkmate1.Description = "Deal 9 damage to the Farthest enemy(s) from this party member and give them another action.";
             checkmate1.AbilitySprite = ResourceLoader.LoadSprite("ability_checkmate.png");
-            checkmate1.Cost = [Pigments.Yellow, Pigments.Blue];
+            checkmate1.Cost = [Pigments.Yellow, Pigments.Blue];//may become 2 blue if it needs the nerf
             checkmate1.Effects = new EffectInfo[2];
             checkmate1.Effects[0] = Effects.GenerateEffect(damage, 9, farthest);
             checkmate1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<AddTurnTargetToTimelineEffect>(), 1, farthest);
@@ -120,37 +116,42 @@ namespace AprilsDayAtFools
             checkmate4.Effects[0].entryVariable = 18;
             checkmate4.EffectIntents[0].intents[0] = "Damage_16_20";
 
+            RandomizeAllManaEffect randomize = ScriptableObject.CreateInstance<RandomizeAllManaEffect>();
+            randomize.manaRandomOptions = [Pigments.Red, Pigments.Blue, Pigments.Yellow, Pigments.Purple];
+
             Ability needles1 = new Ability("A Hundred Needles", "Cora_Needles_1_A");
-            needles1.Description = "Deal 4 damage to the Opposing enemy and reroll one of their actions on the timeline.\nIf the turn is Odd, deal 4 damage to the Opposing position at the start of the next turn.\nIf the turn is Even, inflict 4 Linked on the Opposing enemy.";
+            needles1.Description = "Deal 4 damage to the Opposing enemy.\nIf the turn is Even, deal 4 more damage to them.\nIf the turn is Odd, reroll one of the Opposing enemy's actions and randomize all pigment in the tray.";
             needles1.AbilitySprite = ResourceLoader.LoadSprite("ability_needles.png");
             needles1.Cost = [Pigments.Red, Pigments.BlueYellow];
             needles1.Effects = new EffectInfo[4];
             needles1.Effects[0] = Effects.GenerateEffect(damage, 4, Slots.Front);
-            needles1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ReRollTargetTimelineAbilityEffect>(), 1, Slots.Front);
-            needles1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<MaskedAddDelayedAttackEffect>(), 4, Slots.Front, EvenOddTurnEffectCondition.Create(true));
-            needles1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLinkedEffect>(), 4, Slots.Front, EvenOddTurnEffectCondition.Create(false));
-            needles1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Misc", "ADAF_Damage_Delay", "Status_Linked"]);
+            needles1.Effects[1] = Effects.GenerateEffect(damage, 4, Slots.Front, EvenOddTurnEffectCondition.Create(false));
+            needles1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ReRollTargetTimelineAbilityEffect>(), 1, Slots.Front, EvenOddTurnEffectCondition.Create(true));
+            needles1.Effects[3] = Effects.GenerateEffect(randomize, 1, Slots.Front, EvenOddTurnEffectCondition.Create(true));
+            needles1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Damage_3_6", "Misc_Hidden"]);
+            needles1.AddIntentsToTarget(Slots.Self, ["Mana_Randomize"]);
             needles1.Visuals = CustomVisuals.GetVisuals("Salt/Needle");
             needles1.AnimationTarget = Slots.Front;
 
             Ability needles2 = new Ability(needles1.ability, "Cora_Needles_2_A", needles1.Cost);
             needles2.Name = "A Thousand Needles";
-            needles2.Description = "Deal 6 damage to the Opposing enemy and reroll one of their actions on the timeline.\nIf the turn is Odd, deal 6 damage to the Opposing position at the start of the next turn.\nIf the turn is Even, inflict 4 Linked on the Opposing enemy.";
+            needles2.Description = "Deal 6 damage to the Opposing enemy.\nIf the turn is Even, deal 6 more damage to them.\nIf the turn is Odd, reroll one of the Opposing enemy's actions and randomize all pigment in the tray.";
             needles2.Effects[0].entryVariable = 6;
-            needles2.Effects[2].entryVariable = 6;
+            needles2.Effects[1].entryVariable = 6;
 
             Ability needles3 = new Ability(needles2.ability, "Cora_Needles_3_A", [Pigments.RedBlue, Pigments.BlueYellow]);
             needles3.Name = "A Million Needles";
-            needles3.Description = "Deal 7 damage to the Opposing enemy and reroll one of their actions on the timeline.\nIf the turn is Odd, deal 7 damage to the Opposing position at the start of the next turn.\nIf the turn is Even, inflict 4 Linked on the Opposing enemy.";
+            needles3.Description = "Deal 7 damage to the Opposing enemy.\nIf the turn is Even, deal 7 more damage to them.\nIf the turn is Odd, reroll one of the Opposing enemy's actions and randomize all pigment in the tray.";
             needles3.Effects[0].entryVariable = 7;
-            needles3.Effects[2].entryVariable = 7;
+            needles3.Effects[1].entryVariable = 7;
             needles3.EffectIntents[0].intents[0] = "Damage_7_10";
+            needles3.EffectIntents[0].intents[1] = "Damage_7_10";
 
             Ability needles4 = new Ability(needles3.ability, "Cora_Needles_4_A", needles3.Cost);
             needles4.Name = "A Trillion Needles";
-            needles4.Description = "Deal 8 damage to the Opposing enemy and reroll one of their actions on the timeline.\nIf the turn is Odd, deal 8 damage to the Opposing position at the start of the next turn.\nIf the turn is Even, inflict 4 Linked on the Opposing enemy.";
+            needles4.Description = "Deal 8 damage to the Opposing enemy.\nIf the turn is Even, deal 8 more damage to them.\nIf the turn is Odd, reroll one of the Opposing enemy's actions and randomize all pigment in the tray.";
             needles4.Effects[0].entryVariable = 8;
-            needles4.Effects[2].entryVariable = 8;
+            needles4.Effects[1].entryVariable = 8;
 
             cora.AddLevelData(10, [needles1, checkmate1, ink1]);
             cora.AddLevelData(12, [needles2, checkmate2, ink2]);
