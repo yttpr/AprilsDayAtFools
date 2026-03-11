@@ -127,7 +127,7 @@ namespace AprilsDayAtFools
             BaseCombatTargettingSO cascade_slots = Targeting.GenerateSlotTarget([0, 1, 2, 3, 4, -1, -2, -3, -4], false);
 
             Ability agony1 = new Ability("Agony of Flesh", "Saline_Agony_1_A");
-            agony1.Description = "Heal the Opposing enemy 5 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 5 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
+            agony1.Description = "Heal the Opposing enemy 5 health, healing spreads to adjacent enemies without falloff.\nDeal 5 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
             agony1.AbilitySprite = ResourceLoader.LoadSprite("ability_agony.png");
             agony1.Cost = [Pigments.Blue, Pigments.RedBlue];
             agony1.Effects = new EffectInfo[3];
@@ -143,20 +143,20 @@ namespace AprilsDayAtFools
 
             Ability agony2 = new Ability(agony1.ability, "Saline_Agony_2_A", agony1.Cost);
             agony2.Name = "Agony of Material";
-            agony2.Description = "Heal the Opposing enemy 6 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 6 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
+            agony2.Description = "Heal the Opposing enemy 6 health, healing spreads to adjacent enemies without falloff.\nDeal 6 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
             agony2.Effects[0].entryVariable = 6;
             agony2.Effects[1].entryVariable = 6;
 
             Ability agony3 = new Ability(agony2.ability, "Saline_Agony_3_A", agony1.Cost);
             agony3.Name = "Agony of Fantasy";
-            agony3.Description = "Heal the Opposing enemy 8 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 8 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
+            agony3.Description = "Heal the Opposing enemy 8 health, healing spreads to adjacent enemies without falloff.\nDeal 8 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
             agony3.Effects[0].entryVariable = 8;
             agony3.Effects[1].entryVariable = 8;
             agony3.EffectIntents[1].intents[1] = "Damage_7_10";
 
             Ability agony4 = new Ability(agony3.ability, "Saline_Agony_4_A", agony1.Cost);
             agony4.Name = "Agony of Death";
-            agony4.Description = "Heal the Opposing enemy 9 health, healing spreads indirectly to adjacent enemies without falloff.\nDeal 9 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
+            agony4.Description = "Heal the Opposing enemy 9 health, healing spreads to adjacent enemies without falloff.\nDeal 9 damage to the Opposing enemy, damage spreads indirectly to adjacent enemies without falloff.\nIf no healing is dealt, Curse a random enemy.";
             agony4.Effects[0].entryVariable = 9;
             agony4.Effects[1].entryVariable = 9;
 
