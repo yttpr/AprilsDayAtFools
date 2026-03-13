@@ -84,33 +84,36 @@ namespace AprilsDayAtFools
             hope4.Effects[1].entryVariable = 4;
             hope4.EffectIntents[0].intents[0] = "Heal_11_20";
 
+            BaseCombatTargettingSO des_targets = Slots.SlotTarget([-1, 1, 2], true);
+
             Ability desperate1 = new Ability("Leaking Desperation", "Kafka_Desperation_1_A");
-            desperate1.Description = "Heal the Left and Right allies 3 health.\nIf neither was healed, apply 4 Determined to both.";
+            desperate1.Description = "Heal the Left, Right, and Far Right allies 3 health.\nIf no allies were healed, apply 3 Determined to them.";
             desperate1.AbilitySprite = ResourceLoader.LoadSprite("ability_desperation.png");
             desperate1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
             desperate1.Effects = new EffectInfo[2];
-            desperate1.Effects[0] = Effects.GenerateEffect(heal, 3, Slots.Sides);
-            desperate1.Effects[1] = Effects.GenerateEffect(determined, 4, Slots.Sides, BasicEffects.DidThat(false));
-            desperate1.AddIntentsToTarget(Slots.Sides, ["Heal_1_4", Determined.Intent]);
+            desperate1.Effects[0] = Effects.GenerateEffect(heal, 3, des_targets);
+            desperate1.Effects[1] = Effects.GenerateEffect(determined, 4, des_targets, BasicEffects.DidThat(false));
+            desperate1.AddIntentsToTarget(des_targets, ["Heal_1_4", Determined.Intent]);
             desperate1.Visuals = CustomVisuals.GetVisuals("Salt/Shush");
-            desperate1.AnimationTarget = Slots.Sides;
+            desperate1.AnimationTarget = des_targets;
 
             Ability desperate2 = new Ability(desperate1.ability, "Kafka_Desperation_2_A", desperate1.Cost);
             desperate2.Name = "Flowing Desperation";
-            desperate2.Description = "Heal the Left and Right allies 5 health.\nIf neither was healed, apply 5 Determined to both.";
-            desperate2.Effects[0].entryVariable = 5;
-            desperate2.Effects[1].entryVariable = 5;
-            desperate2.EffectIntents[0].intents[0] = "Heal_5_10";
+            desperate2.Description = "Heal the Left, Right, and Far Right allies 4 health.\nIf no allies were healed, apply 4 Determined to them.";
+            desperate2.Effects[0].entryVariable = 4;
+            desperate2.Effects[1].entryVariable = 4;
 
             Ability desperate3 = new Ability(desperate2.ability, "Kafka_Desperation_3_A", desperate1.Cost);
             desperate3.Name = "Streaming Desperation";
-            desperate3.Description = "Heal the Left and Right allies 7 health.\nIf neither was healed, apply 5 Determined to both.";
-            desperate3.Effects[0].entryVariable = 7;
+            desperate3.Description = "Heal the Left, Right, and Far Right allies 5 health.\nIf no allies were healed, apply 5 Determined to them.";
+            desperate3.Effects[0].entryVariable = 5;
+            desperate3.Effects[1].entryVariable = 5;
+            desperate3.EffectIntents[0].intents[0] = "Heal_5_10";
 
             Ability desperate4 = new Ability(desperate3.ability, "Kafka_Desperation_4_A", desperate1.Cost);
             desperate4.Name = "Down-Pouring Desperation";
-            desperate4.Description = "Heal the Left and Right allies 9 health.\nIf neither was healed, apply 6 Determined to both.";
-            desperate4.Effects[0].entryVariable = 9;
+            desperate4.Description = "Heal the Left, Right, and Far Right allies 6 health.\nIf no allies were healed, apply 6 Determined to them.";
+            desperate4.Effects[0].entryVariable = 6;
             desperate4.Effects[1].entryVariable = 6;
 
             Ability envy1 = new Ability("Mild Envy", "Kafka_Envy_1_A");
