@@ -40,74 +40,73 @@ namespace AprilsDayAtFools
             HealEffect heal = ScriptableObject.CreateInstance<HealEffect>();
             ApplyShieldSlotEffect shield = ScriptableObject.CreateInstance<ApplyShieldSlotEffect>();
             hasAnesthetics.StatusID = "Anesthetics_ID";
+
+            MaxHealthDamageEffect hitmax = ScriptableObject.CreateInstance<MaxHealthDamageEffect>();
+            hitmax.returnKill = true;
+
             Ability weakness1 = new Ability("Social Weakness", "Didion_Weakness_1_A");
-            weakness1.Description = "Heal the Left and Right allies 3 health.\nApply 2 Anesthetics to them; if they already had Anesthetics, Apply 4 Shield to them instead.";
+            weakness1.Description = "Reduce the Opposing enemy's maximum health by 4, instantly killing them if it cannot be reduced further, and generate 2 Pigment of their health color.\nIf this ability kills, heal this party member 2 health.";
             weakness1.AbilitySprite = ResourceLoader.LoadSprite("ability_weakness.png");
-            weakness1.Cost = [Pigments.Blue, Pigments.Blue];
-            weakness1.Effects = new EffectInfo[8];
-            weakness1.Effects[0] = Effects.GenerateEffect(hasAnesthetics, 1, Targeting.Slot_AllyLeft);
-            weakness1.Effects[1] = Effects.GenerateEffect(heal, 3, Targeting.Slot_AllyLeft);
-            weakness1.Effects[2] = Effects.GenerateEffect(anesthetics, 2, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 2));
-            weakness1.Effects[3] = Effects.GenerateEffect(shield, 4, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true, 3));
-            weakness1.Effects[4] = Effects.GenerateEffect(hasAnesthetics, 1, Targeting.Slot_AllyRight);
-            weakness1.Effects[5] = Effects.GenerateEffect(heal, 3, Targeting.Slot_AllyRight);
-            weakness1.Effects[6] = Effects.GenerateEffect(anesthetics, 2, Targeting.Slot_AllyRight, BasicEffects.DidThat(false, 2));
-            weakness1.Effects[7] = Effects.GenerateEffect(shield, 4, Targeting.Slot_AllyRight, BasicEffects.DidThat(true, 3));
-            weakness1.AddIntentsToTarget(Slots.Sides, [Anesthetics.Intent, "Heal_1_4", "Field_Shield"]);
+            weakness1.Cost = [Pigments.Red, Pigments.Blue];
+            weakness1.Effects = new EffectInfo[3];
+            weakness1.Effects[0] = Effects.GenerateEffect(hitmax, 4, Slots.Front);
+            weakness1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<GenerateTargetHealthManaEffect>(), 2, Slots.Front);
+            weakness1.Effects[2] = Effects.GenerateEffect(heal, 2, Slots.Self, BasicEffects.DidThat(true, 2));
+            weakness1.AddIntentsToTarget(Slots.Front, ["Other_MaxHealth", "Damage_Death", "Mana_Generate"]);
+            weakness1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
             weakness1.Visuals = CustomVisuals.GetVisuals("Salt/Keyhole");
-            weakness1.AnimationTarget = Slots.Sides;
+            weakness1.AnimationTarget = Slots.Front;
 
-            Ability weakness2 = new Ability(weakness1.ability, "Didion_Weakness_2_A", weakness1.Cost);
+            Ability weakness2 = new Ability(weakness1.ability, "Didion_Weakness_2_A", [Pigments.BlueRed, Pigments.Blue]);
             weakness2.Name = "Hidden Weakness";
-            weakness2.Description = "Heal the Left and Right allies 4 health.\nApply 2 Anesthetics to them; if they already had Anesthetics, Apply 5 Shield to them instead.";
-            weakness2.Effects[1].entryVariable = 4;
-            weakness2.Effects[3].entryVariable = 5;
-            weakness2.Effects[5].entryVariable = 4;
-            weakness2.Effects[7].entryVariable = 5;
+            weakness2.Description = "Reduce the Opposing enemy's maximum health by 6, instantly killing them if it cannot be reduced further, and generate 2 Pigment of their health color.\nIf this ability kills, heal this party member 2 health.";
+            weakness2.Effects[0].entryVariable = 6;
 
-            Ability weakness3 = new Ability(weakness2.ability, "Didion_Weakness_3_A", weakness1.Cost);
+            Ability weakness3 = new Ability(weakness2.ability, "Didion_Weakness_3_A", weakness2.Cost);
             weakness3.Name = "Nervous Weakness";
-            weakness3.Description = "Heal the Left and Right allies 5 health.\nApply 2 Anesthetics to them; if they already had Anesthetics, Apply 7 Shield to them instead.";
-            weakness3.Effects[1].entryVariable = 5;
-            weakness3.Effects[3].entryVariable = 7;
-            weakness3.Effects[5].entryVariable = 5;
-            weakness3.Effects[7].entryVariable = 7;
-            weakness3.EffectIntents[0].intents[1] = "Heal_5_10";
+            weakness3.Description = "Reduce the Opposing enemy's maximum health by 8, instantly killing them if it cannot be reduced further, and generate 2 Pigment of their health color.\nIf this ability kills, heal this party member 3 health.";
+            weakness3.Effects[0].entryVariable = 8;
+            weakness3.Effects[2].entryVariable = 3;
 
             Ability weakness4 = new Ability(weakness3.ability, "Didion_Weakness_4_A", weakness3.Cost);
             weakness4.Name = "Paranoid Weakness";
-            weakness4.Description = "Heal the Left and Right allies 6 health.\nApply 2 Anesthetics to them; if they already had Anesthetics, Apply 8 Shield to them instead.";
-            weakness4.Effects[1].entryVariable = 6;
-            weakness4.Effects[3].entryVariable = 8;
-            weakness4.Effects[5].entryVariable = 6;
-            weakness4.Effects[7].entryVariable = 8;
+            weakness4.Description = "Reduce the Opposing enemy's maximum health by 10, instantly killing them if it cannot be reduced further, and generate 2 Pigment of their health color.\nIf this ability kills, heal this party member 3 health.";
+            weakness4.Effects[0].entryVariable = 10;
+
+            ExitByPigmentUsedEffect check_blue = ScriptableObject.CreateInstance<ExitByPigmentUsedEffect>();
+            check_blue.mana = Pigments.Blue;
+            HealEffect heal_exit = ScriptableObject.CreateInstance<HealEffect>();
+            heal_exit.usePreviousExitValue = true;
 
             Ability where1 = new Ability("Somewhere Better", "Didion_Where_1_A");
-            where1.Description = "Apply 4 Anesthetics to the Left ally. If they already have Anesthetics, heal them 6 health instead.";
+            where1.Description = "Apply 4 Anesthetics to the Left ally. If they already have Anesthetics, heal them 6 health instead.\nHeal this party member 1 health for each Blue Pigment used for this ability.";
             where1.AbilitySprite = ResourceLoader.LoadSprite("ability_where.png");
             where1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Blue];
-            where1.Effects = new EffectInfo[3];
+            where1.Effects = new EffectInfo[5];
             where1.Effects[0] = Effects.GenerateEffect(hasAnesthetics, 1, Targeting.Slot_AllyLeft);
             where1.Effects[1] = Effects.GenerateEffect(anesthetics, 4, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false));
             where1.Effects[2] = Effects.GenerateEffect(heal, 6, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true, 2));
+            where1.Effects[3] = Effects.GenerateEffect(check_blue);
+            where1.Effects[4] = Effects.GenerateEffect(heal_exit, 1, Slots.Self, BasicEffects.DidThat(true));
             where1.AddIntentsToTarget(Targeting.Slot_AllyLeft, [Anesthetics.Intent, "Heal_5_10"]);
+            where1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
             where1.Visuals = LoadedAssetsHandler.GetEnemyAbility("Weep_A").visuals;
             where1.AnimationTarget = Targeting.Slot_AllyLeft;
 
             Ability where2 = new Ability(where1.ability, "Didion_Where_2_A", where1.Cost);
             where2.Name = "Elsewhere Better";
-            where2.Description = "Apply 5 Anesthetics to the Left ally. If they already have Anesthetics, heal them 8 health instead.";
+            where2.Description = "Apply 5 Anesthetics to the Left ally. If they already have Anesthetics, heal them 8 health instead.\nHeal this party member 1 health for each Blue Pigment used for this ability.";
             where2.Effects[1].entryVariable = 5;
             where2.Effects[2].entryVariable = 8;
 
             Ability where3 = new Ability(where2.ability, "Didion_Where_3_A", where1.Cost);
             where3.Name = "Anywhere Better";
-            where3.Description = "Apply 5 Anesthetics to the Left ally. If they already have Anesthetics, heal them 10 health instead.";
+            where3.Description = "Apply 5 Anesthetics to the Left ally. If they already have Anesthetics, heal them 10 health instead.\nHeal this party member 1 health for each Blue Pigment used for this ability.";
             where3.Effects[2].entryVariable = 10;
 
             Ability where4 = new Ability(where3.ability, "Didion_Where_4_A", where1.Cost);
             where4.Name = "Nowhere Better";
-            where4.Description = "Apply 6 Anesthetics to the Left ally. If they already have Anesthetics, heal them 10 health instead.";
+            where4.Description = "Apply 6 Anesthetics to the Left ally. If they already have Anesthetics, heal them 10 health instead.\nHeal this party member 1 health for each Blue Pigment used for this ability.";
             where4.Effects[1].entryVariable = 6;
 
             Ability escape1 = new Ability("Hopeful Escape", "Didion_Escape_1_A");

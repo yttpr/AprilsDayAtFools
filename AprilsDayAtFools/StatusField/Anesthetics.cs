@@ -96,4 +96,27 @@ namespace AprilsDayAtFools
             return base.PerformEffect(stats, caster, targets, areTargetSlots, entryVariable, out exitAmount);
         }
     }
+    public class ApplyAnestheticsCappedToExitEffect : EffectSO
+    {
+        public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
+        {
+            exitAmount = 0;
+
+            foreach (TargetSlotInfo target in targets)
+            {
+                if (target.HasUnit)
+                {
+                    int current = target.Unit.GetStatusAmount(Anesthetics.StatusID);
+                    int diff = PreviousExitValue - current;
+                    if (diff <= 0) continue;
+
+                    int num = Math.Min(diff, entryVariable);
+                    if (target.Unit.ApplyStatusEffect(Anesthetics.Object, num))
+                        exitAmount += num;
+                }
+            }
+
+            return exitAmount > 0;
+        }
+    }
 }
