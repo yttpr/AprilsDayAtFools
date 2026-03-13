@@ -248,10 +248,10 @@ namespace AprilsDayAtFools
             MultiPerformEffectItem hangman = new MultiPerformEffectItem("Aprils_Euthanasia_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<DirectDeathEffect>(), 1, Slots.Self)]);
             hangman.Name = "Euthanasia";
             hangman.Flavour = "\"Have you tried turning it off and on again?\"";
-            hangman.Description = "On taking any damage, if this party member is below half health instantly die. \nIncrease damage dealt by the Left and Right allies by this party member's missing health.\nThis item is destroyed upon death.";
+            hangman.Description = "At the end of each turn, if this party member is below half health instantly die. \nIncrease damage dealt by the Left and Right allies by this party member's missing health.\nThis item is destroyed upon death.";
             hangman.Icon = ResourceLoader.LoadSprite("item_euthanasia.png");
             hangman.EquippedModifiers = [];
-            hangman.TriggerOn = TriggerCalls.OnDamaged;
+            hangman.TriggerOn = TriggerCalls.OnTurnFinished;
             hangman.DoesPopUpInfo = true;
             hangman.Conditions = [ScriptableObject.CreateInstance<UnderHalfHealthCondition>()];
             hangman.DoesActionOnTriggerAttached = false;
