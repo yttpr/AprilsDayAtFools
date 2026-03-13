@@ -91,30 +91,31 @@ namespace AprilsDayAtFools
             buried4.Effects[1].effect = ShieldIfNotHealEffect.Create(6, shield);
 
             Ability void1 = new Ability("Nightmares of Loneliness", "Flower_Void_1_A");
-            void1.Description = "Heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 4 Deep Water on the Right allied position.";
+            void1.Description = "Attempt to revive an ally in the Right position at 1 health; if unsuccessful heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 4 Deep Water on the Right allied position.";
             void1.AbilitySprite = ResourceLoader.LoadSprite("ability_void.png");
-            void1.Cost = [Pigments.Blue, Pigments.Red];
-            void1.Effects = new EffectInfo[2];
-            void1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealByHealthPlusDrowningEffect>(), 0, Targeting.Slot_AllyRight);
-            void1.Effects[1] = Effects.GenerateEffect(water, 4, Targeting.Slot_AllyRight);
-            void1.AddIntentsToTarget(Targeting.Slot_AllyRight, ["Heal_11_20", Water.Intent]);
+            void1.Cost = [Pigments.Blue, Pigments.Purple];
+            void1.Effects = new EffectInfo[3];
+            void1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectEffect>(), 1, Targeting.Slot_AllyRight);
+            void1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealByHealthPlusDrowningEffect>(), 0, Targeting.Slot_AllyRight, BasicEffects.DidThat(false));
+            void1.Effects[2] = Effects.GenerateEffect(water, 4, Targeting.Slot_AllyRight);
+            void1.AddIntentsToTarget(Targeting.Slot_AllyRight, [IntentType_GameIDs.Other_Resurrect.ToString(), "Heal_11_20", Water.Intent]);
             void1.AnimationTarget = Targeting.Slot_AllyRight;
             void1.Visuals = CustomVisuals.GetVisuals("Salt/Monster");
 
-            Ability void2 = new Ability(void1.ability, "Flower_Void_2_A", [Pigments.Blue, Pigments.BlueRed]);
+            Ability void2 = new Ability(void1.ability, "Flower_Void_2_A", void1.Cost);
             void2.Name = "Nightmares of Solitude";
-            void2.Description = "Heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 5 Deep Water on the Right allied position.";
-            void2.Effects[1].entryVariable = 5;
+            void2.Description = "Attempt to revive an ally in the Right position at 3 health; if unsuccessful heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 4 Deep Water on the Right allied position.";
+            void2.Effects[0].entryVariable = 3;
 
-            Ability void3 = new Ability(void2.ability, "Flower_Void_3_A", [Pigments.BlueYellow, Pigments.BlueRed]);
+            Ability void3 = new Ability(void2.ability, "Flower_Void_3_A", void1.Cost);
             void3.Name = "Nightmares of Emptiness";
-            void3.Description = "Heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 6 Deep Water on the Right allied position.";
-            void3.Effects[1].entryVariable = 6;
+            void3.Description = "Attempt to revive an ally in the Right position at 5 health; if unsuccessful heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 4 Deep Water on the Right allied position.";
+            void3.Effects[0].entryVariable = 5;
 
-            Ability void4 = new Ability(void3.ability, "Flower_Void_4_A", [Pigments.Grey, Pigments.BlueRed]);
+            Ability void4 = new Ability(void3.ability, "Flower_Void_4_A", void1.Cost);
             void4.Name = "Nightmares of Void";
-            void4.Description = "Heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 7 Deep Water on the Right allied position.";
-            void4.Effects[1].entryVariable = 7;
+            void4.Description = "Attempt to revive an ally in the Right position at 6 health; if unsuccessful heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 4 Deep Water on the Right allied position.";
+            void4.Effects[0].entryVariable = 6;
 
             CascadeHealPercentEffect hazeEffect = ScriptableObject.CreateInstance<CascadeHealPercentEffect>();
             hazeEffect._cascadeDecay = 0.5f;
