@@ -95,7 +95,7 @@ namespace AprilsDayAtFools
             prev2false.wasSuccessful = [false, false];
 
             Ability void1 = new Ability("Nightmares of Loneliness", "Flower_Void_1_A");
-            void1.Description = "Attempt to Refresh the Right ally's ability and swap usage; if unsuccessful heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 4 Deep Water on the Right allied position.";
+            void1.Description = "Attempt to Refresh the Right ally's ability usage; if unsuccessful heal the Right ally by their current health plus the amount of Drowning they have.\nInflict 4 Deep Water on the Right allied position.";
             void1.AbilitySprite = ResourceLoader.LoadSprite("ability_void.png");
             void1.Cost = [Pigments.Blue, Pigments.Red];
             void1.Effects = new EffectInfo[4];
