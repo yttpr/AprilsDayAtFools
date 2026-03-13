@@ -86,8 +86,6 @@ namespace AprilsDayAtFools
             if (!LoadedDBsHandler.StatusFieldDB.FieldEffects.ContainsKey(FieldID))
             {
                 LoadedDBsHandler.StatusFieldDB.AddNewFieldEffect(WaterSO);
-                IDetour hook0 = new Hook(typeof(CharacterSlotsHaveSwappedUIAction).GetMethod(nameof(CharacterSlotsHaveSwappedUIAction.Execute), ~BindingFlags.Default), typeof(Water).GetMethod(nameof(Water.Execute), ~BindingFlags.Default));
-                IDetour hook1 = new Hook(typeof(EnemySlotsHaveSwappedUIAction).GetMethod(nameof(EnemySlotsHaveSwappedUIAction.Execute), ~BindingFlags.Default), typeof(Water).GetMethod(nameof(Water.Execute), ~BindingFlags.Default));
             }
 
             IntentInfoBasic intentinfo = new IntentInfoBasic();
@@ -100,7 +98,8 @@ namespace AprilsDayAtFools
             reminfo._sprite = ResourceLoader.LoadSprite("DeepFieldIcon.png");
             if (!LoadedDBsHandler.IntentDB.m_IntentBasicPool.ContainsKey(Rem_Intent)) LoadedDBsHandler.IntentDB.AddNewBasicIntent(Rem_Intent, reminfo);
 
-            
+            IDetour hook0 = new Hook(typeof(CharacterSlotsHaveSwappedUIAction).GetMethod(nameof(CharacterSlotsHaveSwappedUIAction.Execute), ~BindingFlags.Default), typeof(Water).GetMethod(nameof(Water.Execute), ~BindingFlags.Default));
+            IDetour hook1 = new Hook(typeof(EnemySlotsHaveSwappedUIAction).GetMethod(nameof(EnemySlotsHaveSwappedUIAction.Execute), ~BindingFlags.Default), typeof(Water).GetMethod(nameof(Water.Execute), ~BindingFlags.Default));
             //IDetour hook2 = new Hook(typeof(CharacterFieldEffectLayout).GetMethod(nameof(CharacterFieldEffectLayout.InitializeLayout), ~BindingFlags.Default), typeof(Water).GetMethod(nameof(Water.InitializeLayout), ~BindingFlags.Default));
         }
         public static IEnumerator Execute(Func<CombatAction, CombatStats, IEnumerator> orig, CombatAction self, CombatStats stats)
