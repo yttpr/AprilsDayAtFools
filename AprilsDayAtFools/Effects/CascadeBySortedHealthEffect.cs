@@ -32,12 +32,12 @@ namespace AprilsDayAtFools
                     int amount = PreviousExitValue;
                     for (int i = 0; i < units.Count; i++)
                     {
+                        amount += entryVariable;
+
                         int num = amount;
                         if (_direct) num = caster.WillApplyDamage(num, units[i]);
                         DamageInfo info = units[i].Damage(num, _direct ? caster : null, "Basic", -1, _direct, _direct, _direct);
                         exitAmount += info.damageAmount;
-
-                        amount += entryVariable;
                     }
                 }
             }
