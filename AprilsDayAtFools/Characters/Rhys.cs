@@ -50,12 +50,12 @@ namespace AprilsDayAtFools
             activate.m_unitStoredDataID = RhysHandler.Value;
 
             Ability organ1 = new Ability("Organ Chops", "Rhys_Organ_1_A");
-            organ1.Description = "Heal the Left ally 4 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 1.\nHeal this party member 1 health.";
+            organ1.Description = "Heal the Left ally 4 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 2.\nHeal this party member 1 health.";
             organ1.AbilitySprite = ResourceLoader.LoadSprite("ability_organ.png");
             organ1.Cost = [Pigments.Red, Pigments.Yellow, Pigments.Blue];
             organ1.Effects = new EffectInfo[5];
             organ1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DirectHealingEffect>(), 4, Targeting.Slot_AllyLeft);
-            organ1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ReduceAllNegativeStatusEffect>(), 1, Targeting.Slot_AllyLeft);
+            organ1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ReduceAllNegativeStatusEffect>(), 2, Targeting.Slot_AllyLeft);
             organ1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 1, Slots.Self);
             organ1.Effects[3] = Effects.GenerateEffect(activate, 1);
             organ1.Effects[4] = Effects.GenerateEffect(rhysSprites, 1);
@@ -66,20 +66,21 @@ namespace AprilsDayAtFools
 
             Ability organ2 = new Ability(organ1.ability, "Rhys_Organ_2_A", organ1.Cost);
             organ2.Name = "Organ Chunks";
-            organ2.Description = "Heal the Left ally 5 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 2.\nHeal this party member 1 health.";
-            organ2.Effects[0].entryVariable = 5;
-            organ2.Effects[1].entryVariable = 2;
+            organ2.Description = "Heal the Left ally 6 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 2.\nHeal this party member 1 health.";
+            organ2.Effects[0].entryVariable = 6;
             organ2.EffectIntents[0].intents[0] = "Heal_5_10";
 
             Ability organ3 = new Ability(organ2.ability, "Rhys_Organ_3_A", organ1.Cost);
             organ3.Name = "Organ Blend";
-            organ3.Description = "Heal the Left ally 7 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 2.\nHeal this party member 1 health.";
-            organ3.Effects[0].entryVariable = 7;
+            organ3.Description = "Heal the Left ally 8 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 3.\nHeal this party member 2 health.";
+            organ3.Effects[0].entryVariable = 8;
+            organ3.Effects[1].entryVariable = 3;
+            organ3.Effects[2].entryVariable = 2;
 
             Ability organ4 = new Ability(organ3.ability, "Rhys_Organ_4_A", organ1.Cost);
             organ4.Name = "Organ Puree";
-            organ4.Description = "Heal the Left ally 9 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 2.\nHeal this party member 1 health.";
-            organ4.Effects[0].entryVariable = 9;
+            organ4.Description = "Heal the Left ally 11 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 3.\nHeal this party member 2 health.";
+            organ4.Effects[0].entryVariable = 11;
 
             ChangeToRandomHealthColorEffect turnRed = ScriptableObject.CreateInstance<ChangeToRandomHealthColorEffect>();
             turnRed._healthColors = [Pigments.Red];
