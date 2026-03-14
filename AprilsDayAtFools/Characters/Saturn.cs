@@ -131,23 +131,23 @@ namespace AprilsDayAtFools
 
             Ability number2 = new Ability(number1.ability, "Saturn_Number_2_A", number1.Cost);
             number2.Name = "Missense Number";
-            number2.Description = "If the Opposing enemy is Cursed, remove Cursed from them and deal 3 damage to them. Then, deal the damage dealt indirectly to all enemies with higher health than the original target in ascending order, increasing by 3 each time.\nOtherwise, increase Ambush by 8 until the start of the next turn.";
-            number2.Effects[3].entryVariable = 3;
+            number2.Description = "If the Opposing enemy is Cursed, remove Cursed from them and deal 5 damage to them. Then, deal the damage dealt indirectly to all enemies with higher health than the original target in ascending order, increasing by 2 each time.\nOtherwise, increase Ambush by 8 until the start of the next turn.";
+            number2.Effects[2].entryVariable = 5;
             number2.Effects[4].entryVariable = 8;
 
             Ability number3 = new Ability(number2.ability, "Saturn_Number_3_A", number1.Cost);
             number3.Name = "Nonsense Number";
-            number3.Description = "If the Opposing enemy is Cursed, remove Cursed from them and deal 6 damage to them. Then, deal the damage dealt indirectly to all enemies with higher health than the original target in ascending order, increasing by 3 each time.\nOtherwise, increase Ambush by 10 until the start of the next turn.";
-            number3.Effects[2].entryVariable = 6;
+            number3.Description = "If the Opposing enemy is Cursed, remove Cursed from them and deal 7 damage to them. Then, deal the damage dealt indirectly to all enemies with higher health than the original target in ascending order, increasing by 2 each time.\nOtherwise, increase Ambush by 10 until the start of the next turn.";
+            number3.Effects[2].entryVariable = 7;
             number3.Effects[4].entryVariable = 10;
-            number3.EffectIntents[1].intents = [IntentColor.Intent, "Damage_3_6", "Damage_7_10", "Damage_11_15", "Damage_16_20"];
+            number3.EffectIntents[0].intents[1] = "Damage_7_10";
+            number3.EffectIntents[1].intents = [IntentColor.Intent, "Damage_7_10", "Damage_11_15"];
 
             Ability number4 = new Ability(number3.ability, "Saturn_Number_4_A", number1.Cost);
             number4.Name = "Frameshift Number";
-            number4.Description = "If the Opposing enemy is Cursed, remove Cursed from them and deal 8 damage to them. Then, deal the damage dealt indirectly to all enemies with higher health than the original target in ascending order, increasing by 3 each time.\nOtherwise, increase Ambush by 12 until the start of the next turn.";
+            number4.Description = "If the Opposing enemy is Cursed, remove Cursed from them and deal 8 damage to them. Then, deal the damage dealt indirectly to all enemies with higher health than the original target in ascending order, increasing by 2 each time.\nOtherwise, increase Ambush by 12 until the start of the next turn.";
             number4.Effects[2].entryVariable = 8;
             number4.Effects[4].entryVariable = 12;
-            number4.EffectIntents[0].intents[1] = "Damage_7_10";
             number4.EffectIntents[1].intents = [IntentColor.Intent, "Damage_7_10", "Damage_11_15", "Damage_16_20"];
 
             TargettingByHealthUnitsStatus lowest = ScriptableObject.CreateInstance<TargettingByHealthUnitsStatus>();
