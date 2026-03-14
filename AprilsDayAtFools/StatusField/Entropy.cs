@@ -80,8 +80,7 @@ namespace AprilsDayAtFools
         public override void OnTriggerAttached(StatusEffect_Holder holder, IStatusEffector caller)
         {
             (caller as IUnit).SimpleSetStoredValue(Entropy.Limit, 30);
-            Thread timerThread = new Thread(new ParameterizedThreadStart(AddTurnsThread));
-            timerThread.Start(caller as IUnit);
+            CombatManager.Instance.StartCoroutine(AddTurnsThread(caller));
             CombatManager.Instance.AddObserver(holder.OnEventTriggered_01, Entropy.TriggerCall, caller);
         }
         public override void OnTriggerDettached(StatusEffect_Holder holder, IStatusEffector caller)
@@ -129,24 +128,21 @@ namespace AprilsDayAtFools
                     int timing = (sender as IUnit).SimpleGetStoredValue(Entropy.Limit) - reduction;
                     int time = Math.Max(timing, 1);
                     (sender as IUnit).SimpleSetStoredValue(Entropy.Limit, time);
-                    Thread timerThread = new Thread(new ParameterizedThreadStart(AddTurnsThread));
-                    timerThread.Start(sender as IUnit);
+                    CombatManager.Instance.StartCoroutine(AddTurnsThread(sender));
                 }
             }
         }
-        public static void AddTurnsThread(object obj)
+        public static IEnumerator AddTurnsThread(object obj)
         {
-            if (CombatManager._instance == null || CombatManager._instance.Equals(null)) return;
+            if (CombatManager._instance == null || CombatManager._instance.Equals(null)) yield break;
             if (obj is IUnit unit)
             {
                 if (!unit.Equals(null) && unit.IsAlive)
                 {
                     int timing = unit.SimpleGetStoredValue(Entropy.Limit);
-                    for (int i = 0; i < timing; i++)
-                    {
-                        Thread.Sleep(1000);
-                        if (CombatManager._instance == null || CombatManager._instance.Equals(null)) return;
-                    }
+                    yield return new WaitForSecondsRealtime(timing);
+                    if (CombatManager._instance == null || CombatManager._instance.Equals(null)) yield break;
+
                     if (!unit.Equals(null) && unit.IsAlive && unit.ContainsStatusEffect(Entropy.StatusID))
                     {
                         CombatManager.Instance.PostNotification(Entropy.TriggerCall, unit, null);
