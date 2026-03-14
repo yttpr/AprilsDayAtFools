@@ -33,6 +33,7 @@ namespace AprilsDayAtFools
                     for (int i = 0; i < units.Count; i++)
                     {
                         amount += entryVariable;
+                        if (amount <= 0) break;
 
                         int num = amount;
                         if (_direct) num = caster.WillApplyDamage(num, units[i]);
