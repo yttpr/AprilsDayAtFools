@@ -100,8 +100,7 @@ namespace AprilsDayAtFools
                 int timing = (sender as IUnit).SimpleGetStoredValue(Entropy.Limit) - reduction;
                 int time = Math.Max(timing, 1);
                 (sender as IUnit).SimpleSetStoredValue(Entropy.Limit, time);
-                Thread timerThread = new Thread(new ParameterizedThreadStart(AddTurnsThread));
-                timerThread.Start(sender as IUnit);
+                CombatManager.Instance.StartCoroutine(AddTurnsThread(sender));
             }
         }
         public class TriggerEntropyAction : CombatAction
