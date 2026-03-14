@@ -85,12 +85,6 @@ namespace AprilsDayAtFools
 
             int damageAmount = ((!stats.combatSlots.UnitInSlotContainsFieldEffect(targetSlotInfo.SlotID, targetSlotInfo.IsTargetCharacterSlot, _Field.FieldID)) ? Mathf.Max(entryVariable + temp, 0) : 0);
 
-            if (targetSlotInfo.Unit.ContainsStatusEffect("OilSlicked_ID") && damageAmount > 0)
-            {
-                targetSlotInfo.Unit.TryRemoveStatusEffect("OilSlicked_ID");
-                damageAmount *= 3;
-            }
-
             DamageInfo damageInfo = DealDamageToTarget(caster, targetSlotInfo, areTargetSlots, damageAmount, _indirect);
             damageAmount = damageInfo.damageAmount;
             flag |= damageInfo.beenKilled;
@@ -181,10 +175,16 @@ namespace AprilsDayAtFools
 
         public DamageInfo DealDamageToTarget(IUnit caster, TargetSlotInfo target, bool areTargetSlots, int damageAmount, bool useIndirect)
         {
+            if (target.Unit.ContainsStatusEffect("OilSlicked_ID") && damageAmount > 0)
+            {
+                target.Unit.TryRemoveStatusEffect("OilSlicked_ID");
+                damageAmount *= 3;
+            }
+
             int targetSlotOffset = (areTargetSlots ? (target.SlotID - target.Unit.SlotID) : (-1));
             if (useIndirect)
             {
-                return target.Unit.Damage(damageAmount, null, _DeathTypeID, targetSlotOffset, addHealthMana: false, directDamage: false, ignoresShield: true);
+                return target.Unit.Damage(damageAmount, null, _DeathTypeID, targetSlotOffset, addHealthMana: false, directDamage: false, ignoresShield: true, "Dmg_Fire");
             }
 
             damageAmount = caster.WillApplyDamage(damageAmount, target.Unit);
