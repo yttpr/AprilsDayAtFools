@@ -117,7 +117,7 @@ namespace AprilsDayAtFools
             number1.Description = "If the Opposing enemy is Cursed, remove Cursed from them and deal 3 damage to them. Then, deal the damage dealt indirectly to all enemies with higher health than the original target in ascending order, increasing by 2 each time.\nOtherwise, increase Ambush by 6 until the start of the next turn.";
             number1.AbilitySprite = ResourceLoader.LoadSprite("ability_number.png");
             number1.Cost = [Pigments.Red, Pigments.Red, Pigments.Red];
-            number1.Effects = new EffectInfo[4];
+            number1.Effects = new EffectInfo[5];
             number1.Effects[0] = Effects.GenerateEffect(hasCursed, 1, Slots.Front);
             number1.Effects[1] = Effects.GenerateEffect(remCursed, 1, Slots.Front, BasicEffects.DidThat(true));
             number1.Effects[2] = Effects.GenerateEffect(gaze1.Effects[1].effect, 3, Slots.Front, BasicEffects.DidThat(true, 2));
