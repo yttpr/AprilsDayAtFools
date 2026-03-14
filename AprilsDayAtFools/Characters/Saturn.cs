@@ -121,7 +121,7 @@ namespace AprilsDayAtFools
             number1.Effects[0] = Effects.GenerateEffect(hasCursed, 1, Slots.Front);
             number1.Effects[1] = Effects.GenerateEffect(remCursed, 1, Slots.Front, BasicEffects.DidThat(true));
             number1.Effects[2] = Effects.GenerateEffect(gaze1.Effects[1].effect, 3, Slots.Front, BasicEffects.DidThat(true, 2));
-            number1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CascadeHealPercentEffect>(), 2, Slots.Front, BasicEffects.DidThat(true));
+            number1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CascadeBySortedHealthEffect>(), 2, Slots.Front, BasicEffects.DidThat(true));
             number1.Effects[4] = Effects.GenerateEffect(ambushUp, 6, Slots.Self, BasicEffects.DidThat(false, 4));
             number1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Rem_Status_Cursed"]);
             number1.AddIntentsToTarget(Targeting.Unit_AllOpponents, [IntentColor.Intent, "Damage_3_6", "Damage_7_10", "Damage_11_15"]);
