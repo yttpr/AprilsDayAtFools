@@ -123,7 +123,7 @@ namespace AprilsDayAtFools
             number1.Effects[2] = Effects.GenerateEffect(gaze1.Effects[1].effect, 3, Slots.Front, BasicEffects.DidThat(true, 2));
             number1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CascadeBySortedHealthEffect>(), 2, Slots.Front, BasicEffects.DidThat(true));
             number1.Effects[4] = Effects.GenerateEffect(ambushUp, 6, Slots.Self, BasicEffects.DidThat(false, 4));
-            number1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Rem_Status_Cursed"]);
+            number1.AddIntentsToTarget(Slots.Front, ["Rem_Status_Cursed", "Damage_3_6"]);
             number1.AddIntentsToTarget(Targeting.Unit_AllOpponents, [IntentColor.Intent, "Damage_3_6", "Damage_7_10", "Damage_11_15"]);
             number1.AddIntentsToTarget(Slots.Self, ["PA_Ambush"]);
             number1.Visuals = CustomVisuals.GetVisuals("Salt/Class");
@@ -147,6 +147,7 @@ namespace AprilsDayAtFools
             number4.Description = "If the Opposing enemy is Cursed, remove Cursed from them and deal 8 damage to them. Then, deal the damage dealt indirectly to all enemies with higher health than the original target in ascending order, increasing by 3 each time.\nOtherwise, increase Ambush by 12 until the start of the next turn.";
             number4.Effects[2].entryVariable = 8;
             number4.Effects[4].entryVariable = 12;
+            number4.EffectIntents[0].intents[1] = "Damage_7_10";
             number4.EffectIntents[1].intents = [IntentColor.Intent, "Damage_7_10", "Damage_11_15", "Damage_16_20"];
 
             TargettingByHealthUnitsStatus lowest = ScriptableObject.CreateInstance<TargettingByHealthUnitsStatus>();
