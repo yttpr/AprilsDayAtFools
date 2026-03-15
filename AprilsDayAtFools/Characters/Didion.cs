@@ -51,7 +51,7 @@ namespace AprilsDayAtFools
             weakness1.Cost = [Pigments.Purple];
             weakness1.Effects = new EffectInfo[4];
             weakness1.Effects[0] = Effects.GenerateEffect(wither, 1, Slots.Front, TargetLessHealthThanCasterEffectCondition.Create(Slots.Front));
-            weakness1.Effects[1] = Effects.GenerateEffect(anesthetics, 2, Targeting.Unit_AllAllies);
+            weakness1.Effects[1] = Effects.GenerateEffect(anesthetics, 2, Targeting.Unit_AllAllies, BasicEffects.DidThat(true));
             weakness1.Effects[2] = Effects.GenerateEffect(BasicEffects.Empty, 0);
             weakness1.Effects[3] = Effects.GenerateEffect(heal_range, 2, Slots.Self);
             weakness1.AddIntentsToTarget(Slots.Front, [IntentType_GameIDs.PA_Withering.ToString()]);
