@@ -12,7 +12,7 @@ namespace AprilsDayAtFools
 
         public static string[] potential_intents => ["Status_WildCard", "Status_Growth", "Status_Remorse", 
             "Status_Salted", "Status_Disappearing", "Status_Partaking", "Status_CoralColony", "Status_Infirm", "Status_Downfall", 
-            "Status_Paranoia", "Status_Madness", "Status_DivineSacrifice", "Status_Favor", "Status_Muted", "Status_Photo"];
+            "Status_Paranoia", "Status_Madness", "Status_DivineSacrifice", "Status_Favor", "Status_Muted", "Status_Photo", "Status_Left"];
 
         public static void Setup()
         {
