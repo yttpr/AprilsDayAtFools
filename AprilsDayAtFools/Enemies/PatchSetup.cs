@@ -49,30 +49,30 @@ namespace AprilsDayAtFools
             infest.AnimationTarget = Slots.Self;
             infest.GenerateEnemyAbility();
 
-            AddEnemy("Patch_Assistant_1_Red_EN", Pigments.Red, "HeavensGateRed_BOSS", [damage1, infest]);
-            AddEnemy("Patch_Assistant_2_Red_EN", Pigments.Red, "HeavensGateRed_BOSS", [damage2, infest]);
-            AddEnemy("Patch_Assistant_3_Red_EN", Pigments.Red, "HeavensGateRed_BOSS", [damage3, infest]);
-            AddEnemy("Patch_Assistant_4_Red_EN", Pigments.Red, "HeavensGateRed_BOSS", [damage4, infest]);
+            AddEnemy("Patch_Assistant_1_Red_EN", Pigments.Red, "HeavensGateRed_BOSS", [damage1, infest], "Intern Assistant");
+            AddEnemy("Patch_Assistant_2_Red_EN", Pigments.Red, "HeavensGateRed_BOSS", [damage2, infest], "Intern Assistant");
+            AddEnemy("Patch_Assistant_3_Red_EN", Pigments.Red, "HeavensGateRed_BOSS", [damage3, infest], "Intern Assistant");
+            AddEnemy("Patch_Assistant_4_Red_EN", Pigments.Red, "HeavensGateRed_BOSS", [damage4, infest], "Intern Assistant");
 
-            AddEnemy("Patch_Assistant_1_Blue_EN", Pigments.Blue, "HeavensGateBlue_BOSS", [damage1, infest]);
-            AddEnemy("Patch_Assistant_2_Blue_EN", Pigments.Blue, "HeavensGateBlue_BOSS", [damage2, infest]);
-            AddEnemy("Patch_Assistant_3_Blue_EN", Pigments.Blue, "HeavensGateBlue_BOSS", [damage3, infest]);
-            AddEnemy("Patch_Assistant_4_Blue_EN", Pigments.Blue, "HeavensGateBlue_BOSS", [damage4, infest]);
+            AddEnemy("Patch_Assistant_1_Blue_EN", Pigments.Blue, "HeavensGateBlue_BOSS", [damage1, infest], "Provisional Assistant");
+            AddEnemy("Patch_Assistant_2_Blue_EN", Pigments.Blue, "HeavensGateBlue_BOSS", [damage2, infest], "Provisional Assistant");
+            AddEnemy("Patch_Assistant_3_Blue_EN", Pigments.Blue, "HeavensGateBlue_BOSS", [damage3, infest], "Provisional Assistant");
+            AddEnemy("Patch_Assistant_4_Blue_EN", Pigments.Blue, "HeavensGateBlue_BOSS", [damage4, infest], "Provisional Assistant");
 
-            AddEnemy("Patch_Assistant_1_Yellow_EN", Pigments.Yellow, "HeavensGateYellow_BOSS", [damage1, infest]);
-            AddEnemy("Patch_Assistant_2_Yellow_EN", Pigments.Yellow, "HeavensGateYellow_BOSS", [damage2, infest]);
-            AddEnemy("Patch_Assistant_3_Yellow_EN", Pigments.Yellow, "HeavensGateYellow_BOSS", [damage3, infest]);
-            AddEnemy("Patch_Assistant_4_Yellow_EN", Pigments.Yellow, "HeavensGateYellow_BOSS", [damage4, infest]);
+            AddEnemy("Patch_Assistant_1_Yellow_EN", Pigments.Yellow, "HeavensGateYellow_BOSS", [damage1, infest], "Full-Time Assistant");
+            AddEnemy("Patch_Assistant_2_Yellow_EN", Pigments.Yellow, "HeavensGateYellow_BOSS", [damage2, infest], "Full-Time Assistant");
+            AddEnemy("Patch_Assistant_3_Yellow_EN", Pigments.Yellow, "HeavensGateYellow_BOSS", [damage3, infest], "Full-Time Assistant");
+            AddEnemy("Patch_Assistant_4_Yellow_EN", Pigments.Yellow, "HeavensGateYellow_BOSS", [damage4, infest], "Full-Time Assistant");
 
-            AddEnemy("Patch_Assistant_1_Purple_EN", Pigments.Purple, "HeavensGatePurple_BOSS", [damage1, infest]);
-            AddEnemy("Patch_Assistant_2_Purple_EN", Pigments.Purple, "HeavensGatePurple_BOSS", [damage2, infest]);
-            AddEnemy("Patch_Assistant_3_Purple_EN", Pigments.Purple, "HeavensGatePurple_BOSS", [damage3, infest]);
-            AddEnemy("Patch_Assistant_4_Purple_EN", Pigments.Purple, "HeavensGatePurple_BOSS", [damage4, infest]);
+            AddEnemy("Patch_Assistant_1_Purple_EN", Pigments.Purple, "HeavensGatePurple_BOSS", [damage1, infest], "Expert Assistant");
+            AddEnemy("Patch_Assistant_2_Purple_EN", Pigments.Purple, "HeavensGatePurple_BOSS", [damage2, infest], "Expert Assistant");
+            AddEnemy("Patch_Assistant_3_Purple_EN", Pigments.Purple, "HeavensGatePurple_BOSS", [damage3, infest], "Expert Assistant");
+            AddEnemy("Patch_Assistant_4_Purple_EN", Pigments.Purple, "HeavensGatePurple_BOSS", [damage4, infest], "Expert Assistant");
         }
 
-        public static void AddEnemy(string id, ManaColorSO pigment, string baseEN, Ability[] abilities)
+        public static void AddEnemy(string id, ManaColorSO pigment, string baseEN, Ability[] abilities, string name = "Assistant")
         {
-            Enemy enemy = new Enemy("Assistant", id);
+            Enemy enemy = new Enemy(name, id);
             enemy.Health = 30;
             enemy.HealthColor = pigment;
             enemy.Priority = Priority.VeryFast;

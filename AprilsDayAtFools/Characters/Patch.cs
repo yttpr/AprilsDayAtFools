@@ -40,31 +40,34 @@ namespace AprilsDayAtFools
             DamageEffect returnKill = ScriptableObject.CreateInstance<DamageEffect>();
             returnKill._returnKillAsSuccess = true;
             Ability leather1 = new Ability("Punishment of Skin", "Patch_Leather_1_A");
-            leather1.Description = "Deal 6 damage to the Opposing enemy.\nIf this ability kills, spawn an Assistant Incarnate of the target's health color.";
+            leather1.Description = "Deal 6 damage to the Opposing enemy.\nIf this ability kills, spawn an Intern Assistant Incarnate of the target's health color.";
             leather1.AbilitySprite = ResourceLoader.LoadSprite("ability_leather.png");
             leather1.Cost = [Pigments.Red, Pigments.Red, Pigments.Blue];
             leather1.Effects = new EffectInfo[2];
             leather1.Effects[0] = Effects.GenerateEffect(returnKill, 6, Slots.Front);
-            leather1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<SpawnAsssitantByTargetEffect>(), 1, Slots.Front, BasicEffects.DidThat(true));
+            leather1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<SpawnAsssitantByTargetEffect>(), 0, Slots.Front, BasicEffects.DidThat(true));
             leather1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Other_Spawn"]);
             leather1.Visuals = CustomVisuals.GetVisuals("Salt/Piano");
             leather1.AnimationTarget = Slots.Front;
 
             Ability leather2 = new Ability(leather1.ability, "Patch_Leather_2_A", leather1.Cost);
             leather2.Name = "Punishment of Hide";
-            leather2.Description = "Deal 8 damage to the Opposing enemy.\nIf this ability kills, spawn an Assistant Incarnate of the target's health color.";
+            leather2.Description = "Deal 8 damage to the Opposing enemy.\nIf this ability kills, spawn a Provisional Assistant Incarnate of the target's health color.";
             leather2.Effects[0].entryVariable = 8;
+            leather2.Effects[1].entryVariable = 1;
             leather2.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability leather3 = new Ability(leather2.ability, "Patch_Leather_3_A", leather1.Cost);
             leather3.Name = "Punishment of Leather";
-            leather3.Description = "Deal 10 damage to the Opposing enemy.\nIf this ability kills, spawn an Assistant Incarnate of the target's health color.";
+            leather3.Description = "Deal 10 damage to the Opposing enemy.\nIf this ability kills, spawn a Full-Time Assistant Incarnate of the target's health color.";
             leather3.Effects[0].entryVariable = 10;
+            leather3.Effects[1].entryVariable = 2;
 
             Ability leather4 = new Ability(leather3.ability, "Patch_Leather_4_A", leather1.Cost);
             leather4.Name = "Punishment of Rind";
-            leather4.Description = "Deal 12 damage to the Opposing enemy.\nIf this ability kills, spawn an Assistant Incarnate of the target's health color.";
+            leather4.Description = "Deal 12 damage to the Opposing enemy.\nIf this ability kills, spawn an Expert Assistant Incarnate of the target's health color.";
             leather4.Effects[0].entryVariable = 12;
+            leather4.Effects[1].entryVariable = 3;
             leather4.EffectIntents[0].intents[0] = "Damage_11_15";
 
             InfestationRandomSetEffect infest1 = ScriptableObject.CreateInstance<InfestationRandomSetEffect>();
@@ -98,12 +101,12 @@ namespace AprilsDayAtFools
             script4.Effects[0].entryVariable = 6;
 
             Ability demo1 = new Ability("Sewing Demonstration", "Patch_Demo_1_A");
-            demo1.Description = "If the Opposing position is empty, spawn an Assistant Incarnate of the Pigment Color used.\nOtherwise, reroll 1 action from the Opposing enemy.\n40% chance to refresh this party member's ability usage.";
+            demo1.Description = "If the Opposing position is empty, spawn an Intern Assistant Incarnate of the Pigment Color used.\nOtherwise, reroll 1 action from the Opposing enemy.\n40% chance to refresh this party member's ability usage.";
             demo1.AbilitySprite = ResourceLoader.LoadSprite("ability_demonstration.png");
             demo1.Cost = [Pigments.Grey];
             demo1.Effects = new EffectInfo[4];
             demo1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ExtraVariableForNextEffect>(), 1, null, ScriptableObject.CreateInstance<FrontSlotEmptyCondition>());
-            demo1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<SpawnAssistantByPigmentUsedEffect>(), 1, null, BasicEffects.DidThat(true));
+            demo1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<SpawnAssistantByPigmentUsedEffect>(), 0, null, BasicEffects.DidThat(true));
             demo1.Effects[2] = Effects.GenerateEffect(script1.Effects[1].effect, 1, Slots.Front, BasicEffects.DidThat(false, 2));
             demo1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RefreshAbilityUseEffect>(), 1, Slots.Self, Effects.ChanceCondition(40));
             demo1.AddIntentsToTarget(Slots.Front, ["Other_Spawn", "Misc"]);
@@ -113,17 +116,20 @@ namespace AprilsDayAtFools
 
             Ability demo2 = new Ability(demo1.ability, "Patch_Demo_2_A", demo1.Cost);
             demo2.Name = "Seaming Demonstration";
-            demo2.Description = "If the Opposing position is empty, spawn an Assistant Incarnate of the Pigment Color used.\nOtherwise, reroll 1 action from the Opposing enemy.\n50% chance to refresh this party member's ability usage.";
+            demo2.Description = "If the Opposing position is empty, spawn a Provisional Assistant Incarnate of the Pigment Color used.\nOtherwise, reroll 1 action from the Opposing enemy.\n50% chance to refresh this party member's ability usage.";
+            demo2.Effects[1].entryVariable = 1;
             demo2.Effects[3].condition = Effects.ChanceCondition(50);
 
             Ability demo3 = new Ability(demo2.ability, "Patch_Demo_3_A", demo1.Cost);
             demo3.Name = "Needlework Demonstration";
-            demo3.Description = "If the Opposing position is empty, spawn an Assistant Incarnate of the Pigment Color used.\nOtherwise, reroll 1 action from the Opposing enemy.\n55% chance to refresh this party member's ability usage.";
+            demo3.Description = "If the Opposing position is empty, spawn a Full-Time Assistant Incarnate of the Pigment Color used.\nOtherwise, reroll 1 action from the Opposing enemy.\n55% chance to refresh this party member's ability usage.";
+            demo3.Effects[1].entryVariable = 2;
             demo3.Effects[3].condition = Effects.ChanceCondition(55);
 
             Ability demo4 = new Ability(demo3.ability, "Patch_Demo_4_A", demo1.Cost);
             demo4.Name = "Embroidery Demonstration";
-            demo4.Description = "If the Opposing position is empty, spawn an Assistant Incarnate of the Pigment Color used.\nOtherwise, reroll 1 action from the Opposing enemy.\n60% chance to refresh this party member's ability usage.";
+            demo4.Description = "If the Opposing position is empty, spawn an Expert Assistant Incarnate of the Pigment Color used.\nOtherwise, reroll 1 action from the Opposing enemy.\n60% chance to refresh this party member's ability usage.";
+            demo4.Effects[1].entryVariable = 3;
             demo4.Effects[3].condition = Effects.ChanceCondition(60);
 
             patch.AddLevelData(10, [demo1, leather1, script1]);
