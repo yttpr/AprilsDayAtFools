@@ -98,7 +98,7 @@ namespace AprilsDayAtFools
             enemy.AddEnemy();
         }
 
-        public static string GetAssistant(ManaColorSO pigment, int rank)
+        public static string GetAssistantName(ManaColorSO pigment, int rank)
         {
             string ret = "Patch_Assistant_" + (rank + 1).ToString();
 
@@ -120,6 +120,16 @@ namespace AprilsDayAtFools
             else ret += "_Purple_EN";
 
             return ret;
+        }
+        public static EnemySO GetAssistant(ManaColorSO pigment, int rank)
+        {
+            EnemySO temp = LoadedAssetsHandler.GetEnemy(GetAssistantName(pigment, rank));
+
+            if (temp.healthColor == pigment) return temp;
+
+            EnemySO clone = ScriptableObject.Instantiate(temp);
+            clone.healthColor = pigment;
+            return clone;
         }
     }
 }

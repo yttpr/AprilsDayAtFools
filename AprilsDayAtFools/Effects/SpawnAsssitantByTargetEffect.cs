@@ -14,7 +14,7 @@ namespace AprilsDayAtFools
             {
                 if (target.HasUnit)
                 {
-                    EnemySO enemy = LoadedAssetsHandler.GetEnemy(PatchSetup.GetAssistant(target.Unit.HealthColor, entryVariable));
+                    EnemySO enemy = PatchSetup.GetAssistant(target.Unit.HealthColor, entryVariable);
 
                     CombatManager.Instance.AddSubAction(new SpawnEnemyAction(enemy, target.SlotID, false, true, "Spawn_Basic"));
 

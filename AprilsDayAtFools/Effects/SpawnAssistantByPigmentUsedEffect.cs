@@ -13,7 +13,7 @@ namespace AprilsDayAtFools
 
             foreach (ManaColorSO mana in PigmentUsedCollector.lastUsed)
             {
-                EnemySO enemy = LoadedAssetsHandler.GetEnemy(PatchSetup.GetAssistant(mana, entryVariable));
+                EnemySO enemy = PatchSetup.GetAssistant(mana, entryVariable);
 
                 CombatManager.Instance.AddSubAction(new SpawnEnemyAction(enemy, caster.SlotID, false, true, "Spawn_Basic"));
 
