@@ -93,7 +93,7 @@ namespace AprilsDayAtFools
             desperate1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
             desperate1.Effects = new EffectInfo[2];
             desperate1.Effects[0] = Effects.GenerateEffect(heal, 3, des_targets);
-            desperate1.Effects[1] = Effects.GenerateEffect(determined, 4, des_and_self, BasicEffects.DidThat(false));
+            desperate1.Effects[1] = Effects.GenerateEffect(determined, 3, des_and_self, BasicEffects.DidThat(false));
             desperate1.AddIntentsToTarget(des_targets, ["Heal_1_4"]);
             desperate1.AddIntentsToTarget(des_and_self, [Determined.Intent]);
             desperate1.Visuals = CustomVisuals.GetVisuals("Salt/Shush");
