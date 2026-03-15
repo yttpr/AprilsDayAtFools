@@ -60,17 +60,17 @@ namespace AprilsDayAtFools
             weakness1.Visuals = CustomVisuals.GetVisuals("Salt/Keyhole");
             weakness1.AnimationTarget = Slots.Front;
 
-            Ability weakness2 = new Ability(weakness1.ability, "Didion_Weakness_2_A", [Pigments.BlueRed, Pigments.Blue]);
+            Ability weakness2 = new Ability(weakness1.ability, "Didion_Weakness_2_A", weakness1.Cost);
             weakness2.Name = "Hidden Weakness";
             weakness2.Description = "If the Opposing enemy has less health than this party member, give them Withering as a passive.\nHeal this party member 1-2 health.";
             weakness2.Effects[2].entryVariable = 1;
 
-            Ability weakness3 = new Ability(weakness2.ability, "Didion_Weakness_3_A", weakness2.Cost);
+            Ability weakness3 = new Ability(weakness2.ability, "Didion_Weakness_3_A", weakness1.Cost);
             weakness3.Name = "Nervous Weakness";
             weakness3.Description = "If the Opposing enemy has less health than this party member, give them Withering as a passive.\nHeal this party member 1-3 health.";
             weakness3.Effects[3].entryVariable = 3;
 
-            Ability weakness4 = new Ability(weakness3.ability, "Didion_Weakness_4_A", weakness3.Cost);
+            Ability weakness4 = new Ability(weakness3.ability, "Didion_Weakness_4_A", weakness1.Cost);
             weakness4.Name = "Paranoid Weakness";
             weakness4.Description = "If the Opposing enemy has less health than this party member, give them Withering as a passive.\nHeal this party member 2-3 health.";
             weakness4.Effects[2].entryVariable = 2;
