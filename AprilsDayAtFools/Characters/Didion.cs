@@ -41,37 +41,39 @@ namespace AprilsDayAtFools
             ApplyShieldSlotEffect shield = ScriptableObject.CreateInstance<ApplyShieldSlotEffect>();
             hasAnesthetics.StatusID = "Anesthetics_ID";
 
-            MaxHealthDamageEffect hitmax = ScriptableObject.CreateInstance<MaxHealthDamageEffect>();
-            hitmax.returnKill = true;
+            AddPassiveWithDisplayEffect wither = ScriptableObject.CreateInstance<AddPassiveWithDisplayEffect>();
+            wither.passive = Passives.Withering;
+            RandomHealBetweenPreviousAndEntryEffect heal_range = ScriptableObject.CreateInstance<RandomHealBetweenPreviousAndEntryEffect>();
 
             Ability weakness1 = new Ability("Social Weakness", "Didion_Weakness_1_A");
-            weakness1.Description = "Reduce the Opposing enemy's maximum health by 4, instantly killing them if it cannot be reduced further, and generate 2 Pigment of their health color.\nIf this ability kills, heal this party member 2 health.";
+            weakness1.Description = "If the Opposing enemy has less health than this party member, give them Withering as a passive.\nHeal this party member 0-2 health.";
             weakness1.AbilitySprite = ResourceLoader.LoadSprite("ability_weakness.png");
-            weakness1.Cost = [Pigments.Red, Pigments.Blue];
-            weakness1.Effects = new EffectInfo[3];
-            weakness1.Effects[0] = Effects.GenerateEffect(hitmax, 4, Slots.Front);
-            weakness1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<GenerateTargetHealthManaEffect>(), 2, Slots.Front);
-            weakness1.Effects[2] = Effects.GenerateEffect(heal, 2, Slots.Self, BasicEffects.DidThat(true, 2));
-            weakness1.AddIntentsToTarget(Slots.Front, ["Other_MaxHealth", "Damage_Death", "Mana_Generate"]);
+            weakness1.Cost = [Pigments.Purple];
+            weakness1.Effects = new EffectInfo[4];
+            weakness1.Effects[0] = Effects.GenerateEffect(wither, 1, Slots.Front, TargetLessHealthThanCasterEffectCondition.Create(Slots.Front));
+            weakness1.Effects[1] = Effects.GenerateEffect(anesthetics, 2, Targeting.Unit_AllAllies);
+            weakness1.Effects[2] = Effects.GenerateEffect(BasicEffects.Empty, 0);
+            weakness1.Effects[3] = Effects.GenerateEffect(heal_range, 2, Slots.Self);
+            weakness1.AddIntentsToTarget(Slots.Front, [IntentType_GameIDs.PA_Withering.ToString()]);
+            weakness1.AddIntentsToTarget(Targeting.Unit_AllAllies, [Anesthetics.Intent]);
             weakness1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
             weakness1.Visuals = CustomVisuals.GetVisuals("Salt/Keyhole");
             weakness1.AnimationTarget = Slots.Front;
 
             Ability weakness2 = new Ability(weakness1.ability, "Didion_Weakness_2_A", [Pigments.BlueRed, Pigments.Blue]);
             weakness2.Name = "Hidden Weakness";
-            weakness2.Description = "Reduce the Opposing enemy's maximum health by 6, instantly killing them if it cannot be reduced further, and generate 2 Pigment of their health color.\nIf this ability kills, heal this party member 2 health.";
-            weakness2.Effects[0].entryVariable = 6;
+            weakness2.Description = "If the Opposing enemy has less health than this party member, give them Withering as a passive.\nHeal this party member 1-2 health.";
+            weakness2.Effects[2].entryVariable = 1;
 
             Ability weakness3 = new Ability(weakness2.ability, "Didion_Weakness_3_A", weakness2.Cost);
             weakness3.Name = "Nervous Weakness";
-            weakness3.Description = "Reduce the Opposing enemy's maximum health by 8, instantly killing them if it cannot be reduced further, and generate 2 Pigment of their health color.\nIf this ability kills, heal this party member 3 health.";
-            weakness3.Effects[0].entryVariable = 8;
-            weakness3.Effects[2].entryVariable = 3;
+            weakness3.Description = "If the Opposing enemy has less health than this party member, give them Withering as a passive.\nHeal this party member 1-3 health.";
+            weakness3.Effects[3].entryVariable = 3;
 
             Ability weakness4 = new Ability(weakness3.ability, "Didion_Weakness_4_A", weakness3.Cost);
             weakness4.Name = "Paranoid Weakness";
-            weakness4.Description = "Reduce the Opposing enemy's maximum health by 10, instantly killing them if it cannot be reduced further, and generate 2 Pigment of their health color.\nIf this ability kills, heal this party member 3 health.";
-            weakness4.Effects[0].entryVariable = 10;
+            weakness4.Description = "If the Opposing enemy has less health than this party member, give them Withering as a passive.\nHeal this party member 2-3 health.";
+            weakness4.Effects[2].entryVariable = 2;
 
             ExitByPigmentUsedEffect check_blue = ScriptableObject.CreateInstance<ExitByPigmentUsedEffect>();
             check_blue.mana = Pigments.Blue;
