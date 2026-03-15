@@ -81,7 +81,9 @@ namespace AprilsDayAtFools
 
             RandomStatusEffect random = ScriptableObject.CreateInstance<RandomStatusEffect>();
             //negative.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "Gutted_ID", "OilSlicked_ID", "Scars_ID", "Remorse_ID", "Salted_ID", "Paranoia_ID", "Left_ID", "Pale_ID", "DivineSacrifice_ID", "Muted_ID", "Salt_Entropy_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID"];
-            random.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "DivineProtection_ID", "Focused_ID", "Gutted_ID", "Linked_ID", "OilSlicked_ID", "Scars_ID", "Remorse_ID", "WildCard_ID", "Salted_ID", "Paranoia_ID", "Anesthetics_ID", "Inverted_ID", "Left_ID", "Pale_ID", "Power_ID", "Determined_ID", "DivineSacrifice_ID", "Favor_ID", "Muted_ID", "Photo_ID", "Dodge_ID", "Salt_Entropy_ID", "Haste_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID"];
+            random.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "DivineProtection_ID", "Focused_ID", "Gutted_ID", "Linked_ID", "OilSlicked_ID", "Scars_ID", 
+                "Remorse_ID", "WildCard_ID", "Salted_ID", "Paranoia_ID", "Anesthetics_ID", "Inverted_ID", "Left_ID", "Pale_ID", "Power_ID", "Determined_ID", 
+                "DivineSacrifice_ID", "Favor_ID", "Muted_ID", "Photo_ID", "Dodge_ID", "Salt_Entropy_ID", "Haste_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID"];
 
             Ability rearrange1 = new Ability("Rearrange Carboxyl", "Xet_Rearrange_1_A");
             rearrange1.Description = "Deal 7 damage to the Opposing enemy and inflict 3 random Status Effects on them.";
