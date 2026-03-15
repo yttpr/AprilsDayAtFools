@@ -88,12 +88,13 @@ namespace AprilsDayAtFools
             BaseCombatTargettingSO des_and_self = Slots.SlotTarget([-1, 0, 1, 2], true);
 
             Ability desperate1 = new Ability("Leaking Desperation", "Kafka_Desperation_1_A");
-            desperate1.Description = "Heal the Left, Right, and Far Right allies 3 health.\nIf no allies were healed, apply 3 Determined to them and this party member.";
+            desperate1.Description = "Heal the Left, Right, and Far Right allies 3 health.\nIf the total healing dealt was less than 3, apply 3 Determined to them and this party member.";
             desperate1.AbilitySprite = ResourceLoader.LoadSprite("ability_desperation.png");
             desperate1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
-            desperate1.Effects = new EffectInfo[2];
+            desperate1.Effects = new EffectInfo[3];
             desperate1.Effects[0] = Effects.GenerateEffect(heal, 3, des_targets);
-            desperate1.Effects[1] = Effects.GenerateEffect(determined, 3, des_and_self, BasicEffects.DidThat(false));
+            desperate1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ExitMeetsEntryEffect>(), 3);
+            desperate1.Effects[2] = Effects.GenerateEffect(determined, 3, des_and_self, BasicEffects.DidThat(false));
             desperate1.AddIntentsToTarget(des_targets, ["Heal_1_4"]);
             desperate1.AddIntentsToTarget(des_and_self, [Determined.Intent]);
             desperate1.Visuals = CustomVisuals.GetVisuals("Salt/Shush");
@@ -101,30 +102,33 @@ namespace AprilsDayAtFools
 
             Ability desperate2 = new Ability(desperate1.ability, "Kafka_Desperation_2_A", desperate1.Cost);
             desperate2.Name = "Flowing Desperation";
-            desperate2.Description = "Heal the Left, Right, and Far Right allies 4 health.\nIf no allies were healed, apply 4 Determined to them and this party member.";
+            desperate2.Description = "Heal the Left, Right, and Far Right allies 4 health.\nIf the total healing dealt was less than 4, apply 4 Determined to them and this party member.";
             desperate2.Effects[0].entryVariable = 4;
             desperate2.Effects[1].entryVariable = 4;
+            desperate2.Effects[2].entryVariable = 4;
 
             Ability desperate3 = new Ability(desperate2.ability, "Kafka_Desperation_3_A", desperate1.Cost);
             desperate3.Name = "Streaming Desperation";
-            desperate3.Description = "Heal the Left, Right, and Far Right allies 5 health.\nIf no allies were healed, apply 5 Determined to them and this party member.";
+            desperate3.Description = "Heal the Left, Right, and Far Right allies 5 health.\nIf the total healing dealt was less than 5, apply 5 Determined to them and this party member.";
             desperate3.Effects[0].entryVariable = 5;
             desperate3.Effects[1].entryVariable = 5;
+            desperate3.Effects[2].entryVariable = 5;
             desperate3.EffectIntents[0].intents[0] = "Heal_5_10";
 
             Ability desperate4 = new Ability(desperate3.ability, "Kafka_Desperation_4_A", desperate1.Cost);
             desperate4.Name = "Down-Pouring Desperation";
-            desperate4.Description = "Heal the Left, Right, and Far Right allies 6 health.\nIf no allies were healed, apply 6 Determined to them and this party member.";
+            desperate4.Description = "Heal the Left, Right, and Far Right allies 6 health.\nIf the total healing dealt was less than 6, apply 6 Determined to them and this party member.";
             desperate4.Effects[0].entryVariable = 6;
             desperate4.Effects[1].entryVariable = 6;
+            desperate4.Effects[2].entryVariable = 6;
 
             Ability envy1 = new Ability("Mild Envy", "Kafka_Envy_1_A");
-            envy1.Description = "Apply 4 Determined to the Right ally.\nHeal this party member 1 health.";
+            envy1.Description = "Apply 4 Determined to the Right ally.\nHeal this party member 2 health.";
             envy1.AbilitySprite = ResourceLoader.LoadSprite("ability_envy.png");
             envy1.Cost = [Pigments.Blue];
             envy1.Effects = new EffectInfo[2];
             envy1.Effects[0] = Effects.GenerateEffect(determined, 4, Targeting.Slot_AllyRight);
-            envy1.Effects[1] = Effects.GenerateEffect(heal, 1, Slots.Self);
+            envy1.Effects[1] = Effects.GenerateEffect(heal, 2, Slots.Self);
             envy1.AddIntentsToTarget(Targeting.Slot_AllyRight, [Determined.Intent]);
             envy1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
             envy1.Visuals = CustomVisuals.GetVisuals("Salt/Call");
@@ -132,20 +136,19 @@ namespace AprilsDayAtFools
 
             Ability envy2 = new Ability(envy1.ability, "Kafka_Envy_2_A", envy1.Cost);
             envy2.Name = "Festering Envy";
-            envy2.Description = "Apply 5 Determined to the Right ally.\nHeal this party member 1 health.";
+            envy2.Description = "Apply 5 Determined to the Right ally.\nHeal this party member 2 health.";
             envy2.Effects[0].entryVariable = 5;
 
             Ability envy3 = new Ability(envy2.ability, "Kafka_Envy_3_A", envy1.Cost);
             envy3.Name = "Furious Envy";
-            envy3.Description = "Apply 6 Determined to the Right ally.\nHeal this party member 2 health.";
+            envy3.Description = "Apply 6 Determined to the Right ally.\nHeal this party member 3 health.";
             envy3.Effects[0].entryVariable = 6;
-            envy3.Effects[1].entryVariable = 2;
+            envy3.Effects[1].entryVariable = 3;
 
             Ability envy4 = new Ability(envy3.ability, "Kafka_Envy_4_A", envy1.Cost);
             envy4.Name = "Maddening Envy";
-            envy4.Description = "Apply 8 Determined to the Right ally.\nHeal this party member 2 health.";
+            envy4.Description = "Apply 8 Determined to the Right ally.\nHeal this party member 3 health.";
             envy4.Effects[0].entryVariable = 8;
-            envy4.Effects[1].entryVariable = 2;
 
             kafka.AddLevelData(7, [envy1, hope1, desperate1]);
             kafka.AddLevelData(8, [envy2, hope2, desperate2]);
