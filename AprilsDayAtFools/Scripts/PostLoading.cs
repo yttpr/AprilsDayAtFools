@@ -30,6 +30,7 @@ namespace AprilsDayAtFools
             Class1.PCall(ItemPostLoader.Load);
             Class1.PCall(FreeFool.Add_Siren);
             Class1.PCall(FreeFool.Add_Abyss);
+            Class1.PCall(XetIntents.Setup);
 
             orig(self);
         }

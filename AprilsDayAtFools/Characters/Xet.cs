@@ -83,7 +83,8 @@ namespace AprilsDayAtFools
             //negative.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "Gutted_ID", "OilSlicked_ID", "Scars_ID", "Remorse_ID", "Salted_ID", "Paranoia_ID", "Left_ID", "Pale_ID", "DivineSacrifice_ID", "Muted_ID", "Salt_Entropy_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID"];
             random.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "DivineProtection_ID", "Focused_ID", "Gutted_ID", "Linked_ID", "OilSlicked_ID", "Scars_ID", 
                 "Remorse_ID", "WildCard_ID", "Salted_ID", "Paranoia_ID", "Anesthetics_ID", "Inverted_ID", "Left_ID", "Pale_ID", "Power_ID", "Determined_ID", 
-                "DivineSacrifice_ID", "Favor_ID", "Muted_ID", "Photo_ID", "Dodge_ID", "Salt_Entropy_ID", "Haste_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID"];
+                "DivineSacrifice_ID", "Favor_ID", "Muted_ID", "Photo_ID", "Dodge_ID", "Salt_Entropy_ID", "Haste_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID",
+                "Disappearing_ID", "Karma_ID", "Madness_ID", "Growth_ID", "Partaking_ID", "CoralColony_ID", "Infirm_ID", "Downfall_ID"];
 
             Ability rearrange1 = new Ability("Rearrange Carboxyl", "Xet_Rearrange_1_A");
             rearrange1.Description = "Deal 7 damage to the Opposing enemy and inflict 3 random Status Effects on them.";
@@ -92,7 +93,7 @@ namespace AprilsDayAtFools
             rearrange1.Effects = new EffectInfo[2];
             rearrange1.Effects[0] = Effects.GenerateEffect(replace1.Effects[0].effect, 7, Slots.Front);
             rearrange1.Effects[1] = Effects.GenerateEffect(random, 3, Slots.Front);
-            rearrange1.AddIntentsToTarget(Slots.Front, ["Damage_7_10", "Misc_Hidden"]);
+            rearrange1.AddIntentsToTarget(Slots.Front, ["Damage_7_10"]);
             rearrange1.Visuals = CustomVisuals.GetVisuals("Salt/Gears");
             rearrange1.AnimationTarget = Slots.Front;
 
