@@ -48,7 +48,6 @@ namespace AprilsDayAtFools
                         }
 
                         //update timeline ids
-                        if (enemy.TurnsInTimeline <= 0) continue;
                         List<int> turns_removed = [];
 
                         for (int i = stats.timeline.CurrentTurn; i < stats.timeline.Round.Count; i++)
