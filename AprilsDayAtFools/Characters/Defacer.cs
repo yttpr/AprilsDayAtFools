@@ -52,57 +52,41 @@ namespace AprilsDayAtFools
             defacer.SetMenuCharacterAsFullSupport();
             defacer.AddPassive(Passives.Delicate);
 
-            TargettingUnitsWithStatusEffectSide hasTerror = ScriptableObject.CreateInstance<TargettingUnitsWithStatusEffectSide>();
-            hasTerror.getAllies = false;
-            hasTerror.ignoreCastSlot = false;
-            hasTerror.targetStatus = Terror.StatusID;
-
-            AnimationVisualsEffect prov_left = ScriptableObject.CreateInstance<AnimationVisualsEffect>();
-            prov_left._visuals = Visuals.Providence;
-            prov_left._animationTarget = Targeting.Slot_AllyLeft;
-
-            AnimationVisualsEffect prov_front = ScriptableObject.CreateInstance<AnimationVisualsEffect>();
-            prov_front._visuals = Visuals.Providence;
-            prov_front._animationTarget = Slots.Front;
-
             RemoveTargetFirstAbilitiesEffect remove = ScriptableObject.CreateInstance<RemoveTargetFirstAbilitiesEffect>();
-
-            MultiPreviousEffectCondition beam_multi = ScriptableObject.CreateInstance<MultiPreviousEffectCondition>();
-            beam_multi.previousAmount = [3, 1];
-            beam_multi.wasSuccessful = [true, false];
+            AddRandomCostsToAbilityEffect add_blue = ScriptableObject.CreateInstance<AddRandomCostsToAbilityEffect>();
+            add_blue.Options = [Pigments.Blue];
+            add_blue.Ability_IDs = ["Secret_Beam_1_A", "Secret_Beam_2_A", "Secret_Beam_3_A", "Secret_Beam_4_A"];
+            add_blue._usePreviousExit = true;
 
             Ability beam1 = new Ability("Scary Beam", "Secret_Beam_1_A");
-            beam1.Description = "Remove the Left ally's Leftmost ability.\nIf successful, attempt to remove the Opposing enemy's Leftmost ability, dealing 10 damage to them if they have no more abiities instead.\nOtherwise, copy this party member's moveset onto the Left ally.";
+            beam1.Description = "Remove the Opposing enemy's Leftmost ability, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 10 health above this party member's current health the Opposing enemy has.";
             beam1.AbilitySprite = ResourceLoader.LoadSprite("ability_beam.png");
-            beam1.Cost = [Pigments.Purple];
-            beam1.Effects = new EffectInfo[6];
-            beam1.Effects[0] = Effects.GenerateEffect(remove, 1, Targeting.Slot_AllyLeft);
-            beam1.Effects[1] = Effects.GenerateEffect(prov_front, 0, null, BasicEffects.DidThat(true, 1));
-            beam1.Effects[2] = Effects.GenerateEffect(remove, 1, Slots.Front, BasicEffects.DidThat(true, 2));
-            beam1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 10, Slots.Front, beam_multi);
-            beam1.Effects[4] = Effects.GenerateEffect(prov_left, 0, null, BasicEffects.DidThat(false, 4));
-            beam1.Effects[5] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CopyCasterMovesetToTargetEffect>(), 1, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 5));
-            beam1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Misc_Hidden"]);
-            beam1.AddIntentsToTarget(Slots.Front, ["Misc", "Damage_7_10"]);
-            beam1.Visuals = null;
+            beam1.Cost = [Pigments.Blue];
+            beam1.Effects = new EffectInfo[5];
+            beam1.Effects[0] = Effects.GenerateEffect(remove, 1, Slots.Front);
+            beam1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CalculateHealthAboveCasterHealthEffect>(), 10, Slots.Front);
+            beam1.Effects[2] = Effects.GenerateEffect(add_blue, 1, Slots.Self);
+            beam1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ReturnAbilityCountEffect>(), 1, Slots.Front);
+            beam1.Effects[4] = Effects.GenerateEffect(BasicEffects.Die(), 1, Slots.Front, BasicEffects.DidThat(false));
+            beam1.AddIntentsToTarget(Slots.Front, ["Misc", "Damage_Death"]);
+            beam1.AddIntentsToTarget(Slots.Self, ["Mana_Modify"]);
+            beam1.Visuals = Visuals.Providence;
             beam1.AnimationTarget = Slots.Front;
 
             Ability beam2 = new Ability(beam1.ability, "Secret_Beam_2_A", beam1.Cost);
             beam2.Name = "Bloody Beam";
-            beam2.Description = "Remove the Left ally's Leftmost ability.\nIf successful, attempt to remove the Opposing enemy's Leftmost ability, dealing 16 damage to them if they have no more abiities instead.\nOtherwise, copy this party member's moveset onto the Left ally.";
-            beam2.Effects[3].entryVariable = 16;
-            beam2.EffectIntents[1].intents[1] = "Damage_16_20";
+            beam2.Description = "Remove the Opposing enemy's Leftmost ability, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 13 health above this party member's current health the Opposing enemy has.";
+            beam2.Effects[1].entryVariable = 13;
 
             Ability beam3 = new Ability(beam2.ability, "Secret_Beam_3_A", beam1.Cost);
             beam3.Name = "Evil Beam";
-            beam3.Description = "Remove the Left ally's Leftmost ability.\nIf successful, attempt to remove the Opposing enemy's Leftmost ability, dealing 22 damage to them if they have no more abiities instead.\nOtherwise, copy this party member's moveset onto the Left ally.";
-            beam3.Effects[3].entryVariable = 22;
-            beam3.EffectIntents[1].intents[1] = "Damage_21";
+            beam3.Description = "Remove the Opposing enemy's Leftmost ability, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 16 health above this party member's current health the Opposing enemy has.";
+            beam3.Effects[1].entryVariable = 16;
 
             Ability beam4 = new Ability(beam3.ability, "Secret_Beam_4_A", beam1.Cost);
             beam4.Name = "Divine Beam";
-            beam4.Description = "Remove the Left ally's Leftmost ability.\nIf successful, attempt to remove the Opposing enemy's Leftmost ability, dealing 30 damage to them if they have no more abiities instead.\nOtherwise, copy this party member's moveset onto the Left ally.";
-            beam4.Effects[3].entryVariable = 30;
+            beam4.Description = "Remove the Opposing enemy's Leftmost ability, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 20 health above this party member's current health the Opposing enemy has.";
+            beam4.Effects[1].entryVariable = 20;
 
             HealEffect heal = ScriptableObject.CreateInstance<HealEffect>();
             RandomHealBetweenPreviousAndEntryEffect range = ScriptableObject.CreateInstance<RandomHealBetweenPreviousAndEntryEffect>();
