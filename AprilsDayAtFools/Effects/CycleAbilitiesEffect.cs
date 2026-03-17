@@ -49,58 +49,62 @@ namespace AprilsDayAtFools
         public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
         {
             exitAmount = 0;
-            foreach (TargetSlotInfo target in targets)
+
+            for (int k = 0; k < entryVariable; k++)
             {
-                if (target.HasUnit && target.Unit is CharacterCombat chara)
+                foreach (TargetSlotInfo target in targets)
                 {
-                    if (!chara.Character.HasRankedData)
+                    if (target.HasUnit && target.Unit is CharacterCombat chara)
                     {
-                        bool addbasic = chara.Character.usesBasicAbility;
-                        if (addbasic)
+                        if (!chara.Character.HasRankedData)
                         {
-                            foreach (CombatAbility ability in chara.CombatAbilities)
+                            bool addbasic = chara.Character.usesBasicAbility;
+                            if (addbasic)
                             {
-                                if (ability.ability == chara.Character.basicCharAbility.ability) addbasic = false;
-                            }
-                        }
-
-                        chara.CombatAbilities.RemoveAt(0);
-                        
-                        if (addbasic) chara.CombatAbilities.Add(new CombatAbility(chara.Character.basicCharAbility));
-                        else chara.CombatAbilities.Add(FromExtraAbility(GetRandomItemAbility()));
-                    }
-                    else
-                    {
-                        CharacterRankedData rank = chara.Character.rankedData[chara.Character.ClampRank(chara.Rank)];
-
-                        List<CharacterAbility> grab = [.. rank.rankAbilities];
-                        if (chara.Character.usesBasicAbility) grab.Add(chara.Character.basicCharAbility);
-
-                        foreach (CombatAbility ability in chara.CombatAbilities)
-                        {
-                            for (int i = 0; i < grab.Count; i++)
-                            {
-                                if (grab[i].ability == ability.ability)
+                                foreach (CombatAbility ability in chara.CombatAbilities)
                                 {
-                                    grab.RemoveAt(i);
-                                    break;
+                                    if (ability.ability == chara.Character.basicCharAbility.ability) addbasic = false;
                                 }
                             }
+
+                            chara.CombatAbilities.RemoveAt(0);
+
+                            if (addbasic) chara.CombatAbilities.Add(new CombatAbility(chara.Character.basicCharAbility));
+                            else chara.CombatAbilities.Add(FromExtraAbility(GetRandomItemAbility()));
+                        }
+                        else
+                        {
+                            CharacterRankedData rank = chara.Character.rankedData[chara.Character.ClampRank(chara.Rank)];
+
+                            List<CharacterAbility> grab = [.. rank.rankAbilities];
+                            if (chara.Character.usesBasicAbility) grab.Add(chara.Character.basicCharAbility);
+
+                            foreach (CombatAbility ability in chara.CombatAbilities)
+                            {
+                                for (int i = 0; i < grab.Count; i++)
+                                {
+                                    if (grab[i].ability == ability.ability)
+                                    {
+                                        grab.RemoveAt(i);
+                                        break;
+                                    }
+                                }
+                            }
+
+                            chara.CombatAbilities.RemoveAt(0);
+
+                            if (grab.Count > 0) chara.CombatAbilities.Add(new CombatAbility(grab.GetRandom()));
+                            else chara.CombatAbilities.Add(FromExtraAbility(GetRandomItemAbility()));
                         }
 
-                        chara.CombatAbilities.RemoveAt(0);
+                        chara.TriggerNotification(IDs.Initialize, null);
 
-                        if (grab.Count > 0) chara.CombatAbilities.Add(new CombatAbility(grab.GetRandom()));
-                        else chara.CombatAbilities.Add(FromExtraAbility(GetRandomItemAbility()));
+                        CombatManager.Instance.AddUIAction(new CharacterUpdateAllAttacksUIAction(chara.ID, chara.CombatAbilities.ToArray()));
+
+                        CombatManager.Instance.AddUIAction(new ShowPassiveInformationUIAction(chara.ID, chara.IsUnitCharacter, chara.CombatAbilities[chara.CombatAbilities.Count - 1].ability._abilityName + " Added", chara.CombatAbilities[chara.CombatAbilities.Count - 1].ability.abilitySprite));
+
+                        exitAmount++;
                     }
-
-                    chara.TriggerNotification(IDs.Initialize, null);
-
-                    CombatManager.Instance.AddUIAction(new CharacterUpdateAllAttacksUIAction(chara.ID, chara.CombatAbilities.ToArray()));
-
-                    CombatManager.Instance.AddUIAction(new ShowPassiveInformationUIAction(chara.ID, chara.IsUnitCharacter, chara.CombatAbilities[chara.CombatAbilities.Count - 1].ability._abilityName + " Added", chara.CombatAbilities[chara.CombatAbilities.Count - 1].ability.abilitySprite));
-
-                    exitAmount++;
                 }
             }
 
