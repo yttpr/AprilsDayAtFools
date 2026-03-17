@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Reflection;
 
 namespace AprilsDayAtFools
 {
@@ -14,22 +15,15 @@ namespace AprilsDayAtFools
             Harmony instance = new Harmony("ADAFmod_Spapi_infinitecostpatches");
             instance.Patch(typeof(CombatVisualizationController).GetMethod(nameof(CombatVisualizationController.TrySetUpCostInformation)),
                 new HarmonyMethod(typeof(InfiniteCostHandler).GetMethod(nameof(UnlimitedCostSlots_AttackButton_Prefix))));
-            instance.Patch(typeof(AttackCostLayout).GetMethod(nameof(AttackCostLayout.SetSlotActivity)), null, 
+            instance.Patch(typeof(AttackCostLayout).GetMethod(nameof(AttackCostLayout.SetSlotActivity), ~BindingFlags.Default), postfix:
                 new HarmonyMethod(typeof(InfiniteCostHandler).GetMethod(nameof(UnlimitedCostSlots_AttackButton_DeactivateNewSlots_Postfix))));
-            instance.Patch(typeof(AttackSlotLayout).GetMethod(nameof(AttackSlotLayout.FillCostInfo)),
+            instance.Patch(typeof(AttackSlotLayout).GetMethod(nameof(AttackSlotLayout.FillCostInfo), ~BindingFlags.Default),
                 new HarmonyMethod(typeof(InfiniteCostHandler).GetMethod(nameof(UnlimitedCostSlots_AbilitySlot_Prefix))));
-            instance.Patch(typeof(Info_AttackLayout).GetMethod(nameof(Info_AttackLayout.SetInformation)),
+            instance.Patch(typeof(Info_AttackLayout).GetMethod(nameof(Info_AttackLayout.SetInformation), ~BindingFlags.Default),
                 new HarmonyMethod(typeof(InfiniteCostHandler).GetMethod(nameof(UnlimitedCostSlots_InfoUI_Prefix))));
         }
         public static void UnlimitedCostSlots_AttackButton_Prefix(CombatVisualizationController __instance, ManaColorSO[] slotCost)
         {
-            //the pigments get too small sometimes, remove extras if not needed so i had to add this oh well
-            if (slotCost.Length <= 6 && __instance._characterCost.CurrentCost.Length > 6)
-            {
-                __instance._characterCost.CurrentCost = new ManaColorSO[6].Populate(null);
-            }
-
-
             if (__instance._characterCost == null || __instance._characterCost._costSlots == null || slotCost == null)
                 return;
 
