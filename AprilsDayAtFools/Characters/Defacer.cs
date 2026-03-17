@@ -82,7 +82,7 @@ namespace AprilsDayAtFools
             beam1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 10, Slots.Front, beam_multi);
             beam1.Effects[4] = Effects.GenerateEffect(prov_left, 0, null, BasicEffects.DidThat(false, 4));
             beam1.Effects[5] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CopyCasterMovesetToTargetEffect>(), 1, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 5));
-            beam1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Misc"]);
+            beam1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Misc_Hidden"]);
             beam1.AddIntentsToTarget(Slots.Front, ["Misc", "Damage_7_10"]);
             beam1.Visuals = null;
             beam1.AnimationTarget = Slots.Front;
