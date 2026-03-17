@@ -57,38 +57,52 @@ namespace AprilsDayAtFools
             hasTerror.ignoreCastSlot = false;
             hasTerror.targetStatus = Terror.StatusID;
 
-            Ability skin1 = new Ability("Skin Tear", "Secret_Skin_1_A");
-            skin1.Description = "Deal 4-6 damage to all enemies with Terror.\nInflict Terror on the Opposing enemy,";
-            skin1.AbilitySprite = ResourceLoader.LoadSprite("ability_mask.png");
-            skin1.Cost = [Pigments.BlueRed];
-            skin1.Effects = new EffectInfo[3];
-            skin1.Effects[0] = Effects.GenerateEffect(BasicEffects.Empty, 4);
-            skin1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RandomDamageBetweenPreviousAndEntryEffect>(), 6, hasTerror);
-            skin1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyTerrorEffect>(), 1, Slots.Front);
-            skin1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc_Hidden", "Damage_3_6"]);
-            skin1.AddIntentsToTarget(Slots.Front, [Terror.Intent]);
-            skin1.Visuals = LoadedAssetsHandler.GetEnemyAbility("Boil_A").visuals;
-            skin1.AnimationTarget = hasTerror;
+            AnimationVisualsEffect prov_left = ScriptableObject.CreateInstance<AnimationVisualsEffect>();
+            prov_left._visuals = Visuals.Providence;
+            prov_left._animationTarget = Targeting.Slot_AllyLeft;
 
-            Ability skin2 = new Ability(skin1.ability, "Secret_Skin_2_A", skin1.Cost);
-            skin2.Name = "Skin Slice";
-            skin2.Description = "Deal 6-8 damage to all enemies with Terror.\nInflict Terror on the Opposing enemy,";
-            skin2.Effects[0].entryVariable = 6;
-            skin2.Effects[1].entryVariable = 8;
-            skin2.EffectIntents[0].intents[1] = "Damage_7_10";
+            AnimationVisualsEffect prov_front = ScriptableObject.CreateInstance<AnimationVisualsEffect>();
+            prov_front._visuals = Visuals.Providence;
+            prov_front._animationTarget = Slots.Front;
 
-            Ability skin3 = new Ability(skin2.ability, "Secret_Skin_3_A", skin1.Cost);
-            skin3.Name = "Skin Shear";
-            skin3.Description = "Deal 8-10 damage to all enemies with Terror.\nInflict Terror on the Opposing enemy,";
-            skin3.Effects[0].entryVariable = 8;
-            skin3.Effects[1].entryVariable = 10;
+            RemoveTargetFirstAbilitiesEffect remove = ScriptableObject.CreateInstance<RemoveTargetFirstAbilitiesEffect>();
 
-            Ability skin4 = new Ability(skin3.ability, "Secret_Skin_4_A", skin1.Cost);
-            skin4.Name = "Skin Layer";
-            skin4.Description = "Deal 10-12 damage to all enemies with Terror.\nInflict Terror on the Opposing enemy,";
-            skin4.Effects[0].entryVariable = 10;
-            skin4.Effects[1].entryVariable = 12;
-            skin4.EffectIntents[0].intents[1] = "Damage_11_15";
+            MultiPreviousEffectCondition beam_multi = ScriptableObject.CreateInstance<MultiPreviousEffectCondition>();
+            beam_multi.previousAmount = [3, 1];
+            beam_multi.wasSuccessful = [true, false];
+
+            Ability beam1 = new Ability("Scary Beam", "Secret_Beam_1_A");
+            beam1.Description = "Remove the Left ally's Leftmost ability.\nIf successful, attempt to remove the Opposing enemy's Leftmost ability, dealing 10 damage to them if they have no more abiities instead.\nOtherwise, copy this party member's moveset onto the Left ally.";
+            beam1.AbilitySprite = ResourceLoader.LoadSprite("ability_beam.png");
+            beam1.Cost = [Pigments.Purple];
+            beam1.Effects = new EffectInfo[6];
+            beam1.Effects[0] = Effects.GenerateEffect(remove, 1, Targeting.Slot_AllyLeft);
+            beam1.Effects[1] = Effects.GenerateEffect(prov_front, 0, null, BasicEffects.DidThat(true, 1));
+            beam1.Effects[2] = Effects.GenerateEffect(remove, 1, Slots.Front, BasicEffects.DidThat(true, 2));
+            beam1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 10, Slots.Front, beam_multi);
+            beam1.Effects[4] = Effects.GenerateEffect(prov_left, 0, null, BasicEffects.DidThat(false, 4));
+            beam1.Effects[5] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CopyCasterMovesetToTargetEffect>(), 1, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 5));
+            beam1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Misc"]);
+            beam1.AddIntentsToTarget(Slots.Front, ["Misc", "Damage_7_10"]);
+            beam1.Visuals = null;
+            beam1.AnimationTarget = Slots.Front;
+
+            Ability beam2 = new Ability(beam1.ability, "Secret_Beam_2_A", beam1.Cost);
+            beam2.Name = "Bloody Beam";
+            beam2.Description = "Remove the Left ally's Leftmost ability.\nIf successful, attempt to remove the Opposing enemy's Leftmost ability, dealing 16 damage to them if they have no more abiities instead.\nOtherwise, copy this party member's moveset onto the Left ally.";
+            beam2.Effects[3].entryVariable = 16;
+            beam2.EffectIntents[1].intents[1] = "Damage_16_20";
+
+            Ability beam3 = new Ability(beam2.ability, "Secret_Beam_3_A", beam1.Cost);
+            beam3.Name = "Evil Beam";
+            beam3.Description = "Remove the Left ally's Leftmost ability.\nIf successful, attempt to remove the Opposing enemy's Leftmost ability, dealing 22 damage to them if they have no more abiities instead.\nOtherwise, copy this party member's moveset onto the Left ally.";
+            beam3.Effects[3].entryVariable = 22;
+            beam3.EffectIntents[1].intents[1] = "Damage_21";
+
+            Ability beam4 = new Ability(beam3.ability, "Secret_Beam_4_A", beam1.Cost);
+            beam4.Name = "Divine Beam";
+            beam4.Description = "Remove the Left ally's Leftmost ability.\nIf successful, attempt to remove the Opposing enemy's Leftmost ability, dealing 30 damage to them if they have no more abiities instead.\nOtherwise, copy this party member's moveset onto the Left ally.";
+            beam4.Effects[3].entryVariable = 30;
 
             HealEffect heal = ScriptableObject.CreateInstance<HealEffect>();
             RandomHealBetweenPreviousAndEntryEffect range = ScriptableObject.CreateInstance<RandomHealBetweenPreviousAndEntryEffect>();
@@ -157,10 +171,10 @@ namespace AprilsDayAtFools
             mask4.Effects[2].entryVariable = 10;
             mask4.Effects[3].entryVariable = 10;
 
-            defacer.AddLevelData(10, [skin1, mask1, face1]);
-            defacer.AddLevelData(14, [skin2, mask2, face2]);
-            defacer.AddLevelData(17, [skin3, mask3, face3]);
-            defacer.AddLevelData(19, [skin4, mask4, face4]);
+            defacer.AddLevelData(10, [beam1, face1, mask1]);
+            defacer.AddLevelData(14, [beam2, face2, mask2]);
+            defacer.AddLevelData(17, [beam3, face3, mask3]);
+            defacer.AddLevelData(19, [beam4, face4, mask4]);
             defacer.AddCharacter(Class1.UnlockedByDefault);
         }
         public static void AddDialogueEmote()

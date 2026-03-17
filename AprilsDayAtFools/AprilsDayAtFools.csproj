@@ -157,6 +157,7 @@
 	  <None Remove="Sprites\Abilities\Set6\ability_ink.png" />
 	  <None Remove="Sprites\Abilities\Set6\ability_papercuts.png" />
 	  <None Remove="Sprites\Abilities\Set6\ability_toy.png" />
+	  <None Remove="Sprites\Abilities\Set7\ability_beam.png" />
 	  <None Remove="Sprites\Abilities\Set7\ability_buried.png" />
 	  <None Remove="Sprites\Abilities\Set7\ability_face.png" />
 	  <None Remove="Sprites\Abilities\Set7\ability_goat.png" />
@@ -165,7 +166,6 @@
 	  <None Remove="Sprites\Abilities\Set7\ability_interest.png" />
 	  <None Remove="Sprites\Abilities\Set7\ability_karma.png" />
 	  <None Remove="Sprites\Abilities\Set7\ability_line.png" />
-	  <None Remove="Sprites\Abilities\Set7\ability_mask.png" />
 	  <None Remove="Sprites\Abilities\Set7\ability_shear.png" />
 	  <None Remove="Sprites\Abilities\Set7\ability_suffer.png" />
 	  <None Remove="Sprites\Abilities\Set7\ability_void.png" />
@@ -604,6 +604,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_beam.png" />
 	  <EmbeddedResource Include="Sprites\Icons\LifestealIcon.png" />
 	</ItemGroup>
 
@@ -770,7 +771,6 @@
 	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_interest.png" />
 	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_karma.png" />
 	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_line.png" />
-	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_mask.png" />
 	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_shear.png" />
 	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_suffer.png" />
 	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_void.png" />
