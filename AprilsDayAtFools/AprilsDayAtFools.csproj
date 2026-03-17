@@ -1213,9 +1213,6 @@
     <Reference Include="0Harmony">
       <HintPath>..\..\REFERENCES\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="0Harmony20">
-      <HintPath>..\..\REFERENCES\0Harmony20.dll</HintPath>
-    </Reference>
     <Reference Include="BepInEx">
       <HintPath>..\..\REFERENCES\BepInEx.dll</HintPath>
     </Reference>

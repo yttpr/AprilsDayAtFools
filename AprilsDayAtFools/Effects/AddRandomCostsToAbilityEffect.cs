@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace AprilsDayAtFools
 {
@@ -37,6 +38,31 @@ namespace AprilsDayAtFools
                                 exitAmount++;
                             }
                             abil.cost = new_cost.ToArray();
+
+                            //cost math
+                            /*if (new_cost.Count > stats.combatUI._characterCost.SlotCount)
+                            {
+                                List<ManaSlotLayout> new_slots = [.. stats.combatUI._characterCost._costSlots];
+                                List<ManaColorSO> cost_object = [.. stats.combatUI._characterCost.CurrentCost];
+                                List<CostSlotUIInfo> ui_slots = [.. stats.combatUI._costBarInfo];
+
+                                for (int k = 0; k < new_cost.Count - stats.combatUI._characterCost.SlotCount; k++)
+                                {
+                                    GameObject original = new_slots[new_slots.Count - 1].gameObject;
+                                    GameObject clone = GameObject.Instantiate(original, original.transform.parent);
+                                    new_slots.Add(clone.GetComponent<ManaSlotLayout>());
+
+                                    cost_object.Add(null);
+
+                                    ui_slots.Add(new CostSlotUIInfo());
+                                }
+
+                                stats.combatUI._characterCost._costSlots = new_slots.ToArray();
+                                stats.combatUI._characterCost.CurrentCost = cost_object.ToArray();
+                                stats.combatUI._costBarInfo = ui_slots.ToArray();
+
+                                Debug.Log("update cost layout to meet: " + new_slots.Count.ToString());
+                            }*/
                         }
                     }
 
