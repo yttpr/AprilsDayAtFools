@@ -80,13 +80,13 @@ namespace AprilsDayAtFools
 
             Ability beam3 = new Ability(beam2.ability, "Secret_Beam_3_A", beam1.Cost);
             beam3.Name = "Evil Beam";
-            beam3.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 9 health above this party member's current health the Opposing enemy has.";
-            beam3.Effects[1].entryVariable = 9;
+            beam3.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 10 health above this party member's current health the Opposing enemy has.";
+            beam3.Effects[1].entryVariable = 10;
 
             Ability beam4 = new Ability(beam3.ability, "Secret_Beam_4_A", beam1.Cost);
             beam4.Name = "Divine Beam";
-            beam4.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 13 health above this party member's current health the Opposing enemy has.";
-            beam4.Effects[1].entryVariable = 13;
+            beam4.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 14 health above this party member's current health the Opposing enemy has.";
+            beam4.Effects[1].entryVariable = 14;
 
             HealEffect heal = ScriptableObject.CreateInstance<HealEffect>();
             RandomHealBetweenPreviousAndEntryEffect range = ScriptableObject.CreateInstance<RandomHealBetweenPreviousAndEntryEffect>();
