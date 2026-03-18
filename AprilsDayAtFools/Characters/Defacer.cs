@@ -59,7 +59,7 @@ namespace AprilsDayAtFools
             add_blue._usePreviousExit = true;
 
             Ability beam1 = new Ability("Scary Beam", "Secret_Beam_1_A");
-            beam1.Description = "Remove the Opposing enemy's Leftmost ability, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 6 health above this party member's current health the Opposing enemy has.";
+            beam1.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 6 health above this party member's current health the Opposing enemy has.";
             beam1.AbilitySprite = ResourceLoader.LoadSprite("ability_beam.png");
             beam1.Cost = [Pigments.Purple];
             beam1.Effects = new EffectInfo[5];
@@ -75,17 +75,17 @@ namespace AprilsDayAtFools
 
             Ability beam2 = new Ability(beam1.ability, "Secret_Beam_2_A", beam1.Cost);
             beam2.Name = "Bloody Beam";
-            beam2.Description = "Remove the Opposing enemy's Leftmost ability, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 9 health above this party member's current health the Opposing enemy has.";
+            beam2.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 9 health above this party member's current health the Opposing enemy has.";
             beam2.Effects[1].entryVariable = 9;
 
             Ability beam3 = new Ability(beam2.ability, "Secret_Beam_3_A", beam1.Cost);
             beam3.Name = "Evil Beam";
-            beam3.Description = "Remove the Opposing enemy's Leftmost ability, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 12 health above this party member's current health the Opposing enemy has.";
+            beam3.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 12 health above this party member's current health the Opposing enemy has.";
             beam3.Effects[1].entryVariable = 12;
 
             Ability beam4 = new Ability(beam3.ability, "Secret_Beam_4_A", beam1.Cost);
             beam4.Name = "Divine Beam";
-            beam4.Description = "Remove the Opposing enemy's Leftmost ability, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 15 health above this party member's current health the Opposing enemy has.";
+            beam4.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 15 health above this party member's current health the Opposing enemy has.";
             beam4.Effects[1].entryVariable = 15;
 
             HealEffect heal = ScriptableObject.CreateInstance<HealEffect>();
