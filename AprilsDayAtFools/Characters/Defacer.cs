@@ -61,7 +61,7 @@ namespace AprilsDayAtFools
             Ability beam1 = new Ability("Scary Beam", "Secret_Beam_1_A");
             beam1.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 6 health above this party member's current health the Opposing enemy has.";
             beam1.AbilitySprite = ResourceLoader.LoadSprite("ability_beam.png");
-            beam1.Cost = [Pigments.Purple];
+            beam1.Cost = [Pigments.Blue];
             beam1.Effects = new EffectInfo[5];
             beam1.Effects[0] = Effects.GenerateEffect(remove, 1, Slots.Front);
             beam1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CalculateHealthAboveCasterHealthEffect>(), 6, Slots.Front);
