@@ -62,12 +62,13 @@ namespace AprilsDayAtFools
             beam1.Description = "Remove the Opposing enemy's Leftmost ability from their moveset, instantly killing them if they have no abilities left afterwards.\nAdd 1 Blue cost to this ability for every 3 health above this party member's current health the Opposing enemy has.";
             beam1.AbilitySprite = ResourceLoader.LoadSprite("ability_beam.png");
             beam1.Cost = [Pigments.Blue];
-            beam1.Effects = new EffectInfo[5];
+            beam1.Effects = new EffectInfo[6];
             beam1.Effects[0] = Effects.GenerateEffect(remove, 1, Slots.Front);
             beam1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CalculateHealthAboveCasterHealthEffect>(), 3, Slots.Front);
             beam1.Effects[2] = Effects.GenerateEffect(add_blue, 1, Slots.Self);
             beam1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ReturnAbilityCountEffect>(), 1, Slots.Front);
             beam1.Effects[4] = Effects.GenerateEffect(BasicEffects.Die(), 1, Slots.Front, BasicEffects.DidThat(false));
+            beam1.Effects[5] = Effects.GenerateEffect(ImmediateActionEffect.Create([Effects.GenerateEffect(ScriptableObject.CreateInstance<FixCasterTimelineIntentsEffect>(), 1, Slots.Self)]), 1, Slots.Front, BasicEffects.DidThat(false));
             beam1.AddIntentsToTarget(Slots.Front, ["Misc", "Damage_Death"]);
             beam1.AddIntentsToTarget(Slots.Self, ["Mana_Modify"]);
             beam1.Visuals = Visuals.Providence;
