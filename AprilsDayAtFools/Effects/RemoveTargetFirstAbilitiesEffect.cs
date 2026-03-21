@@ -70,6 +70,7 @@ namespace AprilsDayAtFools
 
                                     TimelineInfo timeline = stats.combatUI._TimelineHandler.TimelineSlotInfo[i];
                                     timeline.abilitySlotID = turn.abilitySlot;
+                                    stats.combatUI._TimelineHandler.TimelineSlotInfo[i] = timeline;
                                 }
                             }
                         }

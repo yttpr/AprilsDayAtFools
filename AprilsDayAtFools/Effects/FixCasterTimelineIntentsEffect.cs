@@ -39,8 +39,11 @@ namespace AprilsDayAtFools
                         {
                             if (slotgroup.slot.TimelineSlotID <= stats.timeline.CurrentTurn) break;
                             AbilitySO newAbil = timeline.ability;
+                            Debug.Log(i);
+                            Debug.Log(timeline.ability.name);
                             if ((caster as EnemyCombat).AbilityCount > timeline.abilitySlotID) newAbil = (caster as EnemyCombat).Abilities[timeline.abilitySlotID].ability;
                             timeline.ability = newAbil;
+                            Debug.Log(timeline.ability.name);
                             Sprite[] intents = null;
                             Color[] spriteColors = null;
                             bool cansee = timeline.timelineIcon != null && !timeline.timelineIcon.Equals(null);
