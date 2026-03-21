@@ -180,10 +180,10 @@ namespace AprilsDayAtFools
             handhelddiorama.item._ItemTypeIDs = ["Magic", "Heart"];
             handhelddiorama.Item.AddItem("locked_handhelddiorama.png", OsmanACH);
 
-            PerformEffect_Item page11 = new PerformEffect_Item("Aprils_Page11_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 5, Targeting.Unit_AllAllies), Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyCursedEffect>(), 1, Targeting.AllUnits)]);
+            PerformEffect_Item page11 = new PerformEffect_Item("Aprils_Page11_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 11, Targeting.Unit_AllAllies), Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyCursedEffect>(), 1, Targeting.AllUnits)]);
             page11.Name = "Page 11";
             page11.Flavour = "\"#!&?%8#\"";
-            page11.Description = "At the start of combat, heal all party members 5 health then Curse all enemies and party members.";
+            page11.Description = "At the start of combat, heal all party members 11 health then Curse all enemies and party members.";
             page11.Icon = ResourceLoader.LoadSprite("item_page11.png");
             page11.EquippedModifiers = [];
             page11.TriggerOn = TriggerCalls.OnCombatStart;
