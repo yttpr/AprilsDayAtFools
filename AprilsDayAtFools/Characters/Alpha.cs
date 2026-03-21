@@ -167,10 +167,10 @@ namespace AprilsDayAtFools
             PerformEffect_Item identitytheft = new PerformEffect_Item("Aprils_IdentityTheft_TW", [Effects.GenerateEffect(CasterRootActionEffect.Create(Effects.GenerateEffect(ScriptableObject.CreateInstance<TransformSameLevelCharacterEffect>(), 1, Slots.Self).SelfArray()))]);
             identitytheft.Name = "Identity Theft";
             identitytheft.Flavour = "\"It's easier to be someone else.\"";
-            identitytheft.Description = "On taking any damage, transform into a random same level party member.";
+            identitytheft.Description = "On moving, transform into a random same level party member.";
             identitytheft.Icon = ResourceLoader.LoadSprite("item_identitytheft.png");
             identitytheft.EquippedModifiers = [];
-            identitytheft.TriggerOn = TriggerCalls.OnDamaged;
+            identitytheft.TriggerOn = TriggerCalls.OnMoved;
             identitytheft.DoesPopUpInfo = true;
             identitytheft.Conditions = [];
             identitytheft.DoesActionOnTriggerAttached = false;
