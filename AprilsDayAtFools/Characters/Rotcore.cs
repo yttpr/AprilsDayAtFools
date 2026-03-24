@@ -99,32 +99,32 @@ namespace AprilsDayAtFools
             goat4.EffectIntents[0].intents[1] = "Damage_21";
 
             Ability suffer1 = new Ability("Suffer Now, Pay Later", "Rot_Suffer_1_A");
-            suffer1.Description = "Deal 6 damage to the Opposing enemy and apply 3 Divine Protection to them.";
+            suffer1.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 5 damage to them.";
             suffer1.AbilitySprite = ResourceLoader.LoadSprite("ability_suffer.png");
             suffer1.Cost = [Pigments.Red, Pigments.Yellow];
             suffer1.Effects = new EffectInfo[2];
-            suffer1.Effects[0] = Effects.GenerateEffect(damage, 6, Slots.Front);
-            suffer1.Effects[1] = Effects.GenerateEffect(divine, 3, Slots.Front);
-            suffer1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Status_DivineProtection"]);
-            suffer1.AnimationTarget = Slots.Front;
+            suffer1.Effects[0] = Effects.GenerateEffect(divine, 3, Slots.LeftRight);
+            suffer1.Effects[1] = Effects.GenerateEffect(damage, 5, Slots.LeftRight);
+            suffer1.AddIntentsToTarget(Slots.LeftRight, ["Status_DivineProtection", "Damage_3_6"]);
+            suffer1.AnimationTarget = Slots.LeftRight;
             suffer1.Visuals = Visuals.Talons;
 
             Ability suffer2 = new Ability(suffer1.ability, "Rot_Suffer_2_A", suffer1.Cost);
             suffer2.Name = "Suffer Now, Punished Later";
-            suffer2.Description = "Deal 8 damage to the Opposing enemy and apply 3 Divine Protection to them.";
-            suffer2.Effects[0].entryVariable = 8;
-            suffer2.EffectIntents[0].intents[0] = "Damage_7_10";
+            suffer2.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 7 damage to them.";
+            suffer2.Effects[1].entryVariable = 7;
+            suffer2.EffectIntents[0].intents[1] = "Damage_7_10";
 
             Ability suffer3 = new Ability(suffer2.ability, "Rot_Suffer_3_A", suffer1.Cost);
             suffer3.Name = "Suffer Now, Repent Later";
-            suffer3.Description = "Deal 10 damage to the Opposing enemy and apply 3 Divine Protection to them.";
-            suffer3.Effects[0].entryVariable = 10;
+            suffer3.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 9 damage to them.";
+            suffer3.Effects[1].entryVariable = 9;
 
             Ability suffer4 = new Ability(suffer3.ability, "Rot_Suffer_4_A", suffer1.Cost);
             suffer4.Name = "Suffer Now, Die Later";
-            suffer4.Description = "Deal 12 damage to the Opposing enemy and apply 3 Divine Protection to them.";
-            suffer4.Effects[0].entryVariable = 12;
-            suffer4.EffectIntents[0].intents[0] = "Damage_11_15";
+            suffer4.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 11 damage to them.";
+            suffer4.Effects[1].entryVariable = 11;
+            suffer4.EffectIntents[0].intents[1] = "Damage_11_15";
 
             rotcore.AddLevelData(12, [suffer1, goat1, karma1]);
             rotcore.AddLevelData(14, [suffer2, goat2, karma2]);
