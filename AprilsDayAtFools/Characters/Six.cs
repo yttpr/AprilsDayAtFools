@@ -72,30 +72,37 @@ namespace AprilsDayAtFools
             days4.Description = "Deal 6 damage to the Opposing enemy.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
             days4.Effects[0].entryVariable = 6;
 
+            RandomStatusEffect negative = ScriptableObject.CreateInstance<RandomStatusEffect>();
+            negative.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "Gutted_ID", "Linked_ID", "OilSlicked_ID", "Scars_ID",
+                "Remorse_ID", "Salted_ID", "Paranoia_ID", "Left_ID", "Pale_ID",
+                "DivineSacrifice_ID", "Muted_ID", "Salt_Entropy_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID",
+                "Disappearing_ID", "Karma_ID", "Madness_ID", "CoralColony_ID", "Infirm_ID", "Downfall_ID"];
+
             Ability fingers1 = new Ability("Six Fingers", "Six_Fingers_1_A");
-            fingers1.Description = "Deal 4 damage to the Opposing enemy.";
+            fingers1.Description = "Deal 4 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.";
             fingers1.AbilitySprite = ResourceLoader.LoadSprite("ability_fingers.png");
             fingers1.Cost = [Pigments.Red, Pigments.Yellow];
-            fingers1.Effects = new EffectInfo[1];
+            fingers1.Effects = new EffectInfo[2];
             fingers1.Effects[0] = Effects.GenerateEffect(returnkill, 4, Slots.Front);
+            fingers1.Effects[1] = Effects.GenerateEffect(negative, 1, Slots.Front);
             fingers1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
             fingers1.Visuals = LoadedAssetsHandler.GetCharacterAbility("Shank_1_A").visuals;
             fingers1.AnimationTarget = Slots.Front;
 
             Ability fingers2 = new Ability(fingers1.ability, "Six_Fingers_2_A", fingers1.Cost);
             fingers2.Name = "Six Hands";
-            fingers2.Description = "Deal 6 damage to the Opposing enemy.";
+            fingers2.Description = "Deal 6 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.";
             fingers2.Effects[0].entryVariable = 6;
 
             Ability fingers3 = new Ability(fingers2.ability, "Six_Fingers_3_A", fingers1.Cost);
             fingers3.Name = "Six Arms";
-            fingers3.Description = "Deal 7 damage to the Opposing enemy.";
+            fingers3.Description = "Deal 7 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.";
             fingers3.Effects[0].entryVariable = 7;
             fingers3.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability fingers4 = new Ability(fingers3.ability, "Six_Fingers_4_A", fingers1.Cost);
             fingers4.Name = "Six Bodies";
-            fingers4.Description = "Deal 8 damage to the Opposing enemy.";
+            fingers4.Description = "Deal 8 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.";
             fingers4.Effects[0].entryVariable = 8;
 
             Ability hearts1 = new Ability("Six Thoughts", "Six_Hearts_1_A");

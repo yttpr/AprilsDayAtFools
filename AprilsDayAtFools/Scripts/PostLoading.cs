@@ -31,6 +31,7 @@ namespace AprilsDayAtFools
             Class1.PCall(FreeFool.Add_Siren);
             Class1.PCall(FreeFool.Add_Abyss);
             Class1.PCall(XetIntents.Setup);
+            Class1.PCall(SixIntents.Setup);
 
             orig(self);
         }
