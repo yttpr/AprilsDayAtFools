@@ -20,7 +20,7 @@ namespace AprilsDayAtFools
         {
             Logger.LogInfo("Aprils);");
 
-            Class1.PCall(Class1.Config);//unlocked by default config file.
+            Class1.PCall(Class1.Config);
 
             Class1.PCall(Class1.SetAssets);
 
