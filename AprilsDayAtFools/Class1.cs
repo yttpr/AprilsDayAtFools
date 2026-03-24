@@ -1,7 +1,10 @@
-﻿using BrutalAPI;
+﻿using BepInEx.Configuration;
+using BepInEx;
+using BrutalAPI;
 using System;
 using System.Reflection;
 using UnityEngine;
+using System.IO;
 
 namespace AprilsDayAtFools
 {
@@ -18,6 +21,13 @@ namespace AprilsDayAtFools
         public static void StringDump()
         {
 
+        }
+
+        public static void Config()
+        {
+            ConfigFile config = new ConfigFile(Path.Combine(Paths.ConfigPath, "AprilsDayAtFoolsConfig.cfg"), true);
+            ConfigEntry<bool> unlock_all = config.Bind<bool>("AprilsDayAtFools", "UnlockAllByDefault", false, "Unlocks 10 fools, skipping Saea's quest.");
+            Joyce.UnlockByDefault = unlock_all.Value;
         }
         public static void SetAssets()
         {
