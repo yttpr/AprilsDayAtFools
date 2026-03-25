@@ -137,7 +137,7 @@ namespace AprilsDayAtFools
             //rework !
             // i did
             Ability change1 = new Ability("Changeling Adoption", "Qualia_Change_1_A");
-            change1.Description = "Temporarily replace all allies to the Right that still have ability usage with a random level 1 party members.\nThey will return at the end of the round.";
+            change1.Description = "Temporarily replace all allies to the Right that still have ability usage with random level 1 party members.\nThey will return at the end of the round.";
             change1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Red];
             change1.AbilitySprite = ResourceLoader.LoadSprite("ability_changeling.png");
             change1.Effects = [Effects.GenerateEffect(replace_unused, 0, Targeting.Slot_AlliesAllRights)];
@@ -147,17 +147,17 @@ namespace AprilsDayAtFools
 
             Ability change2 = new Ability(change1.ability, "Qualia_Change_2_A", change1.Cost);
             change2.Name = "Changeling Enrollment";
-            change2.Description = "Temporarily replace all allies to the Right that still have ability usage with a random level 2 party members.\nThey will return at the end of the round.";
+            change2.Description = "Temporarily replace all allies to the Right that still have ability usage with random level 2 party members.\nThey will return at the end of the round.";
             change2.Effects[0].entryVariable = 1;
 
             Ability change3 = new Ability(change2.ability, "Qualia_Change_3_A", change1.Cost);
             change3.Name = "Changeling Occupation";
-            change3.Description = "Temporarily replace all allies to the Right that still have ability usage with a random level 3 party members.\nThey will return at the end of the round.";
+            change3.Description = "Temporarily replace all allies to the Right that still have ability usage with random level 3 party members.\nThey will return at the end of the round.";
             change3.Effects[0].entryVariable = 2;
 
             Ability change4 = new Ability(change3.ability, "Qualia_Change_4_A", change1.Cost);
             change4.Name = "Changeling Invasion";
-            change4.Description = "Temporarily replace all allies to the Right that still have ability usage with a random level 4 party members.\nThey will return at the end of the round.";
+            change4.Description = "Temporarily replace all allies to the Right that still have ability usage with random level 4 party members.\nThey will return at the end of the round.";
             change4.Effects[0].entryVariable = 3;
 
             qualia.AddLevelData(20, [image1, box1, change1]);

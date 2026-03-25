@@ -274,7 +274,7 @@ namespace AprilsDayAtFools
             PerformEffect_Item saturn = new PerformEffect_Item("Aprils_BoundaryLines_SW", []);
             saturn.Name = "Boundary Lines";
             saturn.Flavour = "\"If you walk over there, you'll pass through the barrier between life and death...\"";
-            saturn.Description = "Deal 25% more daamge while in the 2nd or 4th position.\nDeal 25% less damage otherwise.";
+            saturn.Description = "Deal 25% more damage while in the 2nd or 4th position.\nDeal 25% less damage otherwise.";
             saturn.Icon = ResourceLoader.LoadSprite("item_boundarylines.png");
             saturn.EquippedModifiers = [];
             saturn.TriggerOn = TriggerCalls.OnWillApplyDamage;
