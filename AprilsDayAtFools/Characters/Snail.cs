@@ -18,6 +18,7 @@ namespace AprilsDayAtFools
             snail.AddUnitType("FemaleLooking");
             snail.AddUnitType("Sandwich_SuperOrganism");
             snail.AddUnitType(SlidingHandler.Type);
+            snail.AddUnitType("Alien");
             snail.UsesBasicAbility = true;
             //slap
             snail.UsesAllAbilities = false;
