@@ -39,10 +39,10 @@ namespace AprilsDayAtFools
             rakeSO._EffectInfo = rakeInfo;
             Object = rakeSO;
             //disable after testing
-            /*if (!LoadedDBsHandler.StatusFieldDB.FieldEffects.ContainsKey(FieldID))
+            if (!LoadedDBsHandler.StatusFieldDB.FieldEffects.ContainsKey(FieldID))
             {
                 LoadedDBsHandler.StatusFieldDB.AddNewFieldEffect(rakeSO);
-            }*/
+            }
 
             IntentInfoBasic intentinfo = new IntentInfoBasic();
             intentinfo._color = Color.white;
@@ -70,6 +70,7 @@ namespace AprilsDayAtFools
         public override void OnEventCall_01(FieldEffect_Holder holder, object sender, object args)
         {
             ReduceDuration(holder);
+
             //audio
             Vector3 loc = default(Vector3);
             if (sender is IUnit caster)
@@ -88,8 +89,9 @@ namespace AprilsDayAtFools
                 catch { }
             }
             CombatManager.Instance.AddUIAction(new PlaySoundUIAction("event:/Lunacy/Misc3/Rake", loc));
-            //thwack!
-            if (sender is IUnit speaker) CombatManager.Instance.AddUIAction(new ShowAttackInformationUIAction(speaker.ID, speaker.IsUnitCharacter, "THWACK!"));
+            //alternative: event:/Lunacy/Misc3/RakeScream
+
+
             //damage
             if (sender is IUnit unit) unit.Damage(9, null, "Rake", holder.SlotID - unit.SlotID, true, true, false, "");
             
