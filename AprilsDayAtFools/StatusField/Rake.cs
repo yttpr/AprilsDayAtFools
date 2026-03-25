@@ -19,9 +19,9 @@ namespace AprilsDayAtFools
             rakeInfo.icon = ResourceLoader.LoadSprite("RakeIcon.png");
             rakeInfo._fieldName = "The Rake";
             rakeInfo._description = "On moving into The Rake, reduce by 1 and take 9 damage.";
-            rakeInfo._applied_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Shield_ID.ToString()]._EffectInfo._applied_SE_Event;
-            rakeInfo._removed_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Shield_ID.ToString()]._EffectInfo.RemovedSoundEvent;
-            rakeInfo._updated_SE_Event = LoadedDBsHandler.StatusFieldDB._StatusEffects[StatusField_GameIDs.Shield_ID.ToString()]._EffectInfo.UpdatedSoundEvent;
+            rakeInfo._applied_SE_Event = LoadedDBsHandler.StatusFieldDB.FieldEffects[StatusField_GameIDs.Shield_ID.ToString()]._EffectInfo._applied_SE_Event;
+            rakeInfo._removed_SE_Event = LoadedDBsHandler.StatusFieldDB.FieldEffects[StatusField_GameIDs.Shield_ID.ToString()]._EffectInfo.RemovedSoundEvent;
+            rakeInfo._updated_SE_Event = LoadedDBsHandler.StatusFieldDB.FieldEffects[StatusField_GameIDs.Shield_ID.ToString()]._EffectInfo.UpdatedSoundEvent;
 
             GameObject Fool = Joyce.Assets.LoadAsset<GameObject>("Assets/Rake/RakeCharacter.prefab");
             GameObject_CFE_Layout LayoutFool = Fool.AddComponent<GameObject_CFE_Layout>();
