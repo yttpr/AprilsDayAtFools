@@ -132,8 +132,6 @@ namespace AprilsDayAtFools
 
             Class1.PCall(CascadingDamageItemHandler.Setup);
             Class1.PCall(ClownKiller.Setup);
-            Class1.PCall(Anatomy.Add);
-            Class1.PCall(Dog.Add);
             Class1.PCall(Amoeba.Add);
             Class1.PCall(Infanticide.Add);
             Class1.PCall(Telomere.Add);
@@ -141,6 +139,8 @@ namespace AprilsDayAtFools
             Class1.PCall(Fribble.Add);
             Class1.PCall(Rake.Add);
             Class1.PCall(Sirenhead.Add);
+            Class1.PCall(Dog.Add);
+            Class1.PCall(Anatomy.Add);
 
             Class1.PCall(Merced.Items);
             Class1.PCall(Cora.Items);
