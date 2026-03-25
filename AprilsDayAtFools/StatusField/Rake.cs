@@ -1,6 +1,7 @@
 ﻿using BrutalAPI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -73,10 +74,17 @@ namespace AprilsDayAtFools
 
             //audio
             Vector3 loc = default(Vector3);
+            string sound = "event:/Lunacy/Misc3/Rake";
             if (sender is IUnit caster)
             {
                 try
                 {
+                    if (caster.UnitTypes == null || !caster.UnitTypes.Contains("FemaleID"))
+                    {
+                        if (UnityEngine.Random.Range(0, 100) < 30) sound = "event:/Lunacy/Misc3/RakeScream";
+                    }
+
+
                     if (!caster.IsUnitCharacter)
                     {
                         loc = CombatManager.Instance._stats.combatUI._enemyZone._enemies[caster.FieldID].FieldEntity.Position;
@@ -88,8 +96,7 @@ namespace AprilsDayAtFools
                 }
                 catch { }
             }
-            CombatManager.Instance.AddUIAction(new PlaySoundUIAction("event:/Lunacy/Misc3/Rake", loc));
-            //alternative: event:/Lunacy/Misc3/RakeScream
+            CombatManager.Instance.AddUIAction(new PlaySoundUIAction(sound, loc));
 
 
             //damage
