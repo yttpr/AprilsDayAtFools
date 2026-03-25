@@ -26,6 +26,7 @@ namespace AprilsDayAtFools
             GameObject Fool = Joyce.Assets.LoadAsset<GameObject>("Assets/Rake/RakeCharacter.prefab");
             GameObject_CFE_Layout LayoutFool = Fool.AddComponent<GameObject_CFE_Layout>();
             LayoutFool.m_Front = new RectTransform[] { Fool.GetComponent<RectTransform>() };
+            LayoutFool.m_Objects = [Fool];
             rakeInfo.m_CharacterLayoutTemplate = LayoutFool;
 
             GameObject Enemy = Joyce.Assets.LoadAsset<GameObject>("Assets/Rake/RakeEnemy.prefab");
