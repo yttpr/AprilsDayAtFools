@@ -457,6 +457,8 @@
 	  <None Remove="Sprites\Enemies\ActivatorIcon.png" />
 	  <None Remove="Sprites\Enemies\BombIcon.png" />
 	  <None Remove="Sprites\Enemies\BombWorld.png" />
+	  <None Remove="Sprites\Enemies\SirenheadIcon.png" />
+	  <None Remove="Sprites\Enemies\SirenheadWorld.png" />
 	  <None Remove="Sprites\Enemies\SludgeIcon.png" />
 	  <None Remove="Sprites\Enemies\SludgeSubWorld.png" />
 	  <None Remove="Sprites\Enemies\SludgeWorld.png" />
@@ -606,6 +608,8 @@
 
 	<ItemGroup>
 	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_beam.png" />
+	  <EmbeddedResource Include="Sprites\Enemies\SirenheadIcon.png" />
+	  <EmbeddedResource Include="Sprites\Enemies\SirenheadWorld.png" />
 	  <EmbeddedResource Include="Sprites\Icons\LifestealIcon.png" />
 	</ItemGroup>
 
