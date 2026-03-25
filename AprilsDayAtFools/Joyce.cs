@@ -139,6 +139,7 @@ namespace AprilsDayAtFools
             Class1.PCall(Telomere.Add);
             Class1.PCall(Lyren.Add);
             Class1.PCall(Fribble.Add);
+            Class1.PCall(Rake.Add);
 
             Class1.PCall(Merced.Items);
             Class1.PCall(Cora.Items);

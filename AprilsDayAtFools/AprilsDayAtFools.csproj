@@ -476,6 +476,7 @@
 	  <None Remove="Sprites\Icons\Pale.png" />
 	  <None Remove="Sprites\Icons\PimplesIcon.png" />
 	  <None Remove="Sprites\Icons\Power.png" />
+	  <None Remove="Sprites\Icons\RakeIcon.png" />
 	  <None Remove="Sprites\Icons\terror.png" />
 	  <None Remove="Sprites\Items\item_anatomymodel.png" />
 	  <None Remove="Sprites\Items\item_artificialadrenalinerush.png" />
@@ -1081,6 +1082,7 @@
 	  <EmbeddedResource Include="Sprites\Icons\Pale.png" />
 	  <EmbeddedResource Include="Sprites\Icons\PimplesIcon.png" />
 	  <EmbeddedResource Include="Sprites\Icons\Power.png" />
+	  <EmbeddedResource Include="Sprites\Icons\RakeIcon.png" />
 	  <EmbeddedResource Include="Sprites\Icons\terror.png" />
 	  <EmbeddedResource Include="Sprites\Items\item_anatomymodel.png" />
 	  <EmbeddedResource Include="Sprites\Items\item_artificialadrenalinerush.png" />
