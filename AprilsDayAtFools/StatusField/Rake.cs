@@ -88,6 +88,8 @@ namespace AprilsDayAtFools
                 catch { }
             }
             CombatManager.Instance.AddUIAction(new PlaySoundUIAction("event:/Lunacy/Misc3/Rake", loc));
+            //thwack!
+            if (sender is IUnit speaker) CombatManager.Instance.AddUIAction(new ShowAttackInformationUIAction(speaker.ID, speaker.IsUnitCharacter, "THWACK!"));
             //damage
             if (sender is IUnit unit) unit.Damage(9, null, "Rake", holder.SlotID - unit.SlotID, true, true, false, "");
             
