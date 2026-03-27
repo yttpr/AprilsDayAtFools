@@ -138,7 +138,6 @@ namespace AprilsDayAtFools
             Class1.PCall(Lyren.Add);
             Class1.PCall(Fribble.Add);
             Class1.PCall(Rake.Add);
-            Class1.PCall(Sirenhead.Add);
             Class1.PCall(Dog.Add);
             Class1.PCall(Anatomy.Add);
 
@@ -165,8 +164,12 @@ namespace AprilsDayAtFools
             Class1.PCall(Rotcore.Items);
             Class1.PCall(Catten.Items);
             Class1.PCall(Sunflower.Items);
+            Class1.PCall(Snail.Items);
+            Class1.PCall(Lich.Items);
+            Class1.PCall(Izide.Items);
             Class1.PCall(Saea.Items);
             Class1.PCall(Alpha.Items);
+            Class1.PCall(Qualia.Items);
             Class1.PCall(Defacer.Items);
 
             Class1.PCall(Merced.Unlocks);
@@ -192,8 +195,12 @@ namespace AprilsDayAtFools
             Class1.PCall(Rotcore.Unlocks);
             Class1.PCall(Catten.Unlocks);
             Class1.PCall(Sunflower.Unlocks);
+            Class1.PCall(Snail.Unlocks);
+            Class1.PCall(Lich.Unlocks);
+            Class1.PCall(Izide.Items);
             Class1.PCall(Saea.Unlocks);
             Class1.PCall(Alpha.Unlocks);
+            Class1.PCall(Qualia.Unlocks);
             Class1.PCall(Defacer.Unlocks);
 
             Class1.PCall(CustomDialogueHandler.Setup);
@@ -209,6 +216,7 @@ namespace AprilsDayAtFools
             Class1.PCall(AlarmHandler.Setup);
             Class1.PCall(YouVoodooDollHandler.Setup);
             Class1.PCall(HumanAlgorithmHandler.Setup);
+            Class1.PCall(Sirenhead.Add);
 
             Logger.LogInfo("day At Foolss");
 
