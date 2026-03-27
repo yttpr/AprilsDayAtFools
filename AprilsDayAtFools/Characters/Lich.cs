@@ -1,4 +1,5 @@
 ﻿using BrutalAPI;
+using BrutalAPI.Items;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -175,6 +176,71 @@ namespace AprilsDayAtFools
             lich.AddCharacter(Class1.UnlockedByDefault);
         }
 
+        public static void Items()
+        {
+            Ability misnomer = new Ability("Lich_Misnomer_A");
+            misnomer.Name = "Misnomer";
+            misnomer.Description = "Invert this and the Right ally's healths.";
+            misnomer.AbilitySprite = ResourceLoader.LoadSprite("ability_misnomer.png");
+            misnomer.Cost = [Pigments.Blue, Pigments.Blue];
+            misnomer.Effects = [Effects.GenerateEffect(ScriptableObject.CreateInstance<InvertTargetHealthEffect>(), 1, Targeting.Slot_SelfAndRight)];
+            misnomer.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Other_MaxHealth_Alt"]);
+            misnomer.AnimationTarget = Targeting.Slot_SelfAndRight;
+            misnomer.Visuals = Visuals.Mitosis;
+
+            ExtraAbility_Wearable_SMS add_misnomer = ScriptableObject.CreateInstance<ExtraAbility_Wearable_SMS>();
+            add_misnomer._extraAbility = misnomer.GenerateCharacterAbility(true);
+
+            ((Passives.Construct as Connection_PerformEffectPassiveAbility).connectionEffects[1].effect as CasterAddRandomExtraAbilityEffect)._extraData.Add(add_misnomer);
+
+            Basic_Item noose = new Basic_Item("Aprils_WrongNoose_TW");
+            noose.Name = "Wrong Noose";
+            noose.Flavour = "\"You weren't supposed to die today.\"";
+            noose.Description = "Adds the extra ability \"Misnomer,\" a powerful but dangerous healing(?) ability.";
+            noose.Icon = ResourceLoader.LoadSprite("item_wrongnoose.png");
+            noose.EquippedModifiers = [];
+            noose.TriggerOn = TriggerCalls.Count;
+            noose.DoesPopUpInfo = false;
+            noose.Conditions = [];
+            noose.DoesActionOnTriggerAttached = false;
+            noose.ConsumeOnTrigger = TriggerCalls.Count;
+            noose.ConsumeOnUse = false;
+            noose.ConsumeConditions = [];
+            noose.ShopPrice = 4;
+            noose.IsShopItem = false;
+            noose.StartsLocked = true;
+            noose.OnUnlockUsesTHE = true;
+            noose.UsesSpecialUnlockText = false;
+            noose.SpecialUnlockID = UILocID.None;
+            noose.item._ItemTypeIDs = [];
+            noose.Item.AddItem("locked_wrongnoose.png", OsmanACH);
+
+            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_NosferatuGlass_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 1, Slots.Self)]);
+            betablockers.Name = "Nosferatu Glass";
+            betablockers.Flavour = "\"...And the thirst would never truly be quenched.\"";
+            betablockers.Description = "At the start of each turn, gain 1 Lifesteal.";
+            betablockers.Icon = ResourceLoader.LoadSprite("item_nosferatuglass.png");
+            betablockers.EquippedModifiers = [];
+            betablockers.TriggerOn = TriggerCalls.OnTurnStart;
+            betablockers.DoesPopUpInfo = true;
+            betablockers.Conditions = [];
+            betablockers.DoesActionOnTriggerAttached = false;
+            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
+            betablockers.ConsumeOnUse = false;
+            betablockers.ConsumeConditions = [];
+            betablockers.ShopPrice = 8;
+            betablockers.IsShopItem = false;
+            betablockers.StartsLocked = true;
+            betablockers.OnUnlockUsesTHE = true;
+            betablockers.UsesSpecialUnlockText = false;
+            betablockers.SpecialUnlockID = UILocID.None;
+            betablockers.item.AddItem("locked_nosferatuglass.png", HeavenACH);
+        }
+        public static void Unlocks()
+        {
+            Unlocking.GenerateAchievements("Lich", "Wrong Noose", "Nosferatu Glass", HeavenACH, OsmanACH);
+            Unlocking.SetUpUnlocks("Lich_CH", "Aprils_WrongNoose_TW", "Aprils_NosferatuGlass_TW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
+        }
 
         public static string HeavenACH => "Aprils_Lich_Heaven_ACH";
         public static string OsmanACH => "Aprils_Lich_Osman_ACH";

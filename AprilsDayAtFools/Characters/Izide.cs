@@ -1,4 +1,5 @@
 ﻿using BrutalAPI;
+using BrutalAPI.Items;
 using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
@@ -199,6 +200,56 @@ namespace AprilsDayAtFools
         }
 
 
+        public static void Items()
+        {
+            MultiPerformEffectItem radio = new MultiPerformEffectItem("Aprils_DoomRadio_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<MaskedAddDelayedAttackEffect>(), 4, Slots.Front)]);
+            radio.Name = "Doom Radio";
+            radio.Flavour = "\"Take 3 steps to the left to die.\"";
+            radio.Description = "At the start of each turn, deal 4 damage to the Opposing positions of every position this party member moved into.";
+            radio.Icon = ResourceLoader.LoadSprite("item_doomradio.png");
+            radio.EquippedModifiers = [];
+            radio.TriggerOn = TriggerCalls.OnMoved;
+            radio.DoesPopUpInfo = true;
+            radio.Conditions = [];
+            radio.DoesActionOnTriggerAttached = false;
+            radio.ConsumeOnTrigger = TriggerCalls.Count;
+            radio.ConsumeOnUse = false;
+            radio.ConsumeConditions = [];
+            radio.ShopPrice = 3;
+            radio.IsShopItem = true;
+            radio.StartsLocked = true;
+            radio.OnUnlockUsesTHE = true;
+            radio.UsesSpecialUnlockText = false;
+            radio.SpecialUnlockID = UILocID.None;
+            radio.item._ItemTypeIDs = ["Magic"];
+            radio.Item.AddItem("locked_martyr.png", OsmanACH);
+
+            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_BetaBlockers_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyAnestheticsEffect>(), 4, Slots.Self)]);
+            betablockers.Name = "Beta-Blockers";
+            betablockers.Flavour = "\"This won't hurt a bit.\"";
+            betablockers.Description = "Apply 4 Anesthetics to this party member on combat start.";
+            betablockers.Icon = ResourceLoader.LoadSprite("item_betablockers.png");
+            betablockers.EquippedModifiers = [];
+            betablockers.TriggerOn = TriggerCalls.OnFirstTurnStart;
+            betablockers.DoesPopUpInfo = true;
+            betablockers.Conditions = [];
+            betablockers.DoesActionOnTriggerAttached = false;
+            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
+            betablockers.ConsumeOnUse = false;
+            betablockers.ConsumeConditions = [];
+            betablockers.ShopPrice = 4;
+            betablockers.IsShopItem = true;
+            betablockers.StartsLocked = true;
+            betablockers.OnUnlockUsesTHE = true;
+            betablockers.UsesSpecialUnlockText = false;
+            betablockers.SpecialUnlockID = UILocID.None;
+            betablockers.item.AddItem("locked_betablockers.png", HeavenACH);
+        }
+        public static void Unlocks()
+        {
+            Unlocking.GenerateAchievements("Didion", "Beta-Blockers", "Martyr", HeavenACH, OsmanACH);
+            Unlocking.SetUpUnlocks("Didion_CH", "Aprils_BetaBlockers_SW", "Aprils_Martyr_SW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
+        }
 
 
         public static string HeavenACH => "Aprils_Izide_Heaven_ACH";

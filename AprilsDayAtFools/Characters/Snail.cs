@@ -1,4 +1,5 @@
 ﻿using BrutalAPI;
+using BrutalAPI.Items;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,8 +32,8 @@ namespace AprilsDayAtFools
             snail.DamageSound = "event:/Lunacy/SOUNDS4/YNLHit";
             snail.DeathSound = "event:/Lunacy/SOUNDS4/YNLDie";
             snail.DialogueSound = "event:/Lunacy/SOUNDS4/YNLRoar";
-            //snail.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
-            //snail.AddFinalBossAchievementData("Heaven", HeavenACH);
+            snail.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
+            snail.AddFinalBossAchievementData("Heaven", HeavenACH);
             snail.GenerateMenuCharacter(ResourceLoader.LoadSprite("SnailMenu.png"), ResourceLoader.LoadSprite("SnailLock.png"));
             snail.MenuCharacterIsSecret = true;
             snail.MenuCharacterIgnoreRandom = false;
@@ -174,6 +175,58 @@ namespace AprilsDayAtFools
             LoadedAssetsHandler.GetSpeakerData("Snail_SpeakerData")._emotionBundles = [emotion];
         }
 
+        public static void Items()
+        {
+            ChangeToRandomHealthColorEffect turn_blue = ScriptableObject.CreateInstance<ChangeToRandomHealthColorEffect>();
+            turn_blue._healthColors = [Pigments.Blue];
+            PerformEffect_Item glue = new PerformEffect_Item("Aprils_GlueHundred_TW", [Effects.GenerateEffect(turn_blue, 1, Targeting.Unit_AllOpponents)]);
+            glue.Name = "#5 Glue-Hundred";
+            glue.Flavour = "\"Hi guys!\"";
+            glue.Description = "At the start of combat, turn all enemies Blue.";
+            glue.Icon = ResourceLoader.LoadSprite("item_gluehundred.png");
+            glue.EquippedModifiers = [];
+            glue.TriggerOn = TriggerCalls.OnCombatStart;
+            glue.DoesPopUpInfo = true;
+            glue.Conditions = [];
+            glue.DoesActionOnTriggerAttached = false;
+            glue.ConsumeOnTrigger = TriggerCalls.Count;
+            glue.ConsumeOnUse = false;
+            glue.ConsumeConditions = [];
+            glue.ShopPrice = 2;
+            glue.IsShopItem = true;
+            glue.StartsLocked = true;
+            glue.OnUnlockUsesTHE = false;
+            glue.UsesSpecialUnlockText = false;
+            glue.SpecialUnlockID = UILocID.None;
+            glue.item._ItemTypeIDs = ["Meat"];
+            glue.Item.AddItem("locked_gluehundred.png", OsmanACH);
+
+            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_Rake_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyRakeEffect>(), 1, Slots.Front)]);
+            betablockers.Name = "Rake";
+            betablockers.Flavour = "\"By Eggnog.\"";
+            betablockers.Description = "At the start of combat, add The Rake on the Opposing position.";
+            betablockers.Icon = ResourceLoader.LoadSprite("item_rake.png");
+            betablockers.EquippedModifiers = [];
+            betablockers.TriggerOn = TriggerCalls.OnFirstTurnStart;
+            betablockers.DoesPopUpInfo = true;
+            betablockers.Conditions = [];
+            betablockers.DoesActionOnTriggerAttached = false;
+            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
+            betablockers.ConsumeOnUse = false;
+            betablockers.ConsumeConditions = [];
+            betablockers.ShopPrice = 6;
+            betablockers.IsShopItem = true;
+            betablockers.StartsLocked = true;
+            betablockers.OnUnlockUsesTHE = true;
+            betablockers.UsesSpecialUnlockText = false;
+            betablockers.SpecialUnlockID = UILocID.None;
+            betablockers.item.AddItem("locked_rake.png", HeavenACH);
+        }
+        public static void Unlocks()
+        {
+            Unlocking.GenerateAchievements("Snail", "#5 Glue-Hundred", "Rake", HeavenACH, OsmanACH);
+            Unlocking.SetUpUnlocks("Snail_CH", "Aprils_GlueHundred_TW", "Aprils_Rake_SW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
+        }
 
         public static string HeavenACH => "Aprils_Snail_Heaven_ACH";
         public static string OsmanACH => "Aprils_Snail_Osman_ACH";
