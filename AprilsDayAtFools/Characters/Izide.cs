@@ -40,8 +40,8 @@ namespace AprilsDayAtFools
             izide.DamageSound = "event:/Lunacy/SOUNDS4/EnigmaHurt";
             izide.DeathSound = "event:/Lunacy/SOUNDS4/EnigmaRoar";
             izide.DialogueSound = "event:/Lunacy/SOUNDS4/EnigmaDie";
-            //snail.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
-            //snail.AddFinalBossAchievementData("Heaven", HeavenACH);
+            izide.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
+            izide.AddFinalBossAchievementData("Heaven", HeavenACH);
             izide.GenerateMenuCharacter(ResourceLoader.LoadSprite("IzideMenu.png"), ResourceLoader.LoadSprite("IzideLock.png"));
             izide.MenuCharacterIsSecret = true;
             izide.MenuCharacterIgnoreRandom = false;

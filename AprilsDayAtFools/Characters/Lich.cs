@@ -56,8 +56,8 @@ namespace AprilsDayAtFools
             lich.DamageSound = "event:/Lunacy/SOUNDS4/StalkerHit";
             lich.DeathSound = "event:/Lunacy/SOUNDS4/StalkerDie";
             lich.DialogueSound = "event:/Lunacy/SOUNDS4/StalkerHit";
-            //lich.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
-            //lich.AddFinalBossAchievementData("Heaven", HeavenACH);
+            lich.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
+            lich.AddFinalBossAchievementData("Heaven", HeavenACH);
             lich.GenerateMenuCharacter(ResourceLoader.LoadSprite("LichMenu.png"), ResourceLoader.LoadSprite("LichLock.png"));
             lich.MenuCharacterIsSecret = true;
             lich.MenuCharacterIgnoreRandom = false;

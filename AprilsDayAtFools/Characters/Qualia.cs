@@ -42,8 +42,8 @@ namespace AprilsDayAtFools
             qualia.DamageSound = "event:/Lunacy/SOUNDS4/YangHit";
             qualia.DeathSound = "event:/Lunacy/SOUNDS4/YangDie";
             qualia.DialogueSound = "event:/Lunacy/SOUNDS4/YangHit";
-            //qualia.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
-            //qualia.AddFinalBossAchievementData("Heaven", HeavenACH);
+            qualia.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
+            qualia.AddFinalBossAchievementData("Heaven", HeavenACH);
             qualia.GenerateMenuCharacter(ResourceLoader.LoadSprite("QualiaMenu.png"), ResourceLoader.LoadSprite("QualiaLock.png"));
             qualia.MenuCharacterIsSecret = true;
             qualia.MenuCharacterIgnoreRandom = false;
