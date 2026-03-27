@@ -627,10 +627,6 @@ namespace AprilsDayAtFools
             depiction.effects = [Effects.GenerateEffect(BasicEffects.SetStoreValue(TemporaryReplaceBoxer.AllowedFlee), 1, Slots.Self),
                 Effects.GenerateEffect(ScriptableObject.CreateInstance<ImmediateFleeEffect>(), 1, Slots.Self)];
             depiction._triggerOn = [TimelineEndHandler.Before];
-            //depiction.AddToPassiveDatabase();
-            //depiction.AddPassiveToGlossary("Depiction", "This unit is only temporary.");
-
-            Intents.CreateAndAddCustom_Basic_IntentToPool(IDs.Depiction, depiction.passiveIcon, Color.white);
 
             ExtraPassiveAbility_Wearable_SMS add_picture = ScriptableObject.CreateInstance<ExtraPassiveAbility_Wearable_SMS>();
             add_picture._extraPassiveAbility = depiction;
