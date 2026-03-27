@@ -567,6 +567,84 @@ namespace AprilsDayAtFools
             broom.item._ItemTypeIDs = [];
             broom.item.AddItem("locked_broom.png", "Aprils_Sunflower_March_ACH");
 
+            SpawnEnemyAnywhereEffect spawn_siren = ScriptableObject.CreateInstance<SpawnEnemyAnywhereEffect>();
+            spawn_siren._spawnTypeID = "Spawn_Basic";
+            spawn_siren.enemy = LoadedAssetsHandler.GetEnemy("Sirenhead_EN");
+
+            PerformEffect_Item sirenhead = new PerformEffect_Item("Aprils_Sirenhead_TW", [Effects.GenerateEffect(spawn_siren, 1)], true);
+            sirenhead.Name = "Sirenhead";
+            sirenhead.Flavour = "\"Adds Sirenhead To The Siren\"";
+            sirenhead.Description = "At the start of combat, if in the Siren spawn Sirenhead.\n(May also spawn Sirenhead when not in the Siren.)";
+            sirenhead.Icon = ResourceLoader.LoadSprite("item_sirenhead.png");
+            sirenhead.EquippedModifiers = [];
+            sirenhead.TriggerOn = TriggerCalls.OnCombatStart;
+            sirenhead.DoesPopUpInfo = true;
+            sirenhead.Conditions = [];
+            sirenhead.DoesActionOnTriggerAttached = false;
+            sirenhead.ConsumeOnTrigger = TriggerCalls.Count;
+            sirenhead.ConsumeOnUse = false;
+            sirenhead.ConsumeConditions = [];
+            sirenhead.ShopPrice = 3;
+            sirenhead.IsShopItem = false;
+            sirenhead.StartsLocked = true;
+            sirenhead.OnUnlockUsesTHE = false;
+            sirenhead.UsesSpecialUnlockText = false;
+            sirenhead.SpecialUnlockID = UILocID.None;
+            sirenhead.item._ItemTypeIDs = [];
+            sirenhead.item.AddItem("locked_sirenhead.png", "Aprils_Snail_March_ACH");
+
+            MultiPerformEffectItem devil = new MultiPerformEffectItem("Aprils_RingOfTheDevil_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 6, Targeting.Slot_AllyRight)]);
+            devil.Name = "Ring of the Devil";
+            devil.Flavour = "\"It's not for you.\"";
+            devil.Description = "At the start of each turn, heal the Right ally 6 health.\nAt the end of each turn, gain 4 Karma.";
+            devil.Icon = ResourceLoader.LoadSprite("item_ringofthedevil.png");
+            devil.EquippedModifiers = [];
+            devil.TriggerOn = TriggerCalls.OnTurnStart;
+            devil.DoesPopUpInfo = true;
+            devil.Conditions = [];
+            devil.DoesActionOnTriggerAttached = false;
+            devil.ConsumeOnTrigger = TriggerCalls.Count;
+            devil.ConsumeOnUse = false;
+            devil.ConsumeConditions = [];
+            devil.ShopPrice = 4;
+            devil.IsShopItem = true;
+            devil.StartsLocked = true;
+            devil.OnUnlockUsesTHE = true;
+            devil.UsesSpecialUnlockText = false;
+            devil.SpecialUnlockID = UILocID.None;
+            devil.item._ItemTypeIDs = ["Magic"];
+            devil.AddEffectTrigger(new EffectTrigger([Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 4, Slots.Self)], [TriggerCalls.OnTurnFinished], []));
+            devil.item.AddItem("locked_ringofthedevil.png", "Aprils_Lich_March_ACH");
+
+            ImmediatePerformEffectPassive depiction = ScriptableObject.CreateInstance<ImmediatePerformEffectPassive>();
+            depiction._passiveName = "Depiction";
+            depiction.passiveIcon = ResourceLoader.LoadSprite("DepictionPassive.png");
+            depiction.m_PassiveID = IDs.Depiction;
+            depiction._enemyDescription = "This enemy is only temporary";
+            depiction._characterDescription = "This party member is only temporary.";
+            depiction.doesPassiveTriggerInformationPanel = true;
+            depiction.conditions = [];
+            depiction.effects = [Effects.GenerateEffect(BasicEffects.SetStoreValue(TemporaryReplaceBoxer.AllowedFlee), 1, Slots.Self),
+                Effects.GenerateEffect(ScriptableObject.CreateInstance<ImmediateFleeEffect>(), 1, Slots.Self)];
+            depiction._triggerOn = [TimelineEndHandler.Before];
+            depiction.AddToPassiveDatabase();
+            depiction.AddPassiveToGlossary("Depiction", "This unit is only temporary.");
+
+            Intents.CreateAndAddCustom_Basic_IntentToPool(IDs.Depiction, depiction.passiveIcon, Color.white);
+
+            ExtraPassiveAbility_Wearable_SMS add_picture = ScriptableObject.CreateInstance<ExtraPassiveAbility_Wearable_SMS>();
+            add_picture._extraPassiveAbility = depiction;
+
+            TemporaryReplacementEffect replace_all = ScriptableObject.CreateInstance<TemporaryReplacementEffect>();
+            replace_all._extraModifiers = [add_picture];
+            replace_all.OnlyUseAbilities = false;
+
+            PerformEffect_Item headless = new PerformEffect_Item("Aprils_Headless_SW", [Effects.GenerateEffect(replace_all, 3, Slots.Self)]);
+            headless.Name = "Headless";
+            headless.Flavour = "\"And it takes no one to know one\"";
+            headless.Description = "At the start of the first turn, temporarily replace this party member with a random level 4 party member. They will return at the end of the round.";
+
+
             PerformEffect_Item saea = new PerformEffect_Item("Aprils_Damocles_TW", [
                 Effects.GenerateEffect(ScriptableObject.CreateInstance<ExtraVariableForNextEffect>(), 2),
                 Effects.GenerateEffect(ScriptableObject.CreateInstance<RandomHealBetweenPreviousAndEntryEffect>(), 5, Targeting.Unit_AllAllies),

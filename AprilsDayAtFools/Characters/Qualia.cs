@@ -85,7 +85,7 @@ namespace AprilsDayAtFools
             painting._visuals = Visuals.Painting;
 
             Ability image1 = new Ability("Reimagine the Self", "Qualia_Image_1_A");
-            image1.Description = "Temporarily replace this character with a random level 1 party member.\nThis character will return at the end of the round.";
+            image1.Description = "Temporarily replace this party member with a random level 1 party member.\nThis party member will return at the end of the round.";
             image1.Cost = [Pigments.Purple];
             image1.AbilitySprite = ResourceLoader.LoadSprite("ability_reimagine.png");
             image1.Effects = new EffectInfo[3];
@@ -98,17 +98,17 @@ namespace AprilsDayAtFools
 
             Ability image2 = new Ability(image1.ability, "Qualia_Image_2_A", image1.Cost);
             image2.Name = "Reimagine the Life";
-            image2.Description = "Temporarily replace this character with a random level 2 party member.\nThis character will return at the end of the round.";
+            image2.Description = "Temporarily replace this party member with a random level 2 party member.\nThis party member will return at the end of the round.";
             image2.Effects[2].entryVariable = 1;
 
             Ability image3 = new Ability(image2.ability, "Qualia_Image_3_A", image1.Cost);
             image3.Name = "Reimagine the World";
-            image3.Description = "Temporarily replace this character with a random level 3 party member.\nThis character will return at the end of the round.";
+            image3.Description = "Temporarily replace this party member with a random level 3 party member.\nThis party member will return at the end of the round.";
             image3.Effects[2].entryVariable = 2;
 
             Ability image4 = new Ability(image3.ability, "Qualia_Image_4_A", image1.Cost);
             image4.Name = "Reimagine the Universe";
-            image4.Description = "Temporarily replace this character with a random level 4 party member.\nThis character will return at the end of the round.";
+            image4.Description = "Temporarily replace this party member with a random level 4 party member.\nThis party member will return at the end of the round.";
             image4.Effects[2].entryVariable = 3;
 
             Ability box1 = new Ability("Trapped in a Box", "Qualia_Box_1_A");
