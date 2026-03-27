@@ -33,8 +33,12 @@ namespace AprilsDayAtFools
             AddFor(isMarch, "Rotcore", "Aprils_BloodDiamond_TW");
             AddFor(isMarch, "Catten", "Aprils_NullReferenceException_TW");
             AddFor(isMarch, "Sunflower", "Aprils_Broom_SW");
+            AddFor(isMarch, "Snail", "Aprils_Sirenhead_TW");
+            AddFor(isMarch, "Lich", "Aprils_RingOfTheDevil_SW");
+            AddFor(isMarch, "Izide", "Aprils_Headless_SW");
             AddFor(isMarch, "Saea", "Aprils_Damocles_TW");
             AddFor(isMarch, "Alpha", "Aprils_YouVoodooDoll_TW");
+            AddFor(isMarch, "Qualia", "Aprils_SoundOfTheSea_SW");
             if (April.Me) AddFor(isMarch, "Secret", "Aprils_Boneworms_SW");
         }
 
