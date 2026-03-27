@@ -169,6 +169,67 @@ namespace AprilsDayAtFools
             SlidingHandler.AddCharacter(qualia.character);
         }
 
+        public static void Items()
+        {
+            CopyAndSpawnCustomCharacterAnywhereEffect telomere = ScriptableObject.CreateInstance<CopyAndSpawnCustomCharacterAnywhereEffect>();
+            telomere._characterCopy = "Telomere_CH";
+            telomere._permanentSpawn = true;
+            telomere._rank = 0;
+            telomere._extraModifiers = [];
+            PerformEffect_Item lab = new PerformEffect_Item("Aprils_PlasticLabKit_SW", [Effects.GenerateEffect(telomere, 1, Slots.Self)]);
+            lab.Name = "Plastic Laboratory Kit";
+            lab.Flavour = "\"Build-an-Abomination\"";
+            lab.Description = "At the start of combat, spawn a permenant level 1 party member.\nThis item is consumed on use.";
+            lab.Icon = ResourceLoader.LoadSprite("item_PlasticLabKit.png");
+            lab.EquippedModifiers = [];
+            lab.TriggerOn = TriggerCalls.OnCombatStart;
+            lab.DoesPopUpInfo = true;
+            lab.Conditions = [];
+            lab.DoesActionOnTriggerAttached = false;
+            lab.ConsumeOnTrigger = TriggerCalls.Count;
+            lab.ConsumeOnUse = true;
+            lab.ConsumeConditions = [];
+            lab.ShopPrice = 7;
+            lab.IsShopItem = true;
+            lab.StartsLocked = true;
+            lab.OnUnlockUsesTHE = true;
+            lab.UsesSpecialUnlockText = false;
+            lab.SpecialUnlockID = UILocID.None;
+            lab.item._ItemTypeIDs = [];
+            lab.item.AddItem("locked_PlasticLabKit.png", OsmanACH);
+
+            CopyAndSpawnCustomCharacterAnywhereEffect infanticide = ScriptableObject.CreateInstance<CopyAndSpawnCustomCharacterAnywhereEffect>();
+            infanticide._characterCopy = "Infanticide_CH";
+            infanticide._permanentSpawn = true;
+            infanticide._rank = 0;
+            infanticide._extraModifiers = [];
+            PerformEffect_Item hangar = new PerformEffect_Item("Aprils_CoatHanger_SW", [Effects.GenerateEffect(infanticide, 1, Slots.Self)]);
+            hangar.Name = "Coat Hanger";
+            hangar.Flavour = "\"What happened?\"";
+            hangar.Description = "At the start of combat, spawn a permenant level 1 party member.\nThis item is consumed on use.";
+            hangar.Icon = ResourceLoader.LoadSprite("item_coathanger.png");
+            hangar.EquippedModifiers = [];
+            hangar.TriggerOn = TriggerCalls.OnCombatStart;
+            hangar.DoesPopUpInfo = true;
+            hangar.Conditions = [];
+            hangar.DoesActionOnTriggerAttached = false;
+            hangar.ConsumeOnTrigger = TriggerCalls.Count;
+            hangar.ConsumeOnUse = true;
+            hangar.ConsumeConditions = [];
+            hangar.ShopPrice = 7;
+            hangar.IsShopItem = true;
+            hangar.StartsLocked = true;
+            hangar.OnUnlockUsesTHE = true;
+            hangar.UsesSpecialUnlockText = false;
+            hangar.SpecialUnlockID = UILocID.None;
+            hangar.item._ItemTypeIDs = [];
+            hangar.Item.AddItem("locked_coathanger.png", OsmanACH);
+        }
+        public static void Unlocks()
+        {
+            Unlocking.GenerateAchievements("Didion", "Beta-Blockers", "Martyr", HeavenACH, OsmanACH);
+            Unlocking.SetUpUnlocks("Didion_CH", "Aprils_BetaBlockers_SW", "Aprils_Martyr_SW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
+        }
 
         public static string HeavenACH => "Aprils_Qualia_Heaven_ACH";
         public static string OsmanACH => "Aprils_Qualia_Osman_ACH";

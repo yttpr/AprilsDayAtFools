@@ -178,6 +178,27 @@ namespace AprilsDayAtFools
 
         public static void Items()
         {
+            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_NosferatuGlass_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 1, Slots.Self)]);
+            betablockers.Name = "Nosferatu Glass";
+            betablockers.Flavour = "\"...And the thirst would never truly be quenched.\"";
+            betablockers.Description = "At the start of each turn, gain 1 Lifesteal.";
+            betablockers.Icon = ResourceLoader.LoadSprite("item_nosferatuglass.png");
+            betablockers.EquippedModifiers = [];
+            betablockers.TriggerOn = TriggerCalls.OnTurnStart;
+            betablockers.DoesPopUpInfo = true;
+            betablockers.Conditions = [];
+            betablockers.DoesActionOnTriggerAttached = false;
+            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
+            betablockers.ConsumeOnUse = false;
+            betablockers.ConsumeConditions = [];
+            betablockers.ShopPrice = 8;
+            betablockers.IsShopItem = false;
+            betablockers.StartsLocked = true;
+            betablockers.OnUnlockUsesTHE = true;
+            betablockers.UsesSpecialUnlockText = false;
+            betablockers.SpecialUnlockID = UILocID.None;
+            betablockers.item.AddItem("locked_nosferatuglass.png", OsmanACH);
+
             Ability misnomer = new Ability("Lich_Misnomer_A");
             misnomer.Name = "Misnomer";
             misnomer.Description = "Invert this and the Right ally's healths.";
@@ -213,28 +234,7 @@ namespace AprilsDayAtFools
             noose.UsesSpecialUnlockText = false;
             noose.SpecialUnlockID = UILocID.None;
             noose.item._ItemTypeIDs = [];
-            noose.Item.AddItem("locked_wrongnoose.png", OsmanACH);
-
-            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_NosferatuGlass_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 1, Slots.Self)]);
-            betablockers.Name = "Nosferatu Glass";
-            betablockers.Flavour = "\"...And the thirst would never truly be quenched.\"";
-            betablockers.Description = "At the start of each turn, gain 1 Lifesteal.";
-            betablockers.Icon = ResourceLoader.LoadSprite("item_nosferatuglass.png");
-            betablockers.EquippedModifiers = [];
-            betablockers.TriggerOn = TriggerCalls.OnTurnStart;
-            betablockers.DoesPopUpInfo = true;
-            betablockers.Conditions = [];
-            betablockers.DoesActionOnTriggerAttached = false;
-            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
-            betablockers.ConsumeOnUse = false;
-            betablockers.ConsumeConditions = [];
-            betablockers.ShopPrice = 8;
-            betablockers.IsShopItem = false;
-            betablockers.StartsLocked = true;
-            betablockers.OnUnlockUsesTHE = true;
-            betablockers.UsesSpecialUnlockText = false;
-            betablockers.SpecialUnlockID = UILocID.None;
-            betablockers.item.AddItem("locked_nosferatuglass.png", HeavenACH);
+            noose.Item.AddItem("locked_wrongnoose.png", HeavenACH);
         }
         public static void Unlocks()
         {

@@ -202,7 +202,30 @@ namespace AprilsDayAtFools
 
         public static void Items()
         {
-            MultiPerformEffectItem radio = new MultiPerformEffectItem("Aprils_DoomRadio_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<MaskedAddDelayedAttackEffect>(), 4, Slots.Front)]);
+            MultiPerformEffectItem apocalypse = new MultiPerformEffectItem("Aprils_ApocalypseTomorrow_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 5, Slots.Front)]);
+            apocalypse.Name = "Apocalypse Tomorrow";
+            apocalypse.Flavour = "\"Why not now?\"";
+            apocalypse.Description = "Inflict 5 Karma on the Opposing enemy on being moved.\nOn being directly damaged, end combat for all enemies.";
+            apocalypse.Icon = ResourceLoader.LoadSprite("item_apocalypsetomorrow.png");
+            apocalypse.EquippedModifiers = [];
+            apocalypse.TriggerOn = TriggerCalls.OnMoved;
+            apocalypse.DoesPopUpInfo = true;
+            apocalypse.Conditions = [];
+            apocalypse.DoesActionOnTriggerAttached = false;
+            apocalypse.ConsumeOnTrigger = TriggerCalls.Count;
+            apocalypse.ConsumeOnUse = false;
+            apocalypse.ConsumeConditions = [];
+            apocalypse.ShopPrice = 6;
+            apocalypse.IsShopItem = false;
+            apocalypse.StartsLocked = true;
+            apocalypse.OnUnlockUsesTHE = true;
+            apocalypse.UsesSpecialUnlockText = false;
+            apocalypse.SpecialUnlockID = UILocID.None;
+            apocalypse.item._ItemTypeIDs = ["Magic"];
+            apocalypse.AddEffectTrigger(new EffectTrigger([Effects.GenerateEffect(ScriptableObject.CreateInstance<EndCombatTargetEffect>(), 1, Targeting.Unit_AllOpponents)], [TriggerCalls.OnDirectDamaged], []));
+            apocalypse.item.AddItem("locked_apocalypsetomorrow.png", OsmanACH);
+
+            PerformEffect_Item radio = new PerformEffect_Item("Aprils_DoomRadio_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<MaskedAddDelayedAttackEffect>(), 4, Slots.Front)]);
             radio.Name = "Doom Radio";
             radio.Flavour = "\"Take 3 steps to the left to die.\"";
             radio.Description = "At the start of each turn, deal 4 damage to the Opposing positions of every position this party member moved into.";
@@ -215,40 +238,19 @@ namespace AprilsDayAtFools
             radio.ConsumeOnTrigger = TriggerCalls.Count;
             radio.ConsumeOnUse = false;
             radio.ConsumeConditions = [];
-            radio.ShopPrice = 3;
+            radio.ShopPrice = 8;
             radio.IsShopItem = true;
             radio.StartsLocked = true;
             radio.OnUnlockUsesTHE = true;
             radio.UsesSpecialUnlockText = false;
             radio.SpecialUnlockID = UILocID.None;
             radio.item._ItemTypeIDs = ["Magic"];
-            radio.Item.AddItem("locked_martyr.png", OsmanACH);
-
-            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_BetaBlockers_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyAnestheticsEffect>(), 4, Slots.Self)]);
-            betablockers.Name = "Beta-Blockers";
-            betablockers.Flavour = "\"This won't hurt a bit.\"";
-            betablockers.Description = "Apply 4 Anesthetics to this party member on combat start.";
-            betablockers.Icon = ResourceLoader.LoadSprite("item_betablockers.png");
-            betablockers.EquippedModifiers = [];
-            betablockers.TriggerOn = TriggerCalls.OnFirstTurnStart;
-            betablockers.DoesPopUpInfo = true;
-            betablockers.Conditions = [];
-            betablockers.DoesActionOnTriggerAttached = false;
-            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
-            betablockers.ConsumeOnUse = false;
-            betablockers.ConsumeConditions = [];
-            betablockers.ShopPrice = 4;
-            betablockers.IsShopItem = true;
-            betablockers.StartsLocked = true;
-            betablockers.OnUnlockUsesTHE = true;
-            betablockers.UsesSpecialUnlockText = false;
-            betablockers.SpecialUnlockID = UILocID.None;
-            betablockers.item.AddItem("locked_betablockers.png", HeavenACH);
+            radio.Item.AddItem("locked_doomradio.png", HeavenACH);
         }
         public static void Unlocks()
         {
-            Unlocking.GenerateAchievements("Didion", "Beta-Blockers", "Martyr", HeavenACH, OsmanACH);
-            Unlocking.SetUpUnlocks("Didion_CH", "Aprils_BetaBlockers_SW", "Aprils_Martyr_SW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
+            Unlocking.GenerateAchievements("Izide", "Doom Radio", "Apocalypse Tomorrow", HeavenACH, OsmanACH);
+            Unlocking.SetUpUnlocks("Izide_CH", "Aprils_DoomRadio_SW", "Aprils_ApocalypseTomorrow_TW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
         }
 
 

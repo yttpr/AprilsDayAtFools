@@ -177,6 +177,27 @@ namespace AprilsDayAtFools
 
         public static void Items()
         {
+            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_Rake_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyRakeEffect>(), 1, Slots.Front)]);
+            betablockers.Name = "Rake";
+            betablockers.Flavour = "\"By Eggnog.\"";
+            betablockers.Description = "At the start of combat, add The Rake on the Opposing position.";
+            betablockers.Icon = ResourceLoader.LoadSprite("item_rake.png");
+            betablockers.EquippedModifiers = [];
+            betablockers.TriggerOn = TriggerCalls.OnFirstTurnStart;
+            betablockers.DoesPopUpInfo = true;
+            betablockers.Conditions = [];
+            betablockers.DoesActionOnTriggerAttached = false;
+            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
+            betablockers.ConsumeOnUse = false;
+            betablockers.ConsumeConditions = [];
+            betablockers.ShopPrice = 6;
+            betablockers.IsShopItem = true;
+            betablockers.StartsLocked = true;
+            betablockers.OnUnlockUsesTHE = true;
+            betablockers.UsesSpecialUnlockText = false;
+            betablockers.SpecialUnlockID = UILocID.None;
+            betablockers.item.AddItem("locked_rake.png", OsmanACH);
+
             ChangeToRandomHealthColorEffect turn_blue = ScriptableObject.CreateInstance<ChangeToRandomHealthColorEffect>();
             turn_blue._healthColors = [Pigments.Blue];
             PerformEffect_Item glue = new PerformEffect_Item("Aprils_GlueHundred_TW", [Effects.GenerateEffect(turn_blue, 1, Targeting.Unit_AllOpponents)]);
@@ -199,28 +220,7 @@ namespace AprilsDayAtFools
             glue.UsesSpecialUnlockText = false;
             glue.SpecialUnlockID = UILocID.None;
             glue.item._ItemTypeIDs = ["Meat"];
-            glue.Item.AddItem("locked_gluehundred.png", OsmanACH);
-
-            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_Rake_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyRakeEffect>(), 1, Slots.Front)]);
-            betablockers.Name = "Rake";
-            betablockers.Flavour = "\"By Eggnog.\"";
-            betablockers.Description = "At the start of combat, add The Rake on the Opposing position.";
-            betablockers.Icon = ResourceLoader.LoadSprite("item_rake.png");
-            betablockers.EquippedModifiers = [];
-            betablockers.TriggerOn = TriggerCalls.OnFirstTurnStart;
-            betablockers.DoesPopUpInfo = true;
-            betablockers.Conditions = [];
-            betablockers.DoesActionOnTriggerAttached = false;
-            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
-            betablockers.ConsumeOnUse = false;
-            betablockers.ConsumeConditions = [];
-            betablockers.ShopPrice = 6;
-            betablockers.IsShopItem = true;
-            betablockers.StartsLocked = true;
-            betablockers.OnUnlockUsesTHE = true;
-            betablockers.UsesSpecialUnlockText = false;
-            betablockers.SpecialUnlockID = UILocID.None;
-            betablockers.item.AddItem("locked_rake.png", HeavenACH);
+            glue.Item.AddItem("locked_gluehundred.png", HeavenACH);
         }
         public static void Unlocks()
         {
