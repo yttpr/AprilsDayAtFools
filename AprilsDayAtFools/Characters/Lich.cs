@@ -219,7 +219,7 @@ namespace AprilsDayAtFools
             noose.Flavour = "\"You weren't supposed to die today.\"";
             noose.Description = "Adds the extra ability \"Misnomer,\" a powerful but dangerous healing(?) ability.";
             noose.Icon = ResourceLoader.LoadSprite("item_wrongnoose.png");
-            noose.EquippedModifiers = [];
+            noose.EquippedModifiers = [add_misnomer];
             noose.TriggerOn = TriggerCalls.Count;
             noose.DoesPopUpInfo = false;
             noose.Conditions = [];
