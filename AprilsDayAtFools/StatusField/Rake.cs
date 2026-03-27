@@ -40,10 +40,10 @@ namespace AprilsDayAtFools
             rakeSO._EffectInfo = rakeInfo;
             Object = rakeSO;
             //disable after testing
-            if (!LoadedDBsHandler.StatusFieldDB.FieldEffects.ContainsKey(FieldID))
+            /*if (!LoadedDBsHandler.StatusFieldDB.FieldEffects.ContainsKey(FieldID))
             {
                 LoadedDBsHandler.StatusFieldDB.AddNewFieldEffect(rakeSO);
-            }
+            }*/
 
             IntentInfoBasic intentinfo = new IntentInfoBasic();
             intentinfo._color = Color.white;
