@@ -197,7 +197,7 @@ namespace AprilsDayAtFools
             Class1.PCall(Sunflower.Unlocks);
             Class1.PCall(Snail.Unlocks);
             Class1.PCall(Lich.Unlocks);
-            Class1.PCall(Izide.Items);
+            Class1.PCall(Izide.Unlocks);
             Class1.PCall(Saea.Unlocks);
             Class1.PCall(Alpha.Unlocks);
             Class1.PCall(Qualia.Unlocks);
