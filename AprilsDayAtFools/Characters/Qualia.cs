@@ -180,7 +180,7 @@ namespace AprilsDayAtFools
             lab.Name = "Plastic Laboratory Kit";
             lab.Flavour = "\"Build-an-Abomination\"";
             lab.Description = "At the start of combat, spawn a permenant level 1 party member.\nThis item is consumed on use.";
-            lab.Icon = ResourceLoader.LoadSprite("item_PlasticLabKit.png");
+            lab.Icon = ResourceLoader.LoadSprite("item_plasticlabkit.png");
             lab.EquippedModifiers = [];
             lab.TriggerOn = TriggerCalls.OnCombatStart;
             lab.DoesPopUpInfo = true;
@@ -196,7 +196,7 @@ namespace AprilsDayAtFools
             lab.UsesSpecialUnlockText = false;
             lab.SpecialUnlockID = UILocID.None;
             lab.item._ItemTypeIDs = [];
-            lab.item.AddItem("locked_PlasticLabKit.png", OsmanACH);
+            lab.item.AddItem("locked_plasticlabkit.png", OsmanACH);
 
             CopyAndSpawnCustomCharacterAnywhereEffect infanticide = ScriptableObject.CreateInstance<CopyAndSpawnCustomCharacterAnywhereEffect>();
             infanticide._characterCopy = "Infanticide_CH";
@@ -227,8 +227,8 @@ namespace AprilsDayAtFools
         }
         public static void Unlocks()
         {
-            Unlocking.GenerateAchievements("Didion", "Beta-Blockers", "Martyr", HeavenACH, OsmanACH);
-            Unlocking.SetUpUnlocks("Didion_CH", "Aprils_BetaBlockers_SW", "Aprils_Martyr_SW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
+            Unlocking.GenerateAchievements("Qualia", "Plastic Laboratory Kit", "Coat Hanger", HeavenACH, OsmanACH);
+            Unlocking.SetUpUnlocks("Qualia_CH", "Aprils_PlasticLabKit_SW", "Aprils_CoatHanger_SW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
         }
 
         public static string HeavenACH => "Aprils_Qualia_Heaven_ACH";
