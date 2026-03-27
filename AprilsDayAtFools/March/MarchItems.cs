@@ -643,7 +643,23 @@ namespace AprilsDayAtFools
             headless.Name = "Headless";
             headless.Flavour = "\"And it takes no one to know one\"";
             headless.Description = "At the start of the first turn, temporarily replace this party member with a random level 4 party member. They will return at the end of the round.";
-
+            headless.Icon = ResourceLoader.LoadSprite("item_headless.png");
+            headless.EquippedModifiers = [];
+            headless.TriggerOn = TriggerCalls.OnFirstTurnStart;
+            headless.DoesPopUpInfo = true;
+            headless.Conditions = [];
+            headless.DoesActionOnTriggerAttached = false;
+            headless.ConsumeOnTrigger = TriggerCalls.Count;
+            headless.ConsumeOnUse = false;
+            headless.ConsumeConditions = [];
+            headless.ShopPrice = 8;
+            headless.IsShopItem = true;
+            headless.StartsLocked = true;
+            headless.OnUnlockUsesTHE = false;
+            headless.UsesSpecialUnlockText = false;
+            headless.SpecialUnlockID = UILocID.None;
+            headless.item._ItemTypeIDs = ["Face"];
+            headless.item.AddItem("locked_headless.png", "Aprils_Izide_March_ACH");
 
             PerformEffect_Item saea = new PerformEffect_Item("Aprils_Damocles_TW", [
                 Effects.GenerateEffect(ScriptableObject.CreateInstance<ExtraVariableForNextEffect>(), 2),
@@ -691,6 +707,34 @@ namespace AprilsDayAtFools
             alpha.SpecialUnlockID = UILocID.None;
             alpha.item._ItemTypeIDs = ["Magic"];
             alpha.item.AddItem("locked_youvoodoodoll.png", "Aprils_Alpha_March_ACH");
+
+            CopyAndSpawnCustomCharacterAnywhereEffect lyren = ScriptableObject.CreateInstance<CopyAndSpawnCustomCharacterAnywhereEffect>();
+            lyren._characterCopy = "Lyren_CH";
+            lyren._permanentSpawn = true;
+            lyren._rank = 0;
+            lyren._extraModifiers = [];
+
+            PerformEffect_Item sea = new PerformEffect_Item("Aprils_SoundOfTheSea_SW", [Effects.GenerateEffect(lyren, 1)]);
+            sea.Name = "Sound of the Sea";
+            sea.Flavour = "\"It's blue.\"";
+            sea.Description = "At the start of combat, spawn a permenant level 1 party member.\nThis item is consumed on use.";
+            sea.Icon = ResourceLoader.LoadSprite("item_soundofthesea.png");
+            sea.EquippedModifiers = [];
+            sea.TriggerOn = TriggerCalls.OnCombatStart;
+            sea.DoesPopUpInfo = true;
+            sea.Conditions = [];
+            sea.DoesActionOnTriggerAttached = false;
+            sea.ConsumeOnTrigger = TriggerCalls.Count;
+            sea.ConsumeOnUse = true;
+            sea.ConsumeConditions = [];
+            sea.ShopPrice = 7;
+            sea.IsShopItem = true;
+            sea.StartsLocked = true;
+            sea.OnUnlockUsesTHE = true;
+            sea.UsesSpecialUnlockText = false;
+            sea.SpecialUnlockID = UILocID.None;
+            sea.item._ItemTypeIDs = [];
+            sea.item.AddItem("locked_soundofthesea.png", "Aprils_Qualia_March_ACH");
 
             if (!April.Me) return;
 
