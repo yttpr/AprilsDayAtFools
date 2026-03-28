@@ -26,7 +26,7 @@ namespace AprilsDayAtFools
         public static void Config()
         {
             ConfigFile config = new ConfigFile(Path.Combine(Paths.ConfigPath, "AprilsDayAtFoolsConfig.cfg"), true);
-            ConfigEntry<bool> unlock_all = config.Bind<bool>("AprilsDayAtFools", "UnlockAllByDefault", false, "Unlocks 10 fools, skipping Saea's quest.");
+            ConfigEntry<bool> unlock_all = config.Bind<bool>("AprilsDayAtFools", "UnlockAllByDefault", false, "Unlocks the 10 secret fools, skipping Saea's quest.");
             Joyce.UnlockByDefault = unlock_all.Value;
         }
         public static void SetAssets()
