@@ -177,26 +177,26 @@ namespace AprilsDayAtFools
 
         public static void Items()
         {
-            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_Rake_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyRakeEffect>(), 1, Slots.Front)]);
-            betablockers.Name = "Rake";
-            betablockers.Flavour = "\"By Eggnog.\"";
-            betablockers.Description = "At the start of combat, add The Rake on the Opposing position.";
-            betablockers.Icon = ResourceLoader.LoadSprite("item_rake.png");
-            betablockers.EquippedModifiers = [];
-            betablockers.TriggerOn = TriggerCalls.OnFirstTurnStart;
-            betablockers.DoesPopUpInfo = true;
-            betablockers.Conditions = [];
-            betablockers.DoesActionOnTriggerAttached = false;
-            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
-            betablockers.ConsumeOnUse = false;
-            betablockers.ConsumeConditions = [];
-            betablockers.ShopPrice = 6;
-            betablockers.IsShopItem = true;
-            betablockers.StartsLocked = true;
-            betablockers.OnUnlockUsesTHE = true;
-            betablockers.UsesSpecialUnlockText = false;
-            betablockers.SpecialUnlockID = UILocID.None;
-            betablockers.item.AddItem("locked_rake.png", OsmanACH);
+            PerformEffect_Item rake = new PerformEffect_Item("Aprils_Rake_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyRakeEffect>(), 1, Slots.Front)]);
+            rake.Name = "Rake";
+            rake.Flavour = "\"By Eggnog.\"";
+            rake.Description = "At the start of combat, add The Rake on the Opposing position.";
+            rake.Icon = ResourceLoader.LoadSprite("item_rake.png");
+            rake.EquippedModifiers = [];
+            rake.TriggerOn = TriggerCalls.OnFirstTurnStart;
+            rake.DoesPopUpInfo = true;
+            rake.Conditions = [];
+            rake.DoesActionOnTriggerAttached = false;
+            rake.ConsumeOnTrigger = TriggerCalls.Count;
+            rake.ConsumeOnUse = false;
+            rake.ConsumeConditions = [];
+            rake.ShopPrice = 6;
+            rake.IsShopItem = true;
+            rake.StartsLocked = true;
+            rake.OnUnlockUsesTHE = true;
+            rake.UsesSpecialUnlockText = false;
+            rake.SpecialUnlockID = UILocID.None;
+            rake.item.AddItem("locked_rake.png", OsmanACH);
 
             ChangeToRandomHealthColorEffect turn_blue = ScriptableObject.CreateInstance<ChangeToRandomHealthColorEffect>();
             turn_blue._healthColors = [Pigments.Blue];

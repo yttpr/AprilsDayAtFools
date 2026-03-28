@@ -178,26 +178,26 @@ namespace AprilsDayAtFools
 
         public static void Items()
         {
-            PerformEffect_Item betablockers = new PerformEffect_Item("Aprils_NosferatuGlass_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 1, Slots.Self)]);
-            betablockers.Name = "Nosferatu Glass";
-            betablockers.Flavour = "\"...And the thirst would never truly be quenched.\"";
-            betablockers.Description = "At the start of each turn, gain 1 Lifesteal.";
-            betablockers.Icon = ResourceLoader.LoadSprite("item_nosferatuglass.png");
-            betablockers.EquippedModifiers = [];
-            betablockers.TriggerOn = TriggerCalls.OnTurnStart;
-            betablockers.DoesPopUpInfo = true;
-            betablockers.Conditions = [];
-            betablockers.DoesActionOnTriggerAttached = false;
-            betablockers.ConsumeOnTrigger = TriggerCalls.Count;
-            betablockers.ConsumeOnUse = false;
-            betablockers.ConsumeConditions = [];
-            betablockers.ShopPrice = 8;
-            betablockers.IsShopItem = false;
-            betablockers.StartsLocked = true;
-            betablockers.OnUnlockUsesTHE = true;
-            betablockers.UsesSpecialUnlockText = false;
-            betablockers.SpecialUnlockID = UILocID.None;
-            betablockers.item.AddItem("locked_nosferatuglass.png", OsmanACH);
+            PerformEffect_Item vampire = new PerformEffect_Item("Aprils_NosferatuGlass_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 1, Slots.Self)]);
+            vampire.Name = "Nosferatu Glass";
+            vampire.Flavour = "\"...And the thirst would never truly be quenched.\"";
+            vampire.Description = "At the start of each turn, gain 1 Lifesteal.";
+            vampire.Icon = ResourceLoader.LoadSprite("item_nosferatuglass.png");
+            vampire.EquippedModifiers = [];
+            vampire.TriggerOn = TriggerCalls.OnTurnStart;
+            vampire.DoesPopUpInfo = true;
+            vampire.Conditions = [];
+            vampire.DoesActionOnTriggerAttached = false;
+            vampire.ConsumeOnTrigger = TriggerCalls.Count;
+            vampire.ConsumeOnUse = false;
+            vampire.ConsumeConditions = [];
+            vampire.ShopPrice = 8;
+            vampire.IsShopItem = false;
+            vampire.StartsLocked = true;
+            vampire.OnUnlockUsesTHE = true;
+            vampire.UsesSpecialUnlockText = false;
+            vampire.SpecialUnlockID = UILocID.None;
+            vampire.item.AddItem("locked_nosferatuglass.png", OsmanACH);
 
             BaseCombatTargettingSO right = Slots.SlotTarget([-4, 0, 1], true);
             Ability misnomer = new Ability("Lich_Misnomer_A");
