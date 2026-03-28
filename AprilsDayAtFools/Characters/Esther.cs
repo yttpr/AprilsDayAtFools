@@ -11,6 +11,7 @@ namespace AprilsDayAtFools
     {
         public static void Add()
         {
+            //REWORK HER AT SOME POINT
             PerformEffectPassiveAbility eternal = ScriptableObject.CreateInstance<PerformEffectPassiveAbility>();
             eternal._passiveName = "Eternal";
             eternal.passiveIcon = ResourceLoader.LoadSprite("EternityPassive.png");
