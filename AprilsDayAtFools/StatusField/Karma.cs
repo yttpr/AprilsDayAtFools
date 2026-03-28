@@ -51,6 +51,15 @@ namespace AprilsDayAtFools
             reminfo._color = LoadedDBsHandler.IntentDB.m_IntentBasicPool["Rem_Status_Frail"]._color;
             reminfo._sprite = ResourceLoader.LoadSprite("KarmaIcon.png");
             if (!LoadedDBsHandler.IntentDB.m_IntentBasicPool.ContainsKey(Rem)) LoadedDBsHandler.IntentDB.AddNewBasicIntent(Rem, reminfo);
+
+            //NotificationHook.AddAction(NotifCheck, true);
+        }
+
+        public static string Trigger => "ADAF_Karma_Fools_Trigger";
+        public static void NotifCheck(string name, object sender, object args)
+        {
+            if (name == TriggerCalls.OnCombatEnd.ToString())
+                CombatManager.Instance.PostNotification(Trigger, sender, args);
         }
     }
     public class KarmaSE_SO : StatusEffect_SO

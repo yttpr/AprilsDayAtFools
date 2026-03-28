@@ -11,10 +11,16 @@ namespace AprilsDayAtFools
     {
         public static void Setup()
         {
-            IDetour hook = new Hook(typeof(CombatStats).GetMethod(nameof(CombatStats.CombatEndTriggered), ~BindingFlags.Default), typeof(EternalHandler).GetMethod(nameof(CombatStats_FinalizeCombat), ~BindingFlags.Default));
+            IDetour hook = new Hook(typeof(CombatInputManager).GetMethod(nameof(CombatInputManager.SetEscapeToggle), ~BindingFlags.Default), typeof(EternalHandler).GetMethod(nameof(CombatStats_FinalizeCombat), ~BindingFlags.Default));
         }
-        public static void CombatStats_FinalizeCombat(Action<CombatStats> orig, CombatStats self)
+        public static void CombatStats_FinalizeCombat(Action<CombatInputManager, bool> orig, CombatInputManager manager, bool enabled)
         {
+            orig(manager, enabled);
+
+            if (enabled) return;
+
+            CombatStats self = CombatManager.Instance._stats;
+
             foreach (CharacterCombat chara in self.Characters.Values)
             {
                 if (!self.CharactersAlive) break;
@@ -32,7 +38,6 @@ namespace AprilsDayAtFools
                     }
                 }
             }
-            orig(self);
         }
         public static int EmptyCharSlot(CombatStats self)
         {
