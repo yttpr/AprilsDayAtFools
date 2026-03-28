@@ -171,32 +171,6 @@ namespace AprilsDayAtFools
 
         public static void Items()
         {
-            CopyAndSpawnCustomCharacterAnywhereEffect telomere = ScriptableObject.CreateInstance<CopyAndSpawnCustomCharacterAnywhereEffect>();
-            telomere._characterCopy = "Telomere_CH";
-            telomere._permanentSpawn = true;
-            telomere._rank = 0;
-            telomere._extraModifiers = [];
-            PerformEffect_Item lab = new PerformEffect_Item("Aprils_PlasticLabKit_SW", [Effects.GenerateEffect(telomere, 1, Slots.Self)]);
-            lab.Name = "Plastic Laboratory Kit";
-            lab.Flavour = "\"Build-an-Abomination\"";
-            lab.Description = "At the start of combat, spawn a permenant level 1 party member.\nThis item is consumed on use.";
-            lab.Icon = ResourceLoader.LoadSprite("item_plasticlabkit.png");
-            lab.EquippedModifiers = [];
-            lab.TriggerOn = TriggerCalls.OnCombatStart;
-            lab.DoesPopUpInfo = true;
-            lab.Conditions = [];
-            lab.DoesActionOnTriggerAttached = false;
-            lab.ConsumeOnTrigger = TriggerCalls.Count;
-            lab.ConsumeOnUse = true;
-            lab.ConsumeConditions = [];
-            lab.ShopPrice = 7;
-            lab.IsShopItem = true;
-            lab.StartsLocked = true;
-            lab.OnUnlockUsesTHE = true;
-            lab.UsesSpecialUnlockText = false;
-            lab.SpecialUnlockID = UILocID.None;
-            lab.item._ItemTypeIDs = [];
-            lab.item.AddItem("locked_plasticlabkit.png", OsmanACH);
 
             CopyAndSpawnCustomCharacterAnywhereEffect infanticide = ScriptableObject.CreateInstance<CopyAndSpawnCustomCharacterAnywhereEffect>();
             infanticide._characterCopy = "Infanticide_CH";
@@ -223,12 +197,39 @@ namespace AprilsDayAtFools
             hangar.UsesSpecialUnlockText = false;
             hangar.SpecialUnlockID = UILocID.None;
             hangar.item._ItemTypeIDs = [];
-            hangar.Item.AddItem("locked_coathanger.png", OsmanACH);
+            hangar.Item.AddItem("locked_coathanger.png", HeavenACH);
+
+            CopyAndSpawnCustomCharacterAnywhereEffect telomere = ScriptableObject.CreateInstance<CopyAndSpawnCustomCharacterAnywhereEffect>();
+            telomere._characterCopy = "Telomere_CH";
+            telomere._permanentSpawn = true;
+            telomere._rank = 0;
+            telomere._extraModifiers = [];
+            PerformEffect_Item lab = new PerformEffect_Item("Aprils_PlasticLabKit_SW", [Effects.GenerateEffect(telomere, 1, Slots.Self)]);
+            lab.Name = "Plastic Laboratory Kit";
+            lab.Flavour = "\"Build-an-Abomination\"";
+            lab.Description = "At the start of combat, spawn a permenant level 1 party member.\nThis item is consumed on use.";
+            lab.Icon = ResourceLoader.LoadSprite("item_plasticlabkit.png");
+            lab.EquippedModifiers = [];
+            lab.TriggerOn = TriggerCalls.OnCombatStart;
+            lab.DoesPopUpInfo = true;
+            lab.Conditions = [];
+            lab.DoesActionOnTriggerAttached = false;
+            lab.ConsumeOnTrigger = TriggerCalls.Count;
+            lab.ConsumeOnUse = true;
+            lab.ConsumeConditions = [];
+            lab.ShopPrice = 7;
+            lab.IsShopItem = true;
+            lab.StartsLocked = true;
+            lab.OnUnlockUsesTHE = true;
+            lab.UsesSpecialUnlockText = false;
+            lab.SpecialUnlockID = UILocID.None;
+            lab.item._ItemTypeIDs = [];
+            lab.item.AddItem("locked_plasticlabkit.png", OsmanACH);
         }
         public static void Unlocks()
         {
-            Unlocking.GenerateAchievements("Qualia", "Plastic Laboratory Kit", "Coat Hanger", HeavenACH, OsmanACH);
-            Unlocking.SetUpUnlocks("Qualia_CH", "Aprils_PlasticLabKit_SW", "Aprils_CoatHanger_SW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
+            Unlocking.GenerateAchievements("Qualia", "Coat Hanger", "Plastic Laboratory Kit", HeavenACH, OsmanACH);
+            Unlocking.SetUpUnlocks("Qualia_CH", "Aprils_CoatHanger_SW", "Aprils_PlasticLabKit_SW", HeavenACH, OsmanACH, HeavenUnlock, OsmanUnlock);
         }
 
         public static string HeavenACH => "Aprils_Qualia_Heaven_ACH";
