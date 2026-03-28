@@ -41,33 +41,34 @@ namespace AprilsDayAtFools
             DamageEffect damage = ScriptableObject.CreateInstance<DamageEffect>();
 
             Ability karma1 = new Ability("Readjustment of Faith", "Rot_Karma_1_A");
-            karma1.Description = "Apply 1 Divine Protection to all enemies. Remove Divine Protection from the Opposing enemy.\nDeal 3 damage to all enemies.";
+            karma1.Description = "Apply 1 Divine Protection to all enemies. Remove Divine Protection from the Opposing enemy.\nDeal 2 damage to all enemies.";
             karma1.AbilitySprite = ResourceLoader.LoadSprite("ability_karma.png");
             karma1.Cost = [Pigments.Red, Pigments.Red, Pigments.Red, Pigments.Yellow];
             karma1.Effects = new EffectInfo[3];
             karma1.Effects[0] = Effects.GenerateEffect(divine, 1, Targeting.Unit_AllOpponents);
             karma1.Effects[1] = Effects.GenerateEffect(remove, 1, Slots.Front);
-            karma1.Effects[2] = Effects.GenerateEffect(damage, 3, Targeting.Unit_AllOpponents);
+            karma1.Effects[2] = Effects.GenerateEffect(damage, 2, Targeting.Unit_AllOpponents);
             karma1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Status_DivineProtection"]);
             karma1.AddIntentsToTarget(Slots.Front, ["Rem_Status_DivineProtection"]);
-            karma1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Damage_3_6"]);
+            karma1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Damage_1_2"]);
             karma1.AnimationTarget = Slots.Front;
             karma1.Visuals = Visuals.Excommunicate;
 
             Ability karma2 = new Ability(karma1.ability, "Rot_Karma_2_A", karma1.Cost);
             karma2.Name = "Readjustment of Karma";
-            karma2.Description = "Apply 1 Divine protection to all enemies. Remove Divine Protection from the Opposing enemy.\nDeal 4 damage to all enemies.";
-            karma2.Effects[2].entryVariable = 4;
+            karma2.Description = "Apply 1 Divine protection to all enemies. Remove Divine Protection from the Opposing enemy.\nDeal 3 damage to all enemies.";
+            karma2.Effects[2].entryVariable = 3;
+            karma2.EffectIntents[2].intents[0] = "Damage_3_6";
 
             Ability karma3 = new Ability(karma2.ability, "Rot_Karma_3_A", karma1.Cost);
             karma3.Name = "Readjustment of Suffering";
-            karma3.Description = "Apply 1 Divine protection to all enemies. Remove Divine Protection from the Opposing enemy.\nDeal 5 damage to all enemies.";
-            karma3.Effects[2].entryVariable = 5;
+            karma3.Description = "Apply 1 Divine protection to all enemies. Remove Divine Protection from the Opposing enemy.\nDeal 4 damage to all enemies.";
+            karma3.Effects[2].entryVariable = 4;
 
             Ability karma4 = new Ability(karma3.ability, "Rot_Karma_4_A", karma1.Cost);
             karma4.Name = "Readjustment of Salvation";
-            karma4.Description = "Apply 1 Divine protection to all enemies. Remove Divine Protection from the Opposing enemy.\nDeal 6 damage to all enemies.";
-            karma4.Effects[2].entryVariable = 6;
+            karma4.Description = "Apply 1 Divine protection to all enemies. Remove Divine Protection from the Opposing enemy.\nDeal 5 damage to all enemies.";
+            karma4.Effects[2].entryVariable = 5;
 
             Ability goat1 = new Ability("Another Scapegoat", "Rot_Goat_1_A");
             goat1.Description = "Apply 1 Divine Protection to the Opposing enemy and deal 10 damage to them.";
@@ -99,32 +100,31 @@ namespace AprilsDayAtFools
             goat4.EffectIntents[0].intents[1] = "Damage_21";
 
             Ability suffer1 = new Ability("Suffer Now, Pay Later", "Rot_Suffer_1_A");
-            suffer1.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 5 damage to them.";
+            suffer1.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 4 damage to them.";
             suffer1.AbilitySprite = ResourceLoader.LoadSprite("ability_suffer.png");
             suffer1.Cost = [Pigments.Red, Pigments.Yellow];
             suffer1.Effects = new EffectInfo[2];
             suffer1.Effects[0] = Effects.GenerateEffect(divine, 3, Slots.LeftRight);
-            suffer1.Effects[1] = Effects.GenerateEffect(damage, 5, Slots.LeftRight);
+            suffer1.Effects[1] = Effects.GenerateEffect(damage, 4, Slots.LeftRight);
             suffer1.AddIntentsToTarget(Slots.LeftRight, ["Status_DivineProtection", "Damage_3_6"]);
             suffer1.AnimationTarget = Slots.LeftRight;
             suffer1.Visuals = Visuals.Talons;
 
             Ability suffer2 = new Ability(suffer1.ability, "Rot_Suffer_2_A", suffer1.Cost);
             suffer2.Name = "Suffer Now, Punished Later";
-            suffer2.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 7 damage to them.";
-            suffer2.Effects[1].entryVariable = 7;
-            suffer2.EffectIntents[0].intents[1] = "Damage_7_10";
+            suffer2.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 6 damage to them.";
+            suffer2.Effects[1].entryVariable = 6;
 
             Ability suffer3 = new Ability(suffer2.ability, "Rot_Suffer_3_A", suffer1.Cost);
             suffer3.Name = "Suffer Now, Repent Later";
-            suffer3.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 9 damage to them.";
-            suffer3.Effects[1].entryVariable = 9;
+            suffer3.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 8 damage to them.";
+            suffer3.Effects[1].entryVariable = 8;
+            suffer3.EffectIntents[0].intents[1] = "Damage_7_10";
 
             Ability suffer4 = new Ability(suffer3.ability, "Rot_Suffer_4_A", suffer1.Cost);
             suffer4.Name = "Suffer Now, Die Later";
-            suffer4.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 11 damage to them.";
-            suffer4.Effects[1].entryVariable = 11;
-            suffer4.EffectIntents[0].intents[1] = "Damage_11_15";
+            suffer4.Description = "Apply 3 Divine Protection to the Left and Right enemies then deal 10 damage to them.";
+            suffer4.Effects[1].entryVariable = 10;
 
             rotcore.AddLevelData(12, [suffer1, goat1, karma1]);
             rotcore.AddLevelData(14, [suffer2, goat2, karma2]);
