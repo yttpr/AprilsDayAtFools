@@ -11,9 +11,10 @@ namespace AprilsDayAtFools
     {
         public static void Setup()
         {
-            IDetour hook = new Hook(typeof(CombatInputManager).GetMethod(nameof(CombatInputManager.SetEscapeToggle), ~BindingFlags.Default), typeof(EternalHandler).GetMethod(nameof(CombatStats_FinalizeCombat), ~BindingFlags.Default));
+            IDetour hook1 = new Hook(typeof(CombatInputManager).GetMethod(nameof(CombatInputManager.SetEscapeToggle), ~BindingFlags.Default), typeof(EternalHandler).GetMethod(nameof(CombatInputManager_FinalizeCombat), ~BindingFlags.Default));
+            IDetour hook2 = new Hook(typeof(CombatStats).GetMethod(nameof(CombatStats.CombatEndTriggered), ~BindingFlags.Default), typeof(EternalHandler).GetMethod(nameof(CombatStats_FinalizeCombat), ~BindingFlags.Default));
         }
-        public static void CombatStats_FinalizeCombat(Action<CombatInputManager, bool> orig, CombatInputManager manager, bool enabled)
+        public static void CombatInputManager_FinalizeCombat(Action<CombatInputManager, bool> orig, CombatInputManager manager, bool enabled)
         {
             orig(manager, enabled);
 
@@ -38,6 +39,28 @@ namespace AprilsDayAtFools
                     }
                 }
             }
+        }
+        public static void CombatStats_FinalizeCombat(Action<CombatStats> orig, CombatStats self)
+        {
+            foreach (CharacterCombat chara in self.Characters.Values)
+            {
+                if (!self.CharactersAlive) break;
+                if (!chara.IsAlive && chara.ContainsPassiveAbility(IDs.Eternal) && !self.IsPassiveLocked(IDs.Eternal))
+                {
+                    if (self.ResurrectDeadCharacter(chara, EmptyCharSlot(self), 1))
+                    {
+                        CombatManager.Instance.AddUIAction(new ShowPassiveInformationUIAction(chara.ID, chara.IsUnitCharacter, "Eternal", ResourceLoader.LoadSprite("EternityPassive.png")));
+                    }
+                    else
+                    {
+                        chara.CurrentHealth = 1;
+                        chara.IsAlive = true;
+                        chara.HasFled = true;
+                    }
+                }
+            }
+
+            orig(self);
         }
         public static int EmptyCharSlot(CombatStats self)
         {
