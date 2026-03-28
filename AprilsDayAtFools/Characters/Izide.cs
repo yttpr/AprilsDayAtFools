@@ -228,7 +228,7 @@ namespace AprilsDayAtFools
             PerformEffect_Item radio = new PerformEffect_Item("Aprils_DoomRadio_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<MaskedAddDelayedAttackEffect>(), 4, Slots.Front)]);
             radio.Name = "Doom Radio";
             radio.Flavour = "\"Take 3 steps to the left to die.\"";
-            radio.Description = "At the start of each turn, deal 4 damage to the Opposing positions of every position this party member moved into.";
+            radio.Description = "At the start of each turn, deal 4 damage to the Opposing positions of every position this party member moved into last turn.";
             radio.Icon = ResourceLoader.LoadSprite("item_doomradio.png");
             radio.EquippedModifiers = [];
             radio.TriggerOn = TriggerCalls.OnMoved;

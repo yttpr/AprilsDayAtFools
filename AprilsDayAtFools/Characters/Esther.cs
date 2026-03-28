@@ -175,17 +175,17 @@ namespace AprilsDayAtFools
 
             RankChange_Wearable_SMS down = ScriptableObject.CreateInstance<RankChange_Wearable_SMS>();
             down._rankAdditive = -1;
-            IntegerReferenceOverEqualValueEffectorCondition above1 = ScriptableObject.CreateInstance<IntegerReferenceOverEqualValueEffectorCondition>();
-            above1.compareValue = 2;
-            PerformEffect_Item beheading = new PerformEffect_Item("Aprils_Beheading_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 2, Slots.Self)], true);
+            CasterHealthEffectorCondition above_one = ScriptableObject.CreateInstance<CasterHealthEffectorCondition>();
+            above_one.Amount = 1;
+            PerformEffect_Item beheading = new PerformEffect_Item("Aprils_Beheading_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 1, Slots.Self)], true);
             beheading.Name = "Beheading";
             beheading.Flavour = "\"Oh, woe is me!\"";
-            beheading.Description = "This party member is 1 level lower than usual.\nOn taking direct damage, heal 2 health.\nThis item is destroyed on death.";
+            beheading.Description = "This party member is 1 level lower than usual.\nOn receiving any damage while above 1 health, heal 1 health.\nThis item is destroyed on death.";
             beheading.Icon = ResourceLoader.LoadSprite("item_beheading.png");
             beheading.EquippedModifiers = [down];
-            beheading.TriggerOn = TriggerCalls.OnDirectDamaged;
+            beheading.TriggerOn = TriggerCalls.OnDamaged;
             beheading.DoesPopUpInfo = true;
-            beheading.Conditions = [];
+            beheading.Conditions = [above_one];
             beheading.DoesActionOnTriggerAttached = false;
             beheading.ConsumeOnTrigger = TriggerCalls.OnDeath;
             beheading.ConsumeOnUse = false;
