@@ -146,37 +146,38 @@ namespace AprilsDayAtFools
             scrambleVal.m_unitStoredDataID = "Scramble_A";
             StoredValueReachedCondition scrambleCheck = StoredValueReachedCondition.Create("Scramble_A", 2);
             Ability scramble1 = new Ability("Quick Scramble", "Joy_Scramble_1_A");
-            scramble1.Description = "Heal all party members 3-5 health.\nRefresh this party member's ability usage.\nUsing this ability 2 times will make this party member instantly flee.";
+            scramble1.Description = "Heal all party members 1-4 health.\nRefresh this party member's ability usage.\nUsing this ability 2 times will make this party member instantly flee.";
             scramble1.AbilitySprite = ResourceLoader.LoadSprite("ability_scramble.png");
             scramble1.Cost = [Pigments.Blue, Pigments.Yellow];
             scramble1.Effects = new EffectInfo[7];
             scramble1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RefreshAbilityUseEffect>(), 1, Slots.Self);
-            scramble1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ExtraVariableForNextEffect>(), 3, Slots.Self);
-            scramble1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RandomHealBetweenPreviousAndEntryEffect>(), 5, Targeting.Unit_AllAllies);
+            scramble1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ExtraVariableForNextEffect>(), 1, Slots.Self);
+            scramble1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RandomHealBetweenPreviousAndEntryEffect>(), 4, Targeting.Unit_AllAllies);
             scramble1.Effects[3] = Effects.GenerateEffect(joySprites, 4);
             scramble1.Effects[4] = Effects.GenerateEffect(scrambleVal, 1);
             scramble1.Effects[5] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageByCostEffect>(), 1, Slots.Self, scrambleCheck);
             scramble1.Effects[6] = Effects.GenerateEffect(ScriptableObject.CreateInstance<FleeTargetEffect>(), 1, Slots.Self, scrambleCheck);
             scramble1.AddIntentsToTarget(Slots.Self, ["Misc_Additional", "PA_Fleeting"]);
-            scramble1.AddIntentsToTarget(Targeting.Unit_AllAllies, ["Heal_5_10"]);
+            scramble1.AddIntentsToTarget(Targeting.Unit_AllAllies, ["Heal_1_4"]);
             scramble1.Visuals = LoadedAssetsHandler.GetEnemyAbility("Wriggle_A").visuals;
             scramble1.AnimationTarget = Targeting.Unit_AllAllies;
             scramble1.UnitStoreData = UnitStoreData.GetCustom_UnitStoreData("Scramble_A");
 
             Ability scramble2 = new Ability(scramble1.ability, "Joy_Scramble_2_A", scramble1.Cost);
             scramble2.Name = "Mad Scramble";
-            scramble2.Description = "Heal all party members 3-6 health.\nRefresh this party member's ability usage.\nUsing this ability 2 times will make this party member instantly flee.";
+            scramble2.Description = "Heal all party members 1-6 health.\nRefresh this party member's ability usage.\nUsing this ability 2 times will make this party member instantly flee.";
             scramble2.Effects[2].entryVariable = 6;
+            scramble2.EffectIntents[1].intents[0] = "Heal_5_10";
 
             Ability scramble3 = new Ability(scramble2.ability, "Joy_Scramble_3_A", scramble1.Cost);
             scramble3.Name = "Deranged Scramble";
-            scramble3.Description = "Heal all party members 3-8 health.\nRefresh this party member's ability usage.\nUsing this ability 2 times will make this party member instantly flee.";
+            scramble3.Description = "Heal all party members 1-8 health.\nRefresh this party member's ability usage.\nUsing this ability 2 times will make this party member instantly flee.";
             scramble3.Effects[2].entryVariable = 8;
 
             Ability scramble4 = new Ability(scramble3.ability, "Joy_Scramble_4_A", scramble1.Cost);
             scramble4.Name = "Psychotic Scramble";
-            scramble4.Description = "Heal all party members 4-8 health.\nRefresh this party member's ability usage.\nUsing this ability 2 times will make this party member instantly flee.";
-            scramble4.Effects[1].entryVariable = 4;
+            scramble4.Description = "Heal all party members 3-8 health.\nRefresh this party member's ability usage.\nUsing this ability 2 times will make this party member instantly flee.";
+            scramble4.Effects[1].entryVariable = 3;
 
             joy.AddLevelData(8, [scramble1, contract1, scam1]);
             joy.AddLevelData(10, [scramble2, contract2, scam2]);
