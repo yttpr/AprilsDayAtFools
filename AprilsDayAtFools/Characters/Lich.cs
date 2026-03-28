@@ -208,7 +208,7 @@ namespace AprilsDayAtFools
             misnomer.Effects = [Effects.GenerateEffect(ScriptableObject.CreateInstance<InvertTargetHealthEffect>(), 1, right)];
             misnomer.AddIntentsToTarget(right, ["Other_MaxHealth_Alt"]);
             misnomer.AnimationTarget = right;
-            misnomer.Visuals = Visuals.Mitosis;
+            misnomer.Visuals = CustomVisuals.GetVisuals("Salt/Hung");
 
             ExtraAbility_Wearable_SMS add_misnomer = ScriptableObject.CreateInstance<ExtraAbility_Wearable_SMS>();
             add_misnomer._extraAbility = misnomer.GenerateCharacterAbility(true);
