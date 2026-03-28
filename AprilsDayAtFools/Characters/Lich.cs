@@ -199,14 +199,15 @@ namespace AprilsDayAtFools
             betablockers.SpecialUnlockID = UILocID.None;
             betablockers.item.AddItem("locked_nosferatuglass.png", OsmanACH);
 
+            BaseCombatTargettingSO right = Slots.SlotTarget([-4, 0, 1], true);
             Ability misnomer = new Ability("Lich_Misnomer_A");
             misnomer.Name = "Misnomer";
-            misnomer.Description = "Invert this and the Right ally's healths.";
+            misnomer.Description = "Invert this and the Right ally's healths.\nThis ability assumes the grid loops around.";
             misnomer.AbilitySprite = ResourceLoader.LoadSprite("ability_misnomer.png");
             misnomer.Cost = [Pigments.Blue, Pigments.Blue];
-            misnomer.Effects = [Effects.GenerateEffect(ScriptableObject.CreateInstance<InvertTargetHealthEffect>(), 1, Targeting.Slot_SelfAndRight)];
-            misnomer.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Other_MaxHealth_Alt"]);
-            misnomer.AnimationTarget = Targeting.Slot_SelfAndRight;
+            misnomer.Effects = [Effects.GenerateEffect(ScriptableObject.CreateInstance<InvertTargetHealthEffect>(), 1, right)];
+            misnomer.AddIntentsToTarget(right, ["Other_MaxHealth_Alt"]);
+            misnomer.AnimationTarget = right;
             misnomer.Visuals = Visuals.Mitosis;
 
             ExtraAbility_Wearable_SMS add_misnomer = ScriptableObject.CreateInstance<ExtraAbility_Wearable_SMS>();

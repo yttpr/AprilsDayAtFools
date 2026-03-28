@@ -593,10 +593,12 @@ namespace AprilsDayAtFools
             sirenhead.item._ItemTypeIDs = [];
             sirenhead.item.AddItem("locked_sirenhead.png", "Aprils_Snail_March_ACH");
 
-            MultiPerformEffectItem devil = new MultiPerformEffectItem("Aprils_RingOfTheDevil_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 6, Targeting.Slot_AllyRight)]);
+            BaseCombatTargettingSO loop_right = Slots.SlotTarget([-4, 1], true);
+
+            MultiPerformEffectItem devil = new MultiPerformEffectItem("Aprils_RingOfTheDevil_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 6, loop_right)]);
             devil.Name = "Ring of the Devil";
             devil.Flavour = "\"It's not for you.\"";
-            devil.Description = "At the start of each turn, heal the Right ally 6 health.\nAt the end of each turn, gain 4 Karma.";
+            devil.Description = "At the start of each turn, heal the Right ally 6 health.\nAt the end of each turn, gain 4 Karma.\nThis item assumes the grid loops around.";
             devil.Icon = ResourceLoader.LoadSprite("item_ringofthedevil.png");
             devil.EquippedModifiers = [];
             devil.TriggerOn = TriggerCalls.OnTurnStart;
