@@ -12,7 +12,7 @@ namespace AprilsDayAtFools
         public static string Room => "Aprils.Lich.Revive";
         public static void Setup()
         {
-            IDetour hook1 = new Hook(typeof(CombatInputManager).GetMethod(nameof(CombatInputManager.CombatInputManager), ~BindingFlags.Default), typeof(UndeadPassiveHandler).GetMethod(nameof(CombatStats_FinalizeCombat), ~BindingFlags.Default));
+            IDetour hook1 = new Hook(typeof(CombatInputManager).GetMethod(nameof(CombatInputManager.SetEscapeToggle), ~BindingFlags.Default), typeof(UndeadPassiveHandler).GetMethod(nameof(CombatStats_FinalizeCombat), ~BindingFlags.Default));
             //IDetour hook1 = new Hook(typeof(OverworldManagerBG).GetMethod(nameof(OverworldManagerBG.CombatEndTriggered), ~BindingFlags.Default), typeof(UndeadPassiveHandler).GetMethod(nameof(CombatStats_FinalizeCombat), ~BindingFlags.Default));
         }
         public static void CombatStats_FinalizeCombat(Action<CombatInputManager, bool> orig, CombatInputManager manager, bool enabled)
