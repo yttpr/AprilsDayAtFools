@@ -51,7 +51,8 @@ namespace AprilsDayAtFools
                         {
                             if (!status.IsPositive && !Exclude.Contains(status.StatusID))
                             {
-                                exitAmount += Math.Max(1, targetSlotInfo.Unit.TryRemoveStatusEffect(status.StatusID));
+                                //CharacterCombat.TryRemoveStatusEffect
+                                exitAmount += Math.Max(0, targetSlotInfo.Unit.TryRemoveStatusEffect(status.StatusID));
                             }
                         }
                     }
