@@ -78,7 +78,7 @@ namespace AprilsDayAtFools
             replace_acid.Secondary = previousAcid;
 
             Ability fuzzy1 = new Ability("Fuzzy with Vomit", "Lich_Fuzzy_1_A");
-            fuzzy1.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 9 health.\nThis abiity assumes the grid loops around.";
+            fuzzy1.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 9 health.\nThis ability assumes the grid loops around.";
             fuzzy1.AbilitySprite = ResourceLoader.LoadSprite("ability_fuzzy.png");
             fuzzy1.Cost = [Pigments.Blue, Pigments.Blue];
             fuzzy1.Effects = new EffectInfo[3];
@@ -91,25 +91,25 @@ namespace AprilsDayAtFools
 
             Ability fuzzy2 = new Ability(fuzzy1.ability, "Lich_Fuzzy_2_A", fuzzy1.Cost);
             fuzzy2.Name = "Fuzzy with Mold";
-            fuzzy2.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 10 health.\nThis abiity assumes the grid loops around.";
+            fuzzy2.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 10 health.\nThis ability assumes the grid loops around.";
             fuzzy2.Effects[2].entryVariable = 10;
 
             Ability fuzzy3 = new Ability(fuzzy2.ability, "Lich_Fuzzy_3_A", fuzzy1.Cost);
             fuzzy3.Name = "Fuzzy with Parasites";
-            fuzzy3.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 12 health.\nThis abiity assumes the grid loops around.";
+            fuzzy3.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 12 health.\nThis ability assumes the grid loops around.";
             fuzzy3.Effects[2].entryVariable = 12;
             fuzzy3.EffectIntents[0].intents[2] = "Heal_11_20";
 
             Ability fuzzy4 = new Ability(fuzzy3.ability, "Lich_Fuzzy_4_A", fuzzy1.Cost);
             fuzzy4.Name = "Fuzzy with Larvae";
-            fuzzy4.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 14 health.\nThis abiity assumes the grid loops around.";
+            fuzzy4.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 14 health.\nThis ability assumes the grid loops around.";
             fuzzy4.Effects[2].entryVariable = 14;
 
             TargetPerformAllAbilitiesEffect perform = ScriptableObject.CreateInstance<TargetPerformAllAbilitiesEffect>();
             perform.Reverse = true;
 
             Ability baptism1 = new Ability("Baptism of Beetles", "Lich_Baptism_1_A");
-            baptism1.Description = "Force the Right ally to perform all of their abilities in reverse order.\nInflict 4 Acid on them.\nThis abiity assumes the grid loops around.";
+            baptism1.Description = "Force the Right ally to perform all of their abilities in reverse order.\nInflict 4 Acid on them.\nThis ability assumes the grid loops around.";
             baptism1.AbilitySprite = ResourceLoader.LoadSprite("ability_baptism.png");
             baptism1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Purple];
             baptism1.Effects = new EffectInfo[2];
@@ -121,7 +121,7 @@ namespace AprilsDayAtFools
 
             Ability baptism2 = new Ability(baptism1.ability, "Lich_Baptism_2_A", baptism1.Cost);
             baptism2.Name = "Baptism of Flies";
-            baptism2.Description = "Force the Right ally to perform all of their abilities in reverse order.\nInflict 3 Acid on them.\nThis abiity assumes the grid loops around.";
+            baptism2.Description = "Force the Right ally to perform all of their abilities in reverse order.\nInflict 3 Acid on them.\nThis ability assumes the grid loops around.";
             baptism2.Effects[1].entryVariable = 3;
 
             Ability baptism3 = new Ability(baptism2.ability, "Lich_Baptism_3_A", [Pigments.BlueYellow, Pigments.Blue, Pigments.Purple]);
@@ -137,7 +137,7 @@ namespace AprilsDayAtFools
             damage._usePreviousExitValue = true;
 
             Ability inside1 = new Ability("Inside Me, Squishies", "Lich_Inside_1_A");
-            inside1.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 6 damage to their Opposing enemy.\nInflict 1 Acid on them.\nThis abiity assumes the grid loops around.";
+            inside1.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 6 damage to their Opposing enemy.\nInflict 1 Acid on them.\nThis ability assumes the grid loops around.";
             inside1.AbilitySprite = ResourceLoader.LoadSprite("ability_insideme.png");
             inside1.Cost = [Pigments.Blue];
             inside1.Effects = new EffectInfo[5];
@@ -153,18 +153,18 @@ namespace AprilsDayAtFools
 
             Ability inside2 = new Ability(inside1.ability, "Lich_Inside_2_A", inside1.Cost);
             inside2.Name = "Inside Me, Wrigglies";
-            inside2.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 8 damage to their Opposing enemy.\nInflict 1 Acid on them.\nThis abiity assumes the grid loops around.";
+            inside2.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 8 damage to their Opposing enemy.\nInflict 1 Acid on them.\nThis ability assumes the grid loops around.";
             inside2.Effects[2].entryVariable = 8;
             inside2.EffectIntents[1].intents[0] = "Damage_7_10";
 
             Ability inside3 = new Ability(inside2.ability, "Lich_Inside_3_A", inside1.Cost);
             inside3.Name = "Inside Me, Crawlies";
-            inside3.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 10 damage to their Opposing enemy.\nInflict 1 Acid on them.\nThis abiity assumes the grid loops around.";
+            inside3.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 10 damage to their Opposing enemy.\nInflict 1 Acid on them.\nThis ability assumes the grid loops around.";
             inside3.Effects[2].entryVariable = 10;
 
             Ability inside4 = new Ability(inside3.ability, "Lich_Inside_4_A", inside1.Cost);
             inside4.Name = "Inside Me, Squirmies";
-            inside4.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 12 damage to their Opposing enemy.\nInflict 1 Acid on them.\nThis abiity assumes the grid loops around.";
+            inside4.Description = "Apply 1 Lifesteal on the Right allied position, then force the Right ally to deal 12 damage to their Opposing enemy.\nInflict 1 Acid on them.\nThis ability assumes the grid loops around.";
             inside4.Effects[2].entryVariable = 12;
             inside4.EffectIntents[1].intents[0] = "Damage_11_15";
 
