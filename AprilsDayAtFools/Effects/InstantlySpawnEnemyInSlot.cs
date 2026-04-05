@@ -1,7 +1,9 @@
 ﻿using BrutalAPI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace AprilsDayAtFools
 {
@@ -22,11 +24,33 @@ namespace AprilsDayAtFools
 
                 if (num != -1)
                 {
-                    if (stats.AddNewEnemy(enemy, num, false, "Spawn_Basic", enemy.health)) exitAmount++;
+                    if (stats.AddNewEnemy(enemy, num, false, "Spawn_Basic", enemy.health))
+                    {
+                        exitAmount++;
+                        CombatManager.Instance.AddUIAction(new ClearEnemyStatusUIAction(stats.Enemies[stats.Enemies.Count - 1]));
+                    }
                 }
             }
 
             return exitAmount > 0;
+        }
+
+        public class ClearEnemyStatusUIAction : CombatAction
+        {
+            public EnemyCombat Enemy;
+            public ClearEnemyStatusUIAction(EnemyCombat enemy)
+            {
+                Enemy = enemy;
+            }
+            public override IEnumerator Execute(CombatStats stats)
+            {
+                if (stats.combatUI._enemiesInCombat.TryGetValue(Enemy.ID, out EnemyCombatUIInfo uiInfo))
+                {
+                    //dude.... idfk what im doing
+                    stats.combatUI._enemyZone._enemies[uiInfo.FieldID].UpdateStatusListLayout([], []);
+                }
+                yield break;
+            }
         }
     }
 }

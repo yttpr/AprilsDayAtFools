@@ -85,6 +85,8 @@ namespace AprilsDayAtFools
 
             InstantlySpawnEnemyInSlot immortal = ScriptableObject.CreateInstance<InstantlySpawnEnemyInSlot>();
             immortal.enemyName = "ImmortalFigures_EN";
+            ApplyStatusByExitEffect ex_link = ScriptableObject.CreateInstance<ApplyStatusByExitEffect>();
+            ex_link._Status = StatusField.Linked;
 
             Ability ellegy1 = new Ability("Deathbed Ellegy", "Esther_Ellegy_1_A");
             ellegy1.Description = "If the Left, Right, or Opposing enemy positions are empty, spawn Immortal Figures there.\nInflict 2 Linked on the Left, Right and Opposing enemies, and 1 Linked on this party member.";
