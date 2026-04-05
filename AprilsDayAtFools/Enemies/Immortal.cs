@@ -15,7 +15,7 @@ namespace AprilsDayAtFools
             nothing.Description = "Instantly Die.";
             nothing.Rarity = Rarity.Common;
             nothing.AnimationTarget = Slots.Self;
-            nothing.Visuals = CustomVisuals.GetVisuals("Salt/Gaze");
+            nothing.Visuals = null;
             nothing.Effects = [Effects.GenerateEffect(BasicEffects.Die(true), 1, Slots.Self)];
             nothing.AddIntentsToTarget(Slots.Self, ["Damage_Death"]);
 
