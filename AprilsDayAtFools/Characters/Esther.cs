@@ -50,38 +50,38 @@ namespace AprilsDayAtFools
             //set full dps or support
             esther.AddPassive(eternal);
 
-            AnimationVisualsEffect instance2 = ScriptableObject.CreateInstance<AnimationVisualsEffect>();
-            instance2._visuals = LoadedAssetsHandler.GetEnemy("TriggerFingers_BOSS").abilities[3].ability.visuals;
-            instance2._animationTarget = Slots.Self;
+            ApplyLinkedEffect linked = ScriptableObject.CreateInstance<ApplyLinkedEffect>();
+
             Ability bullet1 = new Ability("First Bullet", "Esther_Bullet_1_A");
-            bullet1.Description = "Deal 8 damage to the Opposing enemy.\n1/6 chance to instantly kill this party member.";
+            bullet1.Description = "Inflict 3 Linked and deal 7 damage to the Opposing enemy.\nGain 1 Linked.";
             bullet1.AbilitySprite = ResourceLoader.LoadSprite("ability_bullet.png");
-            bullet1.Cost = [Pigments.Red, Pigments.Red];
+            bullet1.Cost = [Pigments.Yellow, Pigments.Purple, Pigments.Red];
             bullet1.Effects = new EffectInfo[3];
-            bullet1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 8, Slots.Front);
-            bullet1.Effects[1] = Effects.GenerateEffect(instance2, 1, Slots.Self, Effects.ChanceCondition(16));
-            bullet1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DirectDeathEffect>(), 1, Slots.Self, BasicEffects.DidThat(true));
-            bullet1.AddIntentsToTarget(Slots.Front, ["Damage_7_10"]);
-            bullet1.AddIntentsToTarget(Slots.Self, ["Damage_Death"]);
+            bullet1.Effects[0] = Effects.GenerateEffect(linked, 3, Slots.Front);
+            bullet1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 7, Slots.Front);
+            bullet1.Effects[2] = Effects.GenerateEffect(linked, 1, Slots.Self);
+            bullet1.AddIntentsToTarget(Slots.Front, ["Status_Linked", "Damage_7_10"]);
+            bullet1.AddIntentsToTarget(Slots.Self, ["Status_Linked"]);
             bullet1.Visuals = CustomVisuals.GetVisuals("Salt/Unlock");
             bullet1.AnimationTarget = Slots.Front;
 
             Ability bullet2 = new Ability(bullet1.ability, "Esther_Bullet_2_A", bullet1.Cost);
             bullet2.Name = "Second Bullet";
-            bullet2.Description = "Deal 10 damage to the Opposing enemy.\n1/6 chance to instantly kill this party member.";
-            bullet2.Effects[0].entryVariable = 10;
+            bullet2.Description = "Inflict 4 Linked and deal 10 damage to the Opposing enemy.\nGain 1 Linked.";
+            bullet2.Effects[0].entryVariable = 4;
+            bullet2.Effects[1].entryVariable = 10;
 
             Ability bullet3 = new Ability(bullet2.ability, "Esther_Bullet_3_A", bullet1.Cost);
             bullet3.Name = "Third Bullet";
-            bullet3.Description = "Deal 13 damage to the Opposing enemy.\n1/6 chance to instantly kill this party member.";
-            bullet3.Effects[0].entryVariable = 13;
-            bullet3.EffectIntents[0].intents[0] = "Damage_11_15";
+            bullet3.Description = "Inflict 4 Linked and deal 13 damage to the Opposing enemy.\nGain 1 Linked.";
+            bullet3.Effects[1].entryVariable = 13;
+            bullet3.EffectIntents[0].intents[1] = "Damage_11_15";
 
             Ability bullet4 = new Ability(bullet3.ability, "Esther_Bullet_4_A", bullet1.Cost);
             bullet4.Name = "Fourth Bullet";
-            bullet4.Description = "Deal 16 damage to the Opposing enemy.\n1/6 chance to instantly kill this party member.";
-            bullet4.Effects[0].entryVariable = 16;
-            bullet4.EffectIntents[0].intents[0] = "Damage_16_20";
+            bullet4.Description = "Inflict 5 Linked and deal 15 damage to the Opposing enemy.\nGain 1 Linked.";
+            bullet4.Effects[0].entryVariable = 5;
+            bullet4.Effects[1].entryVariable = 15;
 
             Ability ellegy1 = new Ability("Deathbed Ellegy", "Esther_Ellegy_1_A");
             ellegy1.Description = "Heal the Left ally 5 health.\nInflict 25 Pale on this party member and the Left ally.";
@@ -111,34 +111,38 @@ namespace AprilsDayAtFools
             ellegy4.Effects[0].entryVariable = 12;
             ellegy4.EffectIntents[0].intents[0] = "Heal_11_20";
 
-            ResurrectLastEffect revive = ScriptableObject.CreateInstance<ResurrectLastEffect>();
-            revive.PassiveToBlock = IDs.Eternal;
-            revive.SelfSlot = true;
+
             Ability finale1 = new Ability("Sudden Finale", "Esther_Finale_1_A");
-            finale1.Description = "Instantly kill this party member.\nRevive the most recently deceased applicable party member other than this one if possible at 5 health.";
+            finale1.Description = "Heal this and the Right ally 6 health. If there is no Right ally, revive the most recently deceased applicable party member in the Right position at 6 health.\nInflict 25 Pale on this and the Right ally.";
             finale1.AbilitySprite = ResourceLoader.LoadSprite("ability_finale.png");
             finale1.Cost = [Pigments.Purple, Pigments.Purple, Pigments.Purple];
-            finale1.Effects = new EffectInfo[2];
-            finale1.Effects[0] = Effects.GenerateEffect(bullet1.Effects[2].effect, 1, Slots.Self);
-            finale1.Effects[1] = Effects.GenerateEffect(CasterPriorityRootActionEffect.Create(Effects.GenerateEffect(revive, 5).SelfArray()));
-            finale1.AddIntentsToTarget(Slots.Self, ["Damage_Death", "Other_Resurrect"]);
-            finale1.Visuals = CustomVisuals.GetVisuals("Salt/Hung");
-            finale1.AnimationTarget = Slots.Self;
+            finale1.Effects = new EffectInfo[3];
+            finale1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 6, Targeting.Slot_SelfAndRight);
+            finale1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectLastInSlotEffect>(), 6, Targeting.Slot_AllyRight);
+            finale1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyPaleEffect>(), 25, Targeting.Slot_SelfAndRight);
+            finale1.AddIntentsToTarget(Targeting.Slot_AllyRight, [IntentType_GameIDs.Other_Resurrect.ToString()]);
+            finale1.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Heal_5_10", Pale.Intent]);
+            finale1.Visuals = CustomVisuals.GetVisuals("Salt/Rose");
+            finale1.AnimationTarget = Targeting.Slot_AllyRight;
 
             Ability finale2 = new Ability(finale1.ability, "Esther_Finale_2_A", finale1.Cost);
             finale2.Name = "Announced Finale";
-            finale2.Description = "Instantly kill this party member.\nRevive the most recently deceased applicable party member other than this one if possible at 6 health.";
-            finale2.Effects[1].effect = CasterRootActionEffect.Create(Effects.GenerateEffect(revive, 6).SelfArray());
+            finale2.Description = "Heal this and the Right ally 8 health. If there is no Right ally, revive the most recently deceased applicable party member in the Right position at 8 health.\nInflict 25 Pale on this and the Right ally.";
+            finale2.Effects[0].entryVariable = 8;
+            finale2.Effects[1].entryVariable = 8;
 
             Ability finale3 = new Ability(finale2.ability, "Esther_Finale_3_A", finale1.Cost);
             finale3.Name = "Prophetic Finale";
-            finale3.Description = "Instantly kill this party member.\nRevive the most recently deceased applicable party member other than this one if possible at 7 health.";
-            finale3.Effects[1].effect = CasterRootActionEffect.Create(Effects.GenerateEffect(revive, 7).SelfArray());
+            finale3.Description = "Heal this and the Right ally 10 health. If there is no Right ally, revive the most recently deceased applicable party member in the Right position at 10 health.\nInflict 25 Pale on this and the Right ally.";
+            finale3.Effects[0].entryVariable = 10;
+            finale3.Effects[1].entryVariable = 10;
 
             Ability finale4 = new Ability(finale3.ability, "Esther_Finale_4_A", finale1.Cost);
             finale4.Name = "Deterministic Finale";
-            finale4.Description = "Instantly kill this party member.\nRevive the most recently deceased applicable party member other than this one if possible at 8 health.";
-            finale4.Effects[1].effect = CasterRootActionEffect.Create(Effects.GenerateEffect(revive, 8).SelfArray());
+            finale4.Description = "Heal this and the Right ally 12 health. If there is no Right ally, revive the most recently deceased applicable party member in the Right position at 12 health.\nInflict 25 Pale on this and the Right ally.";
+            finale4.Effects[0].entryVariable = 12;
+            finale4.Effects[1].entryVariable = 12;
+            finale4.EffectIntents[1].intents[0] = "Heal_11_20";
 
             esther.AddLevelData(8, [finale1, ellegy1, bullet1]);
             esther.AddLevelData(10, [finale2, ellegy2, bullet2]);
