@@ -120,7 +120,7 @@ namespace AprilsDayAtFools
             Ability finale1 = new Ability("Sudden Finale", "Esther_Finale_1_A");
             finale1.Description = "Heal this and the Right ally 6 health. If there is no Right ally, revive the most recently deceased applicable party member in the Right position at 6 health.\nInflict 25 Pale on this and the Right ally.";
             finale1.AbilitySprite = ResourceLoader.LoadSprite("ability_finale.png");
-            finale1.Cost = [Pigments.Purple, Pigments.Purple, Pigments.Purple];
+            finale1.Cost = [Pigments.Purple];
             finale1.Effects = new EffectInfo[3];
             finale1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 6, Targeting.Slot_SelfAndRight);
             finale1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectLastInSlotEffect>(), 6, Targeting.Slot_AllyRight);
