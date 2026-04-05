@@ -104,7 +104,7 @@ namespace AprilsDayAtFools
             void1.Cost = [Pigments.Blue, Pigments.Blue];
             void1.Effects = new EffectInfo[4];
             void1.Effects[0] = Effects.GenerateEffect(remove, 1, Targeting.Slot_AllyRight);
-            void1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealByHealthPlusDrowningEffect>(), 1, Targeting.Slot_AllyRight;
+            void1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealByHealthPlusDrowningEffect>(), 1, Targeting.Slot_AllyRight);
             void1.Effects[2] = Effects.GenerateEffect(water, 4, Targeting.Slot_AllyRight);
             void1.Effects[3] = Effects.GenerateEffect(refresh, 10, Targeting.Unit_OtherAllies);
             void1.AddIntentsToTarget(Targeting.Slot_AllyRight, [Drowning.Rem, "Heal_11_20", Water.Intent]);
