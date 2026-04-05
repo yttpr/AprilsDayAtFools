@@ -98,7 +98,7 @@ namespace AprilsDayAtFools
             alphabet2.Description = "Reduce all Negative Status Effects on the Left ally by 2 and heal them 5 health.\nIf they are below half of their maximum health, inflict 1 Inverted on them.";
             alphabet2.Effects[0].effect = ScriptableObject.CreateInstance<ReduceAllNegativeStatusEffect>();
             alphabet2.Effects[1].entryVariable = 5;
-            alphabet2.EffectIntents[0].intents = ["Misc", "Heal_1_5", Inverted.Intent];
+            alphabet2.EffectIntents[0].intents = ["Misc", "Heal_5_10", Inverted.Intent];
 
             Ability alphabet3 = new Ability(alphabet2.ability, "A_Alphabet_3_A", [Pigments.Blue, Pigments.Blue]);
             alphabet3.Name = "Acquisition Alphabetical";
