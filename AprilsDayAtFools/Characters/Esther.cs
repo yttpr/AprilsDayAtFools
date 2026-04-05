@@ -83,33 +83,38 @@ namespace AprilsDayAtFools
             bullet4.Effects[0].entryVariable = 5;
             bullet4.Effects[1].entryVariable = 15;
 
+            InstantlySpawnEnemyInSlot immortal = ScriptableObject.CreateInstance<InstantlySpawnEnemyInSlot>();
+            immortal.enemyName = "ImmortalFigures_EN";
+
             Ability ellegy1 = new Ability("Deathbed Ellegy", "Esther_Ellegy_1_A");
-            ellegy1.Description = "Heal the Left ally 5 health.\nInflict 25 Pale on this party member and the Left ally.";
+            ellegy1.Description = "If the Left, Right, or Opposing enemy positions are empty, spawn Immortal Figures there.\nInflict 2 Linked on the Left, Right and Opposing enemies, and 1 Linked on this party member.";
             ellegy1.AbilitySprite = ResourceLoader.LoadSprite("ability_ellegy.png");
-            ellegy1.Cost = [Pigments.Blue];
-            ellegy1.Effects = new EffectInfo[2];
-            ellegy1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 5, Targeting.Slot_AllyLeft);
-            ellegy1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyPaleEffect>(), 25, Targeting.Slot_SelfAndLeft);
-            ellegy1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Heal_5_10", Pale.Intent]);
-            ellegy1.AddIntentsToTarget(Slots.Self, [Pale.Intent]);
-            ellegy1.Visuals = CustomVisuals.GetVisuals("Salt/Claws");
-            ellegy1.AnimationTarget = Targeting.Slot_AllyLeft;
+            ellegy1.Cost = [Pigments.Blue, Pigments.Purple];
+            ellegy1.Effects = new EffectInfo[4];
+            ellegy1.Effects[0] = Effects.GenerateEffect(immortal, 1, Slots.FrontLeftRight);
+            ellegy1.Effects[1] = Effects.GenerateEffect(linked, 2, Slots.FrontLeftRight);
+            ellegy1.Effects[2] = Effects.GenerateEffect(linked, 1, Slots.Self);
+            ellegy1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyDeterminedEffect>(), 0, Slots.Self);
+            ellegy1.AddIntentsToTarget(Slots.FrontLeftRight, ["Other_Spawn", "Status_Linked"]);
+            ellegy1.AddIntentsToTarget(Slots.Self, ["Status_Linked"]);
+            ellegy1.Visuals = Visuals.Melt;
+            ellegy1.AnimationTarget = Slots.FrontLeftRight;
 
             Ability ellegy2 = new Ability(ellegy1.ability, "Esther_Ellegy_2_A", ellegy1.Cost);
             ellegy2.Name = "Coffin Ellegy";
-            ellegy2.Description = "Heal the Left ally 7 health.\nInflict 25 Pale on this party member and the Left ally.";
-            ellegy2.Effects[0].entryVariable = 7;
+            ellegy2.Description = "If the Left, Right, or Opposing enemy positions are empty, spawn Immortal Figures there.\nInflict 2 Linked on the Left, Right and Opposing enemies, and 1 Linked on this party member.\nGain 1 Determined.";
+            ellegy2.Effects[3].entryVariable = 1;
+            ellegy2.EffectIntents[1].intents = ["Status_Linked", Determined.Intent];
 
             Ability ellegy3 = new Ability(ellegy2.ability, "Esther_Ellegy_3_A", ellegy1.Cost);
             ellegy3.Name = "Funeral Ellegy";
-            ellegy3.Description = "Heal the Left ally 10 health.\nInflict 25 Pale on this party member and the Left ally.";
-            ellegy3.Effects[0].entryVariable = 10;
+            ellegy3.Description = "If the Left, Right, or Opposing enemy positions are empty, spawn Immortal Figures there.\nInflict 3 Linked on the Left, Right and Opposing enemies, and 1 Linked on this party member.\nGain 1 Determined.";
+            ellegy3.Effects[1].entryVariable = 3;
 
             Ability ellegy4 = new Ability(ellegy3.ability, "Esther_Ellegy_4_A", ellegy1.Cost);
             ellegy4.Name = "Burial Ellegy";
-            ellegy4.Description = "Heal the Left ally 12 health.\nInflict 25 Pale on this party member and the Left ally.";
-            ellegy4.Effects[0].entryVariable = 12;
-            ellegy4.EffectIntents[0].intents[0] = "Heal_11_20";
+            ellegy4.Description = "If the Left, Right, or Opposing enemy positions are empty, spawn Immortal Figures there.\nInflict 3 Linked on the Left, Right and Opposing enemies, and 1 Linked on this party member.\nGain 2 Determined.";
+            ellegy4.Effects[3].entryVariable = 2;
 
 
             Ability finale1 = new Ability("Sudden Finale", "Esther_Finale_1_A");
