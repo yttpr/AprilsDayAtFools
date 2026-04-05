@@ -13,7 +13,7 @@ namespace AprilsDayAtFools
         public static void Add()
         {
             //Foundling();
-            ExcessNotificationHook.Setup();
+            //ExcessNotificationHook.Setup();
         }
         public static void Foundling()
         {
@@ -47,6 +47,7 @@ namespace AprilsDayAtFools
     }
 
 
+    //note for decompilers: i was testing this for a friend cuz i designed it and they reported an issue. it works
     public static class ExcessNotificationHook
     {
         public static void CalculateOverflow(Action<PlayerTurnEndSecondPartAction, CombatStats> orig, PlayerTurnEndSecondPartAction self, CombatStats stats)
