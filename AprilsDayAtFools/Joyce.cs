@@ -93,6 +93,7 @@ namespace AprilsDayAtFools
             Class1.PCall(PatchSetup.Setup);
             Class1.PCall(ScrapBomb.Add);
             Class1.PCall(Sludge.Add);
+            Class1.PCall(Immortal.Add);
 
             Class1.PCall(Merced.Add);
             Class1.PCall(Cora.Add);
