@@ -12,11 +12,11 @@ namespace AprilsDayAtFools
         {
             Ability nothing = new Ability("ADAF_Spectator_A");
             nothing.Name = "Spectator";
-            nothing.Description = "Simply watch.";
+            nothing.Description = "Instantly Die.";
             nothing.Rarity = Rarity.Common;
             nothing.AnimationTarget = Slots.Self;
-            nothing.Visuals = null;
-            nothing.Effects = [];
+            nothing.Visuals = CustomVisuals.GetVisuals("Salt/Gaze");
+            nothing.Effects = [Effects.GenerateEffect(BasicEffects.Die(true), 1, Slots.Self)];
 
             Enemy immortal = new Enemy("Immortal Figures", "ImmortalFigures_EN")
             {
