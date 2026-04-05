@@ -47,6 +47,7 @@ namespace AprilsDayAtFools
                 if (stats.combatUI._enemiesInCombat.TryGetValue(Enemy.ID, out EnemyCombatUIInfo uiInfo))
                 {
                     //dude.... idfk what im doing
+                    uiInfo.StatusEffects.Clear();
                     stats.combatUI._enemyZone._enemies[uiInfo.FieldID].UpdateStatusListLayout([], []);
                 }
                 yield break;
