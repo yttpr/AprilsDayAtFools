@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using Tools;
+using MonoMod.RuntimeDetour;
+using System.Reflection;
 
 namespace AprilsDayAtFools
 {
@@ -11,6 +13,7 @@ namespace AprilsDayAtFools
         public static void Add()
         {
             //Foundling();
+            ExcessNotificationHook.Setup();
         }
         public static void Foundling()
         {
@@ -42,4 +45,27 @@ namespace AprilsDayAtFools
             }
         }
     }
+
+
+    public static class ExcessNotificationHook
+    {
+        public static void CalculateOverflow(Action<PlayerTurnEndSecondPartAction, CombatStats> orig, PlayerTurnEndSecondPartAction self, CombatStats stats)
+        {
+            bool startedInOverflow = stats.overflowMana.OverflowManaAmount > 0;
+            orig(self, stats);
+            if (startedInOverflow && stats.overflowMana.OverflowManaAmount <= 0)
+            {
+                Debug.Log("overflow should have triggered. check");
+                foreach (CharacterCombat chara in CombatManager.Instance._stats.CharactersOnField.Values) CombatManager.Instance.PostNotification(OnExcessTriggered.ToString(), chara, null);
+                foreach (EnemyCombat chara in CombatManager.Instance._stats.EnemiesOnField.Values) CombatManager.Instance.PostNotification(OnExcessTriggered.ToString(), chara, null);
+            }
+        }
+
+        public static TriggerCalls OnExcessTriggered => (TriggerCalls)6682573;
+        public static void Setup()
+        {
+            IDetour hook = new Hook(typeof(PlayerTurnEndSecondPartAction).GetMethod(nameof(PlayerTurnEndSecondPartAction.CalculateOverflow), ~BindingFlags.Default), typeof(ExcessNotificationHook).GetMethod(nameof(CalculateOverflow), ~BindingFlags.Default));
+        }
+    }
+
 }
