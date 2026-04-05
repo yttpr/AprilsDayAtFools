@@ -17,6 +17,7 @@ namespace AprilsDayAtFools
             nothing.AnimationTarget = Slots.Self;
             nothing.Visuals = CustomVisuals.GetVisuals("Salt/Gaze");
             nothing.Effects = [Effects.GenerateEffect(BasicEffects.Die(true), 1, Slots.Self)];
+            nothing.AddIntentsToTarget(Slots.Self, ["Damage_Death"]);
 
             Enemy immortal = new Enemy("Immortal Figures", "ImmortalFigures_EN")
             {
