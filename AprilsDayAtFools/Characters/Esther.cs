@@ -115,7 +115,7 @@ namespace AprilsDayAtFools
             revive.PassiveToBlock = IDs.Eternal;
             revive.SelfSlot = true;
             Ability finale1 = new Ability("Sudden Finale", "Esther_Finale_1_A");
-            finale1.Description = "Instantly kill this party member.\nRevive the most recently killed party member other than this one if possible at 5 health.";
+            finale1.Description = "Instantly kill this party member.\nRevive the most recently deceased applicable party member other than this one if possible at 5 health.";
             finale1.AbilitySprite = ResourceLoader.LoadSprite("ability_finale.png");
             finale1.Cost = [Pigments.Purple, Pigments.Purple, Pigments.Purple];
             finale1.Effects = new EffectInfo[2];
@@ -127,17 +127,17 @@ namespace AprilsDayAtFools
 
             Ability finale2 = new Ability(finale1.ability, "Esther_Finale_2_A", finale1.Cost);
             finale2.Name = "Announced Finale";
-            finale2.Description = "Instantly kill this party member.\nRevive the most recently killed party member other than this one if possible at 6 health.";
+            finale2.Description = "Instantly kill this party member.\nRevive the most recently deceased applicable party member other than this one if possible at 6 health.";
             finale2.Effects[1].effect = CasterRootActionEffect.Create(Effects.GenerateEffect(revive, 6).SelfArray());
 
             Ability finale3 = new Ability(finale2.ability, "Esther_Finale_3_A", finale1.Cost);
             finale3.Name = "Prophetic Finale";
-            finale3.Description = "Instantly kill this party member.\nRevive the most recently killed party member other than this one if possible at 7 health.";
+            finale3.Description = "Instantly kill this party member.\nRevive the most recently deceased applicable party member other than this one if possible at 7 health.";
             finale3.Effects[1].effect = CasterRootActionEffect.Create(Effects.GenerateEffect(revive, 7).SelfArray());
 
             Ability finale4 = new Ability(finale3.ability, "Esther_Finale_4_A", finale1.Cost);
             finale4.Name = "Deterministic Finale";
-            finale4.Description = "Instantly kill this party member.\nRevive the most recently killed party member other than this one if possible at 8 health.";
+            finale4.Description = "Instantly kill this party member.\nRevive the most recently deceased applicable party member other than this one if possible at 8 health.";
             finale4.Effects[1].effect = CasterRootActionEffect.Create(Effects.GenerateEffect(revive, 8).SelfArray());
 
             esther.AddLevelData(8, [finale1, ellegy1, bullet1]);
