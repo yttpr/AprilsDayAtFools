@@ -59,7 +59,7 @@ namespace AprilsDayAtFools
             bullet1.Effects = new EffectInfo[3];
             bullet1.Effects[0] = Effects.GenerateEffect(linked, 3, Slots.Front);
             bullet1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 7, Slots.Front);
-            bullet1.Effects[2] = Effects.GenerateEffect(linked, 1, Slots.Self);
+            bullet1.Effects[2] = Effects.GenerateEffect(CasterRootActionEffect.Create([Effects.GenerateEffect(linked, 1, Slots.Self)]));
             bullet1.AddIntentsToTarget(Slots.Front, ["Status_Linked", "Damage_7_10"]);
             bullet1.AddIntentsToTarget(Slots.Self, ["Status_Linked"]);
             bullet1.Visuals = CustomVisuals.GetVisuals("Salt/Unlock");
@@ -95,7 +95,7 @@ namespace AprilsDayAtFools
             ellegy1.Effects = new EffectInfo[4];
             ellegy1.Effects[0] = Effects.GenerateEffect(immortal, 1, Slots.FrontLeftRight);
             ellegy1.Effects[1] = Effects.GenerateEffect(linked, 2, Slots.FrontLeftRight);
-            ellegy1.Effects[2] = Effects.GenerateEffect(CasterRootActionEffect.Create([Effects.GenerateEffect(linked, 1, Slots.Self)]));
+            ellegy1.Effects[2] = Effects.GenerateEffect(linked, 1, Slots.Self);
             ellegy1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyDeterminedEffect>(), 0, Slots.Self);
             ellegy1.AddIntentsToTarget(Slots.FrontLeftRight, ["Other_Spawn", "Status_Linked"]);
             ellegy1.AddIntentsToTarget(Slots.Self, ["Status_Linked"]);
