@@ -95,7 +95,7 @@ namespace AprilsDayAtFools
             ellegy1.Effects = new EffectInfo[4];
             ellegy1.Effects[0] = Effects.GenerateEffect(immortal, 1, Slots.FrontLeftRight);
             ellegy1.Effects[1] = Effects.GenerateEffect(linked, 2, Slots.FrontLeftRight);
-            ellegy1.Effects[2] = Effects.GenerateEffect(linked, 1, Slots.Self);
+            ellegy1.Effects[2] = Effects.GenerateEffect(CasterRootActionEffect.Create([Effects.GenerateEffect(linked, 1, Slots.Self)]));
             ellegy1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyDeterminedEffect>(), 0, Slots.Self);
             ellegy1.AddIntentsToTarget(Slots.FrontLeftRight, ["Other_Spawn", "Status_Linked"]);
             ellegy1.AddIntentsToTarget(Slots.Self, ["Status_Linked"]);
