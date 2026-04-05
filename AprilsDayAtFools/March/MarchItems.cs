@@ -147,10 +147,10 @@ namespace AprilsDayAtFools
             PerformEffect_Item rose = new PerformEffect_Item("Aprils_SundayGallows_SW", [Effects.GenerateEffect(spotlight, 1, Slots.Front)]);
             rose.Name = "Sunday Gallows";
             rose.Flavour = "\"Did you hear they finally put that monster down?\"";
-            rose.Description = "On taking any damage, apply Spotlight to the Opposing enemy.";
+            rose.Description = "On taking direct damage, apply Spotlight to the Opposing enemy.";
             rose.Icon = ResourceLoader.LoadSprite("item_sundaygallows.png");
             rose.EquippedModifiers = [];
-            rose.TriggerOn = TriggerCalls.OnDamaged;
+            rose.TriggerOn = TriggerCalls.OnDirectDamaged;
             rose.DoesPopUpInfo = true;
             rose.Conditions = [];
             rose.DoesActionOnTriggerAttached = false;
