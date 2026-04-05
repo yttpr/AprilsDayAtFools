@@ -176,11 +176,11 @@ namespace AprilsDayAtFools
             RankChange_Wearable_SMS down = ScriptableObject.CreateInstance<RankChange_Wearable_SMS>();
             down._rankAdditive = -1;
             CasterHealthEffectorCondition above_one = ScriptableObject.CreateInstance<CasterHealthEffectorCondition>();
-            above_one.Amount = 1;
-            PerformEffect_Item beheading = new PerformEffect_Item("Aprils_Beheading_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 1, Slots.Self)], true);
+            above_one.Amount = 3;
+            PerformEffect_Item beheading = new PerformEffect_Item("Aprils_Beheading_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 3, Slots.Self)], true);
             beheading.Name = "Beheading";
             beheading.Flavour = "\"Oh, woe is me!\"";
-            beheading.Description = "This party member is 1 level lower than usual.\nOn receiving any damage while above 1 health, heal 1 health.\nThis item is destroyed on death.";
+            beheading.Description = "This party member is 1 level lower than usual.\nOn receiving any damage while above 3 health, heal 3 health.\nThis item is destroyed on death.";
             beheading.Icon = ResourceLoader.LoadSprite("item_beheading.png");
             beheading.EquippedModifiers = [down];
             beheading.TriggerOn = TriggerCalls.OnDamaged;
