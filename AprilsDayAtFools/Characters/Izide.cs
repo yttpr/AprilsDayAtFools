@@ -84,7 +84,7 @@ namespace AprilsDayAtFools
             Ability med1 = new Ability("Meditations on Senescence", "Izide_Med_1_A");
             med1.Description = "At the start of the next turn, deal 8 damage to the current Opposing position and all adjacent positions sharing the same enemy type.\nDecrease this ability's damage by 3.";
             med1.AbilitySprite = ResourceLoader.LoadSprite("ability_meditations.png");
-            med1.Cost = [Pigments.Red];
+            med1.Cost = [Pigments.Blue, Pigments.Red];
             med1.Effects = new EffectInfo[3];
             med1.Effects[0] = Effects.GenerateEffect(med_dmg, 8, med_targets);
             med1.Effects[1] = Effects.GenerateEffect(med_stat, 3, Slots.Self);
