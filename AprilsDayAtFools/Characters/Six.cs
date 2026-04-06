@@ -43,33 +43,37 @@ namespace AprilsDayAtFools
 
             DamageEffect returnkill = ScriptableObject.CreateInstance<DamageEffect>();
             returnkill._returnKillAsSuccess = true;
+            ApplyShieldSlotEffect by_exit = ScriptableObject.CreateInstance<ApplyShieldSlotEffect>();
+            by_exit._UsePreviousExitValueAsMultiplier = true;
+
             Ability days1 = new Ability("Six Days", "Six_Days_1_A");
-            days1.Description = "Deal 3 damage to the Opposing enemy.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
+            days1.Description = "Deal 3 damage to the Opposing enemy and gain an equal amount of Shield.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
             days1.AbilitySprite = ResourceLoader.LoadSprite("ability_days.png");
             days1.Cost = [Pigments.Red, Pigments.Red];
-            days1.Effects = new EffectInfo[4];
+            days1.Effects = new EffectInfo[5];
             days1.Effects[0] = Effects.GenerateEffect(returnkill, 3, Slots.Front);
-            days1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageByCostEffect>(), 1, Slots.Self, BasicEffects.DidThat(true));
-            days1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<FleeTargetEffect>(), 1, Slots.Self, BasicEffects.DidThat(true, 2));
-            days1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CopyAndSpawnPermenantCharacterExhaustedInSelfSlotEffect>(), 1, Slots.Self, BasicEffects.DidThat(true, 3));
-            days1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
+            days1.Effects[1] = Effects.GenerateEffect(by_exit, 1, Slots.Self);
+            days1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageByCostEffect>(), 1, Slots.Self, BasicEffects.DidThat(true, 2));
+            days1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<FleeTargetEffect>(), 1, Slots.Self, BasicEffects.DidThat(true, 3));
+            days1.Effects[4] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CopyAndSpawnPermenantCharacterExhaustedInSelfSlotEffect>(), 1, Slots.Self, BasicEffects.DidThat(true, 4));
+            days1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Field_Shield"]);
             days1.AddIntentsToTarget(Slots.Self, ["PA_Fleeting", "Other_Spawn"]);
             days1.Visuals = LoadedAssetsHandler.GetEnemyAbility("Chomp_A").visuals;
             days1.AnimationTarget = Slots.Front;
 
             Ability days2 = new Ability(days1.ability, "Six_Days_2_A", days1.Cost);
             days2.Name = "Six Hours";
-            days2.Description = "Deal 4 damage to the Opposing enemy.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
+            days2.Description = "Deal 4 damage to the Opposing enemy and gain an equal amount of Shield.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
             days2.Effects[0].entryVariable = 4;
 
             Ability days3 = new Ability(days2.ability, "Six_Days_3_A", days1.Cost);
             days3.Name = "Six Minutes";
-            days3.Description = "Deal 5 damage to the Opposing enemy.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
+            days3.Description = "Deal 5 damage to the Opposing enemy and gain an equal amount of Shield.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
             days3.Effects[0].entryVariable = 5;
 
             Ability days4 = new Ability(days3.ability, "Six_Days_4_A", days1.Cost);
             days4.Name = "Six Seconds";
-            days4.Description = "Deal 6 damage to the Opposing enemy.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
+            days4.Description = "Deal 6 damage to the Opposing enemy and gain an equal amount of Shield.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
             days4.Effects[0].entryVariable = 6;
 
             RandomStatusEffect negative = ScriptableObject.CreateInstance<RandomStatusEffect>();
