@@ -39,7 +39,7 @@ namespace AprilsDayAtFools
             catten.Animator = Joyce.Assets.LoadAsset<RuntimeAnimatorController>("Assets/CattenAnim/CattenAnimator.overrideController");
             catten.FrontSprite = ResourceLoader.LoadSprite("CattenFront.png");
             catten.BackSprite = ResourceLoader.LoadSprite("CattenBack.png");
-            catten.OverworldSprite = ResourceLoader.LoadSprite("CattenWorld.png", new Vector2(0.5f, 0f));
+            catten.OverworldSprite = ResourceLoader.LoadSprite("CattenSubWorld.png", new Vector2(0.5f, 0f));
             //extra sprites
             catten.DeathSound = "event:/Lunacy/SOUNDS3/BlackStarDie";
             catten.DamageSound = "event:/Lunacy/SOUNDS3/BlackStarHit";

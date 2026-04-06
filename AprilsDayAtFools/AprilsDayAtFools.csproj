@@ -285,6 +285,7 @@
 	  <None Remove="Sprites\Characters\Catten\CattenFront.png" />
 	  <None Remove="Sprites\Characters\Catten\CattenLock.png" />
 	  <None Remove="Sprites\Characters\Catten\CattenMenu.png" />
+	  <None Remove="Sprites\Characters\Catten\CattenSubWorld.png" />
 	  <None Remove="Sprites\Characters\Catten\CattenWorld.png" />
 	  <None Remove="Sprites\Characters\Catten\LiminalPassive.png" />
 	  <None Remove="Sprites\Characters\Clerk\ClerkBack.png" />
@@ -668,6 +669,7 @@
 	  <EmbeddedResource Include="Sprites\Achievements\witness_lich.png" />
 	  <EmbeddedResource Include="Sprites\Achievements\witness_qualia.png" />
 	  <EmbeddedResource Include="Sprites\Achievements\witness_snail.png" />
+	  <EmbeddedResource Include="Sprites\Characters\Catten\CattenSubWorld.png" />
 	  <EmbeddedResource Include="Sprites\Enemies\ImmortalIcon.png" />
 	  <EmbeddedResource Include="Sprites\Enemies\ImmortalWorld.png" />
 	  <EmbeddedResource Include="Sprites\Enemies\SirenheadIcon.png" />
