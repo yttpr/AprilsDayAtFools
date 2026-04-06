@@ -129,12 +129,13 @@ namespace AprilsDayAtFools
 
             Ability bodies3 = new Ability(bodies2.ability, "Rose_Bodies_3_A", bodies1.Cost);
             bodies3.Name = "Snapping Organs";
-            bodies3.Description = "Deal 10 damage to the Left and Right enemies.\nIf this ability doesn't kill, gain 4 Power.";
+            bodies3.Description = "Deal 10 damage to the Left and Right enemies.\nIf this ability doesn't kill, gain 5 Power.";
             bodies3.Effects[0].entryVariable = 10;
+            bodies3.Effects[1].entryVariable = 5;
 
             Ability bodies4 = new Ability(bodies3.ability, "Rose_Bodies_4_A", bodies1.Cost);
             bodies4.Name = "Snapping Bodies";
-            bodies4.Description = "Deal 12 damage to the Left and Right enemies.\nIf this ability doesn't kill, gain 4 Power.";
+            bodies4.Description = "Deal 12 damage to the Left and Right enemies.\nIf this ability doesn't kill, gain 5 Power.";
             bodies4.Effects[0].entryVariable = 12;
             bodies4.EffectIntents[0].intents[0] = "Damage_11_15";
 
