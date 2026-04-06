@@ -110,34 +110,32 @@ namespace AprilsDayAtFools
 
             Intents.CreateAndAddCustom_Basic_IntentToPool("Rem_Status_Power", ResourceLoader.LoadSprite("Power"), Intents.GetInGame_IntentInfo(IntentType_GameIDs.Rem_Status_Ruptured)._color);
             Ability bodies1 = new Ability("Snapping Tendons", "Rose_Bodies_1_A");
-            bodies1.Description = "Deal 6 damage to the Left and Right enemies.\nIf this ability doesn't kill, gain 3 Power.";
+            bodies1.Description = "Deal 7 damage to the Opposing enemy.\nIf this ability doesn't kill, gain 3 Power.";
             bodies1.AbilitySprite = ResourceLoader.LoadSprite("ability_bodies.png");
             bodies1.Cost = [Pigments.Red, Pigments.Red, Pigments.Yellow];
             bodies1.Effects = new EffectInfo[2];
-            bodies1.Effects[0] = Effects.GenerateEffect(returnkill, 6, Slots.LeftRight);
+            bodies1.Effects[0] = Effects.GenerateEffect(returnkill, 7, Slots.Front);
             bodies1.Effects[1] = Effects.GenerateEffect(power, 3, Slots.Self, BasicEffects.DidThat(false));
-            bodies1.AddIntentsToTarget(Slots.LeftRight, ["Damage_3_6"]);
+            bodies1.AddIntentsToTarget(Slots.Front, ["Damage_7_10"]);
             bodies1.AddIntentsToTarget(Slots.Self, ["Status_Power"]);
-            bodies1.Visuals = Visuals.Strum;
-            bodies1.AnimationTarget = Slots.LeftRight;
+            bodies1.Visuals = CustomVisuals.GetVisuals("Salt/Piano");
+            bodies1.AnimationTarget = Slots.Front;
 
             Ability bodies2 = new Ability(bodies1.ability, "Rose_Bodies_2_A", bodies1.Cost);
             bodies2.Name = "Snapping Bones";
-            bodies2.Description = "Deal 8 damage to the Left and Right enemies.\nIf this ability doesn't kill, gain 3 Power.";
-            bodies2.Effects[0].entryVariable = 8;
-            bodies2.EffectIntents[0].intents[0] = "Damage_7_10";
+            bodies2.Description = "Deal 9 damage to the Opposing enemy.\nIf this ability doesn't kill, gain 3 Power.";
+            bodies2.Effects[0].entryVariable = 9;
 
             Ability bodies3 = new Ability(bodies2.ability, "Rose_Bodies_3_A", bodies1.Cost);
             bodies3.Name = "Snapping Organs";
-            bodies3.Description = "Deal 10 damage to the Left and Right enemies.\nIf this ability doesn't kill, gain 3 Power.";
-            bodies3.Effects[0].entryVariable = 10;
+            bodies3.Description = "Deal 11 damage to the Opposing enemy.\nIf this ability doesn't kill, gain 3 Power.";
+            bodies3.Effects[0].entryVariable = 11;
+            bodies3.EffectIntents[0].intents[0] = "Damage_11_15";
 
             Ability bodies4 = new Ability(bodies3.ability, "Rose_Bodies_4_A", bodies1.Cost);
             bodies4.Name = "Snapping Bodies";
-            bodies4.Description = "Deal 12 damage to the Left and Right enemies.\nIf this ability doesn't kill, gain 4 Power.";
-            bodies4.Effects[0].entryVariable = 12;
-            bodies4.Effects[1].entryVariable = 4;
-            bodies4.EffectIntents[0].intents[0] = "Damage_11_15";
+            bodies4.Description = "Deal 14 damage to the Opposing enemy.\nIf this ability doesn't kill, gain 3 Power.";
+            bodies4.Effects[0].entryVariable = 14;
 
             rose.AddLevelData(12, [muti1, cleave1, bodies1]);
             rose.AddLevelData(15, [muti2, cleave2, bodies2]);
