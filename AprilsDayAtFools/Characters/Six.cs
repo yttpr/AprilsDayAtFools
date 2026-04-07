@@ -56,11 +56,11 @@ namespace AprilsDayAtFools
             days1.AbilitySprite = ResourceLoader.LoadSprite("ability_days.png");
             days1.Cost = [Pigments.Red, Pigments.Red, Pigments.Red];
             days1.Effects = new EffectInfo[5];
-            days1.Effects[0] = Effects.GenerateEffect(returnkill, 3, Slots.Front);
+            days1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 3, Slots.Front);
             days1.Effects[1] = Effects.GenerateEffect(by_exit, 1, Slots.Self, BasicEffects.DidThat(true));
             days1.Effects[2] = Effects.GenerateEffect(cost, 1, Slots.Self, BasicEffects.DidThat(false, 2));
             days1.Effects[3] = Effects.GenerateEffect(flee, 1, Slots.Self, BasicEffects.DidThat(false, 3));
-            days1.Effects[4] = Effects.GenerateEffect(clone, 1, Slots.Self, BasicEffects.DidThat(false, 4));
+            days1.Effects[4] = Effects.GenerateEffect(clone, 1, Slots.Self, BasicEffects.DidThat(false, 4)); 
             days1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
             days1.AddIntentsToTarget(Slots.Self, ["Field_Shield", "PA_Fleeting", "Other_Spawn"]);
             days1.Visuals = LoadedAssetsHandler.GetEnemyAbility("Chomp_A").visuals;
