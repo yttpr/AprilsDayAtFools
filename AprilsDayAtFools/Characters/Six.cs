@@ -43,37 +43,44 @@ namespace AprilsDayAtFools
 
             DamageEffect returnkill = ScriptableObject.CreateInstance<DamageEffect>();
             returnkill._returnKillAsSuccess = true;
-            ApplyShieldSlotEffect by_exit = ScriptableObject.CreateInstance<ApplyShieldSlotEffect>();
-            by_exit._UsePreviousExitValueAsMultiplier = true;
+            HealEffect by_exit = ScriptableObject.CreateInstance<HealEffect>();
+            by_exit.usePreviousExitValue = true;
+
+            //the clone bit
+            DamageByCostEffect cost = ScriptableObject.CreateInstance<DamageByCostEffect>();
+            FleeTargetEffect flee = ScriptableObject.CreateInstance<FleeTargetEffect>();
+            CopyAndSpawnPermenantCharacterExhaustedInSelfSlotEffect clone = ScriptableObject.CreateInstance<CopyAndSpawnPermenantCharacterExhaustedInSelfSlotEffect>();
 
             Ability days1 = new Ability("Six Days", "Six_Days_1_A");
-            days1.Description = "Deal 3 damage to the Opposing enemy and gain an equal amount of Shield.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
+            days1.Description = "Deal 3 damage to the Opposing enemy and heal the Left ally by the damage dealt.\nIf no healing is dealt, instantly flee and spawn a permenant copy of this character.";
             days1.AbilitySprite = ResourceLoader.LoadSprite("ability_days.png");
-            days1.Cost = [Pigments.Red, Pigments.Red];
+            days1.Cost = [Pigments.Red, Pigments.Red, Pigments.Red];
             days1.Effects = new EffectInfo[5];
             days1.Effects[0] = Effects.GenerateEffect(returnkill, 3, Slots.Front);
-            days1.Effects[1] = Effects.GenerateEffect(by_exit, 1, Slots.Self);
-            days1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageByCostEffect>(), 1, Slots.Self, BasicEffects.DidThat(true, 2));
-            days1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<FleeTargetEffect>(), 1, Slots.Self, BasicEffects.DidThat(true, 3));
-            days1.Effects[4] = Effects.GenerateEffect(ScriptableObject.CreateInstance<CopyAndSpawnPermenantCharacterExhaustedInSelfSlotEffect>(), 1, Slots.Self, BasicEffects.DidThat(true, 4));
-            days1.AddIntentsToTarget(Slots.Front, ["Damage_3_6", "Field_Shield"]);
+            days1.Effects[1] = Effects.GenerateEffect(by_exit, 1, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true));
+            days1.Effects[2] = Effects.GenerateEffect(cost, 1, Slots.Self, BasicEffects.DidThat(false, 1));
+            days1.Effects[3] = Effects.GenerateEffect(flee, 1, Slots.Self, BasicEffects.DidThat(false, 2));
+            days1.Effects[4] = Effects.GenerateEffect(clone, 1, Slots.Self, BasicEffects.DidThat(false, 3));
+            days1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
+            days1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Heal_1_4"]);
             days1.AddIntentsToTarget(Slots.Self, ["PA_Fleeting", "Other_Spawn"]);
             days1.Visuals = LoadedAssetsHandler.GetEnemyAbility("Chomp_A").visuals;
             days1.AnimationTarget = Slots.Front;
 
             Ability days2 = new Ability(days1.ability, "Six_Days_2_A", days1.Cost);
             days2.Name = "Six Hours";
-            days2.Description = "Deal 4 damage to the Opposing enemy and gain an equal amount of Shield.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
+            days2.Description = "Deal 4 damage to the Opposing enemy and heal the Left ally by the damage dealt.\nIf no healing is dealt, instantly flee and spawn a permenant copy of this character.";
             days2.Effects[0].entryVariable = 4;
 
             Ability days3 = new Ability(days2.ability, "Six_Days_3_A", days1.Cost);
             days3.Name = "Six Minutes";
-            days3.Description = "Deal 5 damage to the Opposing enemy and gain an equal amount of Shield.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
+            days3.Description = "Deal 5 damage to the Opposing enemy and heal the Left ally by the damage dealt.\nIf no healing is dealt, instantly flee and spawn a permenant copy of this character.";
             days3.Effects[0].entryVariable = 5;
+            days3.EffectIntents[1].intents[0] = "Heal_5_10";
 
             Ability days4 = new Ability(days3.ability, "Six_Days_4_A", days1.Cost);
             days4.Name = "Six Seconds";
-            days4.Description = "Deal 6 damage to the Opposing enemy and gain an equal amount of Shield.\nIf this ability kills, instantly flee and spawn a permenant copy of this character.";
+            days4.Description = "Deal 6 damage to the Opposing enemy and heal the Left ally by the damage dealt.\nIf no healing is dealt, instantly flee and spawn a permenant copy of this character.";
             days4.Effects[0].entryVariable = 6;
 
             RandomStatusEffect negative = ScriptableObject.CreateInstance<RandomStatusEffect>();
@@ -83,30 +90,31 @@ namespace AprilsDayAtFools
                 "Disappearing_ID", "Karma_ID", "Madness_ID", "CoralColony_ID", "Infirm_ID", "Downfall_ID"];
 
             Ability fingers1 = new Ability("Six Fingers", "Six_Fingers_1_A");
-            fingers1.Description = "Deal 4 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.";
+            fingers1.Description = "Deal 4 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.\nIf no damage is dealt, instantly flee and spawn a permenant copy of this character.";
             fingers1.AbilitySprite = ResourceLoader.LoadSprite("ability_fingers.png");
-            fingers1.Cost = [Pigments.Red, Pigments.Yellow];
-            fingers1.Effects = new EffectInfo[2];
+            fingers1.Cost = [Pigments.Red, Pigments.Red];
+            fingers1.Effects = new EffectInfo[5];
             fingers1.Effects[0] = Effects.GenerateEffect(returnkill, 4, Slots.Front);
             fingers1.Effects[1] = Effects.GenerateEffect(negative, 1, Slots.Front);
             fingers1.AddIntentsToTarget(Slots.Front, ["Damage_3_6"]);
+            //because of how i load the randomization intent its gonna get fucked up and out of order but oh well. reminds me, i need to double check it doesnt fuck up with the camera.
             fingers1.Visuals = LoadedAssetsHandler.GetCharacterAbility("Shank_1_A").visuals;
             fingers1.AnimationTarget = Slots.Front;
 
             Ability fingers2 = new Ability(fingers1.ability, "Six_Fingers_2_A", fingers1.Cost);
             fingers2.Name = "Six Hands";
-            fingers2.Description = "Deal 6 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.";
+            fingers2.Description = "Deal 6 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.\nIf no damage is dealt, instantly flee and spawn a permenant copy of this character.";
             fingers2.Effects[0].entryVariable = 6;
 
             Ability fingers3 = new Ability(fingers2.ability, "Six_Fingers_3_A", fingers1.Cost);
             fingers3.Name = "Six Arms";
-            fingers3.Description = "Deal 7 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.";
+            fingers3.Description = "Deal 7 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.\nIf no damage is dealt, instantly flee and spawn a permenant copy of this character.";
             fingers3.Effects[0].entryVariable = 7;
             fingers3.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability fingers4 = new Ability(fingers3.ability, "Six_Fingers_4_A", fingers1.Cost);
             fingers4.Name = "Six Bodies";
-            fingers4.Description = "Deal 8 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.";
+            fingers4.Description = "Deal 8 damage to the Opposing enemy and inflict 1 random Negative Status Effect to them.\nIf no damage is dealt, instantly flee and spawn a permenant copy of this character.";
             fingers4.Effects[0].entryVariable = 8;
 
             Ability hearts1 = new Ability("Six Thoughts", "Six_Hearts_1_A");
