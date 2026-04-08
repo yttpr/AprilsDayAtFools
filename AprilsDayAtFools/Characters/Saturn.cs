@@ -191,13 +191,13 @@ namespace AprilsDayAtFools
         }
         public static void Items()
         {
-            MultiPerformEffectItem dial = new MultiPerformEffectItem("Aprils_Dial_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyPaleEffect>(), 15, Targetting.Random(false))]);
+            MultiPerformEffectItem dial = new MultiPerformEffectItem("Aprils_Dial_SW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyPaleEffect>(), 2, Targetting.Random(false))]);
             dial.Name = "Dial";
             dial.Flavour = "\"Don't pick up, just listen.\"";
-            dial.Description = "Inflict 15 Pale to a random enemy on combat start.\nDamage dealt by this party member to enemies with Pale spreads indirectly to the Left and Right.";
+            dial.Description = "Inflict 2 Pale to a random enemy at the start of each turn.\nDamage dealt by this party member to enemies with Pale spreads indirectly to the Left and Right.";
             dial.Icon = ResourceLoader.LoadSprite("item_dial.png");
             dial.EquippedModifiers = [];
-            dial.TriggerOn = TriggerCalls.OnCombatStart;
+            dial.TriggerOn = TriggerCalls.OnTurnStart;
             dial.DoesPopUpInfo = false;
             dial.Conditions = [];
             dial.DoesActionOnTriggerAttached = false;
