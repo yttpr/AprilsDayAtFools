@@ -19,7 +19,7 @@ namespace AprilsDayAtFools
             liminal.m_PassiveID = "Liminal_PA";
             liminal.passiveIcon = ResourceLoader.LoadSprite("LiminalPassive.png");
             liminal._characterDescription = "On pausing, gain 1 Entropy.";
-            liminal._enemyDescription = liminal._characterDescription;
+            liminal._enemyDescription = "On pausing, gain 1 Entropy.";
             liminal._triggerOn = [PauseHook.Trigger];
             liminal.conditions = [];
             liminal.doesPassiveTriggerInformationPanel = true;
