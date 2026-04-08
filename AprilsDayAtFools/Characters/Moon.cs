@@ -124,7 +124,7 @@ namespace AprilsDayAtFools
             isol4.Name = "Scorched Isolation";
             isol4.Description = "Deal 20 direct Fire damage to the Opposing position and decrease this move's damage by 5, resetting if it would reach 0. The damage is entirely blocked by Fire and spreads indirectly to adjacent enemies.\nThis move's damage decreases by 2 on turn end and on taking any damage.\nInflict 1 Fire on this party member.";
             isol4.Effects[0].entryVariable = 20;
-            isol3.Effects[1].entryVariable = 5;
+            isol4.Effects[1].entryVariable = 5;
             isol4.Effects[2].entryVariable = 20;
 
             Ability light1 = new Ability("Little Lighter", "Moon_Light_1_A");
