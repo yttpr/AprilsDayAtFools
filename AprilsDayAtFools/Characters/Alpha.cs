@@ -91,19 +91,19 @@ namespace AprilsDayAtFools
 
             Ability alphabet2 = new Ability(alphabet1.ability, "A_Alphabet_2_A", alphabet1.Cost);
             alphabet2.Name = "Assembly Alphabetical";
-            alphabet2.Description = "Reduce all Negative Status Effects on the Left ally by 2 and heal them 5 health and inflict 1 Inverted on them.";
+            alphabet2.Description = "Reduce all Negative Status Effects on the Left ally by 2. Heal them 5 health and inflict 1 Inverted on them.";
             alphabet2.Effects[0].effect = ScriptableObject.CreateInstance<ReduceAllNegativeStatusEffect>();
             alphabet2.Effects[1].entryVariable = 5;
             alphabet2.EffectIntents[0].intents = ["Misc", "Heal_5_10", Inverted.Intent];
 
             Ability alphabet3 = new Ability(alphabet2.ability, "A_Alphabet_3_A", [Pigments.Blue, Pigments.Blue]);
             alphabet3.Name = "Acquisition Alphabetical";
-            alphabet3.Description = "Reduce all Negative Status Effects on the Left ally by 2 and heal them 7 health and inflict 1 Inverted on them.";
+            alphabet3.Description = "Reduce all Negative Status Effects on the Left ally by 2. Heal them 7 health and inflict 1 Inverted on them.";
             alphabet3.Effects[1].entryVariable = 7;
 
             Ability alphabet4 = new Ability(alphabet3.ability, "A_Alphabet_4_A", alphabet3.Cost);
             alphabet4.Name = "Anatomy Alphabetical";
-            alphabet4.Description = "Reduce all Negative Status Effects on the Left ally by 4 and heal them 8 health and inflict 1 Inverted on them.";
+            alphabet4.Description = "Reduce all Negative Status Effects on the Left ally by 4. Heal them 8 health and inflict 1 Inverted on them.";
             alphabet4.Effects[0].entryVariable = 4;
             alphabet4.Effects[1].entryVariable = 8;
 
