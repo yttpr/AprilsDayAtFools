@@ -78,32 +78,34 @@ namespace AprilsDayAtFools
             newline4.Effects[1].condition = Effects.ChanceCondition(66);
 
             Ability alphabet1 = new Ability("Array Alphabetical", "A_Alphabet_1_A");
-            alphabet1.Description = "Heal the Left ally 4 health and inflict 1 Inverted on them.";
+            alphabet1.Description = "Heal the Left ally 4 health and inflict 1 Inverted on them.\nInflict 1 Inverted on the Opposing enemy.";
             alphabet1.AbilitySprite = ResourceLoader.LoadSprite("ability_alphabet.png");
             alphabet1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
-            alphabet1.Effects = new EffectInfo[3];
+            alphabet1.Effects = new EffectInfo[4];
             alphabet1.Effects[0] = Effects.GenerateEffect(BasicEffects.Empty, 2, Targeting.Slot_AllyLeft);
             alphabet1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 4, Targeting.Slot_AllyLeft);
             alphabet1.Effects[2] = Effects.GenerateEffect(inverted, 1, Targeting.Slot_AllyLeft);
+            alphabet1.Effects[3] = Effects.GenerateEffect(inverted, 1, Slots.Front);
             alphabet1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Heal_1_4", Inverted.Intent]);
+            alphabet1.AddIntentsToTarget(Slots.Front, [Inverted.Intent]);
             alphabet1.Visuals = CustomVisuals.GetVisuals("Salt/Ads");
             alphabet1.AnimationTarget = Targeting.Slot_AllyLeft;
 
             Ability alphabet2 = new Ability(alphabet1.ability, "A_Alphabet_2_A", alphabet1.Cost);
             alphabet2.Name = "Assembly Alphabetical";
-            alphabet2.Description = "Reduce all Negative Status Effects on the Left ally by 2. Heal them 5 health and inflict 1 Inverted on them.";
+            alphabet2.Description = "Reduce all Negative Status Effects on the Left ally by 2. Heal them 5 health and inflict 1 Inverted on them.\nInflict 1 Inverted on the Opposing enemy.";
             alphabet2.Effects[0].effect = ScriptableObject.CreateInstance<ReduceAllNegativeStatusEffect>();
             alphabet2.Effects[1].entryVariable = 5;
             alphabet2.EffectIntents[0].intents = ["Misc", "Heal_5_10", Inverted.Intent];
 
             Ability alphabet3 = new Ability(alphabet2.ability, "A_Alphabet_3_A", [Pigments.Blue, Pigments.Blue]);
             alphabet3.Name = "Acquisition Alphabetical";
-            alphabet3.Description = "Reduce all Negative Status Effects on the Left ally by 2. Heal them 7 health and inflict 1 Inverted on them.";
+            alphabet3.Description = "Reduce all Negative Status Effects on the Left ally by 2. Heal them 7 health and inflict 1 Inverted on them.\nInflict 1 Inverted on the Opposing enemy.";
             alphabet3.Effects[1].entryVariable = 7;
 
             Ability alphabet4 = new Ability(alphabet3.ability, "A_Alphabet_4_A", alphabet3.Cost);
             alphabet4.Name = "Anatomy Alphabetical";
-            alphabet4.Description = "Reduce all Negative Status Effects on the Left ally by 4. Heal them 8 health and inflict 1 Inverted on them.";
+            alphabet4.Description = "Reduce all Negative Status Effects on the Left ally by 4. Heal them 8 health and inflict 1 Inverted on them.\nInflict 1 Inverted on the Opposing enemy.";
             alphabet4.Effects[0].entryVariable = 4;
             alphabet4.Effects[1].entryVariable = 8;
 
