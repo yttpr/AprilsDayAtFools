@@ -52,7 +52,8 @@ namespace AprilsDayAtFools
                 Passives.Skittish.m_PassiveID, Passives.Slippery.m_PassiveID, Passives.Constricting.m_PassiveID, "Anchored",
                 "Jumpy_PA", "Lightweight_PA", "Scramble_PA", "Evasive_PA", "Turbulent_PA", "CCTV_PA", "Jittery_PA", "Fluttery_PA", "Warping_PA",
                 "Lonely_PA", "Melancholy_PA", "Gluttony_PA", "Rotary_PA", "Marching_PA", "Hiding_PA", "Seeking_PA",
-                "Lockstep_ID", "Cadence_ID", "RightStrafe_ID", "LeftStrafe_ID"
+                "Lockstep_ID", "Cadence_ID", "RightStrafe_ID", "LeftStrafe_ID",
+                "Sweeping_PA", "Shy_PA", "Confrontational_PA", "Escapist_PA",
                 ];
 
             CheckPassiveAbilityEffect infant = ScriptableObject.CreateInstance<CheckPassiveAbilityEffect>();
