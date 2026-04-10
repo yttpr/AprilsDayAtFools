@@ -84,6 +84,7 @@ namespace AprilsDayAtFools
             sides_and_enemies.secondTargetting = Slots.SlotTarget([-1, 1], true, true);
             TriggerDamageNotifEffect damage = ScriptableObject.CreateInstance<TriggerDamageNotifEffect>();
             damage._useCaster = true;
+            damage._damageType = "Fake";
             TriggerNotifsEffect triggerNotifs = ScriptableObject.CreateInstance<TriggerNotifsEffect>();
             triggerNotifs.List = [
                 (TriggerCalls.OnTurnStart.ToString(), null),
