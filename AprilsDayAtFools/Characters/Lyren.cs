@@ -76,7 +76,7 @@ namespace AprilsDayAtFools
             breakfast4.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability novelty1 = new Ability("Filter Novelty", "Lyren_Novelty_1_A");
-            novelty1.Description = "Deal 6 damage to the Opposing enemy and move them Left or Right, then produce 2 Blue Pigment.\nThis ability ignores Constricting.";
+            novelty1.Description = "Deal 6 damage to the Opposing enemy and move them Left or Right, then produce 2 Blue Pigment.\nThis ability ignores this party member's Constricting.";
             novelty1.AbilitySprite = ResourceLoader.LoadSprite("ability_novelty.png");
             novelty1.Cost = [Pigments.Red, Pigments.Blue];
             novelty1.Effects = new EffectInfo[5];
@@ -92,23 +92,23 @@ namespace AprilsDayAtFools
 
             Ability novelty2 = new Ability(novelty1.ability, "Lyren_Novelty_2_A", novelty1.Cost);
             novelty2.Name = "Static Novelty";
-            novelty2.Description = "Deal 9 damage to the Opposing enemy and move them Left or Right, then produce 2 Blue Pigment.\nThis ability ignores Constricting.";
+            novelty2.Description = "Deal 9 damage to the Opposing enemy and move them Left or Right, then produce 2 Blue Pigment.\nThis ability ignores this party member's Constricting.";
             novelty2.Effects[1].entryVariable = 9;
             novelty2.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability novelty3 = new Ability(novelty2.ability, "Lyren_Novelty_3_A", novelty1.Cost);
             novelty3.Name = "Noise Novelty";
-            novelty3.Description = "Deal 11 damage to the Opposing enemy and move them Left or Right, then produce 2 Blue Pigment.\nThis ability ignores Constricting.";
+            novelty3.Description = "Deal 11 damage to the Opposing enemy and move them Left or Right, then produce 2 Blue Pigment.\nThis ability ignores this party member's Constricting.";
             novelty3.Effects[1].entryVariable = 11;
             novelty3.EffectIntents[0].intents[0] = "Damage_11_15";
 
             Ability novelty4 = new Ability(novelty3.ability, "Lyren_Novelty_4_A", novelty1.Cost);
             novelty4.Name = "Screech Novelty";
-            novelty4.Description = "Deal 13 damage to the Opposing enemy and move them Left or Right, then produce 2 Blue Pigment.\nThis ability ignores Constricting.";
+            novelty4.Description = "Deal 13 damage to the Opposing enemy and move them Left or Right, then produce 2 Blue Pigment.\nThis ability ignores this party member's Constricting.";
             novelty4.Effects[1].entryVariable = 13;
 
             Ability sing1 = new Ability("Sing Trust", "Lyren_Sing_1_A");
-            sing1.Description = "Deal 5 indirect damage and inflict 1 Ruptured to the Left and Right enemies, then move them towards this party member.\nThis ability ignores Constricting.";
+            sing1.Description = "Deal 5 indirect damage and inflict 1 Ruptured to the Left and Right enemies, then move them towards this party member.\nThis ability ignores this party member's Constricting.";
             sing1.AbilitySprite = ResourceLoader.LoadSprite("ability_sing.png");
             sing1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Yellow];
             sing1.Effects = new EffectInfo[6];
@@ -127,19 +127,19 @@ namespace AprilsDayAtFools
 
             Ability sing2 = new Ability(sing1.ability, "Lyren_Sing_2_A", sing1.Cost);
             sing2.Name = "Sing Faith";
-            sing2.Description = "Deal 7 indirect damage and inflict 1 Ruptured to the Left and Right enemies, then move them towards this party member.\nThis ability ignores Constricting.";
+            sing2.Description = "Deal 7 indirect damage and inflict 1 Ruptured to the Left and Right enemies, then move them towards this party member.\nThis ability ignores this party member's Constricting.";
             sing2.Effects[1].entryVariable = 7;
             sing2.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability sing3 = new Ability(sing2.ability, "Lyren_Sing_3_A", [Pigments.Blue, Pigments.Blue]);
             sing3.Name = "Sing Glory";
-            sing3.Description = "Deal 8 indirect damage and inflict 3 Ruptured to the Left and Right enemies, then move them towards this party member.\nThis ability ignores Constricting.";
+            sing3.Description = "Deal 8 indirect damage and inflict 3 Ruptured to the Left and Right enemies, then move them towards this party member.\nThis ability ignores this party member's Constricting.";
             sing3.Effects[1].entryVariable = 8;
             sing3.Effects[2].entryVariable = 3;
 
             Ability sing4 = new Ability(sing3.ability, "Lyren_Sing_4_A", sing3.Cost);
             sing4.Name = "Sing Eternity";
-            sing4.Description = "Deal 10 indirect damage and inflict 3 Ruptured to the Left and Right enemies, then move them towards this party member.\nThis ability ignores Constricting.";
+            sing4.Description = "Deal 10 indirect damage and inflict 3 Ruptured to the Left and Right enemies, then move them towards this party member.\nThis ability ignores this party member's Constricting.";
             sing4.Effects[1].entryVariable = 10;
 
             lyren.AddLevelData(14, [breakfast1, novelty1, sing1]);
