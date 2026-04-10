@@ -82,6 +82,8 @@ namespace AprilsDayAtFools
             DoubleTargettingPrioritizeFirst sides_and_enemies = ScriptableObject.CreateInstance<DoubleTargettingPrioritizeFirst>();
             sides_and_enemies.firstTargetting = Targeting.Unit_AllOpponents;
             sides_and_enemies.secondTargetting = Slots.SlotTarget([-1, 1], true, true);
+            TriggerDamageNotifEffect damage = ScriptableObject.CreateInstance<TriggerDamageNotifEffect>();
+            damage._useCaster = true;
             TriggerNotifsEffect triggerNotifs = ScriptableObject.CreateInstance<TriggerNotifsEffect>();
             triggerNotifs.List = [
                 (TriggerCalls.OnTurnStart.ToString(), null),
@@ -98,7 +100,7 @@ namespace AprilsDayAtFools
             alphabet1.Effects[0] = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Ads", false, Slots.Sides), 0, Slots.Self, correct);
             alphabet1.Effects[1] = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Ads", false, sides_and_enemies), 0, Slots.Self, offcolor);
             alphabet1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DistributeHealingEffect>(), 6, Slots.Sides);
-            alphabet1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<TriggerDamageNotifEffect>(), 6, Targeting.Unit_AllOpponents, offcolor);
+            alphabet1.Effects[3] = Effects.GenerateEffect(damage, 6, Targeting.Unit_AllOpponents, offcolor);
             alphabet1.Effects[4] = Effects.GenerateEffect(triggerNotifs, 0, Targeting.Unit_AllOpponents, offcolor);
             alphabet1.Effects[5] = Effects.GenerateEffect(ScriptableObject.CreateInstance<TriggerAnyAbilityNotifsEffect>(), 0, Targeting.Unit_AllOpponents, offcolor);
             alphabet1.Effects[6] = Effects.GenerateEffect(ScriptableObject.CreateInstance<EndCombatTargetEffect>(), 0, Targeting.Unit_AllOpponents, offcolor);
