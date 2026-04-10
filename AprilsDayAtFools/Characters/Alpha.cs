@@ -77,37 +77,54 @@ namespace AprilsDayAtFools
             newline4.Description = "Force the Opposing enemy to prematurely perform their next action.\n66% chance to refresh this party member's ability usage.";
             newline4.Effects[1].condition = Effects.ChanceCondition(66);
 
+            WrongPigmentEffectCondition correct = WrongPigmentEffectCondition.Create(false);
+            WrongPigmentEffectCondition offcolor = WrongPigmentEffectCondition.Create(true);
+            DoubleTargettingPrioritizeFirst sides_and_enemies = ScriptableObject.CreateInstance<DoubleTargettingPrioritizeFirst>();
+            sides_and_enemies.firstTargetting = Targeting.Unit_AllOpponents;
+            sides_and_enemies.secondTargetting = Slots.SlotTarget([-1, 1], true, true);
+            TriggerNotifsEffect triggerNotifs = ScriptableObject.CreateInstance<TriggerNotifsEffect>();
+            triggerNotifs.List = [
+                (TriggerCalls.OnTurnStart.ToString(), null),
+                (TriggerCalls.OnAbilityWillBeUsed.ToString(), new StringReference("")),
+                (TriggerCalls.OnAbilityUsed.ToString(), null),
+                (TriggerCalls.OnTurnFinished.ToString(), new TurnFinishedReference(hasSwappedThisTurn: false))
+                ];
+
             Ability alphabet1 = new Ability("Array Alphabetical", "A_Alphabet_1_A");
-            alphabet1.Description = "Heal the Left ally 4 health and inflict 1 Inverted on them.\nInflict 1 Inverted on the Opposing enemy.";
+            alphabet1.Description = "Heal the Left and Right allies 6 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 6 damage, used an ability, and had combat end.";
             alphabet1.AbilitySprite = ResourceLoader.LoadSprite("ability_alphabet.png");
             alphabet1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
-            alphabet1.Effects = new EffectInfo[4];
-            alphabet1.Effects[0] = Effects.GenerateEffect(BasicEffects.Empty, 2, Targeting.Slot_AllyLeft);
-            alphabet1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealEffect>(), 4, Targeting.Slot_AllyLeft);
-            alphabet1.Effects[2] = Effects.GenerateEffect(inverted, 1, Targeting.Slot_AllyLeft);
-            alphabet1.Effects[3] = Effects.GenerateEffect(inverted, 1, Slots.Front);
-            alphabet1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Heal_1_4", Inverted.Intent]);
-            alphabet1.AddIntentsToTarget(Slots.Front, [Inverted.Intent]);
-            alphabet1.Visuals = CustomVisuals.GetVisuals("Salt/Ads");
-            alphabet1.AnimationTarget = Targeting.Slot_AllyLeft;
+            alphabet1.Effects = new EffectInfo[7];
+            alphabet1.Effects[0] = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Ads", false, Slots.Sides), 0, Slots.Self, correct);
+            alphabet1.Effects[1] = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Ads", false, sides_and_enemies), 0, Slots.Self, offcolor);
+            alphabet1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DistributeHealingEffect>(), 6, Slots.Sides);
+            alphabet1.Effects[3] = Effects.GenerateEffect(ScriptableObject.CreateInstance<TriggerDamageNotifEffect>(), 6, Targeting.Unit_AllOpponents, offcolor);
+            alphabet1.Effects[4] = Effects.GenerateEffect(triggerNotifs, 0, Targeting.Unit_AllOpponents, offcolor);
+            alphabet1.Effects[5] = Effects.GenerateEffect(ScriptableObject.CreateInstance<TriggerAnyAbilityNotifsEffect>(), 0, Targeting.Unit_AllOpponents, offcolor);
+            alphabet1.Effects[6] = Effects.GenerateEffect(ScriptableObject.CreateInstance<EndCombatTargetEffect>(), 0, Targeting.Unit_AllOpponents, offcolor);
+            alphabet1.AddIntentsToTarget(Slots.Sides, ["Heal_5_10"]);
+            alphabet1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc"]);
+            alphabet1.Visuals = null;
+            alphabet1.AnimationTarget = Slots.Self;
 
             Ability alphabet2 = new Ability(alphabet1.ability, "A_Alphabet_2_A", alphabet1.Cost);
             alphabet2.Name = "Assembly Alphabetical";
-            alphabet2.Description = "Reduce all Negative Status Effects on the Left ally by 2. Heal them 5 health and inflict 1 Inverted on them.\nInflict 1 Inverted on the Opposing enemy.";
-            alphabet2.Effects[0].effect = ScriptableObject.CreateInstance<ReduceAllNegativeStatusEffect>();
-            alphabet2.Effects[1].entryVariable = 5;
-            alphabet2.EffectIntents[0].intents = ["Misc", "Heal_5_10", Inverted.Intent];
+            alphabet2.Description = "Heal the Left and Right allies 8 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 8 damage, used an ability, and had combat end.";
+            alphabet2.Effects[2].entryVariable = 8;
+            alphabet2.Effects[3].entryVariable = 8;
 
-            Ability alphabet3 = new Ability(alphabet2.ability, "A_Alphabet_3_A", [Pigments.Blue, Pigments.Blue]);
+            Ability alphabet3 = new Ability(alphabet2.ability, "A_Alphabet_3_A", alphabet1.Cost);
             alphabet3.Name = "Acquisition Alphabetical";
-            alphabet3.Description = "Reduce all Negative Status Effects on the Left ally by 2. Heal them 7 health and inflict 1 Inverted on them.\nInflict 1 Inverted on the Opposing enemy.";
-            alphabet3.Effects[1].entryVariable = 7;
+            alphabet3.Description = "Heal the Left and Right allies 10 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 10 damage, used an ability, and had combat end.";
+            alphabet3.Effects[2].entryVariable = 10;
+            alphabet3.Effects[3].entryVariable = 10;
 
-            Ability alphabet4 = new Ability(alphabet3.ability, "A_Alphabet_4_A", alphabet3.Cost);
+            Ability alphabet4 = new Ability(alphabet3.ability, "A_Alphabet_4_A", alphabet1.Cost);
             alphabet4.Name = "Anatomy Alphabetical";
-            alphabet4.Description = "Reduce all Negative Status Effects on the Left ally by 4. Heal them 8 health and inflict 1 Inverted on them.\nInflict 1 Inverted on the Opposing enemy.";
-            alphabet4.Effects[0].entryVariable = 4;
-            alphabet4.Effects[1].entryVariable = 8;
+            alphabet4.Description = "Heal the Left and Right allies 12 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 12 damage, used an ability, and had combat end.";
+            alphabet4.Effects[2].entryVariable = 12;
+            alphabet4.Effects[3].entryVariable = 12;
+            alphabet4.EffectIntents[0].intents[0] = "Damage_11_20";
 
             IncreaseStatusEffectsEffect up_neg = ScriptableObject.CreateInstance<IncreaseStatusEffectsEffect>();
             up_neg.m_AffectStatusEffects = true;
