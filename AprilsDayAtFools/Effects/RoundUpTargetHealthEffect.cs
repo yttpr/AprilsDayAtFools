@@ -17,7 +17,11 @@ namespace AprilsDayAtFools
                     int start = target.Unit.CurrentHealth;
                     if (start >= entryVariable) continue;
 
-                    if (target.Unit.SetHealthTo(entryVariable))
+                    if (target.Unit.ContainsStatusEffect(StatusField_GameIDs.Gutted_ID.ToString()))
+                    {
+                        target.Unit.MaximizeHealth(entryVariable);
+                    }
+                    if (target.Unit.SetHealthTo(Math.Min(entryVariable, target.Unit.MaximumHealth)))
                     {
                         exitAmount += target.Unit.CurrentHealth - start;
                     }
