@@ -92,19 +92,25 @@ namespace AprilsDayAtFools
                 (TriggerCalls.OnAbilityUsed.ToString(), null),
                 (TriggerCalls.OnTurnFinished.ToString(), new TurnFinishedReference(hasSwappedThisTurn: false))
                 ];
+            TriggerNotifsEffect roundEnd = ScriptableObject.CreateInstance<TriggerNotifsEffect>();
+            roundEnd.List = [
+                (TriggerCalls.TimelineEndReached.ToString(), null),
+                (TriggerCalls.OnRoundFinished.ToString(), null)
+                ];
 
             Ability alphabet1 = new Ability("Array Alphabetical", "A_Alphabet_1_A");
-            alphabet1.Description = "Heal the Left and Right allies 6 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 6 damage, used an ability, and had combat end.";
+            alphabet1.Description = "Heal the Left and Right allies 6 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 6 damage, used an ability, and had the round and combat end.";
             alphabet1.AbilitySprite = ResourceLoader.LoadSprite("ability_alphabet.png");
             alphabet1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.Blue];
-            alphabet1.Effects = new EffectInfo[7];
+            alphabet1.Effects = new EffectInfo[8];
             alphabet1.Effects[0] = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Ads", false, Slots.Sides), 0, Slots.Self, correct);
             alphabet1.Effects[1] = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Ads", false, sides_and_enemies), 0, Slots.Self, offcolor);
             alphabet1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DistributeHealingEffect>(), 6, Slots.Sides);
             alphabet1.Effects[3] = Effects.GenerateEffect(damage, 6, Targeting.Unit_AllOpponents, offcolor);
             alphabet1.Effects[4] = Effects.GenerateEffect(triggerNotifs, 0, Targeting.Unit_AllOpponents, offcolor);
             alphabet1.Effects[5] = Effects.GenerateEffect(ScriptableObject.CreateInstance<TriggerAnyAbilityNotifsEffect>(), 0, Targeting.Unit_AllOpponents, offcolor);
-            alphabet1.Effects[6] = Effects.GenerateEffect(ScriptableObject.CreateInstance<EndCombatTargetEffect>(), 0, Targeting.Unit_AllOpponents, offcolor);
+            alphabet1.Effects[6] = Effects.GenerateEffect(roundEnd, 0, Targeting.Unit_AllOpponents, offcolor);
+            alphabet1.Effects[7] = Effects.GenerateEffect(ScriptableObject.CreateInstance<EndCombatTargetEffect>(), 0, Targeting.Unit_AllOpponents, offcolor);
             alphabet1.AddIntentsToTarget(Slots.Sides, ["Heal_5_10"]);
             alphabet1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc"]);
             alphabet1.Visuals = null;
@@ -112,19 +118,19 @@ namespace AprilsDayAtFools
 
             Ability alphabet2 = new Ability(alphabet1.ability, "A_Alphabet_2_A", alphabet1.Cost);
             alphabet2.Name = "Assembly Alphabetical";
-            alphabet2.Description = "Heal the Left and Right allies 8 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 8 damage, used an ability, and had combat end.";
+            alphabet2.Description = "Heal the Left and Right allies 8 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 8 damage, used an ability, and had the round and combat end.";
             alphabet2.Effects[2].entryVariable = 8;
             alphabet2.Effects[3].entryVariable = 8;
 
             Ability alphabet3 = new Ability(alphabet2.ability, "A_Alphabet_3_A", alphabet1.Cost);
             alphabet3.Name = "Acquisition Alphabetical";
-            alphabet3.Description = "Heal the Left and Right allies 10 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 10 damage, used an ability, and had combat end.";
+            alphabet3.Description = "Heal the Left and Right allies 10 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 10 damage, used an ability, and had the round and combat end.";
             alphabet3.Effects[2].entryVariable = 10;
             alphabet3.Effects[3].entryVariable = 10;
 
             Ability alphabet4 = new Ability(alphabet3.ability, "A_Alphabet_4_A", alphabet1.Cost);
             alphabet4.Name = "Anatomy Alphabetical";
-            alphabet4.Description = "Heal the Left and Right allies 12 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 12 damage, used an ability, and had combat end.";
+            alphabet4.Description = "Heal the Left and Right allies 12 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 12 damage, used an ability, and had the round and combat end.";
             alphabet4.Effects[2].entryVariable = 12;
             alphabet4.Effects[3].entryVariable = 12;
             alphabet4.EffectIntents[0].intents[0] = "Heal_11_20";
