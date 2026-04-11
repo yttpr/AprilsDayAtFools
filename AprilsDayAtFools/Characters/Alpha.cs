@@ -127,7 +127,7 @@ namespace AprilsDayAtFools
             alphabet4.Description = "Heal the Left and Right allies 12 health evenly distributed between them.\nIf incorrect Pigment is used, force all enemies to behave as if they had taken 12 damage, used an ability, and had combat end.";
             alphabet4.Effects[2].entryVariable = 12;
             alphabet4.Effects[3].entryVariable = 12;
-            alphabet4.EffectIntents[0].intents[0] = "Damage_11_20";
+            alphabet4.EffectIntents[0].intents[0] = "Heal_11_20";
 
             IncreaseStatusEffectsEffect up_neg = ScriptableObject.CreateInstance<IncreaseStatusEffectsEffect>();
             up_neg.m_AffectStatusEffects = true;
