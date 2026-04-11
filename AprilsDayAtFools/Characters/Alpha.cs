@@ -95,6 +95,7 @@ namespace AprilsDayAtFools
             TriggerNotifsEffect roundEnd = ScriptableObject.CreateInstance<TriggerNotifsEffect>();
             roundEnd.List = [
                 (TriggerCalls.TimelineEndReached.ToString(), null),
+                (((TriggerCalls)38431355).ToString(), null),
                 (TriggerCalls.OnRoundFinished.ToString(), null)
                 ];
 
