@@ -17,8 +17,9 @@ namespace AprilsDayAtFools
                     unit.ShowItem();
                     exception.AddModifier(new AdditionValueModifier(true, 7));
                 }
+                return false;
             }
-            return false;
+            return true;
         }
     }
 }
