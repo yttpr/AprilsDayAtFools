@@ -165,7 +165,7 @@ namespace AprilsDayAtFools
             PerformEffect_Item backupbodies = new PerformEffect_Item("Aprils_BackupBodies_SW", []);
             backupbodies.Name = "Backup Bodies";
             backupbodies.Flavour = "\"We need more.\"";
-            backupbodies.Description = "Whenever an ally dies, 50% chance to spawn a nonpermenant clone of them.";
+            backupbodies.Description = "Whenever an ally dies, 75% chance to spawn a nonpermenant clone of them.";
             backupbodies.Icon = ResourceLoader.LoadSprite("item_backupbodies.png");
             backupbodies.EquippedModifiers = [];
             backupbodies.TriggerOn = TriggerCalls.OnAllyHasDied;
