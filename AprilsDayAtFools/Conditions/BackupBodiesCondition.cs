@@ -10,7 +10,7 @@ namespace AprilsDayAtFools
         {
             if (args is CharacterCombat chara)
             {
-                if (UnityEngine.Random.Range(0, 100) < 50)
+                if (UnityEngine.Random.Range(0, 100) < 75)
                 {
                     CombatManager.Instance.AddRootAction(new SpawnCharacterAction(chara.Character, -1, false, "", false, chara.Rank, chara.UsedAbilities, chara.Character.GetMaxHealth(chara.Rank)));
                     return true;

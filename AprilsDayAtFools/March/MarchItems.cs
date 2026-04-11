@@ -108,7 +108,7 @@ namespace AprilsDayAtFools
             saline.ConsumeOnTrigger = TriggerCalls.Count;
             saline.ConsumeOnUse = false;
             saline.ConsumeConditions = [];
-            saline.ShopPrice = 5;
+            saline.ShopPrice = 3;
             saline.IsShopItem = true;
             saline.StartsLocked = true;
             saline.OnUnlockUsesTHE = true;

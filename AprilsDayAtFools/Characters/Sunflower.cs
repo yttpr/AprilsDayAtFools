@@ -173,7 +173,7 @@ namespace AprilsDayAtFools
             PerformEffect_Item sadness = new PerformEffect_Item("Aprils_DepictionOfSadness_TW", []);
             sadness.Name = "Depiction of Sorrow";
             sadness.Flavour = "\"Do you feel no pity?\"";
-            sadness.Description = "Block all Ruptured, Oil-Slicked, Left, Entropy, Frail, Scars, Cursed, Muted, and Acid and convert it into Drowning.";
+            sadness.Description = "Block all Ruptured, Oil-Slicked, Left, Entropy, Frail, Scars, Cursed, Muted, Acid, and Karma and convert it into Drowning.";
             sadness.Icon = ResourceLoader.LoadSprite("item_depictionofsadness.png");
             sadness.EquippedModifiers = [];
             sadness.TriggerOn = TriggerCalls.CanApplyStatusEffect;
