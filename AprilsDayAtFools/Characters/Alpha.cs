@@ -82,7 +82,7 @@ namespace AprilsDayAtFools
             Ability alphabet1 = new Ability("Array Alphabetical", "A_Alphabet_1_A");
             alphabet1.Description = "Round the Left ally's health up to 8, inflicting 1 Inverted on them if unsuccessful.";
             alphabet1.AbilitySprite = ResourceLoader.LoadSprite("ability_alphabet.png");
-            alphabet1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Blue];
+            alphabet1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Yellow];
             alphabet1.Effects = new EffectInfo[3];
             alphabet1.Effects[0] = Effects.GenerateEffect(BasicEffects.Empty, 2, Targeting.Slot_AllyLeft);
             alphabet1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RoundUpTargetHealthEffect>(), 8, Targeting.Slot_AllyLeft);
