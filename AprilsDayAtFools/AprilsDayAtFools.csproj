@@ -644,7 +644,6 @@
 	  <None Remove="Sprites\New\witness_defacer.png" />
 	  <None Remove="Sprites\New\witness_rotcore.png" />
 	  <None Remove="Sprites\New\witness_sunflower.png" />
-	  <None Remove="Sprites\Placeholder\ability_b.png" />
 	  <None Remove="Sprites\Placeholder\ability_d.png" />
 	  <None Remove="Sprites\Placeholder\ability_f.png" />
 	  <None Remove="Sprites\Placeholder\ability_k.png" />
@@ -1303,7 +1302,7 @@
 	  <EmbeddedResource Include="Sprites\New\witness_defacer.png" />
 	  <EmbeddedResource Include="Sprites\New\witness_rotcore.png" />
 	  <EmbeddedResource Include="Sprites\New\witness_sunflower.png" />
-	  <EmbeddedResource Include="Sprites\Placeholder\ability_b.png" />
+	  <EmbeddedResource Include="Sprites\Placeholder\ability_n.png" />
 	  <EmbeddedResource Include="Sprites\Placeholder\ability_d.png" />
 	  <EmbeddedResource Include="Sprites\Placeholder\ability_f.png" />
 	  <EmbeddedResource Include="Sprites\Placeholder\ability_k.png" />

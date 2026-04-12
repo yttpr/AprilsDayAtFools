@@ -52,7 +52,7 @@ namespace AprilsDayAtFools
 
             Ability basic = new Ability("BX5D02", "NN_B_A");
             basic.Description = "Take 8 damage.";
-            basic.AbilitySprite = ResourceLoader.LoadSprite("ability_b.png");
+            basic.AbilitySprite = ResourceLoader.LoadSprite("ability_n.png");
             basic.Cost = [Pigments.Red];
             basic.Effects = [Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 8, Slots.Self)];
             basic.AddIntentsToTarget(Slots.Self, ["Damage_7_10"]);
@@ -106,6 +106,9 @@ namespace AprilsDayAtFools
             k_apply._getAllSlots = false;
             k_apply._getAllies = false;
             k_apply._statusID = Karma.StatusID;
+            DoubleTargetting k_anims = ScriptableObject.CreateInstance<DoubleTargetting>();
+            k_anims.firstTargetting = k_targets;
+            k_anims.secondTargetting = Slots.Front;
 
             Ability k1 = new Ability("K-87-F4J", "NN_K_1_A");
             k1.Description = "Inflict 7 Karma on the Opposing enemy. If they already have Karma, apply to their Left as well.\nRepeat until unable to.";
@@ -116,7 +119,7 @@ namespace AprilsDayAtFools
             k1.AddIntentsToTarget(Slots.SlotTarget([0, -1, -2, -3, -4], false), ["Misc_Hidden"]);
             k1.AddIntentsToTarget(k_apply, [Karma.Intent]);
             k1.Visuals = Visuals.WrigglingWrath;
-            k1.AnimationTarget = k_targets;
+            k1.AnimationTarget = k_anims;
 
             Ability k2 = new Ability(k1.ability, "NN_K_2_A", k1.Cost);
             k2.Name = "K-8787-F4J";
