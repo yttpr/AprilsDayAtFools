@@ -66,6 +66,9 @@ namespace AprilsDayAtFools
             hasKarma.StatusID = Karma.StatusID;
 
             BaseCombatTargettingSO d_slots = Slots.SlotTarget([0, 1, 2], false);
+            MultiPreviousEffectCondition d_con = ScriptableObject.CreateInstance<MultiPreviousEffectCondition>();
+            d_con.previousAmount = [1, 2];
+            d_con.wasSuccessful = [true, false];
 
             Ability d1 = new Ability("D-115BD-N", "NN_D_1_A");
             d1.Description = "Inflict 7 Karma on the Opposing enemy.\nIf they didn't already have Karma, inflict 4 more Karma on the Opposing, Right, and Far Right enemies.";
@@ -74,7 +77,7 @@ namespace AprilsDayAtFools
             d1.Effects = new EffectInfo[3];
             d1.Effects[0] = Effects.GenerateEffect(hasKarma, 1, Slots.Front);
             d1.Effects[1] = Effects.GenerateEffect(karma, 7, Slots.Front);
-            d1.Effects[2] = Effects.GenerateEffect(karma, 4, d_slots, BasicEffects.DidThat(false, 2));
+            d1.Effects[2] = Effects.GenerateEffect(karma, 4, d_slots, d_con);
             d1.AddIntentsToTarget(Slots.Front, ["Misc_Hidden"]);
             d1.AddIntentsToTarget(d_slots, [Karma.Intent]);
             d1.Visuals = CustomVisuals.GetVisuals("Salt/Decapitate");
