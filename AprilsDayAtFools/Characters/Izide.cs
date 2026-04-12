@@ -171,6 +171,7 @@ namespace AprilsDayAtFools
             behind1.Effects[5] = Effects.GenerateEffect(izideSprites, 1, Slots.Self, BasicEffects.DidThat(false, 5));
             behind1.AddIntentsToTarget(Targetting.Everything(false), ["Misc_Hidden"]);
             behind1.AddIntentsToTarget(behind_target_new, ["ADAF_Damage_Delay", "Damage_7_10"]);
+            behind4.AddIntentsToTarget(Slots.Front, ["Status_Frail"]);
             behind1.AddIntentsToTarget(Slots.Self, ["Misc"]);
             behind1.UnitStoreData = UnitStoreData.GetCustom_UnitStoreData(IDs.Behind);
             behind1.AnimationTarget = behind_target_new;
