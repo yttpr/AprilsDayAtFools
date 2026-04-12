@@ -65,34 +65,38 @@ namespace AprilsDayAtFools
             solo4.Description = "Deal 20 damage to the Opposing enemy and gain 1 Determined.\nForce the Opposing enemy to prematurely perform their next action.";
             solo4.Effects[0].entryVariable = 20;
 
+            BaseCombatTargettingSO timeline = ScriptableObject.CreateInstance<TargettingByEnemyFirstTimeline>();
+
             Ability script1 = new Ability("Redo Script", "Clerk_Script_1_A");
-            script1.Description = "Deal 7 damage and apply 2 Divine Protection to the Opposing enemy.\nIf no damage is dealt, Reroll the whole timeline.";
+            script1.Description = "Deal 5 damage and inflict 2 Ruptured on the first enemy on the timeline, then force them to prematurely perform their next action.";
             script1.AbilitySprite = ResourceLoader.LoadSprite("ability_script.png");
             script1.Cost = [Pigments.Red, Pigments.Red];
-            script1.Effects = new EffectInfo[3];
-            script1.Effects[0] = Effects.GenerateEffect(solo1.Effects[0].effect, 7, Slots.Front);
-            script1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyDivineProtectionEffect>(), 2, Slots.Front);
-            script1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RerollTimelineEffect>(), 1, Slots.Self, BasicEffects.DidThat(false, 2));
-            script1.AddIntentsToTarget(Slots.Front, ["Damage_7_10", "Status_DivineProtection"]);
-            script1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc"]);
+            script1.Effects = new EffectInfo[4];
+            script1.Effects[0] = Effects.GenerateEffect(solo1.Effects[0].effect, 5, timeline);
+            script1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyRupturedEffect>(), 2, timeline);
+            script1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ForceFirstTimelineActionEffect>(), 1, Slots.Self);
+            script1.Effects[3] = Effects.GenerateEffect(BasicEffects.GetVisuals("Insult_1_A", true, Slots.Self), 0, null, BasicEffects.DidThat(false));
+            script1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc_Hidden"]);
+            script1.AddIntentsToTarget(timeline, ["Damage_3_6", "Status_Ruptured"]);
             script1.Visuals = CustomVisuals.GetVisuals("Salt/Ribbon");
-            script1.AnimationTarget = Slots.Front;
+            script1.AnimationTarget = timeline;
 
             Ability script2 = new Ability(script1.ability, "Clerk_Script_2_A", script1.Cost);
             script2.Name = "Rewrite Script";
-            script2.Description = "Deal 9 damage and apply 2 Divine Protection to the Opposing enemy.\nIf no damage is dealt, Reroll the whole timeline.";
-            script2.Effects[0].entryVariable = 9;
+            script2.Description = "Deal 7 damage and inflict 2 Ruptured on the first enemy on the timeline, then force them to prematurely perform their next action.";
+            script2.Effects[0].entryVariable = 7;
+            script2.EffectIntents[1].intents[0] = "Damage_7_10";
 
             Ability script3 = new Ability(script2.ability, "Clerk_Script_3_A", script1.Cost);
             script3.Name = "Refocus Script";
-            script3.Description = "Deal 11 damage and apply 2 Divine Protection to the Opposing enemy.\nIf no damage is dealt, Reroll the whole timeline.";
-            script3.Effects[0].entryVariable = 11;
-            script3.EffectIntents[0].intents[0] = "Damage_11_15";
+            script3.Description = "Deal 9 damage and inflict 2 Ruptured on the first enemy on the timeline, then force them to prematurely perform their next action.";
+            script3.Effects[0].entryVariable = 9;
 
             Ability script4 = new Ability(script3.ability, "Clerk_Script_4_A", script1.Cost);
             script4.Name = "Retcon Script";
-            script4.Description = "Deal 13 damage and apply 2 Divine Protection to the Opposing enemy.\nIf no damage is dealt, Reroll the whole timeline.";
-            script4.Effects[0].entryVariable = 13;
+            script4.Description = "Deal 11 damage and inflict 2 Ruptured on the first enemy on the timeline, then force them to prematurely perform their next action.";
+            script4.Effects[0].entryVariable = 11;
+            script4.EffectIntents[1].intents[0] = "Damage_11_15";
 
             Ability dance1 = new Ability("Initial Dance", "Clerk_Dance_1_A");
             dance1.Description = "Deal 5 damage to the Opposing enemy.\nForce them to prematurely perform their next action, then give them another one.\nRefresh this party member's ability usage.";
