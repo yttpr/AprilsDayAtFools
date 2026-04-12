@@ -138,23 +138,24 @@ namespace AprilsDayAtFools
 
             Ability mask2 = new Ability(mask1.ability, "Secret_Mask_2_A", mask1.Cost);
             mask2.Name = "Mask of Terror";
-            mask2.Description = "Temporarily level up the Right ally.\nHeal this and the right ally 0-6 health. If the Right ally was not leveled up, heal 6 health instead.";
-            mask2.Effects[2].entryVariable = 6;
-            mask2.Effects[3].entryVariable = 6;
+            mask2.Description = "Temporarily level up the Right ally.\nHeal this and the right ally 0-7 health. If the Right ally was not leveled up, heal 6 health instead.";
+            mask2.Effects[2].entryVariable = 7;
+            mask2.Effects[3].entryVariable = 7;
             mask2.EffectIntents[1].intents[0] = "Heal_5_10";
 
             Ability mask3 = new Ability(mask2.ability, "Secret_Mask_3_A", [Pigments.Purple, Pigments.Purple, Pigments.Blue]);
             mask3.Name = "Mask of Horror";
-            mask3.Description = "Temporarily level up the Right ally.\nHeal this and the right ally 1-7 health. If the Right ally was not leveled up, heal 7 health instead.";
+            mask3.Description = "Temporarily level up the Right ally.\nHeal this and the right ally 1-9 health. If the Right ally was not leveled up, heal 9 health instead.";
             mask3.Effects[1].entryVariable = 1;
-            mask3.Effects[2].entryVariable = 7;
-            mask3.Effects[3].entryVariable = 7;
+            mask3.Effects[2].entryVariable = 9;
+            mask3.Effects[3].entryVariable = 9;
 
-            Ability mask4 = new Ability(mask3.ability, "Secret_Mask_4_A", [Pigments.Purple, Pigments.BluePurple]);
+            Ability mask4 = new Ability(mask3.ability, "Secret_Mask_4_A", [Pigments.BluePurple, Pigments.BluePurple, Pigments.Blue]);
             mask4.Name = "Mask of Despair";
-            mask4.Description = "Temporarily level up the Right ally.\nHeal this and the right ally 1-10 health. If the Right ally was not leveled up, heal 10 health instead.";
-            mask4.Effects[2].entryVariable = 10;
-            mask4.Effects[3].entryVariable = 10;
+            mask4.Description = "Temporarily level up the Right ally.\nHeal this and the right ally 1-12 health. If the Right ally was not leveled up, heal 12 health instead.";
+            mask4.Effects[2].entryVariable = 12;
+            mask4.Effects[3].entryVariable = 12;
+            mask4.EffectIntents[1].intents[0] = "Heal_11_20";
 
             defacer.AddLevelData(10, [beam1, face1, mask1]);
             defacer.AddLevelData(11, [beam2, face2, mask2]);
