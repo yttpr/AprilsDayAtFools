@@ -109,7 +109,7 @@ namespace AprilsDayAtFools
 
             Ability k1 = new Ability("K-87-F4J", "NN_K_1_A");
             k1.Description = "Inflict 7 Karma on the Opposing enemy. If they already have Karma, apply to their Left as well.\nRepeat until unable to.";
-            k1.AbilitySprite = ResourceLoader.LoadSprite("ability_alphabet.png");
+            k1.AbilitySprite = ResourceLoader.LoadSprite("ability_k.png");
             k1.Cost = [Pigments.Purple, Pigments.Red, Pigments.Red];
             k1.Effects = new EffectInfo[1];
             k1.Effects[0] = Effects.GenerateEffect(karma, 7, k_apply);
@@ -139,7 +139,7 @@ namespace AprilsDayAtFools
 
             Ability f1 = new Ability("72S-BP99-0F1", "NN_F_1_A");
             f1.Description = "Inflict 6 Karma on all enemies with Karma.\nIf no Karma is applied, inflict 4 Karma on all enemies.";
-            f1.AbilitySprite = ResourceLoader.LoadSprite("ability_reverse.png");
+            f1.AbilitySprite = ResourceLoader.LoadSprite("ability_f.png");
             f1.Cost = [Pigments.Blue, Pigments.Red, Pigments.Red];
             f1.Effects = new EffectInfo[5];
             f1.Effects[0] = Effects.GenerateEffect(BasicEffects.GetVisuals("OfDeath_1_A", true, target_karma));
