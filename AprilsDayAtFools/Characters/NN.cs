@@ -41,13 +41,13 @@ namespace AprilsDayAtFools
             nn.DialogueSound = LoadedAssetsHandler.GetEnemy("Visage_MyOwn_EN").damageSound;
             //nn.AddFinalBossAchievementData("OsmanSinnoks", OsmanACH);
             //nn.AddFinalBossAchievementData("Heaven", HeavenACH);
-            if (April.Me)
+            /*if (April.Me)
             {
                 nn.GenerateMenuCharacter(ResourceLoader.LoadSprite("Temp_NNMenu.png"), ResourceLoader.LoadSprite("Temp_NNLock.png"));
                 nn.MenuCharacterIsSecret = true;
                 nn.MenuCharacterIgnoreRandom = false;
                 nn.SetMenuCharacterAsFullDPS();
-            }
+            }*/
             nn.AddPassive(apocalyptic);
 
             Ability basic = new Ability("BX5D02", "NN_B_A");
@@ -179,7 +179,7 @@ namespace AprilsDayAtFools
             nn.AddLevelData(22, [f2, k2, d2]);
             nn.AddLevelData(24, [f3, k3, d3]);
             nn.AddLevelData(25, [f4, k4, d4]);
-            nn.AddCharacter(April.Me, !April.Me);
+            nn.AddCharacter(false, true);
         }
     }
 }
