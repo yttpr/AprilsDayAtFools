@@ -152,33 +152,36 @@ namespace AprilsDayAtFools
             //idea: targets every enemy position this party member targetted before?
             //hook into effectinfo start effect, static dictionary<int, List<int>> to hold slotIDs. store specifically opposing slots.
 
+            DoubleTargettingPrioritizeFirst behind_target_new = ScriptableObject.CreateInstance<DoubleTargettingPrioritizeFirst>();
+            behind_target_new.firstTargetting = ScriptableObject.CreateInstance<TargettedAlreadyTargetting>();
+            behind_target_new.secondTargetting = Slots.Front;
+
             Ability behind1 = new Ability("From Behind Time", "Izide_Behind_1_A");
             behind1.Description = "At the start of the next turn, deal 8 damage to all enemy positions this party member has targeted before.\nDecrease this ability's damage by 3.";
             behind1.AbilitySprite = ResourceLoader.LoadSprite("ability_behind.png");
             behind1.Cost = [Pigments.Yellow, Pigments.Red, Pigments.Red];
-            behind1.Effects = new EffectInfo[5];
-            behind1.Effects[0] = Effects.GenerateEffect(TargettedAlreadyVisualsEffect.Create(CustomVisuals.GetVisuals("Salt/Rose")));
-            behind1.Effects[1] = Effects.GenerateEffect(TargettedAlreadyControllerEffect.Create(behind_dmg), 8);
-            behind1.Effects[2] = Effects.GenerateEffect(behind_stat, 3, Slots.Self);
-            behind1.Effects[3] = Effects.GenerateEffect(izideDefault, 1, Slots.Self);
-            behind1.Effects[4] = Effects.GenerateEffect(izideSprites, 1, Slots.Self, BasicEffects.DidThat(false, 3));
+            behind1.Effects = new EffectInfo[4];
+            behind1.Effects[0] = Effects.GenerateEffect(behind_dmg, 8, behind_target_new);
+            behind1.Effects[1] = Effects.GenerateEffect(behind_stat, 3, Slots.Self);
+            behind1.Effects[2] = Effects.GenerateEffect(izideDefault, 1, Slots.Self);
+            behind1.Effects[3] = Effects.GenerateEffect(izideSprites, 1, Slots.Self, BasicEffects.DidThat(false, 3));
             behind1.AddIntentsToTarget(Targetting.Everything(false), ["Misc_Hidden"]);
-            behind1.AddIntentsToTarget(ScriptableObject.CreateInstance<TargettedAlreadyTargetting>(), ["ADAF_Damage_Delay", "Damage_7_10"]);
+            behind1.AddIntentsToTarget(behind_target_new, ["ADAF_Damage_Delay", "Damage_7_10"]);
             behind1.AddIntentsToTarget(Slots.Self, ["Misc"]);
             behind1.UnitStoreData = UnitStoreData.GetCustom_UnitStoreData(IDs.Behind);
-            behind1.AnimationTarget = Slots.Front;
-            behind1.Visuals = null;
+            behind1.AnimationTarget = behind_target_new;
+            behind1.Visuals = CustomVisuals.GetVisuals("Salt/Rose");
 
             Ability behind2 = new Ability(behind1.ability, "Izide_Behind_2_A", behind1.Cost);
             behind2.Name = "From Behind Past";
             behind2.Description = "At the start of the next turn, deal 10 damage to all enemy positions this party member has targeted before.\nDecrease this ability's damage by 4.";
-            behind2.Effects[1].entryVariable = 10;
-            behind2.Effects[2].entryVariable = 4;
+            behind2.Effects[0].entryVariable = 10;
+            behind2.Effects[1].entryVariable = 4;
 
             Ability behind3 = new Ability(behind2.ability, "Izide_Behind_3_A", behind1.Cost);
             behind3.Name = "From Behind History";
             behind3.Description = "At the start of the next turn, deal 12 damage to all enemy positions this party member has targeted before.\nDecrease this ability's damage by 5.";
-            behind3.Effects[1].entryVariable = 12;
+            behind3.Effects[].entryVariable = 12;
             behind3.Effects[2].entryVariable = 5;
             behind3.EffectIntents[1].intents[1] = "Damage_11_15";
 
