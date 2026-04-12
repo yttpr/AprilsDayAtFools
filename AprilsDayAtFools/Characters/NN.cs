@@ -142,11 +142,11 @@ namespace AprilsDayAtFools
             f1.AbilitySprite = ResourceLoader.LoadSprite("ability_f.png");
             f1.Cost = [Pigments.Blue, Pigments.Red, Pigments.Red];
             f1.Effects = new EffectInfo[5];
-            f1.Effects[0] = Effects.GenerateEffect(BasicEffects.GetVisuals("OfDeath_1_A", true, target_karma));
-            f1.Effects[1] = Effects.GenerateEffect(karma, 6, target_karma);
-            f1.Effects[2] = Effects.GenerateEffect(hasKarma, 1, target_karma);
-            f1.Effects[3] = Effects.GenerateEffect(BasicEffects.GetVisuals("OfDeath_1_A", true, Targeting.Unit_AllOpponents), 0, null, BasicEffects.DidThat(false));
-            f1.Effects[4] = Effects.GenerateEffect(karma, 4, Targeting.Unit_AllOpponents, BasicEffects.DidThat(false, 3));
+            f1.Effects[0] = Effects.GenerateEffect(hasKarma, 1, target_karma);
+            f1.Effects[1] = Effects.GenerateEffect(BasicEffects.GetVisuals("OfDeath_1_A", true, target_karma), 0, null, BasicEffects.DidThat(true));
+            f1.Effects[2] = Effects.GenerateEffect(karma, 6, target_karma);
+            f1.Effects[3] = Effects.GenerateEffect(BasicEffects.GetVisuals("OfDeath_1_A", true, Targeting.Unit_AllOpponents), 0, null, BasicEffects.DidThat(false, 3));
+            f1.Effects[4] = Effects.GenerateEffect(karma, 4, Targeting.Unit_AllOpponents, BasicEffects.DidThat(false, 2));
             f1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Misc_Hidden", Karma.Intent]);
             f1.AnimationTarget = Slots.Self;
             f1.Visuals = null;
@@ -154,19 +154,19 @@ namespace AprilsDayAtFools
             Ability f2 = new Ability(f1.ability, "NN_F_2_A", f1.Cost);
             f2.Name = "83T-BP99-0F1";
             f2.Description = "Inflict 8 Karma on all enemies with Karma.\nIf no Karma is applied, inflict 5 Karma on all enemies.";
-            f2.Effects[1].entryVariable = 8;
+            f2.Effects[2].entryVariable = 8;
             f2.Effects[4].entryVariable = 5;
 
             Ability f3 = new Ability(f2.ability, "NN_F_3_A", f1.Cost);
             f3.Name = "94U-BP99-0F1";
             f3.Description = "Inflict 10 Karma on all enemies with Karma.\nIf no Karma is applied, inflict 6 Karma on all enemies.";
-            f3.Effects[1].entryVariable = 10;
+            f3.Effects[2].entryVariable = 10;
             f3.Effects[4].entryVariable = 6;
 
             Ability f4 = new Ability(f3.ability, "NN_F_4_A", f1.Cost);
             f4.Name = "05V-BP99-0F1";
             f4.Description = "Inflict 12 Karma on all enemies with Karma.\nIf no Karma is applied, inflict 7 Karma on all enemies.";
-            f4.Effects[1].entryVariable = 12;
+            f4.Effects[2].entryVariable = 12;
             f4.Effects[4].entryVariable = 7;
 
             nn.AddLevelData(20, [f1, k1, d1]);
