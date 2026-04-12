@@ -159,14 +159,16 @@ namespace AprilsDayAtFools
             TargettedAlreadyTargetting behind_target_new = ScriptableObject.CreateInstance<TargettedAlreadyTargetting>();
 
             Ability behind1 = new Ability("From Behind Time", "Izide_Behind_1_A");
-            behind1.Description = "At the start of the next turn, deal 8 damage to all enemy positions this party member has targeted before.\nDecrease this ability's damage by 2.";
+            behind1.Description = "At the start of the next turn, deal 8 damage to all enemy positions this party member has targeted before.\nIf no positions were targeted, inflict 1 Frail on the Opposing enemy. Otherwise, decrease this ability's damage by 3.";
             behind1.AbilitySprite = ResourceLoader.LoadSprite("ability_behind.png");
             behind1.Cost = [Pigments.Yellow, Pigments.Red, Pigments.Red];
-            behind1.Effects = new EffectInfo[4];
+            behind1.Effects = new EffectInfo[6];
             behind1.Effects[0] = Effects.GenerateEffect(behind_dmg, 8, behind_target_new);
-            behind1.Effects[1] = Effects.GenerateEffect(behind_stat, 2, Slots.Self);
-            behind1.Effects[2] = Effects.GenerateEffect(izideDefault, 1, Slots.Self);
-            behind1.Effects[3] = Effects.GenerateEffect(izideSprites, 1, Slots.Self, BasicEffects.DidThat(false, 3));
+            behind1.Effects[1] = Effects.GenerateEffect(BasicEffects.GetVisuals("Salt/Rose", false, Slots.Front), 0, null, BasicEffects.DidThat(false));
+            behind1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyFrailEffect>(), 1, Slots.Front, BasicEffects.DidThat(false, 2));
+            behind1.Effects[3] = Effects.GenerateEffect(behind_stat, 3, Slots.Self, BasicEffects.DidThat(true, 3));
+            behind1.Effects[4] = Effects.GenerateEffect(izideDefault, 1, Slots.Self);
+            behind1.Effects[5] = Effects.GenerateEffect(izideSprites, 1, Slots.Self, BasicEffects.DidThat(false, 5));
             behind1.AddIntentsToTarget(Targetting.Everything(false), ["Misc_Hidden"]);
             behind1.AddIntentsToTarget(behind_target_new, ["ADAF_Damage_Delay", "Damage_7_10"]);
             behind1.AddIntentsToTarget(Slots.Self, ["Misc"]);
@@ -176,19 +178,22 @@ namespace AprilsDayAtFools
 
             Ability behind2 = new Ability(behind1.ability, "Izide_Behind_2_A", behind1.Cost);
             behind2.Name = "From Behind Past";
-            behind2.Description = "At the start of the next turn, deal 10 damage to all enemy positions this party member has targeted before.\nDecrease this ability's damage by 2.";
+            behind2.Description = "At the start of the next turn, deal 10 damage to all enemy positions this party member has targeted before.\nIf no positions were targeted, inflict 1 Frail on the Opposing enemy. Otherwise, decrease this ability's damage by 4.";
             behind2.Effects[0].entryVariable = 10;
+            behind2.Effects[3].entryVariable = 4;
 
             Ability behind3 = new Ability(behind2.ability, "Izide_Behind_3_A", behind1.Cost);
             behind3.Name = "From Behind History";
-            behind3.Description = "At the start of the next turn, deal 12 damage to all enemy positions this party member has targeted before.\nDecrease this ability's damage by 2.";
+            behind3.Description = "At the start of the next turn, deal 12 damage to all enemy positions this party member has targeted before.\nIf no positions were targeted, inflict 1 Frail on the Opposing enemy. Otherwise, decrease this ability's damage by 5.";
             behind3.Effects[0].entryVariable = 12;
+            behind3.Effects[3].entryVariable = 5;
             behind3.EffectIntents[1].intents[1] = "Damage_11_15";
 
             Ability behind4 = new Ability(behind3.ability, "Izide_Behind_4_A", behind1.Cost);
             behind4.Name = "From Behind Creation";
-            behind4.Description = "At the start of the next turn, deal 14 damage to all enemy positions this party member has targeted before.\nDecrease this ability's damage by 2.";
+            behind4.Description = "At the start of the next turn, deal 14 damage to all enemy positions this party member has targeted before.\nIf no positions were targeted, inflict 1 Frail on the Opposing enemy. Otherwise, decrease this ability's damage by 6.";
             behind4.Effects[0].entryVariable = 14;
+            behind4.Effects[3].entryVariable = 6;
             
             izide.AddLevelData(12, [med1, ruin1, behind1]);
             izide.AddLevelData(16, [med2, ruin2, behind2]);

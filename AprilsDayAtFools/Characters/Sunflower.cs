@@ -101,7 +101,7 @@ namespace AprilsDayAtFools
             Ability void1 = new Ability("Nightmares of Loneliness", "Flower_Void_1_A");
             void1.Description = "Remove all Drowning from the Right ally and heal them by their current health, then inflict 4 Deep Water on the Right allied position.\nRefresh the ability usage of all other allies with Drowning over 10.";
             void1.AbilitySprite = ResourceLoader.LoadSprite("ability_void.png");
-            void1.Cost = [Pigments.Blue, Pigments.Blue];
+            void1.Cost = [Pigments.Blue, Pigments.Purple];
             void1.Effects = new EffectInfo[4];
             void1.Effects[0] = Effects.GenerateEffect(remove, 1, Targeting.Slot_AllyRight);
             void1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealByHealthPlusDrowningEffect>(), 1, Targeting.Slot_AllyRight);
@@ -112,7 +112,7 @@ namespace AprilsDayAtFools
             void1.AnimationTarget = Targeting.Slot_AllyRight;
             void1.Visuals = CustomVisuals.GetVisuals("Salt/Monster");
 
-            Ability void2 = new Ability(void1.ability, "Flower_Void_2_A", [Pigments.BlueYellow, Pigments.Blue]);
+            Ability void2 = new Ability(void1.ability, "Flower_Void_2_A", [Pigments.BlueYellow, Pigments.Purple]);
             void2.Name = "Nightmares of Solitude";
 
             Ability void3 = new Ability(void2.ability, "Flower_Void_3_A", void2.Cost);
@@ -120,7 +120,7 @@ namespace AprilsDayAtFools
             void3.Description = "Remove all Drowning from the Right ally and heal them by their current health, then inflict 4 Deep Water on the Right allied position.\nRefresh the ability and swap usage of all other allies with Drowning over 10.";
             void3.Effects[3].effect = swap;
 
-            Ability void4 = new Ability(void3.ability, "Flower_Void_4_A", [Pigments.Grey, Pigments.Blue]);
+            Ability void4 = new Ability(void3.ability, "Flower_Void_4_A", [Pigments.Grey, Pigments.Purple]);
             void4.Name = "Nightmares of Void";
 
             CascadeHealPercentEffect hazeEffect = ScriptableObject.CreateInstance<CascadeHealPercentEffect>();
