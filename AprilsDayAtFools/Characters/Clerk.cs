@@ -70,7 +70,7 @@ namespace AprilsDayAtFools
             Ability script1 = new Ability("Redo Script", "Clerk_Script_1_A");
             script1.Description = "Deal 5 damage and inflict 2 Ruptured on the first enemy on the timeline, then force them to prematurely perform their next action.";
             script1.AbilitySprite = ResourceLoader.LoadSprite("ability_script.png");
-            script1.Cost = [Pigments.Red, Pigments.Red];
+            script1.Cost = [Pigments.Red, Pigments.Yellow];
             script1.Effects = new EffectInfo[4];
             script1.Effects[0] = Effects.GenerateEffect(solo1.Effects[0].effect, 5, timeline);
             script1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyRupturedEffect>(), 2, timeline);
