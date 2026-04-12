@@ -141,6 +141,7 @@ namespace AprilsDayAtFools
             Class1.PCall(Rake.Add);
             Class1.PCall(Dog.Add);
             Class1.PCall(Anatomy.Add);
+            Class1.PCall(NN.Add);
 
             Class1.PCall(Merced.Items);
             Class1.PCall(Cora.Items);
