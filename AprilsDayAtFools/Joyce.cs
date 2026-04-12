@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace AprilsDayAtFools
 {
-    [BepInPlugin("AprilsFoolsDay.Joyce", "Aprils' Day at Fools", "1.4.9")]//next tweak would be 1.4.9
+    [BepInPlugin("AprilsFoolsDay.Joyce", "Aprils' Day at Fools", "1.4.10")]//next tweak would be 1.4.10
     [BepInDependency("BrutalOrchestra.BrutalAPI", BepInDependency.DependencyFlags.HardDependency)]
     public class Joyce : BaseUnityPlugin
     {
