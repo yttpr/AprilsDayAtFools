@@ -1,4 +1,5 @@
 ﻿using BrutalAPI;
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,7 +20,10 @@ namespace AprilsDayAtFools
             apocalyptic._characterDescription = "On being directly damaged, end combat for all enemies.";
             apocalyptic.doesPassiveTriggerInformationPanel = true;
             apocalyptic.effects = Effects.GenerateEffect(ScriptableObject.CreateInstance<EndCombatTargetEffect>(), 1, Targeting.Unit_AllOpponents).SelfArray();
-            apocalyptic._triggerOn = new TriggerCalls[1] { TriggerCalls.OnDirectDamaged };
+            apocalyptic._triggerOn = new TriggerCalls[1] { TriggerCalls.OnBeingDamaged };
+            DamageReceivedValueChangeDetectionEffectorCondition condition = ScriptableObject.CreateInstance<DamageReceivedValueChangeDetectionEffectorCondition>();
+            condition._onlyDirectDamage = true;
+            apocalyptic.conditions = [condition];
             //apocalyptic.AddPassiveToGlossary("Apocalyptic", "On being directly damaged, end combat for all opponents.");
             //apocalyptic.AddToPassiveDatabase();
 
