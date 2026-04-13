@@ -48,6 +48,8 @@ namespace AprilsDayAtFools
         }
         public void EnemyPerformAbility(EnemyCombat self, int abilitySlot)
         {
+            self.TriggerNotification(TriggerCalls.OnTurnStart.ToString(), null);
+
             if (abilitySlot < 0 || abilitySlot >= self.Abilities.Count)
             {
                 Debug.LogError(self.Name + " cannot use ability in slot " + abilitySlot + ", it does not exist");
