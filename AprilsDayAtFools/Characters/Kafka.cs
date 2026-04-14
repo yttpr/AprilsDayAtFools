@@ -122,32 +122,37 @@ namespace AprilsDayAtFools
             desperate4.Effects[1].entryVariable = 6;
             desperate4.Effects[2].entryVariable = 6;
 
+            RemoveStatusEffectEffect rem_curse = ScriptableObject.CreateInstance<RemoveStatusEffectEffect>();
+            rem_curse._status = StatusField.Cursed;
+
             Ability envy1 = new Ability("Mild Envy", "Kafka_Envy_1_A");
-            envy1.Description = "Apply 4 Determined to the Right ally.\nHeal this party member 2 health.";
+            envy1.Description = "Apply 4 Determined to the Right ally.\nHeal this party member 2 health.\nRemove Cursed from this and the Right ally.";
             envy1.AbilitySprite = ResourceLoader.LoadSprite("ability_envy.png");
             envy1.Cost = [Pigments.Blue];
-            envy1.Effects = new EffectInfo[2];
+            envy1.Effects = new EffectInfo[3];
             envy1.Effects[0] = Effects.GenerateEffect(determined, 4, Targeting.Slot_AllyRight);
             envy1.Effects[1] = Effects.GenerateEffect(heal, 2, Slots.Self);
+            envy1.Effects[2] = Effects.GenerateEffect(rem_curse, 1, Targeting.Slot_SelfAndRight);
             envy1.AddIntentsToTarget(Targeting.Slot_AllyRight, [Determined.Intent]);
             envy1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
+            envy1.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Rem_Status_Cursed"]);
             envy1.Visuals = CustomVisuals.GetVisuals("Salt/Call");
             envy1.AnimationTarget = Targeting.Slot_AllyRight;
 
             Ability envy2 = new Ability(envy1.ability, "Kafka_Envy_2_A", envy1.Cost);
             envy2.Name = "Festering Envy";
-            envy2.Description = "Apply 5 Determined to the Right ally.\nHeal this party member 2 health.";
+            envy2.Description = "Apply 5 Determined to the Right ally.\nHeal this party member 2 health.\nRemove Cursed from this and the Right ally.";
             envy2.Effects[0].entryVariable = 5;
 
             Ability envy3 = new Ability(envy2.ability, "Kafka_Envy_3_A", envy1.Cost);
             envy3.Name = "Furious Envy";
-            envy3.Description = "Apply 6 Determined to the Right ally.\nHeal this party member 3 health.";
+            envy3.Description = "Apply 6 Determined to the Right ally.\nHeal this party member 3 health.\nRemove Cursed from this and the Right ally.";
             envy3.Effects[0].entryVariable = 6;
             envy3.Effects[1].entryVariable = 3;
 
             Ability envy4 = new Ability(envy3.ability, "Kafka_Envy_4_A", envy1.Cost);
             envy4.Name = "Maddening Envy";
-            envy4.Description = "Apply 8 Determined to the Right ally.\nHeal this party member 3 health.";
+            envy4.Description = "Apply 8 Determined to the Right ally.\nHeal this party member 3 health.\nRemove Cursed from this and the Right ally.";
             envy4.Effects[0].entryVariable = 8;
 
             kafka.AddLevelData(7, [envy1, hope1, desperate1]);
