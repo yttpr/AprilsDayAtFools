@@ -44,7 +44,7 @@ namespace AprilsDayAtFools
                     if (holder.m_ObjectData is ExtraAbilityInfo info) target.Unit.TryRemoveExtraAbility(info);
 
                     ExtraAbilityInfo extra = new ExtraAbilityInfo();
-                    extra.ability = abilities.GetRandom();
+                    extra.ability = abilities[UnityEngine.Random.Range(0, abilities.Count)];
                     extra.rarity = Rarity.GetCustomRarity("Alphabetical_5");
                     extra.cost = [first.GetRandom(), second.GetRandom()];
 
