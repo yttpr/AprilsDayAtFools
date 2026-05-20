@@ -12,8 +12,8 @@ namespace AprilsDayAtFools
             if (targets == null || targets.Length < 2) return false;
             if (!targets[0].HasUnit || !targets[1].HasUnit) return false;
             if (targets[0].Unit == targets[1].Unit) return false;
-            if (targets[0].Unit.StatusEffectCount <= 0 || targets[1].Unit.StatusEffectCount <= 0) return false;
-
+            if (targets[0].Unit.StatusEffectCount <= 0 && targets[1].Unit.StatusEffectCount <= 0) return false;
+            //EnemyCombat
             List<StatusEffect_SO> stati = [];
             List<int> amounts = [];
 

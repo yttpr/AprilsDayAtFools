@@ -273,23 +273,23 @@ namespace AprilsDayAtFools
             Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
             visions2.Name = "Torturous Visions";
             visions2.Description = "If the correct Pigment is used heal this party member 4 health, this healing is treated as Shield-Piercing direct damage.\nApply 2 Lifesteal on this and the Left ally positions.";
-            visions2.Effects[0].targets = Targeting.Slot_SelfAndLeft;
+            visions2.Effects[1].targets = Targeting.Slot_SelfAndLeft;
             visions2.EffectIntents[0].targets = Targeting.Slot_SelfAndLeft;
             visions2.AnimationTarget = Targeting.Slot_SelfAndLeft;
-            visions2.Effects[1].entryVariable = 4;
+            visions2.Effects[0].entryVariable = 4;
 
             Ability visions3 = new Ability(visions2.ability, "Saea_Visions_3_A", visions1.Cost);
             visions3.Name = "Apocalyptic Visions";
             visions3.Description = "If the correct Pigment is used heal this party member 5 health, this healing is treated as Shield-Piercing direct damage.\nApply 3 Lifesteal on this and the Left ally positions.";
-            visions3.Effects[0].entryVariable = 3;
-            visions3.Effects[1].entryVariable = 5;
+            visions3.Effects[1].entryVariable = 3;
+            visions3.Effects[0].entryVariable = 5;
             visions3.EffectIntents[1].intents[0] = "Heal_5_10";
 
             Ability visions4 = new Ability(visions3.ability, "Saea_Visions_4_A", [Pigments.BlueRed, Pigments.BlueRed]);
             visions4.Name = "Cataclysmic Visions";
             visions4.Description = "If the correct Pigment is used heal this party member 6 health, this healing is treated as Shield-Piercing direct damage.\nApply 3 Lifesteal on this, the Left, and the Far Left ally positions.";
-            visions4.Effects[1].entryVariable = 6;
-            visions4.Effects[0].targets = multileft;
+            visions4.Effects[0].entryVariable = 6;
+            visions4.Effects[1].targets = multileft;
             visions4.EffectIntents[0].targets = multileft;
             visions4.AnimationTarget = multileft;
 
