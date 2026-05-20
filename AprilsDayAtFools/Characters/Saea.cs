@@ -146,22 +146,24 @@ namespace AprilsDayAtFools
             reduce._randomBetweenPrevious = true;
             Intents.CreateAndAddCustom_Basic_IntentToPool("Claim_A", claim1.ability.abilitySprite, Color.white);
 
+            BaseCombatTargettingSO left_loop = Slots.SlotTarget([-1, 4], true);
+
             Ability ori1 = new Ability("Placated Origin", "Saea_Ori_1_A");
-            ori1.Description = "Attempt to resurrect an ally in the Left position at 3 health, inflicting 10 Karma on them if succesful.\nIf no ally was resurrected, apply 8 Shield on the Left ally and give them \"Action of Recovery\" as an extra ability.";
+            ori1.Description = "Attempt to resurrect an ally in the Left position at 3 health, inflicting 10 Karma on them if succesful.\nIf no ally was resurrected, apply 8 Shield on the Left ally and give them \"Action of Recovery\" as an extra ability.\nThis ability assumes the grid loops around.";
             ori1.AbilitySprite = ResourceLoader.LoadSprite("ability_origin.png");
             ori1.Cost = [Pigments.Purple];
             ori1.Effects = new EffectInfo[4];
-            ori1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectEffect>(), 3, Targeting.Slot_AllyLeft);
-            ori1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 10, Targeting.Slot_AllyLeft, BasicEffects.DidThat(true));
-            ori1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 8, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 2));
-            ori1.Effects[3] = Effects.GenerateEffect(act1, 1, Targeting.Slot_AllyLeft, BasicEffects.DidThat(false, 3));
+            ori1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ResurrectEffect>(), 3, left_loop);
+            ori1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 10, left_loop, BasicEffects.DidThat(true));
+            ori1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 8, left_loop, BasicEffects.DidThat(false, 2));
+            ori1.Effects[3] = Effects.GenerateEffect(act1, 1, left_loop, BasicEffects.DidThat(false, 3));
             ori1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Other_Resurrect", Karma.Intent, "Field_Shield", "Claim_A"]);
             ori1.Visuals = CustomVisuals.GetVisuals("Salt/Insta/Shatter");
             ori1.AnimationTarget = Targeting.Slot_AllyLeft;
 
             Ability ori2 = new Ability(ori1.ability, "Saea_Ori_2_A", ori1.Cost);
             ori2.Name = "Cordial Origin";
-            ori2.Description = "Attempt to resurrect an ally in the Left position at 5 health, inflicting 12 Karma on them if succesful.\nIf no ally was resurrected, apply 9 Shield on the Left ally and give them \"Action of Reclamation\" as an extra ability.";
+            ori2.Description = "Attempt to resurrect an ally in the Left position at 5 health, inflicting 12 Karma on them if succesful.\nIf no ally was resurrected, apply 9 Shield on the Left ally and give them \"Action of Reclamation\" as an extra ability.\nThis ability assumes the grid loops around.";
             ori2.Effects[0].entryVariable = 5;
             ori2.Effects[1].entryVariable = 12;
             ori2.Effects[2].entryVariable = 9;
@@ -169,14 +171,14 @@ namespace AprilsDayAtFools
 
             Ability ori3 = new Ability(ori2.ability, "Saea_Ori_3_A", ori1.Cost);
             ori3.Name = "Amiable Origin";
-            ori3.Description = "Attempt to resurrect an ally in the Left position at 8 health, inflicting 14 Karma on them if succesful.\nIf no ally was resurrected, apply 9 Shield on the Left ally and give them \"Action of Repossession\" as an extra ability.";
+            ori3.Description = "Attempt to resurrect an ally in the Left position at 8 health, inflicting 14 Karma on them if succesful.\nIf no ally was resurrected, apply 9 Shield on the Left ally and give them \"Action of Repossession\" as an extra ability.\nThis ability assumes the grid loops around.";
             ori3.Effects[0].entryVariable = 8;
             ori3.Effects[1].entryVariable = 14;
             ori3.Effects[3].effect = act3;
 
             Ability ori4 = new Ability(ori3.ability, "Saea_Ori_4_A", ori1.Cost);
             ori4.Name = "Hospitable Origin";
-            ori4.Description = "Attempt to resurrect an ally in the Left position at 10 health, inflicting 15 Karma on them if succesful.\nIf no ally was resurrected, apply 10 Shield on the Left ally and give them \"Action of Reappropriation\" as an extra ability.";
+            ori4.Description = "Attempt to resurrect an ally in the Left position at 10 health, inflicting 15 Karma on them if succesful.\nIf no ally was resurrected, apply 10 Shield on the Left ally and give them \"Action of Reappropriation\" as an extra ability.\nThis ability assumes the grid loops around.";
             ori4.Effects[0].entryVariable = 10;
             ori4.Effects[1].entryVariable = 15;
             ori4.Effects[2].entryVariable = 10;
@@ -254,15 +256,15 @@ namespace AprilsDayAtFools
                 Effects.GenerateEffect(shield, 8, sh_self, BasicEffects.DidThat(false)),
                 ]), 1, Slots.Self, didnt);*/
 
-            BaseCombatTargettingSO multileft = Slots.SlotTarget([-1, -2], true);
+            BaseCombatTargettingSO multileft = Slots.SlotTarget([0, -1, -2], true);
 
             Ability visions1 = new Ability("Vile Visions", "Saea_Visions_1_A");
-            visions1.Description = "Apply 2 Lifesteal on the Left position.\nIf the correct Pigment is used heal this party member 3 health, this healing is treated as Shield-Piercing direct damage.";
+            visions1.Description = "If the correct Pigment is used heal this party member 3 health, this healing is treated as Shield-Piercing direct damage.\nApply 2 Lifesteal on the Left position.";
             visions1.AbilitySprite = ResourceLoader.LoadSprite("ability_visions.png");
             visions1.Cost = [Pigments.Red, Pigments.Blue];
             visions1.Effects = new EffectInfo[2];
-            visions1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 2, Targeting.Slot_AllyLeft);
-            visions1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DirectHealingEffect>(), 3, Slots.Self, WrongPigmentEffectCondition.Create(false));
+            visions1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DirectHealingEffect>(), 3, Slots.Self, WrongPigmentEffectCondition.Create(false));
+            visions1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyLifestealSlotEffect>(), 2, Targeting.Slot_AllyLeft);
             visions1.AddIntentsToTarget(Targeting.Slot_AllyLeft, [Lifesteal.Intent]);
             visions1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
             visions1.Visuals = CustomVisuals.GetVisuals("Salt/Keyhole");
@@ -270,23 +272,26 @@ namespace AprilsDayAtFools
 
             Ability visions2 = new Ability(visions1.ability, "Saea_Visions_2_A", visions1.Cost);
             visions2.Name = "Torturous Visions";
-            visions2.Description = "Apply 2 Lifesteal on the Left and Far Left positions.\nIf the correct Pigment is used heal this party member 4 health, this healing is treated as Shield-Piercing direct damage.";
-            visions2.Effects[0].targets = multileft;
-            visions2.EffectIntents[0].targets = multileft;
-            visions2.AnimationTarget = multileft;
+            visions2.Description = "If the correct Pigment is used heal this party member 4 health, this healing is treated as Shield-Piercing direct damage.\nApply 2 Lifesteal on this and the Left ally positions.";
+            visions2.Effects[0].targets = Targeting.Slot_SelfAndLeft;
+            visions2.EffectIntents[0].targets = Targeting.Slot_SelfAndLeft;
+            visions2.AnimationTarget = Targeting.Slot_SelfAndLeft;
             visions2.Effects[1].entryVariable = 4;
 
             Ability visions3 = new Ability(visions2.ability, "Saea_Visions_3_A", visions1.Cost);
             visions3.Name = "Apocalyptic Visions";
-            visions3.Description = "Apply 3 Lifesteal on the Left and Far Left positions.\nIf the correct Pigment is used heal this party member 5 health, this healing is treated as Shield-Piercing direct damage.";
+            visions3.Description = "If the correct Pigment is used heal this party member 5 health, this healing is treated as Shield-Piercing direct damage.\nApply 3 Lifesteal on this and the Left ally positions.";
             visions3.Effects[0].entryVariable = 3;
             visions3.Effects[1].entryVariable = 5;
             visions3.EffectIntents[1].intents[0] = "Heal_5_10";
 
             Ability visions4 = new Ability(visions3.ability, "Saea_Visions_4_A", [Pigments.BlueRed, Pigments.BlueRed]);
             visions4.Name = "Cataclysmic Visions";
-            visions4.Description = "Apply 3 Lifesteal on the Left and Far Left positions.\nIf the correct Pigment is used heal this party member 6 health, this healing is treated as Shield-Piercing direct damage.";
+            visions4.Description = "If the correct Pigment is used heal this party member 6 health, this healing is treated as Shield-Piercing direct damage.\nApply 3 Lifesteal on this, the Left, and the Far Left ally positions.";
             visions4.Effects[1].entryVariable = 6;
+            visions4.Effects[0].targets = multileft;
+            visions4.EffectIntents[0].targets = multileft;
+            visions4.AnimationTarget = multileft;
 
             saea.AddLevelData(12, [visions1, ori1, onset1]);
             saea.AddLevelData(14, [visions2, ori2, onset2]);
