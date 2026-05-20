@@ -21,7 +21,7 @@ namespace AprilsDayAtFools
             xet.AddUnitType("Angel");
             xet.AddUnitType("FemaleLooking");
             xet.UsesBasicAbility = true;
-            xet.SetBasicAbility(draw.GenerateCharacterAbility());
+            //xet.SetBasicAbility(draw.GenerateCharacterAbility());
             xet.UsesAllAbilities = false;
             xet.MovesOnOverworld = true;
             xet.Animator = Joyce.Assets.LoadAsset<RuntimeAnimatorController>("Assets/AnimationBaseData/NewBigGuy/XetAnimController2.overrideController");
@@ -49,76 +49,86 @@ namespace AprilsDayAtFools
             construct._triggerOn = [(TriggerCalls)889532];
             xet.AddPassive(construct);
 
+            RandomStatusEffect random = ScriptableObject.CreateInstance<RandomStatusEffect>();
+            //negative.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "Gutted_ID", "OilSlicked_ID", "Scars_ID", "Remorse_ID", "Salted_ID", "Paranoia_ID", "Left_ID", "Pale_ID", "DivineSacrifice_ID", "Muted_ID", "Salt_Entropy_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID"];
+            random.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "DivineProtection_ID", "Focused_ID", "Gutted_ID", "Linked_ID", "OilSlicked_ID", "Scars_ID",
+                "Remorse_ID", "WildCard_ID", "Salted_ID", "Paranoia_ID", "Anesthetics_ID", "Inverted_ID", "Left_ID", "Pale_ID", "Power_ID", "Determined_ID",
+                "DivineSacrifice_ID", "Favor_ID", "Muted_ID", "Photo_ID", "Dodge_ID", "Salt_Entropy_ID", "Haste_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID",
+                "Disappearing_ID", "Karma_ID", "Madness_ID", "Growth_ID", "Partaking_ID", "CoralColony_ID", "Infirm_ID", "Downfall_ID"];
+
             Ability replace1 = new Ability("Replace Wood", "Xet_Replace_1_A");
-            replace1.Description = "Deal 5 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nReroll this party member's Construct ability.";
+            replace1.Description = "Deal 5 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 2 Random Status Effects instead.";
             replace1.AbilitySprite = ResourceLoader.LoadSprite("ability_core.png");
             replace1.Cost = [Pigments.Red, Pigments.Yellow];
-            replace1.Effects = new EffectInfo[3];
+            replace1.Effects = new EffectInfo[4];
             replace1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<DamageEffect>(), 5, Slots.LeftRight);
             replace1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ReRollTargetTimelineAbilityEffect>(), 1, Slots.LeftRight);
-            replace1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RerollConstructEffect>(), 1, Slots.Self);
+            replace1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<SwapStatusEffect>(), 1, Slots.LeftRight);
+            replace1.Effects[3] = Effects.GenerateEffect(random, 2, Slots.LeftRight, BasicEffects.DidThat(false));
             replace1.AddIntentsToTarget(Slots.LeftRight, ["Damage_3_6", "Misc"]);
-            replace1.AddIntentsToTarget(Slots.Self, [IntentType_GameIDs.PA_Construct.ToString()]);
             replace1.Visuals = CustomVisuals.GetVisuals("Salt/Coda");
             replace1.AnimationTarget = Slots.LeftRight;
 
             Ability replace2 = new Ability(replace1.ability, "Xet_Replace_2_A", replace1.Cost);
             replace2.Name = "Replace Brass";
-            replace2.Description = "Deal 7 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nReroll this party member's Construct ability.";
+            replace2.Description = "Deal 7 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 2 Random Status Effects instead.";
             replace2.Effects[0].entryVariable = 7;
             replace2.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability replace3 = new Ability(replace2.ability, "Xet_Replace_3_A", replace1.Cost);
             replace3.Name = "Replace Fossil";
-            replace3.Description = "Deal 9 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nReroll this party member's Construct ability.";
+            replace3.Description = "Deal 9 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 2 Random Status Effects instead.";
             replace3.Effects[0].entryVariable = 9;
 
             Ability replace4 = new Ability(replace3.ability, "Xet_Replace_4_A", [Pigments.Red]);
             replace4.Name = "Replace Core";
-            replace4.Description = "Deal 10 damage to the Left or Right enemies and Reroll one of their actions on the timeline.\nReroll this party member's Construct ability.";
+            replace4.Description = "Deal 10 damage to the Left or Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 2 Random Status Effects instead.";
             replace4.Effects[0].entryVariable = 10;
 
 
-            RandomStatusEffect random = ScriptableObject.CreateInstance<RandomStatusEffect>();
+            RandomStatusEffect positive = ScriptableObject.CreateInstance<RandomStatusEffect>();
             //negative.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "Gutted_ID", "OilSlicked_ID", "Scars_ID", "Remorse_ID", "Salted_ID", "Paranoia_ID", "Left_ID", "Pale_ID", "DivineSacrifice_ID", "Muted_ID", "Salt_Entropy_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID"];
-            random.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "DivineProtection_ID", "Focused_ID", "Gutted_ID", "Linked_ID", "OilSlicked_ID", "Scars_ID", 
-                "Remorse_ID", "WildCard_ID", "Salted_ID", "Paranoia_ID", "Anesthetics_ID", "Inverted_ID", "Left_ID", "Pale_ID", "Power_ID", "Determined_ID", 
-                "DivineSacrifice_ID", "Favor_ID", "Muted_ID", "Photo_ID", "Dodge_ID", "Salt_Entropy_ID", "Haste_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID",
-                "Disappearing_ID", "Karma_ID", "Madness_ID", "Growth_ID", "Partaking_ID", "CoralColony_ID", "Infirm_ID", "Downfall_ID"];
+            positive.CanApply = ["DivineProtection_ID", "Focused_ID", "Gutted_ID", "Linked_ID",
+                "WildCard_ID", "Anesthetics_ID", "Inverted_ID", "Power_ID", "Determined_ID", "Pimples_ID",
+               "Favor_ID", "Photo_ID", "Dodge_ID", "Haste_ID", 
+                "Growth_ID", "Partaking_ID", ];
 
             Ability rearrange1 = new Ability("Rearrange Carboxyl", "Xet_Rearrange_1_A");
-            rearrange1.Description = "Deal 7 damage to the Opposing enemy and inflict 3 random Status Effects on them.";
+            rearrange1.Description = "Deal 8 damage to the Opposing enemy and inflict 3 Random Positive Status Effects on them.\nReroll this party member's Construct ability.";
             rearrange1.Cost = [Pigments.Red, Pigments.Red, Pigments.Yellow];
             rearrange1.AbilitySprite = ResourceLoader.LoadSprite("ability_enzyme.png");
-            rearrange1.Effects = new EffectInfo[2];
-            rearrange1.Effects[0] = Effects.GenerateEffect(replace1.Effects[0].effect, 7, Slots.Front);
-            rearrange1.Effects[1] = Effects.GenerateEffect(random, 3, Slots.Front);
+            rearrange1.Effects = new EffectInfo[3];
+            rearrange1.Effects[0] = Effects.GenerateEffect(replace1.Effects[0].effect, 8, Slots.Front);
+            rearrange1.Effects[1] = Effects.GenerateEffect(positive, 3, Slots.Front);
+            rearrange1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RerollConstructEffect>(), 1, Slots.Self);
             rearrange1.AddIntentsToTarget(Slots.Front, ["Damage_7_10"]);
+            rearrange1.AddIntentsToTarget(Slots.Self, [IntentType_GameIDs.PA_Construct.ToString()]);
             rearrange1.Visuals = CustomVisuals.GetVisuals("Salt/Gears");
             rearrange1.AnimationTarget = Slots.Front;
 
             Ability rearrange2 = new Ability(rearrange1.ability, "Xet_Rearrange_2_A", rearrange1.Cost);
             rearrange2.Name = "Rearrange Amino";
-            rearrange2.Description = "Deal 9 damage to the Opposing enemy and inflict 5 random Status Effects on them.";
-            rearrange2.Effects[0].entryVariable = 9;
-            rearrange2.Effects[1].entryVariable = 5;
+            rearrange2.Description = "Deal 11 damage to the Opposing enemy and inflict 4 Random Positive Status Effects on them.\nReroll this party member's Construct ability.";
+            rearrange2.Effects[0].entryVariable = 11;
+            rearrange2.Effects[1].entryVariable = 4;
+            rearrange2.EffectIntents[0].intents[0] = "Damage_11_15";
 
             Ability rearrange3 = new Ability(rearrange2.ability, "Xet_Rearrange_3_A", rearrange1.Cost);
             rearrange3.Name = "Rearrange Protein";
-            rearrange3.Description = "Deal 11 damage to the Opposing enemy and inflict 7 random Status Effects on them.";
-            rearrange3.Effects[0].entryVariable = 11;
-            rearrange3.Effects[1].entryVariable = 7;
-            rearrange3.EffectIntents[0].intents[0] = "Damage_11_15";
+            rearrange3.Description = "Deal 14 damage to the Opposing enemy and inflict 5 Random Positive Status Effects on them.\nReroll this party member's Construct ability.";
+            rearrange3.Effects[0].entryVariable = 14;
+            rearrange3.Effects[1].entryVariable = 5;
 
             Ability rearrange4 = new Ability(rearrange3.ability, "Xet_Rearrange_4_A", rearrange3.Cost);
             rearrange4.Name = "Rearrange Enzyme";
-            rearrange4.Description = "Deal 13 damage to the Opposing enemy and inflict 9 random Status Effects on them.";
-            rearrange4.Effects[0].entryVariable = 13;
-            rearrange4.Effects[1].entryVariable = 9;
+            rearrange4.Description = "Deal 16 damage to the Opposing enemy and inflict 5 Random Positive Status Effects on them.\nReroll this party member's Construct ability.";
+            rearrange4.Effects[0].entryVariable = 16;
+            rearrange4.EffectIntents[0].intents[0] = "Damage_16_20";
 
-            SpawnEnemyAnywhereEffect summonScrap = ScriptableObject.CreateInstance<SpawnEnemyAnywhereEffect>();
+            SpawnEnemyInSlotFromEntryEffect summonScrap = ScriptableObject.CreateInstance<SpawnEnemyInSlotFromEntryEffect>();
             summonScrap._spawnTypeID = "Spawn_Basic";
             summonScrap.enemy = LoadedAssetsHandler.GetEnemy("ScrapBomb_EN");
+            summonScrap.trySpawnAnywhereIfFail = true;
             Ability design1 = new Ability("Scrap Design", "Xet_Design_1_A");
             design1.Description = "Deal 4 damage to a random enemy.\nGain 4 Shield and spawn a Scrap Bomb.";
             design1.Cost = [Pigments.Red, Pigments.Blue];
@@ -126,9 +136,10 @@ namespace AprilsDayAtFools
             design1.Effects = new EffectInfo[3];
             design1.Effects[0] = Effects.GenerateEffect(replace1.Effects[0].effect, 4, ScriptableObject.CreateInstance<TargettingRandomUnit>());
             design1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 4, Slots.Self);
-            design1.Effects[2] = Effects.GenerateEffect(summonScrap, 1);
+            design1.Effects[2] = Effects.GenerateEffect(summonScrap, 0);
             design1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Damage_3_6"]);
             design1.AddIntentsToTarget(Slots.Self, ["Field_Shield"]);
+            design1.AddIntentsToTarget(Slots.Front, ["Other_Spawn"]);
             design1.Visuals = CustomVisuals.GetVisuals("Salt/Cube");
             design1.AnimationTarget = Slots.Self;
 
