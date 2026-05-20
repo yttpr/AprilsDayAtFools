@@ -157,9 +157,9 @@ namespace AprilsDayAtFools
             ori1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaEffect>(), 10, left_loop, BasicEffects.DidThat(true));
             ori1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 8, left_loop, BasicEffects.DidThat(false, 2));
             ori1.Effects[3] = Effects.GenerateEffect(act1, 1, left_loop, BasicEffects.DidThat(false, 3));
-            ori1.AddIntentsToTarget(Targeting.Slot_AllyLeft, ["Other_Resurrect", Karma.Intent, "Field_Shield", "Claim_A"]);
+            ori1.AddIntentsToTarget(left_loop, ["Other_Resurrect", Karma.Intent, "Field_Shield", "Claim_A"]);
             ori1.Visuals = CustomVisuals.GetVisuals("Salt/Insta/Shatter");
-            ori1.AnimationTarget = Targeting.Slot_AllyLeft;
+            ori1.AnimationTarget = left_loop;
 
             Ability ori2 = new Ability(ori1.ability, "Saea_Ori_2_A", ori1.Cost);
             ori2.Name = "Cordial Origin";
