@@ -13,9 +13,10 @@ namespace AprilsDayAtFools
 
         public static string[] potential_intents => ["Status_WildCard", "Status_Growth", "Status_Remorse", 
             "Status_Salted", "Status_Disappearing", "Status_Partaking", "Status_CoralColony", "Status_Infirm", "Status_Downfall", 
-            "Status_Paranoia", "Status_Madness", "Status_DivineSacrifice", "Status_Favor", "Status_Muted", "Status_Photo", "Status_Left"];
+            "Status_Paranoia", "Status_Madness", "Status_DivineSacrifice", "Status_Favor", "Status_Muted", "Status_Photo", "Status_Left",
+            "Status_Intensity", "Status_Sparks", "Status_Thorned"];
         public static string[] pos_potential_intents => ["Status_WildCard", "Status_Growth", 
-            "Status_Partaking", 
+            "Status_Partaking", "Status_Intensity", "Status_Thorned",
             "Status_Favor", "Status_Photo"];
         public static List<string> pos_default_intents => [IntentColor.Intent, "Status_DivineProtection", "Status_Focused", "Status_Gutted", "Status_Linked", 
             Anesthetics.Intent, Determined.Intent, Dodge.Intent, Haste.Intent, Inverted.Intent, Pimples.Intent, Power.Intent];

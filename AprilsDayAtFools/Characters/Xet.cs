@@ -54,7 +54,8 @@ namespace AprilsDayAtFools
             random.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "DivineProtection_ID", "Focused_ID", "Gutted_ID", "Linked_ID", "OilSlicked_ID", "Scars_ID",
                 "Remorse_ID", "WildCard_ID", "Salted_ID", "Paranoia_ID", "Anesthetics_ID", "Inverted_ID", "Left_ID", "Pale_ID", "Power_ID", "Determined_ID",
                 "DivineSacrifice_ID", "Favor_ID", "Muted_ID", "Photo_ID", "Dodge_ID", "Salt_Entropy_ID", "Haste_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID",
-                "Disappearing_ID", "Karma_ID", "Madness_ID", "Growth_ID", "Partaking_ID", "CoralColony_ID", "Infirm_ID", "Downfall_ID"];
+                "Disappearing_ID", "Karma_ID", "Madness_ID", "Growth_ID", "Partaking_ID", "CoralColony_ID", "Infirm_ID", "Downfall_ID",
+                "Intensity_ID", "Sparks_ID", "Thorned_ID"];
 
             Ability replace1 = new Ability("Replace Wood", "Xet_Replace_1_A");
             replace1.Description = "Deal 5 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 2 Random Status Effects instead.";
@@ -71,19 +72,22 @@ namespace AprilsDayAtFools
 
             Ability replace2 = new Ability(replace1.ability, "Xet_Replace_2_A", replace1.Cost);
             replace2.Name = "Replace Brass";
-            replace2.Description = "Deal 7 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 2 Random Status Effects instead.";
+            replace2.Description = "Deal 7 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 3 Random Status Effects instead.";
             replace2.Effects[0].entryVariable = 7;
+            replace2.Effects[3].entryVariable = 3;
             replace2.EffectIntents[0].intents[0] = "Damage_7_10";
 
             Ability replace3 = new Ability(replace2.ability, "Xet_Replace_3_A", replace1.Cost);
             replace3.Name = "Replace Fossil";
-            replace3.Description = "Deal 9 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 2 Random Status Effects instead.";
+            replace3.Description = "Deal 9 damage to the Left and Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 5 Random Status Effects instead.";
             replace3.Effects[0].entryVariable = 9;
+            replace3.Effects[3].entryVariable = 5;
 
             Ability replace4 = new Ability(replace3.ability, "Xet_Replace_4_A", [Pigments.Red]);
             replace4.Name = "Replace Core";
-            replace4.Description = "Deal 10 damage to the Left or Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 2 Random Status Effects instead.";
+            replace4.Description = "Deal 10 damage to the Left or Right enemies and Reroll one of their actions on the timeline.\nAttempt to swap the Status Effects of both targets. If unapplicable, inflict 6 Random Status Effects instead.";
             replace4.Effects[0].entryVariable = 10;
+            replace4.Effects[3].entryVariable = 6;
 
 
             RandomStatusEffect positive = ScriptableObject.CreateInstance<RandomStatusEffect>();
@@ -91,7 +95,7 @@ namespace AprilsDayAtFools
             positive.CanApply = ["DivineProtection_ID", "Focused_ID", "Gutted_ID", "Linked_ID",
                 "WildCard_ID", "Anesthetics_ID", "Inverted_ID", "Power_ID", "Determined_ID", "Pimples_ID",
                "Favor_ID", "Photo_ID", "Dodge_ID", "Haste_ID", 
-                "Growth_ID", "Partaking_ID", ];
+                "Growth_ID", "Partaking_ID", "Intensity_ID", "Thorned_ID"];
 
             Ability rearrange1 = new Ability("Rearrange Carboxyl", "Xet_Rearrange_1_A");
             rearrange1.Description = "Deal 8 damage to the Opposing enemy and inflict 3 Random Positive Status Effects on them.\nReroll this party member's Construct ability.";
