@@ -92,7 +92,7 @@ namespace AprilsDayAtFools
 
             RandomStatusEffect positive = ScriptableObject.CreateInstance<RandomStatusEffect>();
             //negative.CanApply = ["Cursed_ID", "Frail_ID", "Ruptured_ID", "Gutted_ID", "OilSlicked_ID", "Scars_ID", "Remorse_ID", "Salted_ID", "Paranoia_ID", "Left_ID", "Pale_ID", "DivineSacrifice_ID", "Muted_ID", "Salt_Entropy_ID", "Acid_ID", "Terror_ID", "Drowning_ID", "Pimples_ID"];
-            positive.CanApply = ["DivineProtection_ID", "Focused_ID", "Gutted_ID", "Linked_ID",
+            positive.CanApply = ["DivineProtection_ID", "Focused_ID",
                 "WildCard_ID", "Anesthetics_ID", "Inverted_ID", "Power_ID", "Determined_ID", "Pimples_ID",
                "Favor_ID", "Photo_ID", "Dodge_ID", "Haste_ID", 
                 "Growth_ID", "Partaking_ID", "Intensity_ID", "Thorned_ID"];

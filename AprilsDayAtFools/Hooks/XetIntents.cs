@@ -18,7 +18,7 @@ namespace AprilsDayAtFools
         public static string[] pos_potential_intents => ["Status_WildCard", "Status_Growth", 
             "Status_Partaking", "Status_Intensity", "Status_Thorned",
             "Status_Favor", "Status_Photo"];
-        public static List<string> pos_default_intents => [IntentColor.Intent, "Status_DivineProtection", "Status_Focused", "Status_Gutted", "Status_Linked", 
+        public static List<string> pos_default_intents => [IntentColor.Intent, "Status_DivineProtection", "Status_Focused",
             Anesthetics.Intent, Determined.Intent, Dodge.Intent, Haste.Intent, Inverted.Intent, Pimples.Intent, Power.Intent];
 
         
