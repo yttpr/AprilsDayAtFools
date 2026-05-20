@@ -104,7 +104,7 @@ namespace AprilsDayAtFools
             rearrange1.Effects = new EffectInfo[3];
             rearrange1.Effects[0] = Effects.GenerateEffect(replace1.Effects[0].effect, 8, Slots.Front);
             rearrange1.Effects[1] = Effects.GenerateEffect(positive, 3, Slots.Front);
-            rearrange1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RerollConstructEffect>(), 1, Slots.Self);
+            rearrange1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<RerollConstructEffect>(), 1, Slots.Self);
             rearrange1.AddIntentsToTarget(Slots.Front, ["Damage_7_10"]);
             rearrange1.AddIntentsToTarget(Slots.Self, [IntentType_GameIDs.PA_Construct.ToString()]);
             rearrange1.Visuals = CustomVisuals.GetVisuals("Salt/Gears");
@@ -140,7 +140,7 @@ namespace AprilsDayAtFools
             design1.Effects = new EffectInfo[3];
             design1.Effects[0] = Effects.GenerateEffect(replace1.Effects[0].effect, 4, ScriptableObject.CreateInstance<TargettingRandomUnit>());
             design1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyShieldSlotEffect>(), 4, Slots.Self);
-            design1.Effects[2] = Effects.GenerateEffect(summonScrap, 0);
+            design1.Effects[2] = Effects.GenerateEffect(summonScrap, 0, Slots.Front);
             design1.AddIntentsToTarget(Targeting.Unit_AllOpponents, ["Damage_3_6"]);
             design1.AddIntentsToTarget(Slots.Self, ["Field_Shield"]);
             design1.AddIntentsToTarget(Slots.Front, ["Other_Spawn"]);
