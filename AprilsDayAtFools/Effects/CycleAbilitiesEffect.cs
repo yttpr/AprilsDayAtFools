@@ -67,7 +67,7 @@ namespace AprilsDayAtFools
                                 }
                             }
 
-                            chara.CombatAbilities.RemoveAt(0);
+                            if (chara.AbilityCount > 0) chara.CombatAbilities.RemoveAt(0);
 
                             if (addbasic) chara.CombatAbilities.Add(new CombatAbility(chara.Character.basicCharAbility));
                             else chara.CombatAbilities.Add(FromExtraAbility(GetRandomItemAbility()));
@@ -91,7 +91,7 @@ namespace AprilsDayAtFools
                                 }
                             }
 
-                            chara.CombatAbilities.RemoveAt(0);
+                            if (chara.AbilityCount > 0) chara.CombatAbilities.RemoveAt(0);
 
                             if (grab.Count > 0) chara.CombatAbilities.Add(new CombatAbility(grab.GetRandom()));
                             else chara.CombatAbilities.Add(FromExtraAbility(GetRandomItemAbility()));
