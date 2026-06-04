@@ -27,6 +27,7 @@ namespace AprilsDayAtFools
             Class1.PCall(CustomVisuals.Setup);
 
             Class1.PCall(NotificationHook.Setup);
+            Class1.PCall(SpecialEffectExtensions.Setup);
             Class1.PCall(SolitudeHandler.Setup);
             Class1.PCall(ConscientiousHandler.Setup);
             Class1.PCall(FlowersUnboxer.Setup);
