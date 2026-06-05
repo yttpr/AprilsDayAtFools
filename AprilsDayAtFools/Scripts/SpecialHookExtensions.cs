@@ -8,13 +8,16 @@ using Mono.Cecil;
 using Mono.Cecil.Cil;
 using UnityEngine;
 using MonoMod.RuntimeDetour;
+using HarmonyLib;
+using MonoMod.Cil;
+using MonoMod.Utils;
 
 
 namespace AprilsDayAtFools
 {
     public static class SpecialEffectExtensions
     {
-        static MethodReference WillApplyDamage;
+        /*static MethodReference WillApplyDamage;
         public static bool ContainsWillApplyDamage(this EffectSO effect)
         {
             if (effect == null || effect.Equals(null)) return false;
@@ -47,8 +50,48 @@ namespace AprilsDayAtFools
                 else Debug.Log("null??");
                 return false;
             }
+        }*/
+
+        //CREDITS: help from SpecialAPI for improve call checking code here! tysm!!
+        private static MethodInfo WillApplyDamage = AccessTools.Method(typeof(IUnit), nameof(IUnit.WillApplyDamage));
+
+        public static bool ContainsWillApplyDamage(this EffectSO effect)
+        {
+            try
+            {
+                var performEffectMthd = AccessTools.Method(effect.GetType(), nameof(EffectSO.PerformEffect));
+                if (performEffectMthd == null)
+                    return false;
+
+                return performEffectMthd.CallsMethod(WillApplyDamage);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
+        public static bool CallsMethod(this MethodBase self, MethodBase other)
+        {
+            if (self == null || other == null)
+                return false;
+
+            var instrs = self.GetCodeInstructions();
+            return instrs.Any(x => x.MatchCallOrCallvirt(other));
+        }
+
+        public static IList<Instruction> GetCodeInstructions(this MethodBase mthd)
+        {
+            if (mthd == null)
+                return null;
+
+            using var dmd = new DynamicMethodDefinition(mthd);
+            var md = dmd.Definition;
+            var body = md.Body;
+            var instrs = body.Instructions;
+
+            return instrs;
+        }
 
         public static bool Matches(this object first, object second)
         {
