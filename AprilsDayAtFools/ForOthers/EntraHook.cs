@@ -1,4 +1,6 @@
-﻿using MonoMod.RuntimeDetour;
+﻿using AprilsDayAtFools;
+using BrutalAPI;
+using MonoMod.RuntimeDetour;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -40,6 +42,25 @@ namespace YourNamespace
                     }
                 }
             }
+        }
+    }
+
+    public static class ExampleKio
+    {
+        public static void Add()
+        {
+            //Kio.Add() normal stuff
+
+            UnlockableModData kio_achievement = new UnlockableModData("Kio_Achievement");
+            kio_achievement.hasModdedAchievementUnlock = true;
+            kio_achievement.moddedAchievementID = "Kio_Achievement";
+            kio_achievement.hasItemUnlock = true;
+            kio_achievement.items = ["KioItem_TW"];
+            ModdedAchievements ach = new ModdedAchievements("Kio Achievement", "Kill Boss. lol", ResourceLoader.LoadSprite("KioAchievementIcon.png"), "Kio_Achievement");
+            ach.AddNewAchievementToInGameCategory(AchievementCategoryIDs.StrangersTitleLabel);
+            Unlocks.AddUnlock_ByID(kio_achievement);
+
+            AnyBossUnlockSingleItemHook.AddAchievement("Kio_CH", "Kio_Achievement");
         }
     }
 }
