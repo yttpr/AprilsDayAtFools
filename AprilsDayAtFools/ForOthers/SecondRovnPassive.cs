@@ -61,7 +61,7 @@ namespace YourNamespace
     {
         public override bool MeetCondition(IEffectorChecks effector, object args)
         {
-            return args is AbilityUsageReference reference && reference.m_IsUnitCharacter;
+            return args is AbilityUsageReference reference && reference.m_IsUnitCharacter && reference.m_UnitID != effector.ID;
         }
     }
     public static class ExtraAbilityExtension
