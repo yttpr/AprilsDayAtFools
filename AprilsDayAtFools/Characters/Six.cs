@@ -197,7 +197,7 @@ namespace AprilsDayAtFools
             devilspurse.OnUnlockUsesTHE = true;
             devilspurse.UsesSpecialUnlockText = true;
             devilspurse.SpecialUnlockID = UILocID.ItemFishLocationLabel;
-            devilspurse.item.AddFishItem(3, "locked_devilspurse.png", HeavenACH);
+            devilspurse.item.AddFishItem(4, "locked_devilspurse.png", HeavenACH);
         }
         public static void Unlocks()
         {

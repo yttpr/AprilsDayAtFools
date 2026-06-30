@@ -503,7 +503,7 @@ namespace AprilsDayAtFools
             six.OnUnlockUsesTHE = true;
             six.UsesSpecialUnlockText = true;
             six.SpecialUnlockID = UILocID.ItemFishLocationLabel;
-            six.item.AddFishItem(3, "locked_plasticfish.png", "Aprils_Six_March_ACH");
+            six.item.AddFishItem(4, "locked_plasticfish.png", "Aprils_Six_March_ACH");
 
             PerformEffect_Item diamond = new PerformEffect_Item("Aprils_BloodDiamond_TW", [Effects.GenerateEffect(ScriptableObject.CreateInstance<RemoveTargetTimelineAbilityEffect>(), 1, Slots.Front), Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyHasteEffect>(), 1, Slots.Front)]);
             diamond.Name = "Blood Diamond";
