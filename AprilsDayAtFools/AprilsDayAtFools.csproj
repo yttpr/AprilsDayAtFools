@@ -94,6 +94,7 @@
 	  <None Remove="Passives\Sprites\ChunkPassive.png" />
 	  <None Remove="Passives\Sprites\DepictionPassive.png" />
 	  <None Remove="Passives\Sprites\EternityPassive.png" />
+	  <None Remove="Passives\Sprites\GhostPassive.png" />
 	  <None Remove="Passives\Sprites\MimicryPassive.png" />
 	  <None Remove="Passives\Sprites\OrdinaryPassive.png" />
 	  <None Remove="Passives\Sprites\PermanentPassive.png" />
@@ -668,6 +669,7 @@
 	  <EmbeddedResource Include="March\Locked\locked_ringofthedevil.png" />
 	  <EmbeddedResource Include="March\Locked\locked_sirenhead.png" />
 	  <EmbeddedResource Include="March\Locked\locked_soundofthesea.png" />
+	  <EmbeddedResource Include="Passives\Sprites\GhostPassive.png" />
 	  <EmbeddedResource Include="Sprites\Abilities\Set7\ability_beam.png" />
 	  <EmbeddedResource Include="Sprites\Abilities\Set9\ability_misnomer.png" />
 	  <EmbeddedResource Include="Sprites\Achievements\divine_izide.png" />

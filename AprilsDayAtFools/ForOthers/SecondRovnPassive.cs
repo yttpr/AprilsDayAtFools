@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using static UnityEngine.EventSystems.EventTrigger;
+using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.UI.CanvasScaler;
 
 namespace YourNamespace
@@ -144,6 +145,49 @@ namespace YourNamespace
             }
 
             return false;
+        }
+    }
+    public class AddTargetMimickedAbilityPermenantlyEffect : EffectSO
+    {
+        public string _ifConsistentReplacement_ID = "";
+
+        public override bool PerformEffect(CombatStats stats, IUnit caster, TargetSlotInfo[] targets, bool areTargetSlots, int entryVariable, out int exitAmount)
+        {
+            exitAmount = 0;
+            ExtraAbilityInfo extra = null;
+
+            caster.TryGetStoredData(MimicExtraAbilityPassive.StoredValueID, out UnitStoreDataHolder holder);
+            if (holder.m_ObjectData is ExtraAbilityInfo) extra = holder.m_ObjectData as ExtraAbilityInfo;
+
+            foreach (TargetSlotInfo target in targets)
+            {
+                if (!target.HasUnit)
+                    continue;
+
+                if (extra != null && _ifConsistentReplacement_ID != "")
+                {
+                    target.Unit.TryGetStoredData(_ifConsistentReplacement_ID, out UnitStoreDataHolder data);
+
+                    if (data.m_ObjectData is ExtraAbilityInfo old)
+                    {
+                        if (target.Unit is CharacterCombat self) self.TryRemoveSingleExtraAbility(old);
+                        else target.Unit.TryRemoveExtraAbility(old);
+                    }
+
+                    target.Unit.AddExtraAbility(extra);
+
+                    data.m_ObjectData = extra;
+
+                    exitAmount++;
+                }
+                else if (extra != null)
+                {
+                    target.Unit.AddExtraAbility(extra);
+                    exitAmount++;
+                }
+            }
+
+            return exitAmount > 0;
         }
     }
 }
