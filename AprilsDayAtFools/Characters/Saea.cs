@@ -100,25 +100,25 @@ namespace AprilsDayAtFools
 
 
             Ability onset1 = new Ability("Onset of Shadows", "Saea_Onset_1_A");
-            onset1.Description = "Heal this and the Right allies 6 health then inflict 5 Karma on them, increasing their maximum health if necessary.\nKarma inflicted on this party member will not exceed 8.";
+            onset1.Description = "Heal this and the Right allies 6 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted on this party member will not exceed 8.";
             onset1.AbilitySprite = ResourceLoader.LoadSprite("ability_onset.png");
             onset1.Cost = [Pigments.Blue, Pigments.Blue, Pigments.Blue];
             onset1.Effects = new EffectInfo[4];
             onset1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<MaxHealthlessHealEffect>(), 6, Targeting.Slot_SelfAndRight);
             onset1.Effects[1] = Effects.GenerateEffect(BasicEffects.Empty, 8);
-            onset1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaCappedToExitEffect>(), 5, Slots.Self);
-            onset1.Effects[3] = Effects.GenerateEffect(karma, 5, Targeting.Slot_AllyRight);
+            onset1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyKarmaCappedToExitEffect>(), 6, Slots.Self);
+            onset1.Effects[3] = Effects.GenerateEffect(karma, 6, Targeting.Slot_AllyRight);
             onset1.AddIntentsToTarget(Targeting.Slot_SelfAndRight, ["Heal_5_10", IntentType_GameIDs.Other_MaxHealth.ToString(), Karma.Intent]);
             onset1.Visuals = Visuals.UglyOnTheInside;
             onset1.AnimationTarget = Targeting.Slot_SelfAndRight;
 
             Ability onset2 = new Ability(onset1.ability, "Saea_Onset_2_A", onset1.Cost);
             onset2.Name = "Onset of Darkness";
-            onset2.Description = "Heal this, the Right, and Far Right allies 7 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted on this party member will not exceed 10.";
+            onset2.Description = "Heal this, the Right, and Far Right allies 7 health then inflict 7 Karma on them, increasing their maximum health if necessary.\nKarma inflicted on this party member will not exceed 10.";
             onset2.Effects[0].entryVariable = 7;
             onset2.Effects[1].entryVariable = 10;
-            onset2.Effects[2].entryVariable = 6;
-            onset2.Effects[3].entryVariable = 6;
+            onset2.Effects[2].entryVariable = 7;
+            onset2.Effects[3].entryVariable = 7;
             onset2.AnimationTarget = Slots.SlotTarget([0, 1, 2], true);
             onset2.Effects[0].targets = onset2.ability.animationTarget;
             onset2.Effects[3].targets = Slots.SlotTarget([1, 2], true);
@@ -126,11 +126,11 @@ namespace AprilsDayAtFools
 
             Ability onset3 = new Ability(onset2.ability, "Saea_Onset_3_A", onset1.Cost);
             onset3.Name = "Onset of Death";
-            onset3.Description = "Heal this, the Right, the Far Right, and the Far Far Right allies 8 health then inflict 7 Karma on them, increasing their maximum health if necessary.\nKarma inflicted on this party member will not exceed 12.";
+            onset3.Description = "Heal this, the Right, the Far Right, and the Far Far Right allies 8 health then inflict 8 Karma on them, increasing their maximum health if necessary.\nKarma inflicted on this party member will not exceed 12.";
             onset3.Effects[0].entryVariable = 8;
             onset3.Effects[1].entryVariable = 12;
-            onset3.Effects[2].entryVariable = 7;
-            onset3.Effects[3].entryVariable = 7;
+            onset3.Effects[2].entryVariable = 8;
+            onset3.Effects[3].entryVariable = 8;
             onset3.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3], true);
             onset3.Effects[0].targets = onset3.ability.animationTarget;
             onset3.Effects[3].targets = Slots.SlotTarget([1, 2, 3], true);
@@ -138,9 +138,7 @@ namespace AprilsDayAtFools
 
             Ability onset4 = new Ability(onset3.ability, "Saea_Onset_4_A", onset1.Cost);
             onset4.Name = "Onset of Hell";
-            onset4.Description = "Heal this and All allies to the Right 8 health then inflict 6 Karma on them, increasing their maximum health if necessary.\nKarma inflicted on this party member will not exceed 12.";
-            onset4.Effects[2].entryVariable = 6;
-            onset4.Effects[3].entryVariable = 6; 
+            onset4.Description = "Heal this and All allies to the Right 8 health then inflict 8 Karma on them, increasing their maximum health if necessary.\nKarma inflicted on this party member will not exceed 12.";
             onset4.AnimationTarget = Slots.SlotTarget([0, 1, 2, 3, 4], true);
             onset4.Effects[0].targets = onset4.ability.animationTarget;
             onset4.Effects[3].targets = Slots.SlotTarget([1, 2, 3, 4], true);
