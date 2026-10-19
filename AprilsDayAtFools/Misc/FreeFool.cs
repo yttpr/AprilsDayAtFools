@@ -40,13 +40,6 @@ namespace AprilsDayAtFools//change this to your namespace
             Add("Alpha_CH", "Alpha", 1, new Color32(238, 195, 154, 255), false, false, false);
             AddQualia("Qualia_CH", "Qualia", 3, new Color32(118, 66, 138, 255), false, false, false);
 
-            //extra speakers for item guys
-            AddSpeaker("Infanticide_CH", "Infanticide", new Color32(243, 146, 197, 255), false, false);
-            AddSpeaker("Telomere_CH", "Telomere", new Color32(91, 179, 65, 255), true, false);
-            AddSpeaker("Lyren_CH", "Lyren", new Color32(95, 205, 228, 255), false, true);
-            AddSpeaker("Fribble_CH", "Fribble", new Color32(255, 255, 255, 255), true, false);
-            AddSpeaker("NN_CH", "NN", new Color32(255, 255, 255, 255), false, true);
-
             //ok so basically what this is is,
             //Add("character id. the _CH", "any sort of name identifier, doesnt really matter", [area: 1 shore, 2 orph, 3 garden], color32(for the text color. its just thr rgb plus a 255 at the end for the alpha), bool do they face left, bool do they face center, bool should the show up in easy mode aswell)
         }
@@ -54,6 +47,13 @@ namespace AprilsDayAtFools//change this to your namespace
         {
             AddSaea("Saea_CH", "Saea", 3, Color.white, true, false, false);
             AddSecondLich("Lich_CH", "Lich", 2, new Color32(253, 153, 163, 255), true, false, false);
+
+            //extra speakers for item guys
+            AddSpeaker("Infanticide_CH", "Infanticide", new Color32(243, 146, 197, 255), false, false);
+            AddSpeaker("Telomere_CH", "Telomere", new Color32(91, 179, 65, 255), true, false);
+            AddSpeaker("Lyren_CH", "Lyren", new Color32(95, 205, 228, 255), false, true);
+            AddSpeaker("Fribble_CH", "Fribble", new Color32(255, 255, 255, 255), true, false);
+            AddSpeaker("NN_CH", "NN", new Color32(255, 255, 255, 255), false, true);
         }
 
         public static void Add_Siren()

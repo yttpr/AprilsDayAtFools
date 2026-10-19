@@ -78,32 +78,32 @@ namespace AprilsDayAtFools
             replace_acid.Secondary = previousAcid;
 
             Ability fuzzy1 = new Ability("Fuzzy with Vomit", "Lich_Fuzzy_1_A");
-            fuzzy1.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 9 health.\nThis ability assumes the grid loops around.";
+            fuzzy1.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 6 health.\nThis ability assumes the grid loops around.";
             fuzzy1.AbilitySprite = ResourceLoader.LoadSprite("ability_fuzzy.png");
             fuzzy1.Cost = [Pigments.Blue, Pigments.Blue];
             fuzzy1.Effects = new EffectInfo[3];
             fuzzy1.Effects[0] = Effects.GenerateEffect(rem_stat, 1, right);
             fuzzy1.Effects[1] = Effects.GenerateEffect(previousAcid, 1, right);
-            fuzzy1.Effects[2] = Effects.GenerateEffect(heal, 9, right);
+            fuzzy1.Effects[2] = Effects.GenerateEffect(heal, 6, right);
             fuzzy1.AddIntentsToTarget(right, ["Misc", Acid.Intent, "Heal_5_10"]);
             fuzzy1.AnimationTarget = right;
             fuzzy1.Visuals = CustomVisuals.GetVisuals("Salt/Ribbon");
 
             Ability fuzzy2 = new Ability(fuzzy1.ability, "Lich_Fuzzy_2_A", fuzzy1.Cost);
             fuzzy2.Name = "Fuzzy with Mold";
-            fuzzy2.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 10 health.\nThis ability assumes the grid loops around.";
-            fuzzy2.Effects[2].entryVariable = 10;
+            fuzzy2.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 8 health.\nThis ability assumes the grid loops around.";
+            fuzzy2.Effects[2].entryVariable = 8;
 
             Ability fuzzy3 = new Ability(fuzzy2.ability, "Lich_Fuzzy_3_A", fuzzy1.Cost);
             fuzzy3.Name = "Fuzzy with Parasites";
-            fuzzy3.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 12 health.\nThis ability assumes the grid loops around.";
-            fuzzy3.Effects[2].entryVariable = 12;
-            fuzzy3.EffectIntents[0].intents[2] = "Heal_11_20";
+            fuzzy3.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 10 health.\nThis ability assumes the grid loops around.";
+            fuzzy3.Effects[2].entryVariable = 10;
 
             Ability fuzzy4 = new Ability(fuzzy3.ability, "Lich_Fuzzy_4_A", fuzzy1.Cost);
             fuzzy4.Name = "Fuzzy with Larvae";
-            fuzzy4.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 14 health.\nThis ability assumes the grid loops around.";
-            fuzzy4.Effects[2].entryVariable = 14;
+            fuzzy4.Description = "Convert all Negative Status and Field Effects on the Right ally into Acid, then heal them 12 health.\nThis ability assumes the grid loops around.";
+            fuzzy4.Effects[2].entryVariable = 12;
+            fuzzy4.EffectIntents[0].intents[2] = "Heal_11_20";
 
             TargetPerformAllAbilitiesEffect perform = ScriptableObject.CreateInstance<TargetPerformAllAbilitiesEffect>();
             perform.Reverse = true;

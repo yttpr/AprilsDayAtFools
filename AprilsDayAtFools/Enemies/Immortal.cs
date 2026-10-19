@@ -27,7 +27,7 @@ namespace AprilsDayAtFools
             ghostly._enemyDescription = "On receiving any damage, even if it was prevented, instantly die.";
             ghostly._characterDescription = "On receiving any damage, even if it was prevented, instantly die.";
             ghostly.doesPassiveTriggerInformationPanel = true;
-            ghostly.effects = Effects.GenerateEffect(ScriptableObject.CreateInstance<DirectDeathEffect>(), 1, Slots.Self).SelfArray();
+            ghostly.effects = Effects.GenerateEffect(BasicEffects.Die(true), 1, Slots.Self).SelfArray();
             ghostly._triggerOn = new TriggerCalls[1] { TriggerCalls.OnBeingDamaged };
             ghostly.conditions = [];
             ghostly.AddPassiveToGlossary("Ghost", "On receiving any damage, even if it was prevented, instantly die.");

@@ -66,7 +66,7 @@ namespace AprilsDayAtFools
             {
                 if (NewTargets[EffectGroups[SpecialEffectExtensions.ActionsTracked]] == null)
                 {
-                    List<TargetSlotInfo> makenew = [...possibleTargets];
+                    List<TargetSlotInfo> makenew = [..possibleTargets];
 
                     foreach (TargetSlotInfo target in possibleTargets)
                     {

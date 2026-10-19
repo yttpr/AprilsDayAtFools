@@ -35,37 +35,45 @@ namespace AprilsDayAtFools
             prayer.MenuCharacterIgnoreRandom = false;
             prayer.SetMenuCharacterAsFullSupport();
 
+            ApplyPowerEffect power = ScriptableObject.CreateInstance<ApplyPowerEffect>();
+
             HealEffect heal = ScriptableObject.CreateInstance<HealEffect>();
+            ComplexHealEffect hpower = ScriptableObject.CreateInstance<ComplexHealEffect>();
+            hpower._pigment = Pigments.Purple;
+            hpower._status = power;
+            hpower._status_amt = 2;
+            hpower._animation = CustomVisuals.GetVisuals("Salt/Unlock");
+            EffectConditionSO nopurple = UsedColorCondition.Create(Pigments.Purple, false);
 
             Ability complex1 = new Ability("Industrial Complex", "Prayer_Complex_1_A");
-            complex1.Description = "If any Purple Pigment was used, inflict 2 Gutted on the Left and Right allies. Otherwise, generate 2 Purple pigment.\nHeal the Left and Right allies 4 health and heal this party member 2 health.";
+            complex1.Description = "Heal 4 health and apply 2 Power to adjacent party members depending on where Purple Pigment was used in this ability's costs.\nIf no Purple Pigment was used, generate 1 Pigment of the Left, Right, and this party member's health color and heal them all 2 health.";
             complex1.AbilitySprite = ResourceLoader.LoadSprite("ability_complex.png");
-            complex1.Cost = [Pigments.Yellow, Pigments.Blue, Pigments.PurpleBlue];
+            complex1.Cost = [Pigments.PurpleBlue, Pigments.PurpleBlue, Pigments.PurpleBlue];
             complex1.Effects = new EffectInfo[4];
-            complex1.Effects[0] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyGuttedEffect>(), 2, Slots.Sides, UsedColorCondition.Create(Pigments.Purple, true));
-            complex1.Effects[1] = Effects.GenerateEffect(BasicEffects.GenPigment(Pigments.Purple), 2, Slots.Self, UsedColorCondition.Create(Pigments.Purple, false));
-            complex1.Effects[2] = Effects.GenerateEffect(heal, 4, Slots.Sides);
-            complex1.Effects[3] = Effects.GenerateEffect(heal, 2, Slots.Self);
-            complex1.AddIntentsToTarget(Slots.Sides, ["Status_Gutted", "Heal_1_4"]);
-            complex1.AddIntentsToTarget(Slots.Self, ["Mana_Generate", "Heal_1_4"]);
-            complex1.Visuals = CustomVisuals.GetVisuals("Salt/Unlock");
+            complex1.Effects[0] = Effects.GenerateEffect(hpower, 4, Targeting.Slot_SelfAndSides);
+            complex1.Effects[1] = Effects.GenerateEffect(BasicEffects.GetVisuals("Boil_a", false, Targeting.Slot_SelfAndSides), 0, null, nopurple);
+            complex1.Effects[2] = Effects.GenerateEffect(ScriptableObject.CreateInstance<GenerateTargetHealthManaEffect>(), 1, Targeting.Slot_SelfAndSides, nopurple);
+            complex1.Effects[3] = Effects.GenerateEffect(heal, 2, Targeting.Slot_SelfAndSides, nopurple);
+            complex1.AddIntentsToTarget(Targeting.Slot_SelfAndSides, ["Heal_1_4", Power.Intent, "Mana_Generate"]);
+            complex1.Visuals = null;
             complex1.AnimationTarget = Slots.Sides;
 
             Ability complex2 = new Ability(complex1.ability, "Prayer_Complex_2_A", complex1.Cost);
             complex2.Name = "Brutalist Complex";
-            complex2.Description = "If any Purple Pigment was used, inflict 2 Gutted on the Left and Right allies. Otherwise, generate 2 Purple pigment.\nHeal the Left and Right allies 5 health and heal this party member 2 health.";
-            complex2.Effects[2].entryVariable = 5;
+            complex2.Description = "Heal 5 health and apply 2 Power to adjacent party members depending on where Purple Pigment was used in this ability's costs.\nIf no Purple Pigment was used, generate 1 Pigment of the Left, Right, and this party member's health color and heal them all 2 health.";
+            complex2.Effects[0].entryVariable = 5;
             complex2.EffectIntents[0].intents[1] = "Heal_5_10";
 
             Ability complex3 = new Ability(complex2.ability, "Prayer_Complex_3_A", [Pigments.Blue, Pigments.BluePurple]);
             complex3.Name = "Colonialist Complex";
-            complex3.Description = "If any Purple Pigment was used, inflict 2 Gutted on the Left and Right allies. Otherwise, generate 2 Purple pigment.\nHeal the Left and Right allies 5 health and heal this party member 3 health.";
+            complex3.Description = "Heal 6 health and apply 2 Power to adjacent party members depending on where Purple Pigment was used in this ability's costs.\nIf no Purple Pigment was used, generate 1 Pigment of the Left, Right, and this party member's health color and heal them all 3 health.";
+            complex3.Effects[0].entryVariable = 6;
             complex3.Effects[3].entryVariable = 3;
 
             Ability complex4 = new Ability(complex3.ability, "Prayer_Complex_4_A", complex3.Cost);
             complex4.Name = "God Complex";
-            complex4.Description = "If any Purple Pigment was used, inflict 2 Gutted on the Left and Right allies. Otherwise, generate 2 Purple pigment.\nHeal the Left and Right allies 7 health and heal this party member 3 health.";
-            complex4.Effects[2].entryVariable = 7;
+            complex4.Description = "Heal 7 health and apply 2 Power to adjacent party members depending on where Purple Pigment was used in this ability's costs.\nIf no Purple Pigment was used, generate 1 Pigment of the Left, Right, and this party member's health color and heal them all 3 health.";
+            complex4.Effects[0].entryVariable = 7;
 
             Ability hypo1 = new Ability("Psychological Hypothetical", "Prayer_Hypo_1_A");
             hypo1.Description = "If any Blue Pigment was used, heal the Right ally 3 health.\nIf any Purple Pigment was used, apply 2 Power to the Right ally and heal this party member 1 health.";
@@ -73,7 +81,7 @@ namespace AprilsDayAtFools
             hypo1.Cost = [Pigments.PurpleBlue, Pigments.Yellow];
             hypo1.Effects = new EffectInfo[3];
             hypo1.Effects[0] = Effects.GenerateEffect(heal, 3, Targeting.Slot_AllyRight, UsedColorCondition.Create(Pigments.Blue, true));
-            hypo1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<ApplyPowerEffect>(), 2, Targeting.Slot_AllyRight, complex1.Effects[0].condition);
+            hypo1.Effects[1] = Effects.GenerateEffect(power, 2, Targeting.Slot_AllyRight, complex1.Effects[0].condition);
             hypo1.Effects[2] = Effects.GenerateEffect(heal, 1, Slots.Self, complex1.Effects[0].condition);
             hypo1.AddIntentsToTarget(Targeting.Slot_AllyRight, ["Heal_1_4", Power.Intent]);
             hypo1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);

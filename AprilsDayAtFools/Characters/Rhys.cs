@@ -72,15 +72,15 @@ namespace AprilsDayAtFools
 
             Ability organ3 = new Ability(organ2.ability, "Rhys_Organ_3_A", organ1.Cost);
             organ3.Name = "Organ Blend";
-            organ3.Description = "Heal the Left ally 8 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 3.\nHeal this party member 2 health.";
-            organ3.Effects[0].entryVariable = 8;
-            organ3.Effects[1].entryVariable = 3;
+            organ3.Description = "Heal the Left ally 7 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 4.\nHeal this party member 2 health.";
+            organ3.Effects[0].entryVariable = 7;
+            organ3.Effects[1].entryVariable = 4;
             organ3.Effects[2].entryVariable = 2;
 
             Ability organ4 = new Ability(organ3.ability, "Rhys_Organ_4_A", organ1.Cost);
             organ4.Name = "Organ Puree";
-            organ4.Description = "Heal the Left ally 11 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 3.\nHeal this party member 2 health.";
-            organ4.Effects[0].entryVariable = 11;
+            organ4.Description = "Heal the Left ally 9 health, this healing is treated as Shield-piercing direct damage.\nReduce all negative Status Effects on the Left ally by 4.\nHeal this party member 2 health.";
+            organ4.Effects[0].entryVariable = 9;
 
             ChangeToRandomHealthColorEffect turnRed = ScriptableObject.CreateInstance<ChangeToRandomHealthColorEffect>();
             turnRed._healthColors = [Pigments.Red];

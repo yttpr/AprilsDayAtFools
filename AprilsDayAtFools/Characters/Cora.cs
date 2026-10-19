@@ -167,15 +167,15 @@ namespace AprilsDayAtFools
             rootsDamage._indirect = true;
             rootsDamage._DeathTypeID = "ManaCost";
 
-            PerformEffect_Item rootsofgod = new PerformEffect_Item("Aprils_RootsOfGod_TW", [Effects.GenerateEffect(rootsDamage, 0, Targeting.Unit_AllOpponents)]);
+            PerformEffect_Item rootsofgod = new PerformEffect_Item("Aprils_RootsOfGod_TW", []);
             rootsofgod.Name = "Roots Of God";
             rootsofgod.Flavour = "\"Reaching for the stars, they bend back down under their own weight.\"";
-            rootsofgod.Description = "Wrong Pigment and Overflow damage taken by this party member is also dealt indirectly to all enemies.";
+            rootsofgod.Description = "If there is an Opposing enemy, block all Wrong Pigment and Overflow damage and deal it to that enemy instead.";
             rootsofgod.Icon = ResourceLoader.LoadSprite("item_rootsofgod.png");
             rootsofgod.EquippedModifiers = [];
-            rootsofgod.TriggerOn = AdvancedDamageTrigger.Received;
-            rootsofgod.DoesPopUpInfo = true;
-            rootsofgod.Conditions = [DamageTypeCondition.Create("Dmg_Pigment"), IntegerRefStoredValSetterCondition.Create("RootsOfGod_TW")];
+            rootsofgod.TriggerOn = TriggerCalls.OnBeingDamaged;
+            rootsofgod.DoesPopUpInfo = false;
+            rootsofgod.Conditions = [ScriptableObject.CreateInstance<TransferDamageCondition>()];
             rootsofgod.DoesActionOnTriggerAttached = false;
             rootsofgod.ConsumeOnTrigger = TriggerCalls.Count;
             rootsofgod.ConsumeOnUse = false;

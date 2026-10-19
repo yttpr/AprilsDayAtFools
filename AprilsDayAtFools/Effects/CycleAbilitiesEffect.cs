@@ -56,7 +56,7 @@ namespace AprilsDayAtFools
                 {
                     if (target.HasUnit && target.Unit is CharacterCombat chara)
                     {
-                        if (!chara.Character.HasRankedData)
+                        if (!chara.Character.HasRankedData || chara.Character.rankedData[chara.Character.ClampRank(chara.Rank)].rankAbilities.Length <= 0)
                         {
                             bool addbasic = chara.Character.usesBasicAbility;
                             if (addbasic)

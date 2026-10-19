@@ -59,7 +59,7 @@ namespace AprilsDayAtFools
             ApplyShieldSlotEffect shield = ScriptableObject.CreateInstance<ApplyShieldSlotEffect>();
 
             Ability buried1 = new Ability("Buried Under", "Flower_Buried_1_A");
-            buried1.Description = "Inflict 2 Deep Water on the Left allied position.\nHeal all allies in Deep Water 3 health, apply 3 Shield to them if no healing was dealt.";
+            buried1.Description = "Inflict 2 Deep Water on the Left allied position.\nHeal all allied positions in Deep Water 3 health, apply 3 Shield to them if no healing was dealt.";
             buried1.AbilitySprite = ResourceLoader.LoadSprite("ability_buried.png");
             buried1.Cost = [Pigments.Blue, Pigments.Yellow];
             buried1.Effects = new EffectInfo[2];
@@ -73,55 +73,54 @@ namespace AprilsDayAtFools
 
             Ability buried2 = new Ability(buried1.ability, "Flower_Buried_2_A", [Pigments.Blue, Pigments.Grey]);
             buried2.Name = "Buried Hands";
-            buried2.Description = "Inflict 2 Deep Water on the Left allied position.\nHeal all allies in Deep Water 4 health, apply 4 Shield to them if no healing was dealt.";
+            buried2.Description = "Inflict 2 Deep Water on the Left allied position.\nHeal all allied positions in Deep Water 4 health, apply 4 Shield to them if no healing was dealt.";
             buried2.Effects[1].entryVariable = 4;
             buried2.Effects[1].effect = ShieldIfNotHealEffect.Create(4, shield);
             buried2.EffectIntents[2].intents[0] = "Heal_5_10";
 
             Ability buried3 = new Ability(buried2.ability, "Flower_Buried_3_A", buried2.Cost);
             buried3.Name = "Buried Away";
-            buried3.Description = "Inflict 2 Deep Water on the Left allied position.\nHeal all allies in Deep Water 5 health, apply 5 Shield to them if no healing was dealt.";
+            buried3.Description = "Inflict 2 Deep Water on the Left allied position.\nHeal all allied positions in Deep Water 5 health, apply 5 Shield to them if no healing was dealt.";
             buried3.Effects[1].entryVariable = 5;
             buried3.Effects[1].effect = ShieldIfNotHealEffect.Create(5, shield);
 
             Ability buried4 = new Ability(buried3.ability, "Flower_Buried_4_A", buried2.Cost);
             buried4.Name = "Buried Memories";
-            buried4.Description = "Inflict 2 Deep Water on the Left allied position.\nHeal all allies in Deep Water 6 health, apply 6 Shield to them if no healing was dealt.";
+            buried4.Description = "Inflict 2 Deep Water on the Left allied position.\nHeal all allied positions in Deep Water 6 health, apply 6 Shield to them if no healing was dealt.";
             buried4.Effects[1].entryVariable = 6;
             buried4.Effects[1].effect = ShieldIfNotHealEffect.Create(6, shield);
 
             RemoveStatusEffectEffect remove = ScriptableObject.CreateInstance<RemoveStatusEffectEffect>();
             remove._status = Drowning.Object;
-            RefreshIfStatusOverEntryEffect refresh = ScriptableObject.CreateInstance<RefreshIfStatusOverEntryEffect>();
-            refresh.Status = Drowning.StatusID;
-            RefreshIfStatusOverEntryEffect swap = ScriptableObject.CreateInstance<RefreshIfStatusOverEntryEffect>();
-            swap.Status = Drowning.StatusID;
-            swap.Swap_Also = true;
+
+            NightmareRefreshEffect refresh_normal = ScriptableObject.CreateInstance<NightmareRefreshEffect>();
+            NightmareRefreshEffect refresh_mov = ScriptableObject.CreateInstance<NightmareRefreshEffect>();
+            refresh_mov.AlsoMovement = true;
 
             Ability void1 = new Ability("Nightmares of Loneliness", "Flower_Void_1_A");
-            void1.Description = "Remove all Drowning from the Right ally and heal them by their current health, then inflict 4 Deep Water on the Right allied position.\nRefresh the ability usage of all other allies with Drowning over 10.";
+            void1.Description = "If the Left or Right allies have 2 or less Drowning, refresh their ability usage and double their Drowning, giving them 1 if they have none.\nOtherwise, convert all Drowning on them into Deep Water.";
             void1.AbilitySprite = ResourceLoader.LoadSprite("ability_void.png");
             void1.Cost = [Pigments.Blue, Pigments.Purple];
-            void1.Effects = new EffectInfo[4];
-            void1.Effects[0] = Effects.GenerateEffect(remove, 1, Targeting.Slot_AllyRight);
-            void1.Effects[1] = Effects.GenerateEffect(ScriptableObject.CreateInstance<HealByHealthPlusDrowningEffect>(), 1, Targeting.Slot_AllyRight);
-            void1.Effects[2] = Effects.GenerateEffect(water, 4, Targeting.Slot_AllyRight);
-            void1.Effects[3] = Effects.GenerateEffect(refresh, 10, Targeting.Unit_OtherAllies);
-            void1.AddIntentsToTarget(Targeting.Slot_AllyRight, [Drowning.Rem, "Heal_11_20", Water.Intent]);
-            void1.AddIntentsToTarget(Targeting.Unit_OtherAllies, ["Misc_Additional"]);
-            void1.AnimationTarget = Targeting.Slot_AllyRight;
+            void1.Effects = new EffectInfo[1];
+            void1.Effects[0] = Effects.GenerateEffect(refresh_normal, 2, Slots.Sides);
+            void1.AddIntentsToTarget(Slots.Sides, ["Misc_Additional", Drowning.Intent, Water.Intent]);
+            void1.AnimationTarget = Slots.Sides;
             void1.Visuals = CustomVisuals.GetVisuals("Salt/Monster");
 
-            Ability void2 = new Ability(void1.ability, "Flower_Void_2_A", [Pigments.BlueYellow, Pigments.Purple]);
+            Ability void2 = new Ability(void1.ability, "Flower_Void_2_A", [Pigments.BluePurple, Pigments.Purple]);
             void2.Name = "Nightmares of Solitude";
+            void2.Description = "If the Left or Right allies have 3 or less Drowning, refresh their ability usage and double their Drowning, giving them 1 if they have none.\nOtherwise, convert all Drowning on them into Deep Water.";
+            void2.Effects[0].entryVariable = 3;
 
             Ability void3 = new Ability(void2.ability, "Flower_Void_3_A", void2.Cost);
             void3.Name = "Nightmares of Emptiness";
-            void3.Description = "Remove all Drowning from the Right ally and heal them by their current health, then inflict 4 Deep Water on the Right allied position.\nRefresh the ability and swap usage of all other allies with Drowning over 10.";
-            void3.Effects[3].effect = swap;
+            void3.Description = "If the Left or Right allies have 3 or less Drowning, refresh their ability and swap usage and double their Drowning, giving them 1 if they have none.\nOtherwise, convert all Drowning on them into Deep Water.";
+            void3.Effects[0].effect = refresh_mov;
 
-            Ability void4 = new Ability(void3.ability, "Flower_Void_4_A", [Pigments.Grey, Pigments.Purple]);
+            Ability void4 = new Ability(void3.ability, "Flower_Void_4_A", [Pigments.BluePurple, Pigments.BluePurple]);
             void4.Name = "Nightmares of Void";
+            void4.Description = "If the Left or Right allies have 4 or less Drowning, refresh their ability and swap usage and double their Drowning, giving them 1 if they have none.\nOtherwise, convert all Drowning on them into Deep Water.";
+            void4.Effects[0].entryVariable = 4;
 
             CascadeHealPercentEffect hazeEffect = ScriptableObject.CreateInstance<CascadeHealPercentEffect>();
             hazeEffect._cascadeDecay = 0.5f;
