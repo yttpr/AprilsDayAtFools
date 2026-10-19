@@ -23,7 +23,7 @@ namespace AprilsDayAtFools
                         hit._defaultStoredValue = 0;
                         CombatManager.Instance.AddSubAction(new EffectAction([Effects.GenerateEffect(hit, damage.amount, Slots.Front)], effector as IUnit));
                         damage.AddModifier(new ImmZeroMod());
-                        damage.ShouldIgnoreUI = true;
+                        //damage.ShouldIgnoreUI = true;
                         return true;
                     }
                 }
