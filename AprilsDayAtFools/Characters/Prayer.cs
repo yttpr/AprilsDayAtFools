@@ -64,13 +64,13 @@ namespace AprilsDayAtFools
             complex2.Effects[0].entryVariable = 5;
             complex2.EffectIntents[0].intents[1] = "Heal_5_10";
 
-            Ability complex3 = new Ability(complex2.ability, "Prayer_Complex_3_A", [Pigments.Blue, Pigments.BluePurple]);
+            Ability complex3 = new Ability(complex2.ability, "Prayer_Complex_3_A", complex1.Cost);
             complex3.Name = "Colonialist Complex";
             complex3.Description = "Heal 6 health and apply 2 Power to adjacent party members depending on where Purple Pigment was used in this ability's costs.\nIf no Purple Pigment was used, generate 1 Pigment of the Left, Right, and this party member's health color and heal them all 3 health.";
             complex3.Effects[0].entryVariable = 6;
             complex3.Effects[3].entryVariable = 3;
 
-            Ability complex4 = new Ability(complex3.ability, "Prayer_Complex_4_A", complex3.Cost);
+            Ability complex4 = new Ability(complex3.ability, "Prayer_Complex_4_A", complex1.Cost);
             complex4.Name = "God Complex";
             complex4.Description = "Heal 7 health and apply 2 Power to adjacent party members depending on where Purple Pigment was used in this ability's costs.\nIf no Purple Pigment was used, generate 1 Pigment of the Left, Right, and this party member's health color and heal them all 3 health.";
             complex4.Effects[0].entryVariable = 7;
