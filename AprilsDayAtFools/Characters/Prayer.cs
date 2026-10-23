@@ -75,14 +75,16 @@ namespace AprilsDayAtFools
             complex4.Description = "Heal 7 health and apply 2 Power to adjacent party members depending on where Purple Pigment was used in this ability's costs.\nIf no Purple Pigment was used, generate 1 Pigment of the Left, Right, and this party member's health color and heal them all 3 health.";
             complex4.Effects[0].entryVariable = 7;
 
+            EffectConditionSO ispurple = UsedColorCondition.Create(Pigments.Purple, true);
+
             Ability hypo1 = new Ability("Psychological Hypothetical", "Prayer_Hypo_1_A");
             hypo1.Description = "If any Blue Pigment was used, heal the Right ally 3 health.\nIf any Purple Pigment was used, apply 2 Power to the Right ally and heal this party member 1 health.";
             hypo1.AbilitySprite = ResourceLoader.LoadSprite("ability_hypothetical.png");
             hypo1.Cost = [Pigments.PurpleBlue, Pigments.Yellow];
             hypo1.Effects = new EffectInfo[3];
             hypo1.Effects[0] = Effects.GenerateEffect(heal, 3, Targeting.Slot_AllyRight, UsedColorCondition.Create(Pigments.Blue, true));
-            hypo1.Effects[1] = Effects.GenerateEffect(power, 2, Targeting.Slot_AllyRight, complex1.Effects[0].condition);
-            hypo1.Effects[2] = Effects.GenerateEffect(heal, 1, Slots.Self, complex1.Effects[0].condition);
+            hypo1.Effects[1] = Effects.GenerateEffect(power, 2, Targeting.Slot_AllyRight, ispurple);
+            hypo1.Effects[2] = Effects.GenerateEffect(heal, 1, Slots.Self, ispurple);
             hypo1.AddIntentsToTarget(Targeting.Slot_AllyRight, ["Heal_1_4", Power.Intent]);
             hypo1.AddIntentsToTarget(Slots.Self, ["Heal_1_4"]);
             hypo1.Visuals = CustomVisuals.GetVisuals("Salt/Gaze");
